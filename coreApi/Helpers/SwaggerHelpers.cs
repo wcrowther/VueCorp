@@ -15,7 +15,7 @@ namespace coreApi.Helpers
             {
                 c.SwaggerDoc("v1", new OpenApiInfo 
 				{ 
-					Title = "Vue Minimal API 2023", 
+					Title = "VueCorp API", 
 					Version = "v1"
 				});
 

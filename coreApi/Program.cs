@@ -34,6 +34,7 @@ builder.Services.AddAuthentication(cfg =>
         IssuerSigningKey    = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["App:AuthSigningKey"])),
     };
 });
+
 builder.Services.AddAuthorization(options =>
 {
 	options.AddPolicy("User", policy => policy.RequireRole("User"));
@@ -56,7 +57,7 @@ if (app.Environment.IsDevelopment())
 	});
     app.UseSwaggerUI(options =>
     {
-		options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp2023 V1");
+		options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
 		options.RoutePrefix = "docs";
 		options.EnableTryItOutByDefault();
     });
