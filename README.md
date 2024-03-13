@@ -1,2 +1,2 @@
-# Vue Corp 
+# VueCorp 
 Created by Will Crowther
