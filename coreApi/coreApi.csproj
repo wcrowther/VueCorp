@@ -1,0 +1,73 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+	   <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <NoWarn>1701;1702;1591;</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <NoWarn>1701;1702;1591;</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="Data\**" />
+      <Compile Remove="Logic\**" />
+      <Compile Remove="Migrations\**" />
+      <Compile Remove="Models\**" />
+      <Content Remove="Data\**" />
+      <Content Remove="Logic\**" />
+      <Content Remove="Migrations\**" />
+      <Content Remove="Models\**" />
+      <EmbeddedResource Remove="Data\**" />
+      <EmbeddedResource Remove="Logic\**" />
+      <EmbeddedResource Remove="Migrations\**" />
+      <EmbeddedResource Remove="Models\**" />
+      <None Remove="Data\**" />
+      <None Remove="Logic\**" />
+      <None Remove="Migrations\**" />
+      <None Remove="Models\**" />
+    </ItemGroup>
+
+	<ItemGroup>
+        <Compile Remove="Helpers\CustomAuthorizeAttribute.cs" />
+        <Compile Remove="Helpers\DataAnnotationsValidate.cs" />
+        <Compile Remove="Helpers\JwtMiddleware.cs" />
+        <Compile Remove="Helpers\TokenSecurity.cs" />
+    </ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="C:\Users\willc\.nuget\packages\seedpacket\5.0.0\contentFiles\any\net5.0\favicon.ico" />
+	  <Content Remove="wwwroot\docs\favicon.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="..\.editorconfig" Link=".editorconfig" />
+	  <None Include="wwwroot\docs\favicon.ico" />
+	</ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.22" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.OpenApi" Version="1.6.10" />
+        <PackageReference Include="SeedPacket" Version="5.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.32.3" />
+        <PackageReference Include="WildHare" Version="1.5.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\coreLogic\coreLogic.csproj" />
+    </ItemGroup>
+
+</Project>

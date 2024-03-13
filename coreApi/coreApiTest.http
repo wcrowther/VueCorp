@@ -1,0 +1,48 @@
+@coreApi.Server_HostAddress = https://localhost:9999
+@token =   eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3Y3Jvd3RoZXIyMiIsImp0aSI6ImFhMzM0OWY0LTM0MmQtNGNmNi05YjU3LWYzMzhkY2JmNGNkNyIsInVuaXF1ZV9uYW1lIjoid2Nyb3d0aGVyMjIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJVc2VyIl0sImV4cCI6MTcwMjc2NDk0NywiaXNzIjoibG9jYWwiLCJhdWQiOiJBbGwifQ.JVBWNLzT41JaL-85FtrZma4_x-URDdWApKcAB-s_CPStggxHnWk5mVrTV7f0dABIF4kC_u__-24Y7w6Ai3_DXA
+
+
+GET {{coreApi.Server_HostAddress}}/v1/weatherforecast/
+Accept: application/json
+
+###
+
+POST {{coreApi.Server_HostAddress}}/v1/authenticate
+accept: */* 
+Content-Type: application/json
+
+{
+	"username": "wcrowther22",
+	"password": "Test123!"
+}
+
+###
+
+POST {{coreApi.Server_HostAddress}}/v1/accounts/saveAccount
+Authorization: bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+	"AccountId": 0,  
+	"AccountName": "Test Account",
+	"AccountEmail": "wtest@test.com",
+	"AccountPhone": "(404) 333 4444",
+	"StreetAddress": "123 Street St.",
+	"City": "New York",
+	"StateProvince": "NY",
+	"PostalCode": "12345"
+}
+
+###
+
+POST {{coreApi.Server_HostAddress}}/v1/authenticate/signup
+Content-Type: application/json
+Accept: application/json
+
+{  
+	"UserName": "wtest112@test.com",
+	"Password": "Test123!",
+	"FirstName": "Will",
+	"LastName": "Test112"
+}

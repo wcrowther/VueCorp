@@ -1,0 +1,11 @@
+@MyJWT_HostAddress = https://localhost:7234
+
+GET {{MyJWT_HostAddress}}/
+
+###
+
+GET {{MyJWT_HostAddress}}/secret
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IndpbGxjIiwic3ViIjoid2lsbGMiLCJqdGkiOiI2Y2UyMGEwNSIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjEyNDQ1IiwiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzODAiLCJodHRwOi8vbG9jYWxob3N0OjUyNzMiLCJodHRwczovL2xvY2FsaG9zdDo3MjM0Il0sIm5iZiI6MTcwMDAxNzQ0MCwiZXhwIjoxNzA3OTY2MjQwLCJpYXQiOjE3MDAwMTc0NDEsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.hZlFmR6TAPqwBc39cyJ1TMHNVpoYrvXuz99lHd_VT0E
+
+#Comment
+###
