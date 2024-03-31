@@ -57,9 +57,13 @@ if (app.Environment.IsDevelopment())
 	});
     app.UseSwaggerUI(options =>
     {
+		options.EnableTryItOutByDefault();
+		
 		options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
 		options.RoutePrefix = "docs";
 		options.EnableTryItOutByDefault();
+		options.InjectStylesheet("/swagger-ui/custom.css");
+		options.InjectJavascript("/swagger-ui/custom.js");
     });
 }
 

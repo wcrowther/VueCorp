@@ -1,7 +1,7 @@
 
 import { createRouter, createWebHistory } 	from 'vue-router/auto'
 
-const DEFAULT_TITLE = 'Vue / MinimalAPI';
+const DEFAULT_TITLE = 'Vue Corp';
 
 const router = createRouter(
 {
@@ -25,13 +25,13 @@ router.beforeEach(async (to) =>
 	}
 });
 
-router.afterEach((to) =>  // , from
+router.afterEach(() =>  // (to, from)
 {
 	// nextTick see: https://github.com/vuejs/vue-router/issues/914#issuecomment-384477609
 
 	nextTick(() => 
 	{		
-		document.title =  DEFAULT_TITLE + (to.name ? ' - '+ to.name : '');
+		document.title =  DEFAULT_TITLE // + (to.name ? ' - '+ to.name : '');
 	});
 });
 

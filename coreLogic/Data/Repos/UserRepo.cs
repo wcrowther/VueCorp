@@ -59,7 +59,7 @@ namespace coreApi.Data
 			var query = _dataContext.Users.Where(predicate);
 
 			pager.TotalCount = query.Count();
-			var listItems = query.OrderBy(p => p.LastName)
+			var listItems = query.OrderBy(p => p.LastName ?? "")
 									.Skip(pager.FirstRecordInPage - 1)
 									.Take(pager.PageSize)
 									.ToList();

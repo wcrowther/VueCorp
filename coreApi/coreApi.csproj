@@ -43,11 +43,13 @@
 	<ItemGroup>
 	  <Content Remove="C:\Users\willc\.nuget\packages\seedpacket\5.0.0\contentFiles\any\net5.0\favicon.ico" />
 	  <Content Remove="wwwroot\docs\favicon.ico" />
+	  <Content Remove="wwwroot\docs\White_Brand_Logo.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Include="..\.editorconfig" Link=".editorconfig" />
 	  <None Include="wwwroot\docs\favicon.ico" />
+	  <None Include="wwwroot\docs\White_Brand_Logo.png" />
 	</ItemGroup>
 
     <ItemGroup>

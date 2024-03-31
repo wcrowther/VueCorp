@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'brand-logo':         'url("/")', /*/Brand_Logo_2_White.png*/
+        'space-stars':        'url("/space-stars.png")',
         'gradient-brand':     'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
                               'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
         'gradient-back':      'linear-gradient( to bottom, #1c2157 30%, black 100%)',

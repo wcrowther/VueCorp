@@ -1,8 +1,10 @@
 // eslint-disable-next-line vue/multi-word-component-names
 <script setup>
 
-    const pageTitle  = ref('Site Map')
-    const appStore   = useAppStore()
+    const pageTitle     = ref('Site Map')
+    const appStore      = useAppStore()
+    const currentUrl    = import.meta.url
+    const baseUrl       = import.meta.env.BASE_URL
 
 </script>
 
@@ -24,6 +26,12 @@
             <div class="w-full min-h-[400px] relative z-20">
                 <div class="mb-3"><span class="font-bold">Mode: </span>
                     {{ appStore.mode }}
+                </div>
+                <div class="mb-3"><span class="font-bold">import.meta.url:</span>
+                    {{ currentUrl }}
+                </div>                
+                <div class="mb-3"><span class="font-bold">BaseUrl:</span>
+                    {{ baseUrl }}
                 </div>
                 <SiteMap />
             </div>

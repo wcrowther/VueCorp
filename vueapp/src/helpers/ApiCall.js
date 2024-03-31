@@ -64,7 +64,7 @@ export async function apiCall(type, url, useAuth, body)
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
 		{
 			authStore.logout()
-			result.message 		= "You are not authorized for that content. Please login to gain access."
+			result.message 	= "You are not authorized for that content.\nPlease login to gain access."
 			result.toastType 	= 'INFO'
 		}		
 		else if ([403].includes(err.response.status)) // Forbidden (known but does not have rights to content)
