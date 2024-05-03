@@ -1,18 +1,14 @@
-﻿using LinqKit;
-using coreApi.Data.Interfaces;
+﻿using coreApi.Data.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Helpers;
-using SeedPacket.Extensions;
-using System;
+using LinqKit;
 using System.Linq.Expressions;
 using WildHare.Extensions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static Microsoft.Extensions.Logging.EventSource.LoggingEventSource;
 
 namespace coreApi.Data
 {
-    public class AccountRepo : IAccountRepo
+	public class AccountRepo : IAccountRepo
     {
 		private readonly coreApiDataContext _dataContext;
 

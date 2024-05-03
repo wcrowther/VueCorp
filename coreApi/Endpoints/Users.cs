@@ -6,7 +6,7 @@ using coreApi.Logic.Interfaces;
 using coreApi.Models.Generic;
 using coreApi.Helpers;
 
-namespace coreApi.Endpoints;
+namespace coreApi;
 
 public static partial class Endpoints
 {

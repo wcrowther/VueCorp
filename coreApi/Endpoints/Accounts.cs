@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using coreApi.Helpers;
-using coreApi.Helpers.Extensions;
+﻿using coreApi.Helpers;
+using coreApi.Logic.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
-using coreApi.Logic.Interfaces;
-using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
-namespace coreApi.Endpoints;
+namespace coreApi;
 
 public static partial class Endpoints
 {

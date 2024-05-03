@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using WildHare.Extensions;
 using coreApi.Helpers;
 
-namespace coreApi.Endpoints;
+namespace coreApi;
 
 public static partial class Endpoints
 {

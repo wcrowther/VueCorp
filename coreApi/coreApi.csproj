@@ -34,6 +34,7 @@
     </ItemGroup>
 
 	<ItemGroup>
+        <Compile Remove="Endpoints\_RegisterEndpoints.cs" />
         <Compile Remove="Helpers\CustomAuthorizeAttribute.cs" />
         <Compile Remove="Helpers\DataAnnotationsValidate.cs" />
         <Compile Remove="Helpers\JwtMiddleware.cs" />

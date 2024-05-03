@@ -1,10 +1,5 @@
 ﻿
-using coreApi.Data;
-using coreApi.Models;
-using SeedPacket.Extensions;
-using System.Linq;
-
-namespace coreApi.Endpoints;
+namespace coreApi;
 
 public static partial class Endpoints
 {

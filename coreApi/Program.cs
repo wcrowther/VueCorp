@@ -1,12 +1,9 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using coreApi;
-using coreApi.Endpoints;
 using coreApi.Helpers;
-using coreApi.Models;
 using coreApi.Managers;
-using System.Diagnostics;
+using coreApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
@@ -35,11 +32,9 @@ builder.Services.AddAuthentication(cfg =>
     };
 });
 
-builder.Services.AddAuthorization(options =>
-{
-	options.AddPolicy("User", policy => policy.RequireRole("User"));
-	options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-});
+builder.Services.AddAuthorizationBuilder()
+	.AddPolicy("User", policy => policy.RequireRole("User"))
+	.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
 
 builder.Services.AddMyServices();
 
@@ -47,7 +42,7 @@ builder.Services.AddMyServices();
 
 var app = builder.Build();
 
-    app.UseStaticFiles();
+app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
@@ -78,7 +73,7 @@ app.UseCors(builder => builder
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.AddMyEndpoints();
+app.RegisterEndpoints();
 
 app.Run();
 
