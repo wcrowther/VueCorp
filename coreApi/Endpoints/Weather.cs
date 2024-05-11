@@ -27,10 +27,6 @@ public static partial class Endpoints
 
 	// ==============================================================================================
 
-	private record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
-    {
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
 
     private static string[] GetSummaries()
     {
@@ -38,5 +34,10 @@ public static partial class Endpoints
     }
 
     // ==============================================================================================
+}
+
+public record WeatherForecast(DateOnly Date, int TemperatureC, string Summary)
+{
+	public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
 
