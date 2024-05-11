@@ -33,7 +33,7 @@
       <None Remove="Models\**" />
     </ItemGroup>
 
-	<ItemGroup>
+    <ItemGroup>
         <Compile Remove="Endpoints\_RegisterEndpoints.cs" />
         <Compile Remove="Helpers\CustomAuthorizeAttribute.cs" />
         <Compile Remove="Helpers\DataAnnotationsValidate.cs" />
@@ -54,18 +54,18 @@
 	</ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.22" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.OpenApi" Version="1.6.10" />
+        <PackageReference Include="Microsoft.OpenApi" Version="1.6.14" />
         <PackageReference Include="SeedPacket" Version="5.0.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
         <PackageReference Include="WildHare" Version="2.0.0" />
     </ItemGroup>
 

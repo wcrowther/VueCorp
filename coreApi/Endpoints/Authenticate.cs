@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using coreApi.Models;
+﻿using coreApi.Helpers;
 using coreApi.Logic.Interfaces;
-using Microsoft.IdentityModel.Tokens;
+using coreApi.Models;
 using WildHare.Extensions;
-using coreApi.Helpers;
 
 namespace coreApi;
 

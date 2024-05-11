@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-using coreApi.Models;
+﻿using coreApi.Helpers;
 using coreApi.Logic.Interfaces;
+using coreApi.Models;
 using coreApi.Models.Generic;
-using coreApi.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace coreApi;
 

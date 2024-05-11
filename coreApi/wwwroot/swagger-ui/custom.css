@@ -40,7 +40,10 @@ body {
 }
 
 /* ------------------------------------------------------------ */
-
+.swagger-ui .topbar {
+    background-color: #3a4b8b;
+    padding: 10px 0;
+}
 .swagger-ui .topbar .download-url-wrapper .select-label select {
     border-color: #7e93fb;
 }

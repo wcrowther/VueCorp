@@ -1,4 +1,3 @@
-using coreApi;
 using coreApi.Helpers;
 using coreApi.Managers;
 using coreApi.Models;

@@ -34,10 +34,7 @@ public static partial class Endpoints
 
     private static string[] GetSummaries()
     {
-        return new string[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        return [ "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" ];
     }
 
     // ==============================================================================================
