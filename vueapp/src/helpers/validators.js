@@ -40,6 +40,7 @@ export const userValidator =
 {
 	FirstName:          { required },
 	LastName:           { required },
+	UserName:           { required },
 	UserEmail:          { required },
     Roles:              { required }
 }

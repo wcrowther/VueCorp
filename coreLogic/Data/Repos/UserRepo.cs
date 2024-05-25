@@ -108,17 +108,25 @@ namespace coreApi.Data
 					continue;
 
 				if (filter.IsNumeric())
+				{
 					predicate = predicate.Or(p => p.UserId == filter.ToInt(0));
+				}
 				else
-					predicate = predicate.Or(UserNameFilter(filter.ToLower()));
+				{
+					predicate = predicate.Or(UserNameFilter(filter));
+					predicate = predicate.Or(p => p.FirstName.StartsWith(filter));
+					predicate = predicate.Or(p => p.LastName.StartsWith(filter));
+					predicate = predicate.Or(p => p.UserEmail.StartsWith(filter));
+				}
 			}
 
 			return predicate;
 		}
 
+		// Example expression function
 		private static Expression<Func<User, bool>> UserNameFilter(string f)
 		{
-			return p => p.LastName.ToLower().StartsWith(f);
+			return p => p.UserName.StartsWith(f);
 		}
 	}
 }

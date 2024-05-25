@@ -15,7 +15,7 @@
 	const rules                 = computed(() => userValidator)
     const userTitle             = computed(() => isAddingUser.value ? 'Add new User' : userFullName.value )
 
-	const v$ = useVuelidate(rules, user)
+	const v$ = useVuelidate(rules, user) // validator
 
     const getUserDetail = async () =>
     {
@@ -136,17 +136,19 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div class="mb-3 pb-1 flex justify-end">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-sm">
+                <div class="mb-3 pb-1 flex justify-between">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-2xl">
+                        UserName: {{user.UserName}}
+                    </span>
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-2xl">
                         UserId: {{user.UserId}}
                     </span>
                 </div>
                 
                 <TextInput labelName="First Name" v-model="user.FirstName" :v$ />
-                <TextInput labelName="Last Name" v-model="user.LastName" :v$ />
-                <TextInput labelName="UserEmail" v-model="user.UserEmail" :v$ />
-                <!-- <TextInput labelName="Roles"    v-model="user.Roles" :v$ /> -->
-                <SelectInput labelName="Roles" v-model="user.Roles" :optionsList="rolesList" :v$ />
+                <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
+                <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
+                <SelectInput labelName="Roles" v-model="user.Roles" :v$ :optionsList="rolesList" />
             </div>
         </div>
 
