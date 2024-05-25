@@ -28,11 +28,11 @@ export async function apiCall(type, url, useAuth, body)
 		headers: 	{}
 	}	
 
-	log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
+	// log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
 
 	if (body) 
 	{
-		logJson('apiCall', JSON.stringify(body))
+		// logJson('apiCall', JSON.stringify(body))
 
 		callOptions.headers['Content-Type'] = 'application/json'
 		callOptions.data = JSON.stringify(body)
