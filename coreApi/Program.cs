@@ -43,8 +43,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment()){
 	app.UseSwagger(options =>
 	{
 		options.RouteTemplate = "docs/{documentName}/docs.json";
@@ -59,7 +58,7 @@ if (app.Environment.IsDevelopment())
 		options.InjectStylesheet("/swagger-ui/custom.css");
 		options.InjectJavascript("/swagger-ui/custom.js");
     });
-}
+//}
 
 app.UseHttpsRedirection();
 

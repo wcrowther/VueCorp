@@ -85,7 +85,7 @@ namespace coreApi.Data
 
 		private static Expression<Func<Account, bool>> AccountNameFilter(string f)
 		{
-			return p => p.AccountName.StartsWith(f, StringComparison.CurrentCultureIgnoreCase);
+			return p => p.AccountName.StartsWith(f);
 		}
 	}
 }
