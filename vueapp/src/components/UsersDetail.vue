@@ -136,11 +136,11 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div class="mb-3 pb-1 flex justify-between">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-2xl">
+                <div class="mb-5 pb-1 flex justify-between">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserName: {{user.UserName}}
                     </span>
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-2xl">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserId: {{user.UserId}}
                     </span>
                 </div>
