@@ -11,7 +11,7 @@ public static partial class Endpoints
     public static void AccountEndpoints(this WebApplication app)
     {
         var accounts = app.MapGroup("/v1/accounts")
-						  .RequireAuthorization()
+						  //.RequireAuthorization()
                           .WithOpenApi()
 						  .WithTags("Accounts");
 

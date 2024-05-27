@@ -2,10 +2,15 @@
 body {
     background-color: white;
 }
+
+/* ------------------------------------------------------------ */
+
+/* Hide Swagger logo */
 .topbar-wrapper img[alt="Swagger UI"], 
 .topbar-wrapper span {
     visibility: hidden;
 }
+/* Add custom logo */
 .topbar-wrapper .link:after {
     content: '';
     visibility: visible;
@@ -14,8 +19,9 @@ body {
     font-style: italic;
     height: 40px;
     width: 130px;
-    background: #3a4b8b url(../docs/White_Brand_Logo.png) no-repeat
+    background: #3a4b8b url(/docs/White_Brand_Logo.png) no-repeat
 }
+
 /* ------------------------------------------------------------ */
 
 .swagger-ui .opblock.opblock-get .opblock-summary-method {

@@ -73,6 +73,8 @@ app.UseAuthorization();
 
 app.RegisterEndpoints();
 
+app.MapFallbackToFile("/index.html");
+
 app.Run();
 
 

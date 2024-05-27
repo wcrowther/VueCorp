@@ -4,6 +4,9 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
 	   <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	   <SpaRoot>..\vueapp</SpaRoot>
+	   <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+	   <SpaProxyServerUrl>https://localhost:7200</SpaProxyServerUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -49,8 +52,12 @@
 
 	<ItemGroup>
 	  <None Include="..\.editorconfig" Link=".editorconfig" />
-	  <None Include="wwwroot\docs\favicon.ico" />
-	  <None Include="wwwroot\docs\White_Brand_Logo.png" />
+	  <None Include="wwwroot\docs\favicon.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Include="wwwroot\docs\White_Brand_Logo.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
     <ItemGroup>
@@ -70,7 +77,31 @@
     </ItemGroup>
 
     <ItemGroup>
+	   <ProjectReference Include="..\vueapp\vueapp.esproj">
+		  <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+	   </ProjectReference>
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\coreLogic\coreLogic.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\docs\favicon-16x16.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\docs\favicon-32x32.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Update="wwwroot\docs\favicon-48x48.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="coreApiData.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
