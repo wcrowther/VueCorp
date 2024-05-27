@@ -54,28 +54,29 @@ export async function apiCall(type, url, useAuth, body)
 
 		if(err.code === 'ERR_NETWORK')
 		{
-			result.message 		= 'Not able to communicate with the server. Please try again later.'
+			result.message		 = 'Not able to communicate with the server. Please try again later.'
 		}
 		else if ([400].includes(err.response.status)) 
 		{
-			result.message 		= err.response.data.detail || err.message || err.response.data.error 
-			result.toastType 	= 'INFO'
+			result.message		 = err.response.data.detail || err.message || err.response.data.error 
+			result.toastType	 = 'INFO'
 		}		
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
 		{
 			authStore.logout()
-			result.message 	= "You are not authorized for that content.\nPlease login to gain access."
-			result.toastType 	= 'INFO'
+			result.message		 = "You are not authorized for that content.\nPlease login to gain access."
+			result.toastType	 = 'INFO'
 		}		
 		else if ([403].includes(err.response.status)) // Forbidden (known but does not have rights to content)
 		{
 			authStore.logout()
-			result.message 		= "The username or password you entered is incorrect."
-			result.toastType 	= 'INFO'
+			result.message		 = "The username or password you entered is incorrect."
+			result.toastType	 = 'INFO'
 		} 
 		else
 		{
-			result.message = err.message
+		    result.message		 = err.message
+		    result.toastType	 = 'WARNING'
 		}
 
 		messageStore.showToast(result.message, result.toastType)   

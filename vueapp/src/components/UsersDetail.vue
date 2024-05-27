@@ -1,6 +1,7 @@
 <script setup>
 
     const usersStore                = useUsersStore()
+    const messageStore              = useMessageStore()
     const { user, detailUserId }    = storeToRefs(usersStore)
     const 
     { 
@@ -44,9 +45,16 @@
         const isValidUser = await v$.value.$validate()
 
         if(isValidUser)
-            isConfirmVisible.value = true
-        else    
-            console.log('User not valid')
+        {
+             isConfirmVisible.value = true
+        }
+        else
+        {
+            let message = 'Cannot save as user is not valid.'
+            messageStore.showError(message) 
+            console.log(message)
+        }    
+           
     }
 
     const saveUserDetail = async () =>
