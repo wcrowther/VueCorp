@@ -45,7 +45,6 @@
     </ItemGroup>
 
 	<ItemGroup>
-	  <Content Remove="C:\Users\willc\.nuget\packages\seedpacket\5.0.0\contentFiles\any\net5.0\favicon.ico" />
 	  <Content Remove="wwwroot\docs\favicon.ico" />
 	  <Content Remove="wwwroot\docs\White_Brand_Logo.png" />
 	</ItemGroup>
