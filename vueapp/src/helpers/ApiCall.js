@@ -28,13 +28,15 @@ export async function apiCall(type, url, useAuth, body)
 		headers: 	{}
 	}	
 
-	// console.log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
+	console.log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
 
 	if (body) 
 	{
 		// logJson('apiCall', JSON.stringify(body))
 
 		callOptions.headers['Content-Type'] = 'application/json'
+		callOptions.headers['Access-Control-Allow-Private-Network'] = 'true'
+		
 		callOptions.data = JSON.stringify(body)
 	}
 
@@ -75,8 +77,8 @@ export async function apiCall(type, url, useAuth, body)
 		} 
 		else
 		{
-		    result.message		 = err.message
-		    result.toastType	 = 'WARNING'
+			result.message		 = err.message
+			result.toastType	 = 'WARNING'
 		}
 
 		messageStore.showToast(result.message, result.toastType)   
