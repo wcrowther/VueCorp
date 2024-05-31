@@ -2,7 +2,7 @@
 
 namespace coreApi.Helpers;
 
-public static class EndpointHelpers
+public static class EndpointHelper
 {
 	public static void RegisterEndpoints(this WebApplication app)
 	{

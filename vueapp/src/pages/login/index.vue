@@ -34,9 +34,9 @@
 	<LayoutLogin>
 
 		<BrandBar class="main-width">
-			<router-link class="block mr-5 h-10 w-[130px] bg-contain bg-no-repeat
+			<router-link class="block mr-5 h-10 w-1/2 bg-contain bg-no-repeat tracking-wide
 				bg-brand-logo bg-center font-serif text-white text-xl/10 align-middle text-right" 
-				to='/' title="Homepage / Logo">Brand Logo
+				to='/' title="Homepage / Logo">VueCorp
 			</router-link>
 		</BrandBar>  
 

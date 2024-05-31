@@ -3,10 +3,11 @@ using coreApi.Data.Interfaces;
 using coreApi.Logic;
 using coreApi.Logic.Interfaces;
 using coreApi.Logic.Managers;
+using coreApi.Managers;
 
-namespace coreApi.Managers
+namespace coreApi.Helpers
 {
-    public static class AddServices
+    public static class RegisterServices
     {
         public static void AddMyServices(this IServiceCollection services)
         {

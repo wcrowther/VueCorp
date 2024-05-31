@@ -3,7 +3,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace coreApi.Helpers
 {
-    public static class SwaggerHelpers 
+    public static class RegisterSwagger 
     {
 		// Adds Authorization field to Swagger documents
 		// If we use Type = 'SecuritySchemeType.ApiKey' then we have to prefix 'Bearer '

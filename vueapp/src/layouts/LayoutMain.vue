@@ -30,9 +30,9 @@
 
 		<BrandBar class="main-width flex justify-between items-center px-5 ">
 			<LoginPopout />
-			<router-link class="block h-10 w-[130px] bg-contain bg-no-repeat bg-brand-log
+			<router-link class="block h-10 w-[130px] bg-contain bg-no-repeat bg-brand-log leading-loose
 				bg-center font-serif text-white text-xl/10 align-middle text-right relative -left-3 xs:left-0" 
-				to='/' title="Homepage / Logo">Brand Logo
+				to='/' title="Homepage / Logo">VueCorp
 			</router-link> 
 		</BrandBar>  
 

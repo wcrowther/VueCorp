@@ -3,7 +3,7 @@
 <script setup>
 
 	import { definePage } from 'vue-router/auto'
-	definePage({ redirect: '/Admin/Main'	})
+	definePage({ redirect: '/Admin/Main' })
 	
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)
