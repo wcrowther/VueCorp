@@ -7,7 +7,7 @@
 
 <template>
 
-	<div id="layout-login" class="relative z-0 h-full w-[415px] sm:w-[560px] mt-10 mx-auto">
+	<div id="layout-login" class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto">
 		<slot></slot>
 
 		<div class="flex justify-center">
