@@ -106,4 +106,20 @@
       </None>
     </ItemGroup>
 
+    <Target Name="CopyCustomFiles" BeforeTargets="Publish">
+	   <!-- Can be relative or absolute path: C:\Git\VueCorp\LICENSE.txt-->
+	   <ItemGroup>
+		  <MyFiles Include="..\LICENSE.txt" />
+	   </ItemGroup>
+	   <Message Text="BeforeTargets Publish: Copying file @(MyFiles) to $(PublishDir)" Importance="high" />
+	   <Copy SourceFiles="@(MyFiles)" DestinationFolder="$(PublishDir)" />
+    </Target>
+
+    <!--
+    <Target Name="RemoveLicense.txt" AfterTargets="Publish">
+	   <Message Text="Deleting LICENSE.txt" Importance="high" />
+	   <Delete Files="$(PublishDir)LICENSE.txt" />
+    </Target>
+    -->
+
 </Project>
