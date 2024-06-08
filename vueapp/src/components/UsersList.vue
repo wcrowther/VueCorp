@@ -219,7 +219,7 @@
             </tbody>
         </table>
 
-        <ModalControl :show="showModal" title="Advanced Search" :disableTeleport="false" 
+        <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="true" 
             height="400px" width="500px" @closeModal="showModal=false">
                 Advanced Search Features will go here.     
             <template #footer>

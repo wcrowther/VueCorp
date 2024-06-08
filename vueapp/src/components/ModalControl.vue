@@ -3,7 +3,7 @@
 	const props = defineProps({
 		show:             Boolean, 
 		title:            String,
-		disableTeleport:  { type: Boolean, default: false },
+		teleportToBody:   { type: Boolean, default: true },
 		height:           { type: String, default: '300px' },
 		width:            { type: String, default: '500px' }
 	})
@@ -15,7 +15,7 @@
 </script>
 
 <template>
-	<Teleport to="body" :disabled="disableTeleport">    
+	<Teleport to="body" :disabled="!teleportToBody">    
 		<Transition name="modal">
 
 			<div v-if="show" @click.self="$emit('closeModal')"
