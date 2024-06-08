@@ -15,7 +15,7 @@
     const color     = ref(props.color)
     const styles    = computed(() => ({ width: size.value, height: size.value }) )
 
-    onMounted(() => 
+    onMounted(() =>     
     {
         // console.log('props.pixelSize: ' + props.pixelSize)
     })

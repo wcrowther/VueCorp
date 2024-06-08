@@ -224,7 +224,7 @@
             </tfoot>
         </table>
 
-        <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="false" 
+        <ModalControl :show="showModal" title="Advanced Search" 
             height="400px" width="500px" @closeModal="showModal=false">
                 Advanced Search Features will go here.     
             <template #footer>
