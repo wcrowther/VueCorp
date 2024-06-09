@@ -3,9 +3,10 @@
 
     // Page Specific  =================================================================================
 
-    const { width: windowWidth }      = useWindowSize()
-    const appStore                    = useAppStore()
-    const { sideBarHidden }           = storeToRefs(appStore)    
+    const { width: windowWidth }    = useWindowSize()
+    const appStore                  = useAppStore()
+    const { sideBarHidden, persistSearch }           
+                                    = storeToRefs(appStore)    
     
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
@@ -27,7 +28,7 @@
     const searchFilterDefaultName       = 'accountsSearchFilterDefault'        
     const currentPage                   = ref(0)
     const activeItem                    = ref(null)
-    const showModal                     = ref(false)
+    const showAdvSearch                 = ref(false)
 
     const accountsStore                 = useAccountsStore()
     const       
@@ -42,7 +43,7 @@
     listPager.value.PageSize            = listPageSizeDefault
 
     const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')
-    listPager.value.Search              = new Search(searchFilterDefault.value)  
+    listPager.value.Search              = new Search(persistSearch.value ? searchFilterDefault.value : '')  
 
     // Methods / Computeds ===========================================================================
 
@@ -147,7 +148,7 @@
 </script>
 
 <template>
-    <div class="" id="accountsListView">
+    <div class="" id="accountsList">
 
         <!-- Right PREV / NEXT Button for Mobile--> 
         <teleport to="body" v-if="appStore.showPrevNext">
@@ -164,8 +165,9 @@
         </teleport> 
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
-    
-        <div class="px-5 flex flex-wrap justify-between items-center bg-gradient-side border-t border-r border-slate-300">
+
+        <div class="px-5 flex flex-wrap justify-between items-center 
+            bg-gradient-side border-t border-r border-slate-300">
             
             <div class="flex gap-x-1 pt-5 pb-3 w-full">
                 <div class="h-10 w-full relative">
@@ -175,13 +177,14 @@
                                 separated by a comma. Click on + for more options." />
                 
                     <div class="top-0 right-0 flex justify-end items-center gap-1 absolute h-full w-auto">
-                        <div class="p-1 w-auto flex-center">
-                            <IconSymbol v-if="listPager.Search.Filter.length > 0" @click="resetFilter"
+                        <div class="p-1 w-auto flex-center" @click="resetFilter">
+                            <IconSymbol v-if="listPager.Search.Filter.length > 0" 
                                  class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
                         </div>
-                        <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray flex-center rounded-full group">
-                            <IconSymbol title="Advanced Search" @click.prevent="showModal=true"
-                                class="text-black group-hover:text-color-mid-gray" width="22px" icon="heroicons:plus-20-solid" />
+                        <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray
+                            flex-center rounded-full group" @click.prevent="showAdvSearch=true">
+                            <IconSymbol class="text-black group-hover:text-color-mid-gray"
+                                title="Advanced Search"  width="22px" icon="heroicons:plus-20-solid" />
                         </span>
                     </div>
                 </div>
@@ -224,12 +227,12 @@
             </tfoot>
         </table>
 
-        <ModalControl :show="showModal" title="Advanced Search" 
-            height="400px" width="500px" @closeModal="showModal=false">
+        <ModalControl :show="showAdvSearch" title="Advanced Search" 
+            height="400px" width="500px" @closeModal="showAdvSearch=false">
                 Advanced Search Features will go here.     
             <template #footer>
-              <button class="custom-button"  @click="showModal=false">OK</button>
-              <button class="default-button" @click="showModal=false">Cancel</button>
+              <button class="custom-button"  @click="showAdvSearch=false">OK</button>
+              <button class="default-button" @click="showAdvSearch=false">Cancel</button>
             </template>
         </ModalControl>
  
