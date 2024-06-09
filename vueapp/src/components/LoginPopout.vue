@@ -58,53 +58,59 @@
                     <button class="default-button hover:bg-warm-100" @click="logoutUser">Logout</button>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">UserId:</div>
+                    <div class="label-title"
+                        title="Logged-in UserId">UserId:</div>
                     <div class="label-value">{{ authUser.UserId || 0 }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">UserName:</div>
+                    <div class="label-title"
+                        title="Logged-in UserName">UserName:</div>
                     <div class="label-value">{{ authUser.UserName }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">Full Name:</div>
+                    <div class="label-title"
+                        title="Logged-in Full Name">Full Name:</div>
                     <div class="label-value">{{ fullName }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">UserEmail:</div>
+                    <div class="label-title"
+                        title="Logged-in UserEmail">UserEmail:</div>
                     <div class="label-value">{{ authUser.UserEmail }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">Is LoggedIn:</div>
-                    <div class="label-value">{{ isLoggedIn }}</div>
-                </div>
-                <div class="label-row">
-                    <div class="label-title">Is Busy:</div>
+                    <div class="label-title" 
+                        title="Is application busy?">Is Busy:</div>
                     <div class="label-value">{{ isBusy }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title">Expiration:</div>
+                    <div class="label-title"
+                        title="JWT token expiration date">Expiration:</div>
                     <div class="label-value">{{ dateTimeFormat(expiration) }}</div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title" title="JWT Token">Token:</div>
+                    <div class="label-title" 
+                        title="JWT Token">Token:</div>
                     <div class="label-value flex items-center">{{ tokenDisplay }}
                         <IconSymbol class="text-color-mid-blue ml-2" title="Copy JWT Token" @click="tokenToClipboard" width="16px" icon="heroicons:clipboard-20-solid" />
                     </div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title" title="Prev/Next buttons for mobile pager(only show at low res)">Show Prev/Next</div>
+                    <div class="label-title" 
+                        title="Prev/Next buttons for mobile pager(only show at low res)">Show Prev/Next</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showPrevNext" />
                     </div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title" title="Show breakpoints in lower left">Show Breakpoints</div>
+                    <div class="label-title" 
+                        title="Show breakpoints in lower left">Show Breakpoints</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showBreakpoints" />
                     </div>
                 </div>
                 <div class="label-row">
-                    <div class="label-title" title="Persist search on page load">Persist Search</div>
+                    <div class="label-title" 
+                        title="Persist search on page load">Persist Search</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="persistSearch" />
                     </div>
