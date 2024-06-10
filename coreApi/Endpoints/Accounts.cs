@@ -22,7 +22,7 @@ public static partial class Endpoints
             return Results.Ok(accounts);
         });
 
-        accounts.MapPost("/getPagedAccounts", (IAccountManager _accountManager, [FromBody] Pager pager) =>
+        accounts.MapPost("/getPagedAccounts", (IAccountManager _accountManager, [FromBody] Pager<SearchForAccount> pager) =>
         {
             var accounts = _accountManager.GetPagedAccounts(pager);
 

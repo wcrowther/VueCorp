@@ -42,8 +42,8 @@
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
 
-    const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')
-    listPager.value.Search              = new Search(persistSearch.value ? searchFilterDefault.value : '')  
+    const searchFilterDefault           = persistSearch.value ? useLocalStorage(searchFilterDefaultName, '') : ''
+    listPager.value.Search              = new SearchForAccount(searchFilterDefault)  
 
     // Methods / Computeds ===========================================================================
 
@@ -81,12 +81,15 @@
             newPager.Search.Filter      = listPager.value.Search.Filter
             newPager.PageSize           = listPager.value.PageSize
             listPager.value             = newPager
+
+            alert('refresh...')
         }
 
         await getPagedAccounts(listPager.value)
 
-        currentPage.value   = listPager.value.currentPage()
-        activeItem.value    = itemsList.value[listPager.value.offset()]
+        currentPage.value               = listPager.value.currentPage()
+        activeItem.value                = itemsList.value[listPager.value.offset()]
+        listPageSizeDefault.value       = listPager.value.PageSize
 
         setActiveItem()
     } 
@@ -227,15 +230,8 @@
             </tfoot>
         </table>
 
-        <ModalControl :show="showAdvSearch" title="Advanced Search" 
-            height="400px" width="500px" @closeModal="showAdvSearch=false">
-                Advanced Search Features will go here.     
-            <template #footer>
-              <button class="custom-button"  @click="showAdvSearch=false">OK</button>
-              <button class="default-button" @click="showAdvSearch=false">Cancel</button>
-            </template>
-        </ModalControl>
- 
+        <AccountAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager"></AccountAdvSearch>
+
     </div>
 
 </template>

@@ -39,7 +39,7 @@
         </div>
         <div class="flex justify-center items-center relative">
             <input class="w-full" type="text" :id="props.labelName" :name="props.labelName"
-                v-model="modelValue" spellcheck="false" />
+                v-model="modelValue" v-bind="$attrs" spellcheck="false" />
         </div>
     </div>
 </template>

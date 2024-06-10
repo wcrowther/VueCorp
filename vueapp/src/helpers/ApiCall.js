@@ -28,7 +28,7 @@ export async function apiCall(type, url, useAuth, body)
 		headers: 	{}
 	}	
 
-	console.log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
+	// console.log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
 
 	if (body) 
 	{

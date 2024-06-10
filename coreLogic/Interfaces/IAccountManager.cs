@@ -9,7 +9,7 @@ namespace coreApi.Logic.Interfaces
 
         public Account GetAccountById(int id);
 
-        PagedList<Account> GetPagedAccounts(Pager pager);
+        PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager);
 
 		Account SaveAccount(Account account);
 

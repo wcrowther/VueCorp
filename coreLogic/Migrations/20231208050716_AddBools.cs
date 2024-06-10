@@ -20,7 +20,7 @@ namespace coreLogic.Migrations
                 oldType: "INTEGER");
 
             migrationBuilder.AlterColumn<string>(
-                name: "StateProvince",
+                name: "StateProvinceFilter",
                 table: "Accounts",
                 type: "TEXT",
                 maxLength: 2,
@@ -31,7 +31,7 @@ namespace coreLogic.Migrations
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<string>(
-                name: "PostalCode",
+                name: "PostalCodeFilter",
                 table: "Accounts",
                 type: "TEXT",
                 maxLength: 10,
@@ -130,7 +130,7 @@ namespace coreLogic.Migrations
                 oldMaxLength: 50);
 
             migrationBuilder.AlterColumn<string>(
-                name: "StateProvince",
+                name: "StateProvinceFilter",
                 table: "Accounts",
                 type: "TEXT",
                 nullable: true,
@@ -139,7 +139,7 @@ namespace coreLogic.Migrations
                 oldMaxLength: 2);
 
             migrationBuilder.AlterColumn<string>(
-                name: "PostalCode",
+                name: "PostalCodeFilter",
                 table: "Accounts",
                 type: "TEXT",
                 nullable: true,

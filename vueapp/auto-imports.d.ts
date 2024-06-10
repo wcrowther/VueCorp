@@ -8,17 +8,16 @@ declare global {
   const Account: typeof import('./src/models/account.js')['Account']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
-  const Icon: typeof import('@iconify/vue')['Icon']
   const PageItem: typeof import('./src/models/pager.js')['PageItem']
   const PagedList: typeof import('./src/models/pager.js')['PagedList']
   const Pager: typeof import('./src/models/pager.js')['Pager']
   const Search: typeof import('./src/models/pager.js')['Search']
+  const SearchForAccount: typeof import('./src/models/pager.js')['SearchForAccount']
   const User: typeof import('./src/models/user.js')['User']
   const accountValidator: typeof import('./src/helpers/validators.js')['accountValidator']
   const apiCall: typeof import('./src/helpers/ApiCall.js')['apiCall']
   const apiGet: typeof import('./src/helpers/ApiCall.js')['apiGet']
   const apiPost: typeof import('./src/helpers/ApiCall.js')['apiPost']
-  const authLoginValidator: typeof import('./src/helpers/validators.js')['authLoginValidator']
   const authRequestValidator: typeof import('./src/helpers/validators.js')['authRequestValidator']
   const authSignupValidator: typeof import('./src/helpers/validators.js')['authSignupValidator']
   const computed: typeof import('vue')['computed']
@@ -61,6 +60,7 @@ declare global {
   const onServerPrefetch: typeof import('vue')['onServerPrefetch']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const pagerPageSize: typeof import('./src/helpers/pagerPageSize.js')['pagerPageSize']
   const provide: typeof import('vue')['provide']
   const reactive: typeof import('vue')['reactive']
   const readonly: typeof import('vue')['readonly']
@@ -119,6 +119,7 @@ declare module 'vue' {
     readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
     readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
     readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
     readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
@@ -166,6 +167,7 @@ declare module 'vue' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly pagerPageSize: UnwrapRef<typeof import('./src/helpers/pagerPageSize.js')['pagerPageSize']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
@@ -217,6 +219,7 @@ declare module '@vue/runtime-core' {
     readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
     readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
     readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
     readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
@@ -264,6 +267,7 @@ declare module '@vue/runtime-core' {
     readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly pagerPageSize: UnwrapRef<typeof import('./src/helpers/pagerPageSize.js')['pagerPageSize']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
     readonly readonly: UnwrapRef<typeof import('vue')['readonly']>

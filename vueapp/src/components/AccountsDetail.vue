@@ -168,7 +168,7 @@
                 <TextInput labelName="Street Address" v-model="account.StreetAddress" :v$ />
                 <TextInput labelName="City" ruleName="City" v-model="account.City" :v$ />
                 <SelectInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" 
-                    :optionsList="usStatesList" :v$ />
+                    :optionsList="usStatesList" defaultText="-- Pick a State --" :v$ />
                 <TextInput labelName="Postal Code" ruleName="PostalCode" v-model="account.PostalCode" :v$ />
             </div>
         

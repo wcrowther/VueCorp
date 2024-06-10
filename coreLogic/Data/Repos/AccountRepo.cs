@@ -17,7 +17,7 @@ namespace coreApi.Data
 			_dataContext = coreApiDataContext;
 		}
 
-		public virtual PagedList<Account> GetPagedAccounts(Pager pager)
+		public virtual PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager)
 		{
 			var predicate = BuildPredicate(pager);
 
@@ -29,7 +29,7 @@ namespace coreApi.Data
 									.Take(pager.PageSize)
 									.ToList();
 
-			var pagedList = new PagedList<Account>
+			var pagedList = new PagedList<Account,SearchForAccount>
 			{
 				ListItems   = listItems,
 				Pager       = pager
@@ -58,7 +58,7 @@ namespace coreApi.Data
 
 		// =======================================================================================
 
-		private static ExpressionStarter<Account> BuildPredicate(Pager pager, bool search = true)
+		private static ExpressionStarter<Account> BuildPredicate(Pager<SearchForAccount> pager, bool search = true)
 		{
 			var options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
 

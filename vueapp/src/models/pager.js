@@ -104,6 +104,16 @@ function Search(filter, filterType, sort, sortDesc)
     this.SortDesc   = (typeof sortDesc != 'undefined') ? sortDesc : false
 }
 
+function SearchForAccount(filter, filterType, sort, sortDesc, stateProvinceFilter, postalCodeFilter)
+{
+    this.Filter     = filter || ''
+    this.FilterType = filterType || ''      
+    this.Sort       = sort || ''
+    this.SortDesc   = (typeof sortDesc != 'undefined') ? sortDesc : false
+
+    this.StateProvinceFilter  = stateProvinceFilter || ''
+    this.PostalCodeFilter     = postalCodeFilter || ''
+}
 
 function Result(success, message)
 {
@@ -131,5 +141,6 @@ export
     Pager,
     PageItem,
     PagedList,
-    Search
+    Search,
+    SearchForAccount
 }

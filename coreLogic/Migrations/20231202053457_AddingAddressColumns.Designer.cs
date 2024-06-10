@@ -37,10 +37,10 @@ namespace coreLogic.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("PostalCodeFilter")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StateProvince")
+                    b.Property<string>("StateProvinceFilter")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("StreetAddress")

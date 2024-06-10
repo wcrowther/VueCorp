@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AccountAdvSearch: typeof import('./src/components/AccountAdvSearch.vue')['default']
     AccountsDetail: typeof import('./src/components/AccountsDetail.vue')['default']
     AccountsList: typeof import('./src/components/AccountsList.vue')['default']
     BrandBar: typeof import('./src/components/BrandBar.vue')['default']

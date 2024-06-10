@@ -23,13 +23,13 @@ namespace coreLogic.Migrations
                 nullable: true);
 
 			migrationBuilder.AddColumn<string>(
-				name: "StateProvince",
+				name: "StateProvinceFilter",
 				table: "Accounts",
 				type: "TEXT",
 				nullable: true);
 
 			migrationBuilder.AddColumn<string>(
-                name: "PostalCode",
+                name: "PostalCodeFilter",
                 table: "Accounts",
                 type: "TEXT",
                 nullable: true);
@@ -43,11 +43,11 @@ namespace coreLogic.Migrations
                 table: "Accounts");
 
             migrationBuilder.DropColumn(
-                name: "PostalCode",
+                name: "PostalCodeFilter",
                 table: "Accounts");
 
             migrationBuilder.DropColumn(
-                name: "StateProvince",
+                name: "StateProvinceFilter",
                 table: "Accounts");
 
             migrationBuilder.DropColumn(

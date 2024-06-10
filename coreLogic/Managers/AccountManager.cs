@@ -28,9 +28,9 @@ public class AccountManager : IAccountManager
         return _accountRepo.GetAccountById(accountId);
     }
 
-    public PagedList<Account> GetPagedAccounts(Pager pager)
+    public PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager)
     {
-        pager ??= new Pager();
+        pager ??= new Pager<SearchForAccount>();
 
         return _accountRepo.GetPagedAccounts(pager);
     }

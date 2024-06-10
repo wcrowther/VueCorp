@@ -49,12 +49,12 @@ namespace coreLogic.Migrations
                     b.Property<bool>("IsInvoice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("PostalCode")
+                    b.Property<string>("PostalCodeFilter")
                         .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StateProvince")
+                    b.Property<string>("StateProvinceFilter")
                         .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("TEXT");
