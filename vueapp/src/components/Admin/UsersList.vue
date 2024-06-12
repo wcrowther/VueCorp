@@ -3,47 +3,43 @@
 
     // Page Specific  =================================================================================
 
-    const { width: windowWidth }    = useWindowSize()
-    const appStore                  = useAppStore()
-    const { sideBarHidden, persistSearch }           
-                                    = storeToRefs(appStore)    
+    const { width: windowWidth }      = useWindowSize()
+    const appStore                    = useAppStore()
+    const { sideBarHidden }           = storeToRefs(appStore)    
     
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
-        if(newVal < 480 && oldVal >= 480) { sideBarHidden.value = true }
-
-        // if(newVal < 480)
-        //     sideBarHidden.value = true
-
-        // if(newVal > 480)
-        //     sideBarHidden.value = false   
+        if(newVal < 480 && oldVal >= 480)
+        {
+            sideBarHidden.value = true
+        }
     });
 
     // ===============================================================================================
     // ItemsList Begin
     // ===============================================================================================
 
-    const detailKeyName                 = 'AccountId'
-    const pageSizeDefaultName           = 'accountsPageSizeDefault'
-    const searchFilterDefaultName       = 'accountsSearchFilterDefault'        
+    const detailKeyName                 = 'UserId'
+    const pageSizeDefaultName           = 'usersPageSizeDefault'
+    const searchFilterDefaultName       = 'usersSearchFilterDefault'        
     const currentPage                   = ref(0)
     const activeItem                    = ref(null)
-    const showAdvSearch                 = ref(false)
+    const showModal                     = ref(false)
 
-    const accountsStore                 = useAccountsStore()
+    const usersStore                    = useUsersStore()
     const       
     {       
-        accountsList:    itemsList,        
-        accountsPager:   listPager,       
-        detailAccountId: activeDetailId       
-    }                                   = storeToRefs(accountsStore)
-    const { getPagedAccounts }          = accountsStore
+        usersList:    itemsList,        
+        usersPager:   listPager,       
+        detailUserId: activeDetailId       
+    }                                   = storeToRefs(usersStore)
+    const { getPagedUsers }             = usersStore
 
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
 
-    const searchFilterDefault           = persistSearch.value ? useLocalStorage(searchFilterDefaultName, '') : ''
-    listPager.value.Search              = new SearchForAccount(searchFilterDefault)  
+    const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')
+    listPager.value.Search              = new Search(searchFilterDefault.value)  
 
     // Methods / Computeds ===========================================================================
 
@@ -81,15 +77,12 @@
             newPager.Search.Filter      = listPager.value.Search.Filter
             newPager.PageSize           = listPager.value.PageSize
             listPager.value             = newPager
-
-            alert('refresh...')
         }
 
-        await getPagedAccounts(listPager.value)
+        await getPagedUsers(listPager.value)
 
-        currentPage.value               = listPager.value.currentPage()
-        activeItem.value                = itemsList.value[listPager.value.offset()]
-        listPageSizeDefault.value       = listPager.value.PageSize
+        currentPage.value   = listPager.value.currentPage()
+        activeItem.value    = itemsList.value[listPager.value.offset()]
 
         setActiveItem()
     } 
@@ -106,7 +99,7 @@
         else if (e.code === 'PageDown')     { listPager.value.goToPreviousPage();   e.preventDefault();}
         else if (e.code === 'PageUp')       { listPager.value.goToNextPage();       e.preventDefault();} 
 
-        // 'Ctrl+S' to Save is in AccountsDetail control
+        // 'Ctrl+S' to Save is in UsersDetail control
     }
 
     const addKeyListeners       = () => document.addEventListener('keydown', keys, false)
@@ -151,7 +144,7 @@
 </script>
 
 <template>
-    <div class="" id="accountsList">
+    <div class="" id="usersListView">
 
         <!-- Right PREV / NEXT Button for Mobile--> 
         <teleport to="body" v-if="appStore.showPrevNext">
@@ -168,26 +161,26 @@
         </teleport> 
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
-
-        <div class="px-5 flex flex-wrap justify-between items-center 
+    
+        <div class="px-5 flex flex-wrap justify-between items-center
             bg-gradient-side border-t border-r border-slate-300">
             
             <div class="flex gap-x-1 pt-5 pb-3 w-full">
                 <div class="h-10 w-full relative">
                     <input class="rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
                         id="filterInput" type="text" v-model="listPager.Search.Filter" placeholder="Search" spellcheck="false"
-                        title="Search the list for Account Names that start with this text. Add multiple conditions 
+                        title="Search the list for User Names that start with this text. Add multiple conditions 
                                 separated by a comma. Click on + for more options." />
                 
                     <div class="top-0 right-0 flex justify-end items-center gap-1 absolute h-full w-auto">
-                        <div class="p-1 w-auto flex-center" @click="resetFilter">
-                            <IconSymbol v-if="listPager.Search.Filter.length > 0" 
-                                 class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
+                        <div class="p-1 w-auto flex-center">
+                            <IconSymbol v-if="listPager.Search.Filter.length > 0" @click="resetFilter"
+                                class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
                         </div>
-                        <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray
-                            flex-center rounded-full group" @click.prevent="showAdvSearch=true">
-                            <IconSymbol class="text-black group-hover:text-color-mid-gray"
-                                title="Advanced Search"  width="22px" icon="heroicons:plus-20-solid" />
+                        <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray 
+                            flex-center rounded-full group" @click.prevent="showModal=true">
+                            <IconSymbol title="Advanced Search" width="22px" 
+                                class="text-black group-hover:text-color-mid-gray" icon="heroicons:plus-20-solid" />
                         </span>
                     </div>
                 </div>
@@ -199,52 +192,50 @@
             </div>
         </div>
 
-        <table class="w-full bg-gray-100 select-none shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xs:shadow-none" id="accounts-list-table">
-            <thead class="text-left border-t border-gray-300 bg-gradient-table-head">
-                <th class="w-6 sm:w-8 py-5 bg-[#ddd]"></th>
-                <th class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</th>
-                <th class="pr-4 min-w-[100px]">Account</th>
+        <table class="w-full bg-gray-100 select-none shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] 
+            xs:shadow-none" id="word-list-table">
+            <thead class="text-left bg-gradient-table-head border-t border-gray-300">
+                <th class="w-6 sm:w-8 py-5"></th>
+                <th class="hidden md:table-cell pr-4 select-none">UserId</th>
+                <th class="pr-4 min-w-[100px]">Last Name, First</th>
             </thead>
             <tbody v-if="listHasRecords()" >
                 <tr v-for="(a, index) in itemsList" class="border-y bg-gradient-side2 border-gray-300"
-                    :class="{ 'active-row' : isActiveItem(a.AccountId) }"
-                    @click="refreshItem(index)" :key="a.AccountId">
-                    <td class="w-6 p-0 sm:w-8 select-none bg-white">
-                        <div v-if="isActiveItem(a.AccountId)" class="active-arrow" >&nbsp;</div>
+                    :class="{ 'active-row' : isActiveItem(a.UserId) }"
+                    @click="refreshItem(index)" :key="a.UserId">
+                    <td class="w-6 p-0 sm:w-8 select-none ">
+                        <div v-if="isActiveItem(a.UserId)" class="active-arrow" >&nbsp;</div>
                         <!-- or active-arrow -->
                     </td>
                     <td class="hidden md:table-cell pr-4 py-1 text-sm">
-                        {{ a.AccountId }}
+                        {{ a.UserId }}
                     </td>
                     <td class="pr-4 py-1 h-8 max-w-[200px] break-words text-sm"
-                        :title="'Account Id: ' + a.AccountId" >{{ a.AccountName }}</td>
+                        :title="'UserId: ' + a.UserId" >{{ a.LastName }}, {{ a.FirstName }}</td>
                 </tr>
             </tbody>
             <tbody v-else class="h-20 text-center font-bold">
                 <tr>
-                    <td colspan="3" class="px-4 py-1">No Accounts found</td>
+                    <td colspan="3" class="px-4 py-1">No Users found</td>
                 </tr>
             </tbody>
-            <tfoot>
-                <td colspan="3" class="h-8 bg-[#e9e9e9]">&nbsp;</td>
-            </tfoot>
         </table>
 
-        <AccountAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager"></AccountAdvSearch>
-
+        <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="true" 
+            height="400px" width="500px" @closeModal="showModal=false">
+                Advanced Search Features will go here.     
+            <template #footer>
+              <button class="custom-button"  @click="showModal=false">OK</button>
+              <button class="default-button" @click="showModal=false">Cancel</button>
+            </template>
+        </ModalControl>
+ 
     </div>
 
 </template>
 
 <style lang="postcss" scoped>
-    .active-row     { @apply bg-gradient-white }
+    .active-row     { @apply bg-gradient-white}
     .active-arrow   { @apply w-0 h-0 border-x-[8px] border-y-[6px] border-transparent border-l-[#91a5bd] relative left-3 }
     .reset-x        { @apply text-black hover:text-color-mid-gray }
 </style> 
-
-<!--
-<div class="rounded-full bg-[#b8d7ed] fixed xs:hidden h-10 w-10 z-[100] 
-    opacity-80 bottom-1 right-1 flex justify-center items-center" @click="listPager.goToNext()">
-    <IconSymbol class="select-none" width="18px" color="white" icon="mdi:arrow-down-thick" />
-</div> 
--->

@@ -7,9 +7,9 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AccountAdvSearch: typeof import('./src/components/AccountAdvSearch.vue')['default']
-    AccountsDetail: typeof import('./src/components/AccountsDetail.vue')['default']
-    AccountsList: typeof import('./src/components/AccountsList.vue')['default']
+    AccountAdvSearch: typeof import('./src/components/Accounts/AccountAdvSearch.vue')['default']
+    AccountsDetail: typeof import('./src/components/Accounts/AccountsDetail.vue')['default']
+    AccountsList: typeof import('./src/components/Accounts/AccountsList.vue')['default']
     BrandBar: typeof import('./src/components/BrandBar.vue')['default']
     BreakPoints: typeof import('./src/components/BreakPoints.vue')['default']
     CheckboxInput: typeof import('./src/components/Inputs/CheckboxInput.vue')['default']
@@ -39,7 +39,7 @@ declare module 'vue' {
     SubNavBar: typeof import('./src/components/SubNavBar.vue')['default']
     SwitchButton: typeof import('./src/components/SwitchButton.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
-    UsersDetail: typeof import('./src/components/UsersDetail.vue')['default']
-    UsersList: typeof import('./src/components/UsersList.vue')['default']
+    UsersDetail: typeof import('./src/components/Admin/UsersDetail.vue')['default']
+    UsersList: typeof import('./src/components/Admin/UsersList.vue')['default']
   }
 }

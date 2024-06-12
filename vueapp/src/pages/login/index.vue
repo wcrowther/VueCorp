@@ -11,11 +11,11 @@
 
 	const userData = reactive(
 	{
-		FirstName: 	'Will',
-		LastName: 	'Test22',
-		UserName: 	'wcrowther22',
+		FirstName: 	'Test',
+		LastName: 	'User',
+		UserName: 	'testuser',
 		Password: 	'Test123!',
-		UserEmail:	'WTest22@test.com'
+		UserEmail:	'testuser3333@test.com'
 	})
 
 	const rules 			= computed(() =>showSignup ? authSignupValidator : authRequestValidator )

@@ -1,12 +1,12 @@
 <script setup>
 
-    const pageTitle  = ref('Admin Main')
+    const pageTitle  = ref('Admin Notes')
 
 </script>
 
 <template>
 
-    <div class="relative" id="adminMain">
+    <div class="relative" id="adminNotes">
 
         <div class="z-0 bg-gradient-main h-[500px] absolute top-0 left-0 right-0"></div>
 

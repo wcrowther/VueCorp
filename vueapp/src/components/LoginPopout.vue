@@ -4,17 +4,22 @@
 
     const authStore	        = useAuthStore()
     const { logout }        = authStore
-	const { firstInitial,  authUser, isLoggedIn,  isBusy, expiration }                       
-                            = storeToRefs(authStore)        
+	const { 
+        firstInitial,  
+        authUser, 
+        isLoggedIn,  
+        isBusy, 
+        expiration }        = storeToRefs(authStore)        
 
     const appStore          = useAppStore()
-    const { showPrevNext, showBreakpoints, persistSearch }
-                            = storeToRefs(appStore)
+    const { 
+        showPrevNext, 
+        showBreakpoints }  = storeToRefs(appStore) // ,persistSearch
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
 
-	const popoutToggle      = (show) => { if(!pinPopout.value) showPopout.value= show }
+	const popoutToggle      = () => { if(!pinPopout.value) showPopout.value = !showPopout.value }
     const logoutUser        = () => 
     {
         showPopout.value = false
@@ -108,6 +113,7 @@
                         <CheckboxInput labelName="" v-model="showBreakpoints" />
                     </div>
                 </div>
+                <!-- 
                 <div class="label-row">
                     <div class="label-title" 
                         title="Persist search on page load">Persist Search</div>
@@ -116,7 +122,6 @@
                     </div>
                 </div>
 
-                <!-- 
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
                     <div class="label-value flex flex-col">

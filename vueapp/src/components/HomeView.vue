@@ -1,33 +1,33 @@
 <script setup>
 
-    const homeTitle     = ref("Welcome")
-    const confirmSave   = () => alert('Confirm Save')
+    const homeTitle     = ref("Welcome to VueCorp")
+    // const confirmSave   = () => alert('Confirm Save')
 
 </script>
 
 <template>
 
-    <div class="p-5 sm:p-10 pt-10 pb-14 grow h-full min-h-[600px] bg-gradient-main">
+    <div class="p-5 pt-5 sm:p-10 sm:pt-5 pb-14 grow 
+        leading-relaxed h-full min-h-[600px] bg-gradient-main">
 
         <div class="flex flex-wrap gap-5 mb-7" id="HomeView">
             <div class="w-full flex justify-between items-center">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ homeTitle }}</h2>
                 <span class="flex flex-wrap gap-1.5"> 
-                    <button  class="custom-button" @click="confirmSave">Save</button>
+                    <!-- <button  class="custom-button" @click="confirmSave">Save</button> -->
                 </span>
             </div>
         </div> 
 
         <div class="mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis voluptatem iusto quas
-            numquam ea odit vel amet laborum facere eveniet mollitia in libero voluptatum quo, 
-            consectetur quia veniam culpa? Pariatur.
+            VueCorp is an opensource project to provide a streamlined DotNet solution that combines
+            the latest Vuejs 3.4 Composition API technology with the latest .Net 8.0 Minimal API 
+            backend. This project is not intended for commercial profit but rather for .NET developers
+            as an educational doorway into these technologies.
         </div> 
 
-        <div class="mb-5">
-            Amet consectetur adipisicing elit. Reiciendis voluptatem 
-            iusto quas numquam ea odit vel amet laborum facere eveniet mollitia in libero voluptatum quo, 
-            consectetur quia veniam culpa? Pariatur. Reiciendis voluptatem iusto quas numquam.
+        <div class="mb-5 italic">
+            More details to come...
         </div> 
 
     </div>  

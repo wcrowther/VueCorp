@@ -80,6 +80,11 @@ namespace coreApi.Data
 					predicate = predicate.Or(AccountNameFilter(filter.ToLower()));
 			}
 
+			if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
+			{
+				predicate = predicate.And(s => s.StateProvince.Equals(pager.Search.StateProvinceFilter));
+			}
+
 			return predicate;
 		}
 

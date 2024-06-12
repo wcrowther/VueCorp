@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-    <div class="main-width pl-3 pr-5 sm:pr-10 h-10 flex gap-x-1 justify-end items-end select-none navbar-gradient">
+    <div class="main-width pl-3 pr-5 sm:pr-10 h-12 flex gap-x-1 justify-end items-end select-none navbar-gradient">
         <slot></slot>
     </div>
 </template>

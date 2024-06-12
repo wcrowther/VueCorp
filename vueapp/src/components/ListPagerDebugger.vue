@@ -21,10 +21,10 @@
 <template>
     <Teleport v-if="show" to="body">    
         <div id="pagerDebugger" ref="el" :style="style" 
-            class="absolute top-14 right-0 z-[1000] w-[200px] pb-3 mb-1 drop-shadow-2xl 
+            class="absolute top-14 right-0 z-[1000] w-[200px] pb-3 mb-1 drop-shadow-xl 
                 text-sm/loose leading-[25px] bg-white border"> 
 
-            <div class="p-2 bg-color-blue text-white font-bold ">Pager Debugger</div>
+            <div class="p-2 bg-color-blue text-white font-bold select-none">Pager Debugger</div>
 
             <div class="px-2 bg-[#ddd]">CurrentRecord:   {{ pager.CurrentRecord }}</div>
             <div class="px-2 bg-[#ddd]">GroupSize:       {{ pager.GroupSize }}</div>

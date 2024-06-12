@@ -23,16 +23,20 @@
 				-->
 			</div>
 
-			<div class="sm:pr-5">
-				<router-link to="/Accounts/Main" class="p-2 font-bold hover:opacity-50" active-class="subnav-active" linkName="AccountsMain">Main</router-link>
+			<div class="pr-5">
+				<router-link to="/Accounts/Main" class="px-1 py-2 font-bold hover:opacity-50" 
+					active-class="subnav-active" linkName="AccountsMain">Main</router-link>
 
-				<span class="mx-0 text-gray-300">|</span>
+				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Accounts/View" class="p-2 font-bold hover:opacity-50" active-class="subnav-active" linkName="AccountsView">View</router-link>
+				<router-link to="/Accounts/Edit" class="px-1 py-2 font-bold hover:opacity-50" 
+					active-class="subnav-active" linkName="AccountsEdit">Edit</router-link>
 
-				<span class="mx-0 text-gray-300">|</span>
-
-				<router-link to="/Accounts/Edit" class="p-2 font-bold hover:opacity-50" active-class="subnav-active" linkName="AccountsEdit">Edit</router-link>
+				<!-- 
+				<router-link to="/Accounts/View" class="px-1 py-2 font-bold hover:opacity-50" 
+					active-class="subnav-active" linkName="AccountsView">View</router-link>
+				<span class="px-1 text-gray-300">|</span> 
+				-->
 			</div>
 
 		</SubNavBar>
