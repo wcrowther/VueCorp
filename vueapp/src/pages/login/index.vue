@@ -11,9 +11,9 @@
 
 	const userData = reactive(
 	{
-		FirstName: 	'Test',
-		LastName: 	'User',
-		UserName: 	'test',
+		FirstName: 	'Will',
+		LastName: 	'Test',
+		UserName: 	'wcrowther22',
 		Password: 	'Test123!',
 		UserEmail:	'testuser3333@test.com'
 	})
