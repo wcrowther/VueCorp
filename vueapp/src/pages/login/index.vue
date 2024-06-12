@@ -13,7 +13,7 @@
 	{
 		FirstName: 	'Test',
 		LastName: 	'User',
-		UserName: 	'testuser',
+		UserName: 	'test',
 		Password: 	'Test123!',
 		UserEmail:	'testuser3333@test.com'
 	})
