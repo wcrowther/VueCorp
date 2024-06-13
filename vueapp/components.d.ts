@@ -23,6 +23,7 @@ declare module 'vue' {
     LayoutMain: typeof import('./src/layouts/LayoutMain.vue')['default']
     ListPager: typeof import('./src/components/ListPager.vue')['default']
     ListPagerDebugger: typeof import('./src/components/ListPagerDebugger.vue')['default']
+    LivePic: typeof import('./src/components/LivePic.vue')['default']
     LoginPopout: typeof import('./src/components/LoginPopout.vue')['default']
     ModalControl: typeof import('./src/components/ModalControl.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
