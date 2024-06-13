@@ -14,7 +14,7 @@ router.beforeEach(async (to) =>
 {
 	// AuthStore must be created here because we are in .js not .vue file
 
-	const publicPages 	= ['/','/login']
+	const publicPages 	= ['/','/login','/panzoom']
 	const authRequired 	= !publicPages.includes(to.path)
 	const authStore		= useAuthStore() 
 
