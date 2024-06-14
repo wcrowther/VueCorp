@@ -17,7 +17,7 @@
 	<div class="mt-5 flex flex-col flex-grow flex-wrap justify-center items-center">
 
         <div class="text-5xl text-color-primary px-4 pb-1 m-auto">pan & zoom</div>
-        <div class="clear-both m-auto mb-10">hackathon demo</div>
+        <div class="clear-both m-auto mb-10">by will crowther</div>
 
 		<div class="w-full mx-20 mb-3 p-3 rounded-lg flex justify-center items-center gap-2">
 			<div class="border border-gray-400 text-gray-400 rounded-lg tracking-wide px-4 py-2 w-fit font-bold select-none relative"
