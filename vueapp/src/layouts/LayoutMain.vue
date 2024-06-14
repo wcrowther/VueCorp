@@ -2,8 +2,10 @@
 <script setup>
 
     const appStore        		= useAppStore()
-    const { sideBarHidden,
-		showBreakpoints } 		= storeToRefs(appStore)
+    const { 
+		sideBarHidden,
+		showBreakpoints,
+		altColors } 			= storeToRefs(appStore)
 
     // Listeners   =============================================================================
 
@@ -24,7 +26,7 @@
 
 <template>
 
-	<div id="layout-main" class="relative z-0">
+	<div class="relative z-0" :class="{'bg-gradient-back': !altColors}" id="layout-main">
 
 		<BreakPoints :show="showBreakpoints" />
 

@@ -27,7 +27,9 @@
         </div> 
 
         <div class="mb-5 italic">
-            More details to come...
+            The source for VueCorp is at: 
+            <a class="link-underline text-blue" href="https://github.com/wcrowther/VueCorp" 
+                target="_blank">https://github.com/wcrowther/VueCorp</a>
         </div> 
 
     </div>  

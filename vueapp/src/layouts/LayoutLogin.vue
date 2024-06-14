@@ -1,13 +1,16 @@
 	
 <script setup>
 
-    const currentYear = new Date().getFullYear()
+    const currentYear 		= new Date().getFullYear()
+    const appStore  		= useAppStore()
+    const { altColors } 	= storeToRefs(appStore)
 
 </script>
 
 <template>
 
-	<div id="layout-login" class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto">
+	<div class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto" 
+		:class="{'bg-gradient-back': !altColors}" id="layout-login">
 		<slot></slot>
 
 		<div class="flex justify-center">

@@ -14,7 +14,8 @@
     const appStore          = useAppStore()
     const { 
         showPrevNext, 
-        showBreakpoints }  = storeToRefs(appStore) // ,persistSearch
+        showBreakpoints,
+        altColors }         = storeToRefs(appStore) // ,persistSearch
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -111,6 +112,13 @@
                         title="Show breakpoints in lower left">Show Breakpoints</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showBreakpoints" />
+                    </div>
+                </div> 
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Toggle off alternate color scheme.">Alt Colors</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="altColors" />
                     </div>
                 </div>
                 <!-- 
