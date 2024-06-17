@@ -16,12 +16,20 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px'
     },
-    extend: {
+    extend: 
+    {
+      /*dropShadow: {
+        main: '-8px 8px 19px 0px rgba(97,97,97,0.66)'
+      },*/
+      boxShadow: {
+        main: '-8px 8px 18px -4px rgba(97,97,97,0.75)'
+      },
       backgroundImage: {
         'brand-logo':         'url("/")', /*/Brand_Logo_2_White.png*/
         'space-stars':        'url("/space-stars.png")',
         'gradient-brand':     'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
                               'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
+        'gradient-brand-alt': 'linear-gradient( 20deg, #b8d7ed 20%, transparent 60%)',
         'gradient-back':      'linear-gradient( to bottom, #1c2157 30%, black 100%)',
         'gradient-modal-bar': 'linear-gradient( 58deg, #e8e8e8 20%, rgb(125 125 125) 100%)',
         'gradient-table-head':'linear-gradient( 58deg, #dddddd 50%, #848484 100%)', 

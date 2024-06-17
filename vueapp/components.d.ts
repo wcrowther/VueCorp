@@ -11,6 +11,7 @@ declare module 'vue' {
     AccountsDetail: typeof import('./src/components/Accounts/AccountsDetail.vue')['default']
     AccountsList: typeof import('./src/components/Accounts/AccountsList.vue')['default']
     BrandBar: typeof import('./src/components/BrandBar.vue')['default']
+    BrandLogo: typeof import('./src/components/BrandLogo.vue')['default']
     BreakPoints: typeof import('./src/components/BreakPoints.vue')['default']
     CheckboxInput: typeof import('./src/components/Inputs/CheckboxInput.vue')['default']
     ConfirmDialog: typeof import('./src/components/ConfirmDialog.vue')['default']

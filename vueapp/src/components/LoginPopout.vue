@@ -21,6 +21,7 @@
     const pinPopout         = ref(false)
 
 	const popoutToggle      = () => { if(!pinPopout.value) showPopout.value = !showPopout.value }
+	const popoutClose       = () => { if(!pinPopout.value) showPopout.value = false }
     const logoutUser        = () => 
     {
         showPopout.value = false
@@ -41,7 +42,7 @@
 
 <template>
 
-    <div class="relative" id="loginPopout" @mouseleave="popoutToggle(false)">
+    <div class="relative" id="loginPopout" @mouseleave="popoutClose()">
 
         <div v-if="isLoggedIn" @click="popoutToggle(true)" title="Show user popout" id="popout"
             class="relative z-[100] text-white h-10 w-10 tracking-wider rounded-full bg-gray-700 flex-center ">
