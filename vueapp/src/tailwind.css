@@ -63,11 +63,11 @@
 	}
 	.default-button, .disable-button { 
 		@apply bg-color-mid-gray text-color-dark-gray select-none
-			hover:bg-white w-fit tracking-wide font-bold rounded-md px-4 py-0.5 border-blue focus:border; 
+			hover:bg-white tracking-wide font-bold rounded-md px-4 py-0.5 w-fit border-blue focus:border; 
 	}
 	.custom-button { 
 		@apply bg-color-primary text-[#121639] hover:bg-white select-none
-			font-sans tracking-wide font-bold rounded-md px-4 py-0.5;
+			font-sans tracking-wide font-bold rounded-md px-4 py-0.5 w-fit;
 	}
 
 	/*=====================================================================

@@ -1,7 +1,6 @@
 	
 <script setup>
 
-    const currentYear 		= new Date().getFullYear()
     const appStore     		= useAppStore()
     const { altColors }		= storeToRefs(appStore)
 
@@ -9,17 +8,30 @@
 
 <template>
 
-	<div class="fixed top-0 bottom-0 left-0 right-0" :class="{'bg-gradient-back': !altColors}" id="background-div"></div>
+	<div class="fixed top-0 bottom-0 left-0 right-0" 
+		:class="{'bg-gradient-back': !altColors}" id="background-div"></div>
 
 	<div class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto" id="layout-login">
-		<slot></slot>
 
-		<div class="flex justify-center">
-			<div class="mt-10 text-sm text-color-primary m-auto">&copy; {{currentYear}} Will Crowther</div>
+		<div :class="{ 'box-shadow' : altColors }">
+
+			<BrandBar class="pr-5">
+				<BrandLogo></BrandLogo>
+			</BrandBar>  
+
+			<slot></slot>	
+			
+			<FooterBox></FooterBox>
 		</div>
 	</div>
 
 </template> 
 	
-<style lang="postcss" scoped></style>
+<style lang="postcss" scoped>
+
+	.box-shadow {
+		@apply shadow-[-14px_14px_18px_0px_rgba(97,97,97,0.75)] shadow-color-mid-gray
+	}  
+
+</style>
 	

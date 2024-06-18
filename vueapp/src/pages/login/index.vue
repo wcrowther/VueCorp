@@ -33,11 +33,7 @@
 
 	<LayoutLogin>
 
-		<BrandBar class="main-width">
-			<BrandLogo></BrandLogo>
-		</BrandBar>  
-
-		<div id="mainContent" class="p-10 pb-12 main-width relative h-full bg-color-lighter-gray"> 
+		<div id="mainContent" class="p-10 pb-12 relative h-full bg-color-lighter-gray"> 
 
             <div v-if="showSignup" class="">
 				<TextInput labelName="First Name" v-model="userData.FirstName" :v$ />

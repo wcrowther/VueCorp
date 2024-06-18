@@ -32,7 +32,7 @@
 		:class="{'bg-gradient-back': !altColors}"></div>
 
 	<div class="main-width mb-10 relative z-0" id="layout-main"
-		:class="{ 'alt-colors' : altColors }">
+		:class="{ 'box-shadow' : altColors }">
 
 		<BreakPoints :show="showBreakpoints" />
 
@@ -59,7 +59,7 @@
 	
 <style lang="postcss" scoped>
 
-	.alt-colors {
+	.box-shadow {
 		@apply shadow-[-14px_14px_18px_0px_rgba(97,97,97,0.75)] shadow-color-mid-gray
 	}    
 	
