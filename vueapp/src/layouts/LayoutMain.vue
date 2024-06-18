@@ -41,7 +41,7 @@
 			<BrandLogo />
 		</BrandBar>  
 
-		<NavBar class="">		
+		<NavBar class="" id="nav-bar">		
 			<NavTab navText="Home" 		to="/" />
 			<NavTab navText="Accounts" 	to="/accounts" />
 			<NavTab navText="Admin" 	to="/admin" />
