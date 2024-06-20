@@ -28,11 +28,14 @@ export const useAccountsStore = defineStore('AccountsStore',
                 
                 if(result.success) 
                 {
-                    this.accountsPager  = Object.assign(new Pager(), result.data.Pager)
-                    this.accountsList   = result.data.ListItems   
+                    this.accountsPager  = Object.assign(new Pager(), result.data.Result.Pager)
+                    this.accountsList   = result.data.Result.ListItems   
                 }
             }
-            catch (err){ messageStore.showError(err.message) }
+            catch (err)
+            { 
+                messageStore.showError(err.message) 
+            }
         },
         async getAccountDetailData (accountId)
         {
@@ -45,7 +48,7 @@ export const useAccountsStore = defineStore('AccountsStore',
                     const result = await apiGet(`/accounts/getAccountById/${accountId}`)
                     
                     if(result.success) 
-                        this.account = result.data
+                        this.account = result.data.Result
                 }
             } 
             catch (err) {  messageStore.showError(err.message) }
@@ -58,7 +61,7 @@ export const useAccountsStore = defineStore('AccountsStore',
 
                 if(result.success) 
                 {
-                    this.account = result.data
+                    this.account = result.data.Result
 
                     log('Account Saved Succesfully.')
                     messageStore.showSuccess('Account Saved Successfully.')

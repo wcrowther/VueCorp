@@ -5,13 +5,12 @@ namespace coreApi.Logic.Interfaces
 {
     public interface IAccountManager
     {
-        List<Account> GetAllAccounts();
+        Task<List<Account>> GetAllAccounts();
 
-        public Account GetAccountById(int id);
+        Task<Account> GetAccountById(int id);
 
-        PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager);
+		Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager);
 
-		Account SaveAccount(Account account);
-
+		Task<Account> SaveAccount(Account account);
 	}
 }

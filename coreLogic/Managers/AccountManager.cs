@@ -18,26 +18,26 @@ public class AccountManager : IAccountManager
         _accountRepo =   accountRepo;
     }
 
-    public List<Account> GetAllAccounts()
+    public async Task<List<Account>> GetAllAccounts()
     {
-        return _accountRepo.GetAllAccounts();
+        return await _accountRepo.GetAllAccounts();
     }
 
-    public Account GetAccountById(int accountId)
+    public async Task<Account> GetAccountById(int accountId)
     {
-        return _accountRepo.GetAccountById(accountId);
+        return await _accountRepo.GetAccountById(accountId);
     }
 
-    public PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager)
+    public async Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager)
     {
         pager ??= new Pager<SearchForAccount>();
 
-        return _accountRepo.GetPagedAccounts(pager);
+        return await _accountRepo.GetPagedAccounts(pager);
     }
 
-	public Account SaveAccount(Account account)
+	public async Task<Account> SaveAccount(Account account)
 	{
-		_accountRepo.SaveAccount(account);
+		await _accountRepo.SaveAccount(account);
 
 		return account;
 	}

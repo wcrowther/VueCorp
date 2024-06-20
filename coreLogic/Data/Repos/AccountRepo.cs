@@ -3,95 +3,95 @@ using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Helpers;
 using LinqKit;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WildHare.Extensions;
 
-namespace coreApi.Data
-{
-	public class AccountRepo : IAccountRepo
+namespace coreApi.Data;
+
+public class AccountRepo : IAccountRepo
     {
-		private readonly coreApiDataContext _dataContext;
+	private readonly coreApiDataContext _dataContext;
 
-		public AccountRepo(coreApiDataContext coreApiDataContext)
+	public AccountRepo(coreApiDataContext coreApiDataContext)
+	{
+		_dataContext = coreApiDataContext;
+	}
+
+	public virtual async Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager)
+	{
+		var predicate = BuildPredicate(pager);
+
+		var query = _dataContext.Accounts.Where(predicate);
+
+		pager.TotalCount = await query.CountAsync();
+		var listItems	 = await query.OrderBy(p => p.AccountName)
+								.Skip(pager.FirstRecordInPage - 1)
+								.Take(pager.PageSize)
+								.ToListAsync();
+
+		var pagedList = new PagedList<Account,SearchForAccount>
 		{
-			_dataContext = coreApiDataContext;
+			ListItems   = listItems,
+			Pager       = pager
+		};
+
+		return pagedList;
+	}
+
+	public async Task<List<Account>> GetAllAccounts()
+	{
+		return await _dataContext.Accounts.ToListAsync();
+	}
+
+	public async Task<Account> GetAccountById(int accountId)
+	{
+		return await _dataContext.Accounts.FirstOrDefaultAsync(x => x.AccountId == accountId);
+	}
+
+	public async Task<Account> SaveAccount(Account account)
+	{
+		_dataContext.Update(account);
+		await _dataContext.SaveChangesAsync();
+
+		return account;
+	}
+
+	// =======================================================================================
+
+	private static ExpressionStarter<Account> BuildPredicate(Pager<SearchForAccount> pager, bool search = true)
+	{
+		var options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
+
+		// 'search' true means start with all, otherwise will start with empty.
+		// PredicateBuilder with no parameter will start with an empty list
+		// or populate with true to include all records
+
+		var predicate		= search ? PredicateBuilder.New<Account>(true) : PredicateBuilder.New<Account>();  
+		string[] filters	= pager.Search.Filter.Split(',', options);
+
+		foreach (string filter in filters)
+		{
+			if (filter.IsNullOrSpace())
+				continue;
+
+			if (filter.IsNumeric())
+				predicate = predicate.Or(p => p.AccountId == filter.ToInt(0));
+			else
+				predicate = predicate.Or(AccountNameFilter(filter.ToLower()));
 		}
 
-		public virtual PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager)
+		if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
 		{
-			var predicate = BuildPredicate(pager);
-
-			var query = _dataContext.Accounts.Where(predicate);
-
-			pager.TotalCount = query.Count();
-			var listItems	 = query.OrderBy(p => p.AccountName)
-									.Skip(pager.FirstRecordInPage - 1)
-									.Take(pager.PageSize)
-									.ToList();
-
-			var pagedList = new PagedList<Account,SearchForAccount>
-			{
-				ListItems   = listItems,
-				Pager       = pager
-			};
-
-			return pagedList;
+			predicate = predicate.And(s => s.StateProvince.Equals(pager.Search.StateProvinceFilter));
 		}
 
-		public List<Account> GetAllAccounts()
-		{
-			return _dataContext.Accounts.ToList();
-		}
+		return predicate;
+	}
 
-		public Account GetAccountById(int accountId)
-		{
-			return _dataContext.Accounts.FirstOrDefault(x => x.AccountId == accountId);
-		}
-
-		public Account SaveAccount(Account account)
-		{
-			_dataContext.Update(account);
-			_dataContext.SaveChanges();
-
-			return account;
-		}
-
-		// =======================================================================================
-
-		private static ExpressionStarter<Account> BuildPredicate(Pager<SearchForAccount> pager, bool search = true)
-		{
-			var options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
-
-			// 'search' true means start with all, otherwise will start with empty.
-			// PredicateBuilder with no parameter will start with an empty list
-			// or populate with true to include all records
-
-			var predicate		= search ? PredicateBuilder.New<Account>(true) : PredicateBuilder.New<Account>();  
-			string[] filters	= pager.Search.Filter.Split(',', options);
-
-			foreach (string filter in filters)
-			{
-				if (filter.IsNullOrSpace())
-					continue;
-
-				if (filter.IsNumeric())
-					predicate = predicate.Or(p => p.AccountId == filter.ToInt(0));
-				else
-					predicate = predicate.Or(AccountNameFilter(filter.ToLower()));
-			}
-
-			if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
-			{
-				predicate = predicate.And(s => s.StateProvince.Equals(pager.Search.StateProvinceFilter));
-			}
-
-			return predicate;
-		}
-
-		private static Expression<Func<Account, bool>> AccountNameFilter(string f)
-		{
-			return p => p.AccountName.StartsWith(f);
-		}
+	private static Expression<Func<Account, bool>> AccountNameFilter(string f)
+	{
+		return p => p.AccountName.StartsWith(f);
 	}
 }
 

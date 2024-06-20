@@ -1,16 +1,15 @@
 ﻿using coreApi.Models;
 using coreApi.Models.Generic;
 
-namespace coreApi.Data.Interfaces
+namespace coreApi.Data.Interfaces;
+
+public interface IAccountRepo
 {
-    public interface IAccountRepo
-    {
-        List<Account> GetAllAccounts();
+	Task<List<Account>> GetAllAccounts();
 
-        Account GetAccountById(int accountId);
+	Task<Account> GetAccountById(int accountId);
 
-		PagedList<Account,SearchForAccount> GetPagedAccounts(Pager<SearchForAccount> pager);
+	Task<PagedList<Account, SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager);
 
-		Account SaveAccount(Account account);
-	}
+	Task<Account> SaveAccount(Account account);
 }
