@@ -146,7 +146,7 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div v-if="!isAddingUser" class="mb-5 pb-1 flex justify-between">
+                <div v-if="!isAddingUser" class="mb-5 pb-1 flex flex-wrap justify-between">
                     <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserName: {{user.UserName}}
                     </span>

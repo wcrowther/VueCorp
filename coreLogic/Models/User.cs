@@ -9,7 +9,7 @@ public class User
 {
     public int UserId { get; set; }
 
-	[Required, Length(5,50, ErrorMessage = $"The User.{nameof(UserName)} property must be 5 or more characters and 50 or less.")]
+	[Required, Length(5,50, ErrorMessage = $"The {nameof(UserName)} property must be 5 or more characters and 50 or less.")]
 	public string UserName { get; set; }
 
 	[Required, MaxLength(50)]
@@ -19,7 +19,7 @@ public class User
 	public string LastName { get; set; } 
 
 	[Required, MaxLength(50)]
-	[EmailAddress(ErrorMessage = $"The User.{nameof(UserEmail)} property must be an Email Address.")]
+	[EmailAddress(ErrorMessage = $"The {nameof(UserEmail)} property must be an Email Address.")]
     public string UserEmail { get; set; } 
 
     [JsonIgnore]
