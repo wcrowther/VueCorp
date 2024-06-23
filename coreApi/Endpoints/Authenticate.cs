@@ -26,16 +26,16 @@ public static partial class Endpoints
         .WithName("Authenticate");
 
 
-		auth.MapPost("/signup", (AuthSignup model, IAuthManager _authManager) =>
+		auth.MapPost("/signup", (UserCreate model, IAuthManager _authManager) =>
 		{
 			var response = _authManager.Signup(model);
 
-			if (response == null)
-				return Results.BadRequest(new { detail = $"Not able to Sign Up {model?.UserName.IfNullOrEmpty("Null User")}." });
+			if (!response.Success)
+				return Results.BadRequest(response.Message);
 
-			return Results.Ok(response);	
+			return Results.Ok(response.Data);	
 		})
-		.Validate<AuthSignup>(false)
+		.Validate<UserCreate>(false)
 		.WithName("Signup");
 	}
 }

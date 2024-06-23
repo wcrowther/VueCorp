@@ -60,7 +60,7 @@ export async function apiCall(type, url, useAuth, body)
 		}
 		else if ([400].includes(err.response.status)) 
 		{
-			result.message		 = err.response.data.detail || err.message || err.response.data.error 
+			result.message		 = err.response.data.detail || err.response.data || err.response.data.error || err.message 
 			result.toastType	 = 'INFO'
 		}		
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
@@ -72,7 +72,7 @@ export async function apiCall(type, url, useAuth, body)
 		else if ([403].includes(err.response.status)) // Forbidden (known but does not have rights to content)
 		{
 			authStore.logout()
-			result.message		 = "The username or password you entered is incorrect."
+			result.message		 = err.response.data || "The username or password you entered is incorrect."
 			result.toastType	 = 'INFO'
 		} 
 		else

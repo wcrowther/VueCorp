@@ -1,5 +1,5 @@
 ﻿using coreApi.Models;
-using System.IdentityModel.Tokens.Jwt;
+using coreApi.Models.Generic;
 
 namespace coreApi.Logic.Interfaces
 {
@@ -7,6 +7,6 @@ namespace coreApi.Logic.Interfaces
     {
 		AuthResponse Authenticate(AuthRequest model);
 
-		AuthResponse Signup(AuthSignup model);
+		Result<AuthResponse> Signup(UserCreate model);
 	}
 }

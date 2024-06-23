@@ -11,7 +11,7 @@ namespace coreApi.Data.Interfaces
 
 		User GetUserById(int userId);
 
-		User CreateNewUser(AuthSignup model, string passwordHash);
+		User CreateUser(UserCreate model, string passwordHash);
 
 		PagedList<User> GetPagedUsers(Pager pager);
 

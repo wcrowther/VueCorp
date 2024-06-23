@@ -34,9 +34,9 @@ public class UserManager : IUserManager
 		return _userRepo.GetUserById(id);
 	}
 
-	public User CreateNewUser(AuthSignup model, string passwordHash)
+	public User CreateUser(UserCreate model, string passwordHash)
 	{
-		return _userRepo.CreateNewUser(model, passwordHash);
+		return _userRepo.CreateUser(model, passwordHash);
 	}
 
 	public PagedList<User> GetPagedUsers(Pager pager)
@@ -49,6 +49,14 @@ public class UserManager : IUserManager
 	public User SaveUser(User user)
 	{
 		_userRepo.SaveUser(user);
+
+		return user;
+	}
+
+	public User CreateUser(UserCreate newUser)
+	{
+		string passwordHash = BCrypt.Net.BCrypt.HashPassword(newUser.Password);
+		var user			= _userRepo.CreateUser(newUser, passwordHash);
 
 		return user;
 	}

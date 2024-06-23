@@ -34,7 +34,7 @@ namespace coreApi.Data
             return _dataContext.Users.FirstOrDefault(x => x.UserId == userId);
 		}
 
-		public User CreateNewUser(AuthSignup model, string passwordHash)
+		public User CreateUser(UserCreate model, string passwordHash)
 		{
 			var newUser = new User
 			{
@@ -42,8 +42,8 @@ namespace coreApi.Data
 				FirstName		= model.FirstName,
 				LastName        = model.LastName,
 				UserEmail       = model.UserEmail,
-				PasswordHash    = passwordHash,
-				Roles			= "User" 
+				Role            = "User",
+				PasswordHash    = passwordHash
 			};
 			
 			_dataContext.Add(newUser);

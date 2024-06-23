@@ -26,13 +26,13 @@ public class Result<T> : Result
 {
     public T Data { get; set; }
 
-	public static new Result<T> Ok(string message = "")
+	public static Result<T> Ok(T data, string message = "")
 	{
-		return new() { Success = true, Message = message };
+		return new() { Success = true, Data = data, Message = message };
 	}
 
-	public static Result<T> Error(string message, T data, Exception exception = null)
+	public static new Result<T> Error(string message, Exception exception = null)
 	{
-		return new() { Success = false, Message = message, Data = data, Exception = exception };
+		return new() { Success = false, Message = message, Exception = exception };
 	}
 }

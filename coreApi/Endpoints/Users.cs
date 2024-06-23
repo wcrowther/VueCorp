@@ -42,7 +42,15 @@ public static partial class Endpoints
 
 			return Results.Ok(acct);
 		})
-		.Validate<User>(false);
+		.Validate<User>(false); 
+
+		users.MapPost("/createUser", (IUserManager _userManager, [FromBody] UserCreate newUser) =>
+		{
+			var acct = _userManager.CreateUser(newUser);
+
+			return Results.Ok(acct);
+		})
+		.Validate<UserCreate>(false);
 	}
 }
 

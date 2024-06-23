@@ -84,7 +84,7 @@ namespace coreLogic.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Roles")
+                    b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Username")

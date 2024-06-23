@@ -11,9 +11,11 @@ public interface IUserManager
 
 	User GetUserById(int id);
 
-	User CreateNewUser(AuthSignup model, string passwordHash);
+	User CreateUser(UserCreate model, string passwordHash);
 
 	PagedList<User> GetPagedUsers(Pager pager);
 
 	User SaveUser(User user);
+
+	User CreateUser(UserCreate newUser);
 }

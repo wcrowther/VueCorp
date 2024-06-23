@@ -4,6 +4,7 @@ using coreApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using coreApi.Models.Generic;
 
 namespace coreApi.Logic.Managers
 {
@@ -28,32 +29,32 @@ namespace coreApi.Logic.Managers
 
 			// authentication successful so generate jwt token
 
-			var expires = DateTime.UtcNow.AddDays(7);
-			var authResponse = new AuthResponse(user, expires);
-			authResponse.Token  = GenerateJwt(authResponse, user.Roles);
-
-			return authResponse;
+			return GetAuthResponse(user);
 		}
 
-		public AuthResponse Signup(AuthSignup model)
+		public Result<AuthResponse> Signup(UserCreate newUser)
 		{
-			var existingUser = _userManager.GetUserByUsername(model.UserName);
+			var existingUser = _userManager.GetUserByUsername(newUser.UserName);
 
-			// Cannot sign up new user with existing username / email
 			if (existingUser is not null)
-				return null;
+				return Result<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
 
-			string passwordHash = BCrypt.Net.BCrypt.HashPassword(model.Password);
-			var newUser = _userManager.CreateNewUser(model, passwordHash);
+			var user = _userManager.CreateUser(newUser);
+			var authResponse = GetAuthResponse(user);
 
-			var expires			= DateTime.UtcNow.AddDays(7);
-			var authResponse	= new AuthResponse(newUser, expires);
-			authResponse.Token  = GenerateJwt(authResponse, newUser.Roles);
-
-			return authResponse;
+			return Result<AuthResponse>.Ok(authResponse);
 		}
 
 		// ============================================================================
+
+		private AuthResponse GetAuthResponse(User user)
+		{
+			var expires			= DateTime.UtcNow.AddDays(7);
+			var authResponse	= new AuthResponse(user, expires);
+			authResponse.Token  = GenerateJwt(authResponse, user.Role);
+
+			return authResponse;
+		}
 
 		private string GenerateJwt(AuthResponse authResponse, string userRoles)
         {

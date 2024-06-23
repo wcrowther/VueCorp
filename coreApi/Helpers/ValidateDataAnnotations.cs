@@ -17,7 +17,7 @@ public static class CustomRouteHandlerBuilder
 			{
 				string errorMessage =	firstErrorOnly ? 
 										response.Results.FirstOrDefault().ErrorMessage : 
-										string.Join("|", response.Results.Select(x => x.ErrorMessage));
+										string.Join(" | ", response.Results.Select(x => x.ErrorMessage));
 
 				return Results.Problem(errorMessage, statusCode: 400);
 			}

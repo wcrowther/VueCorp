@@ -73,6 +73,7 @@
     }
     .Vue-Toastification__container .Vue-Toastification__toast {
       width: 100%;
+      max-width: 100%;
     }
     .Vue-Toastification__container.top-left,
     .Vue-Toastification__container.top-right,

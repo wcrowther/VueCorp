@@ -16,5 +16,7 @@ public class AuthRequest
 
 	public string LastName { get; set; }
 
-	public override string ToString() => $"{UserName} FullName: {FirstName} {LastName}";
+	public string Roles { get; set; } = "User";
+
+	public override string ToString() => $"{UserName} FullName: {FirstName} {LastName} Role: {Roles}";
 }

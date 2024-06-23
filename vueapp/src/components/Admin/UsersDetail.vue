@@ -1,8 +1,12 @@
 <script setup>
 
-    const usersStore                = useUsersStore()
-    const messageStore              = useMessageStore()
-    const { user, detailUserId }    = storeToRefs(usersStore)
+    const usersStore           = useUsersStore()
+    const messageStore         = useMessageStore()
+    const 
+    { 
+        user, 
+        detailUserId 
+    }                           = storeToRefs(usersStore)
     const 
     { 
         getUserDetailData,
@@ -24,6 +28,7 @@
             return
 
         isAddingUser.value   = false
+
         getUserDetailData(detailUserId.value)
     }
 
@@ -54,7 +59,6 @@
             messageStore.showError(message) 
             console.log(message)
         }    
-           
     }
 
     const saveUserDetail = async () =>
@@ -62,6 +66,7 @@
         saveUser()
         isAddingUser.value = false 
         isConfirmVisible.value = false
+        v$.value.$reset()
     }
 
     const cancelAction = () => 
@@ -70,9 +75,6 @@
         v$.value.$reset()
         // getUserDetail()
     }
-
-    const rolesList = { 'User':'User' ,'Admin':'Admin', 'SuperAdmin': 'SuperAdmin' }
-
 
     // Listeners   =============================================================================
 
@@ -144,7 +146,7 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div class="mb-5 pb-1 flex justify-between">
+                <div v-if="!isAddingUser" class="mb-5 pb-1 flex justify-between">
                     <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserName: {{user.UserName}}
                     </span>
@@ -152,11 +154,16 @@
                         UserId: {{user.UserId}}
                     </span>
                 </div>
-                
+
+                <template v-if="isAddingUser">
+                    <TextInput labelName="UserName"     v-model="user.UserName"     :v$ />                
+                    <TextInput labelName="UserPassword" v-model="user.UserPassword" :v$ />                
+                </template>
+
                 <TextInput labelName="First Name" v-model="user.FirstName" :v$ />
                 <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
                 <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
-                <SelectInput labelName="Roles" v-model="user.Roles" :v$ :optionsList="rolesList" />
+                <SelectInput labelName="Role"    v-model="user.Role" :v$ :optionsList="roleList" />
             </div>
         </div>
 
