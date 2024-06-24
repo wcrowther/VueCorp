@@ -62,7 +62,7 @@
 
             <div class="p-10 pb-12">
                 <div class="flex h-9 self-start justify-between my-5">
-                    <button class="default-button hover:bg-warm-100" @click="logoutUser">Logout</button>
+                    <button class="btn-delete hover:bg-warm-100" @click="logoutUser">Logout</button>
                 </div>
                 <div class="label-row">
                     <div class="label-title"

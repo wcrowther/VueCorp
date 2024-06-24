@@ -119,10 +119,10 @@
                     <span class="">{{account.AccountId}}</span> 
                 -->
                 <button v-if="isAddingAccount || hasKeys(account) && account.AccountId > 0" 
-                    class="custom-button" @click="confirmSave">Save</button>
-                <button v-if="!isAddingAccount" class="custom-button"
+                    class="btn-primary" @click="confirmSave">Save</button>
+                <button v-if="!isAddingAccount" class="btn-primary"
                     @click="addAccount">Add</button>    
-                <button v-else class="default-button" @click="cancelAdd">Cancel</button>
+                <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>
             </span>
         </div>
 

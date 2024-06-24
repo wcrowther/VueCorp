@@ -225,8 +225,8 @@
             height="400px" width="500px" @closeModal="showModal=false">
                 Advanced Search Features will go here.     
             <template #footer>
-              <button class="custom-button"  @click="showModal=false">OK</button>
-              <button class="default-button" @click="showModal=false">Cancel</button>
+              <button class="btn-primary"  @click="showModal=false">OK</button>
+              <button class="btn-delete" @click="showModal=false">Cancel</button>
             </template>
         </ModalControl>
  

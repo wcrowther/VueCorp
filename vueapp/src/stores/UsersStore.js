@@ -7,7 +7,8 @@ export const useUsersStore = defineStore('UsersStore',
     ({
         usersPager:      new Pager(),
         usersList:       [],
-        user:            {},
+        user:            new User(),
+
         detailUserId:    0
     }),
     getters:{},

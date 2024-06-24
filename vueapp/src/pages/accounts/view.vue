@@ -27,8 +27,8 @@
             <div class="flex justify-between items-center mb-7 relative z-20">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ accountTitle }}</h2>
                 <span class="flex flex-wrap gap-1.5">
-                    <button class="custom-button" @click="addAccount">Add</button>
-                    <!-- <button class="default-button" @click="confirmSave">Cancel</button> -->
+                    <button class="btn-primary" @click="addAccount">Add</button>
+                    <!-- <button class="btn-delete" @click="confirmSave">Cancel</button> -->
                 </span>
             </div>
             <div class="w-full min-h-[400px] relative z-20">
@@ -75,7 +75,7 @@
                     <span class="w-60 flex-grow">{{ url }}</span>
                     <span class="w-40 flex-grow">Dec. 6, 2023</span>
                     <span class="w-12 flex-grow flex justify-end">
-                        <button class="custom-button">Edit</button>
+                        <button class="btn-primary">Edit</button>
                     </span>
                 </div> 
 

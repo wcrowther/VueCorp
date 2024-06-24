@@ -29,9 +29,9 @@
 			<div class="mb-5 w-full">{{ message }}</div>
 			<div class="flex justify-end gap-3">
 				<button @click="onConfirm" v-focus @keydown.enter.prevent.stop="onConfirm"  
-                    class="custom-button">{{props.confirmText}}</button>
+                    class="btn-primary">{{props.confirmText}}</button>
 				<button @click="onCancel" @keydown.enter.prevent.stop="onCancel"  
-                    class="default-button">{{props.cancelText}}</button>
+                    class="btn-delete">{{props.cancelText}}</button>
 			</div>
 		</div>
 	</div>

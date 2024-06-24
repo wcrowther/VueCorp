@@ -14,7 +14,7 @@
             <div class="w-full flex justify-between items-center">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ homeTitle }}</h2>
                 <span class="flex flex-wrap gap-1.5"> 
-                    <!-- <button  class="custom-button" @click="confirmSave">Save</button> -->
+                    <!-- <button  class="btn-primary" @click="confirmSave">Save</button> -->
                 </span>
             </div>
         </div> 

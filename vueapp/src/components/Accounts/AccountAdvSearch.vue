@@ -26,8 +26,8 @@
         </div>
 
         <template #footer>
-            <button class="custom-button"  @click="getListData">Refresh</button>
-            <button class="default-button"  @click="show=false">Close</button>
+            <button class="btn-primary"  @click="getListData">Refresh</button>
+            <button class="btn-delete"  @click="show=false">Close</button>
         </template>
 
 	</ModalControl>

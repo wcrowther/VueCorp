@@ -40,7 +40,7 @@
 
 					<div class=" bg-white p-4 pb-6 absolute bottom-0 w-full flex justify-end gap-2 select-none">
 						<slot name="footer">
-							<button class="custom-button" @click="$emit('closeModal')">Ok</button>
+							<button class="btn-primary" @click="$emit('closeModal')">Ok</button>
 						</slot>
 					</div>
 

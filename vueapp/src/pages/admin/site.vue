@@ -19,7 +19,7 @@
             <div class="flex justify-between items-center mb-7 relative z-20">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ pageTitle }}</h2>
                 <span class="flex flex-wrap gap-1.5">
-                    <button class="custom-button" >Add</button>
+                    <button class="btn-primary" >Add</button>
                 </span>
             </div>
             

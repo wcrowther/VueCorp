@@ -129,10 +129,10 @@
 
             <span class="flex flex-wrap gap-1.5"> 
                 <button v-if="isAddingUser || hasKeys(user) && user.UserId > 0" 
-                    class="custom-button" @click="confirmSave">Save</button>
-                <button v-if="!isAddingUser" class="custom-button"
+                    class="btn-primary" @click="confirmSave">Save</button>
+                <button v-if="!isAddingUser" class="btn-primary"
                     @click="addUser">Add</button>    
-                <button v-else class="default-button" @click="cancelAdd">Cancel</button>
+                <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>
             </span>
 
         </div>
