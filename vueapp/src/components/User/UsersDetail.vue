@@ -1,26 +1,26 @@
 <script setup>
 
-    const usersStore           = useUsersStore()
-    const messageStore         = useMessageStore()
+    const usersStore        = useUsersStore()
+    const messageStore      = useMessageStore()
     const 
     { 
         user, 
         detailUserId 
-    }                           = storeToRefs(usersStore)
+    }                       = storeToRefs(usersStore)
     const 
     { 
         getUserDetailData,
         addNewUser, 
         saveUser
-    }                           = usersStore
+    }                       = usersStore
 
-    const isAddingUser          = ref(false)
-    const isConfirmVisible      = ref(false)
-    const userFullName          = computed(() => user.value.LastName ? `${user.value.FirstName} ${user.value.LastName}` : '---')
-	const rules                 = computed(() => userValidator)
-    const userTitle             = computed(() => isAddingUser.value ? 'Add new User' : userFullName.value )
+    const isAddingUser      = ref(false)
+    const showConfirmSave   = ref(false)
+    const userFullName      = computed(() => user.value.LastName ? `${user.value.FirstName} ${user.value.LastName}` : '---')
+	//const rules             = computed(() => userValidator)
+    const userTitle         = computed(() => isAddingUser.value ? 'Add new User' : userFullName.value )
 
-	const v$ = useVuelidate(rules, user) // validator
+	const v$ = useVuelidate(userValidator, user) // validator
 
     const getUserDetail = async () =>
     {
@@ -45,13 +45,14 @@
        getUserDetail()
     }
 
+    const confirmDelete = () => alert('Delete not yet implemented.')
     const confirmSave = async () =>
     {
         const isValidUser = await v$.value.$validate()
 
         if(isValidUser)
         {
-             isConfirmVisible.value = true
+             showConfirmSave.value = true
         }
         else
         {
@@ -65,13 +66,13 @@
     {        
         saveUser()
         isAddingUser.value = false 
-        isConfirmVisible.value = false
+        showConfirmSave.value = false
         v$.value.$reset()
     }
 
     const cancelAction = () => 
     {
-        isConfirmVisible.value = false
+        showConfirmSave.value = false
         v$.value.$reset()
         // getUserDetail()
     }
@@ -120,7 +121,7 @@
 
     <div class="flex flex-wrap gap-5" id="UsersDetailView">
  
-        <ConfirmDialog :isVisible="isConfirmVisible"
+        <ConfirmDialog :isVisible="showConfirmSave"
 			message="Save User Data?" @confirm="saveUserDetail" @cancel="cancelAction" />
 
         <div class="w-full flex justify-between items-center">
@@ -128,8 +129,10 @@
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
             <span class="flex flex-wrap gap-1.5"> 
-                <button v-if="isAddingUser || hasKeys(user) && user.UserId > 0" 
-                    class="btn-primary" @click="confirmSave">Save</button>
+                <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
+                    <button class="btn-primary" @click="confirmSave">Save</button>
+                    <button class="btn-primary" @click="confirmDelete">Delete</button>
+                </template>
                 <button v-if="!isAddingUser" class="btn-primary"
                     @click="addUser">Add</button>    
                 <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>

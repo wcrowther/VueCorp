@@ -50,7 +50,7 @@ public static partial class Endpoints
 
 			return Results.Ok(acct);
 		})
-		.Validate<UserCreate>(false);
+		.Validate<UserCreate>();
 	}
 }
 

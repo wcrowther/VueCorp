@@ -1,13 +1,12 @@
 
 using System.ComponentModel.DataAnnotations;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Serialization;
 
 namespace coreApi.Models;
 
 public class User
 {
-    public int UserId { get; set; }
+	public int UserId { get; set; }
 
 	[Required, Length(5,50, ErrorMessage = $"The {nameof(UserName)} property must be 5 or more characters and 50 or less.")]
 	public string UserName { get; set; }
@@ -25,9 +24,8 @@ public class User
     [JsonIgnore]
     public string PasswordHash { get; set; }
 
-	[AllowedValues("User", "Admin, SuperAdmin")]
-	public string Role { get; set; } = "User";  // "User", "Admin", or "User,Admin"
+	[AllowedValues("", "User", "Admin, SuperAdmin")]
+	public string Role { get; set; }
 
-    public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
-
+	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

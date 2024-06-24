@@ -5,9 +5,11 @@
     const { sideBarHidden }         = storeToRefs(appStore)
     const { width: windowWidth }    = useWindowSize()
 
+    const breakPoint = 500
+
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
-        if(newVal < 480 && oldVal >= 480)
+        if(newVal < breakPoint && oldVal >= breakPoint)
         {
             sideBarHidden.value = true
         }

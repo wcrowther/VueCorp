@@ -26,9 +26,11 @@ declare module 'vue' {
     ListPagerDebugger: typeof import('./src/components/ListPagerDebugger.vue')['default']
     LivePic: typeof import('./src/components/LivePic.vue')['default']
     LoginPopout: typeof import('./src/components/LoginPopout.vue')['default']
+    LoginView: typeof import('./src/components/LoginView.vue')['default']
     ModalControl: typeof import('./src/components/ModalControl.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     NavTab: typeof import('./src/components/NavTab.vue')['default']
+    NewUser: typeof import('./src/components/User/NewUser.vue')['default']
     PasswordInput: typeof import('./src/components/Inputs/PasswordInput.vue')['default']
     PhoneInput: typeof import('./src/components/Inputs/PhoneInput.vue')['default']
     ReverseCorner: typeof import('./src/components/ReverseCorner.vue')['default']
@@ -41,7 +43,7 @@ declare module 'vue' {
     SubNavBar: typeof import('./src/components/SubNavBar.vue')['default']
     SwitchButton: typeof import('./src/components/SwitchButton.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
-    UsersDetail: typeof import('./src/components/Admin/UsersDetail.vue')['default']
-    UsersList: typeof import('./src/components/Admin/UsersList.vue')['default']
+    UsersDetail: typeof import('./src/components/User/UsersDetail.vue')['default']
+    UsersList: typeof import('./src/components/User/UsersList.vue')['default']
   }
 }

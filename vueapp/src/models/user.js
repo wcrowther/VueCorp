@@ -6,7 +6,7 @@ function User (userId, userName, firstName, lastName, userEmail, role)
 	this.FirstName	= firstName || ''
 	this.LastName	= lastName  || ''
 	this.UserEmail	= userEmail  || ''
-	this.Role		= role  || ''
+	this.Role		= role  || 'User'
 }
 
 export
