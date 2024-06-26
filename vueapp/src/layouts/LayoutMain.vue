@@ -9,6 +9,9 @@
 		altColors
 	} 						= storeToRefs(appStore)
 
+	const authStore     	= useAuthStore()
+    const { authUser } 		= storeToRefs(authStore)
+
     // Listeners   =============================================================================
 
     const keys = function (e)   
@@ -36,7 +39,7 @@
 
 		<BreakPoints :show="showBreakpoints" />
 
-		<BrandBar class="flex justify-between items-center px-5 ">
+		<BrandBar class="flex justify-between items-center px-4 pr-5">
 			<LoginPopout />
 			<BrandLogo />
 		</BrandBar>  
@@ -44,7 +47,7 @@
 		<NavBar class="" id="nav-bar">		
 			<NavTab navText="Home" 		to="/" />
 			<NavTab navText="Accounts" 	to="/accounts" />
-			<NavTab navText="Admin" 	to="/admin" />
+			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role != 'User'" />
 		</NavBar>
 
 		<div class="relative h-full min-h-[600px] bg-white" id="mainContent"> 

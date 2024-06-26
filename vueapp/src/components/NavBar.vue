@@ -12,14 +12,10 @@
     }    
 </style>
 
-<!--
-
-    linear-gradient( 58deg, #577fa8 4%, #1c2157 50%);
+<!-- linear-gradient( 58deg, #577fa8 4%, #1c2157 50%);
 
 <style lang="postcss" scoped>
-	.navbar-gradient {
-         @apply bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%   
-    }    
+	.navbar-gradient {  @apply bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% }    
 </style>
 -->
 	

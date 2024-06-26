@@ -127,8 +127,9 @@
   }
   .Vue-Toastification__toast--warning {
     background-color: #ffc107;
-    color: #fff;
+    color: black;
   }
+
   @media only screen and (max-width : 600px) {
     .Vue-Toastification__toast {
       border-radius: 0px;
@@ -165,6 +166,10 @@
     color: #fff;
     opacity: 0.3;
     transition: visibility 0s, opacity 0.2s linear;
+  }
+  .Vue-Toastification__toast--warning .Vue-Toastification__close-button {
+    color: black;
+    opacity: .5;
   }
   .Vue-Toastification__close-button:hover,
   .Vue-Toastification__close-button:focus {

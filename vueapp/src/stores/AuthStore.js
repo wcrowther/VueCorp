@@ -60,6 +60,10 @@ export const useAuthStore = defineStore('AuthStore',
         {
             this.authUser = {}
             this.router.push(route || '/login')
+        },
+        async redirect (route)
+        {
+            this.router.push(route || '/')
         }
     }
 })

@@ -18,7 +18,7 @@ public static partial class Endpoints
             AuthResponse response = _authManager.Authenticate(model);
 
             if (response == null)
-                return Results.Forbid();
+                return Results.Unauthorized();
 
             return Results.Ok(response);
         })

@@ -52,6 +52,8 @@ export async function apiCall(type, url, useAuth, body)
 	} 
 	catch (err) 
 	{
+		// console.log(`error: ${err}`)
+
 		result.error = err
 
 		if(err.code === 'ERR_NETWORK')
@@ -66,14 +68,14 @@ export async function apiCall(type, url, useAuth, body)
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
 		{
 			authStore.logout()
-			result.message		 = "You are not authorized for that content.\nPlease login to gain access."
-			result.toastType	 = 'INFO'
+			result.message		 = "The username or password you entered is incorrect."
+			result.toastType	 = 'WARNING'
 		}		
 		else if ([403].includes(err.response.status)) // Forbidden (known but does not have rights to content)
 		{
-			authStore.logout()
-			result.message		 = err.response.data || "The username or password you entered is incorrect."
-			result.toastType	 = 'INFO'
+			authStore.redirect('/')
+			result.message		 = err.response.data || "You are not authorized for that content."
+			result.toastType	 = 'WARNING'
 		} 
 		else
 		{

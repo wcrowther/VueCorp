@@ -2,7 +2,9 @@
 
 	const authStore			= useAuthStore()
 	const { login }			= authStore
-	const authRequest 			= ref(new AuthRequest())
+
+	const authModel			= new AuthRequest()
+	const authRequest 		= ref(authModel)
 	const v$ 				= useVuelidate(authRequestValidator, authRequest.value)
 
 	const loginUser   		= () => login(authRequest.value)

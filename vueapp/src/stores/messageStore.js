@@ -21,7 +21,7 @@ export const useMessageStore = defineStore('MessageStore',
         showError(message, duration)        { this.showToast(message, 'ERROR',   duration || this.errorDuration)   },
         showToast(message, type, duration) 
         {
-            console.log(message)
+            // console.log(message)
             
             if(['DEFAULT', 'SUCCESS', 'INFO', 'WARNING', 'ERROR'].indexOf(type) === 0)
                 type = TYPE.DEFAULT

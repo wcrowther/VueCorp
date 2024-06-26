@@ -54,13 +54,13 @@
         </router-link>
         
         <div v-if="showPopout"
-            class="z-[90] absolute min-h-[520px] min-w-[400px] top-0 rounded-tl-[30px] 
+            class="z-[90] absolute min-h-[520px] w-[380px] top-0 rounded-tl-[30px] 
                 border border-color-gray bg-gradient-main shadow-lg shadow-color-mid-gray">
             
             <IconSymbol v-if="pinPopout" class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-closed-20-solid" />
             <IconSymbol v-else           class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-open-20-solid" />
 
-            <div class="p-10 pb-12">
+            <div class="px-7 pt-10 pb-12">
                 <div class="flex h-9 self-start justify-between my-5">
                     <button class="btn-delete hover:bg-warm-100" @click="logoutUser">Logout</button>
                 </div>
@@ -81,13 +81,13 @@
                 </div>
                 <div class="label-row">
                     <div class="label-title"
-                        title="Logged-in UserEmail">UserEmail:</div>
+                        title="Logged-in UserEmail">User Email:</div>
                     <div class="label-value">{{ authUser.UserEmail }}</div>
                 </div>
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Is application busy?">Is Busy:</div>
-                    <div class="label-value">{{ isBusy }}</div>
+                        title="User Role">User Role:</div>
+                    <div class="label-value">{{ authUser.Role }}</div>
                 </div>
                 <div class="label-row">
                     <div class="label-title"
@@ -103,21 +103,21 @@
                 </div>
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Prev/Next buttons for mobile pager(only show at low res)">Show Prev/Next</div>
+                        title="Prev/Next buttons for mobile pager(only show at low res)">Prev / Next:</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showPrevNext" />
                     </div>
                 </div>
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Show breakpoints in lower left">Show Breakpoints</div>
+                        title="Show breakpoints in lower left">Breakpoints:</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showBreakpoints" />
                     </div>
                 </div> 
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Toggle off alternate color scheme.">Alt Colors</div>
+                        title="Toggle off alternate color scheme.">Alt Colors:</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="altColors" />
                     </div>

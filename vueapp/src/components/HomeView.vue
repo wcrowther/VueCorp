@@ -26,9 +26,9 @@
             as an educational doorway into these technologies.
         </div> 
 
-        <div class="mb-5 italic">
-            The source for VueCorp is at: 
-            <a class="link-underline text-blue" href="https://github.com/wcrowther/VueCorp" 
+        <div class="mb-5 italic ">
+            <div class="text-center">The source for VueCorp is at: </div>
+            <a class="block text-center font-bold link-underline text-blue" href="https://github.com/wcrowther/VueCorp" 
                 target="_blank">https://github.com/wcrowther/VueCorp</a>
         </div> 
 

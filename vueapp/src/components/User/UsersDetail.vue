@@ -129,13 +129,18 @@
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
             <span class="flex flex-wrap gap-1.5"> 
+
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
-                    <button class="btn-primary" @click="confirmSave">Save</button>
-                    <button class="btn-primary" @click="confirmDelete">Delete</button>
+                    <IconSymbol width="22px" @click="confirmSave" title="Save User"
+                        class="icon-symbol mt-[2px] mr-[2px]" icon="fa-solid:save" />
+                    <IconSymbol width="28px"  @click="confirmDelete" title="Delete User"
+                        class="icon-symbol" icon="heroicons:trash-16-solid" />
                 </template>
-                <button v-if="!isAddingUser" class="btn-primary"
-                    @click="addUser">Add</button>    
-                <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>
+
+                <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
+                    class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
+                <IconSymbol title="Cancel" v-if="isAddingUser" width="28px" @click="cancelAdd"
+                    class="icon-symbol" icon="heroicons:x-circle-16-solid" />
             </span>
 
         </div>
@@ -173,3 +178,9 @@
     </div>
 
 </template>
+
+<style lang="postcss" scoped>
+	.icon-symbol {
+        @apply text-color-mid-blue hover:text-white
+    }    
+</style>

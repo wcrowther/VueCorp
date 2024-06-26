@@ -13,6 +13,8 @@ public class AuthResponse(User user, DateTime expiration)
 
 	public string UserEmail { get; init; } = user.UserEmail;
 
+	public string Role { get; init; } = user.Role;
+
 	public DateTime Expiration { get; init; } = expiration;
 
 	public string Token { get; set; }

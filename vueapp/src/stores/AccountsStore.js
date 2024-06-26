@@ -21,8 +21,8 @@ export const useAccountsStore = defineStore('AccountsStore',
         {
             try 
             {
-                console.log('--- >>> Get AccountList From Server')
-                logJson('getPagedAccounts request', JSON.stringify(pager))
+                console.log('--- Get AccountList From Server')
+                // logJson('getPagedAccounts request', JSON.stringify(pager))
                
                 const result = await apiPost(`/accounts/getPagedAccounts`, pager)
                 
@@ -43,7 +43,7 @@ export const useAccountsStore = defineStore('AccountsStore',
             {
                 if(accountId && accountId > 0)
                 {
-                    console.log(`------- >>> Get AccountDetail ${accountId} From Server`)
+                    console.log(`------- Get AccountDetail ${accountId} From Server`)
                     
                     const result = await apiGet(`/accounts/getAccountById/${accountId}`)
                     
