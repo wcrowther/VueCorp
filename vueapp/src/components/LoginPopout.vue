@@ -8,7 +8,6 @@
         firstInitial,  
         authUser, 
         isLoggedIn,  
-        isBusy, 
         expiration }        = storeToRefs(authStore)        
 
     const appStore          = useAppStore()

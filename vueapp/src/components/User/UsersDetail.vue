@@ -139,7 +139,7 @@
 
                 <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
                     class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
-                <IconSymbol title="Cancel" v-if="isAddingUser" width="28px" @click="cancelAdd"
+                <IconSymbol v-if="isAddingUser" width="28px" @click="cancelAdd" title="Cancel"
                     class="icon-symbol" icon="heroicons:x-circle-16-solid" />
             </span>
 

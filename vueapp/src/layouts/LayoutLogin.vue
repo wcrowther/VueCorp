@@ -16,6 +16,7 @@
 		<div :class="{ 'box-shadow' : altColors }">
 
 			<BrandBar class="pr-5">
+				<div class="">&nbsp;</div>
 				<BrandLogo></BrandLogo>
 			</BrandBar>  
 
