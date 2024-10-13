@@ -6,7 +6,7 @@
 
 <template>
     <Teleport to="body" v-if="props.show" >
-        <div class="fixed left-2 bottom-3">
+        <div class="fixed left-4 bottom-4">
             <div class="capsule hidden xxs:block xs:hidden"  title="436px +" >xxs</div>
             <div class="capsule hidden  xs:block sm:hidden"  title="480px +" >xs</div>
             <div class="capsule hidden  sm:block md:hidden"  title="640px +" >sm</div>

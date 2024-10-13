@@ -10,7 +10,7 @@ using WildHare.Extensions;
 namespace coreApi.Data;
 
 public class AccountRepo : IAccountRepo
-    {
+{
 	private readonly coreApiDataContext _dataContext;
 
 	public AccountRepo(coreApiDataContext coreApiDataContext)

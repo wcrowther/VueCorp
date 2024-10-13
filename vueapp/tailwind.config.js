@@ -25,8 +25,8 @@ module.exports = {
         main: '-8px 8px 18px -4px rgba(97,97,97,0.75)'
       },
       backgroundImage: {
-        'brand-logo':         'url("/")', /*/Brand_Logo_2_White.png*/
-        'space-stars':        'url("/space-stars.png")',
+        'brand-logo':         'url("/")', /*images/Brand_Logo_2_White.png*/
+        'space-stars':        'url("images/space-stars.png")',
         'gradient-brand':     'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
                               'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
         'gradient-brand-alt': 'linear-gradient( 20deg, #b8d7ed 20%, transparent 60%)',

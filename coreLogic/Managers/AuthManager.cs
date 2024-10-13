@@ -42,7 +42,7 @@ namespace coreApi.Logic.Managers
 			var user = _userManager.CreateUser(newUser);
 			var authResponse = GetAuthResponse(user);
 
-			return Result<AuthResponse>.Ok(authResponse);
+			return Result<AuthResponse>.HasData(authResponse);
 		}
 
 		// ============================================================================

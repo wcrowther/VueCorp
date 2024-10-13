@@ -17,8 +17,9 @@
     const isAddingUser      = ref(false)
     const showConfirmSave   = ref(false)
     const userFullName      = computed(() => user.value.LastName ? `${user.value.FirstName} ${user.value.LastName}` : '---')
-	//const rules             = computed(() => userValidator)
     const userTitle         = computed(() => isAddingUser.value ? 'Add new User' : userFullName.value )
+
+    //const rules             = computed(() => userValidator)
 
 	const v$ = useVuelidate(userValidator, user) // validator
 
@@ -124,12 +125,19 @@
         <ConfirmDialog :isVisible="showConfirmSave"
 			message="Save User Data?" @confirm="saveUserDetail" @cancel="cancelAction" />
 
-        <div class="w-full flex justify-between items-center">
+        <div class="w-full flex justify-between items-center    ">
 
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
             <span class="flex flex-wrap gap-1.5"> 
 
+                <div class="">
+                    <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
+                        class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
+                    <IconSymbol v-else width="28px" @click="cancelAdd" title="Cancel"
+                        class="icon-symbol" icon="heroicons:x-circle-16-solid" />
+                </div>
+                                
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="22px" @click="confirmSave" title="Save User"
                         class="icon-symbol mt-[2px] mr-[2px]" icon="fa-solid:save" />
@@ -137,10 +145,6 @@
                         class="icon-symbol" icon="heroicons:trash-16-solid" />
                 </template>
 
-                <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
-                    class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
-                <IconSymbol v-if="isAddingUser" width="28px" @click="cancelAdd" title="Cancel"
-                    class="icon-symbol" icon="heroicons:x-circle-16-solid" />
             </span>
 
         </div>

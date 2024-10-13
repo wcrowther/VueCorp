@@ -1,4 +1,5 @@
 ﻿using LinqKit;
+using System.Diagnostics;
 
 namespace coreApi.Helpers;
 
@@ -11,6 +12,13 @@ public static class EndpointHelper
 	{
 		var staticMethods = typeof(Endpoints).GetMethods().Where(a => a.IsStatic && a.IsPublic);
 
-		staticMethods.ForEach(a => a.Invoke(null, [app]));
+		foreach (var method in staticMethods)
+		{
+			Debug.WriteLine($"Adding Endpoint {method.Name}");
+			method.Invoke(null, [app]);
+		}
 	}
 }
+
+
+// One liner version -> staticMethods.ForEach(a => a.Invoke(null, [app]));

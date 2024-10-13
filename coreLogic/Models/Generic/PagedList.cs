@@ -6,7 +6,7 @@ public class PagedList<T,TSearch>
 
     public List<T> ListItems { get; set; } = new List<T>();
 
-	public Result Result { get; set; } = new Result();
+	public Result Result { get; set; } = Result.Ok();
 }
 
 public class PagedList<T> : PagedList<T, Search>{}

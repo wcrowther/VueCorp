@@ -145,19 +145,7 @@
 <template>
     <div class="" id="accountsList">
 
-        <!-- Right PREV / NEXT Button for Mobile--> 
-        <teleport to="body" v-if="appStore.showPrevNext">
-            <div class="rounded-full bg-[#b8d7ed] fixed xs:hidden h-16 w-16 z-[100] 
-                opacity-80 -top-8 -right-8" @click="listPager.goToPrevious()">
-                <IconSymbol class="select-none relative bottom-[-37px] left-2.5" :vertical-flip="true"
-                    width="16px" :vFlip="true" color="#3e5091" icon="mdi:arrow-down-thick" />
-            </div>
-            <div class="rounded-full bg-[#b8d7ed] fixed xs:hidden h-16 w-16 z-[100] 
-                opacity-80 -bottom-8 -right-8" @click="listPager.goToNext()">
-                <IconSymbol class="select-none relative top-3 left-2.5" 
-                    width="16px" color="#3e5091" icon="mdi:arrow-down-thick" />
-            </div>
-        </teleport> 
+        <ListPagerPrevNext :pager="listPager"></ListPagerPrevNext>
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
 

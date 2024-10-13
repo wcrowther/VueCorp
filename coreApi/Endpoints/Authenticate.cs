@@ -15,12 +15,12 @@ public static partial class Endpoints
 
         auth.MapPost("/login", (AuthRequest model, IAuthManager _authManager) =>
         {
-            AuthResponse response = _authManager.Authenticate(model);
+            AuthResponse result = _authManager.Authenticate(model);
 
-            if (response == null)
+            if (result == null)
                 return Results.Unauthorized();
 
-            return Results.Ok(response);
+            return Results.Ok(result);
         })
 		.Validate<AuthRequest>(false)
         .WithName("Authenticate");
@@ -28,12 +28,12 @@ public static partial class Endpoints
 
 		auth.MapPost("/signup", (UserCreate model, IAuthManager _authManager) =>
 		{
-			var response = _authManager.Signup(model);
+			var result = _authManager.Signup(model);
 
-			if (!response.Success)
-				return Results.BadRequest(response.Message);
+			if (result.Success)
+				return Results.Ok(result.Data);
 
-			return Results.Ok(response.Data);	
+			return Results.BadRequest(result.Message);
 		})
 		.Validate<UserCreate>(false)
 		.WithName("Signup");
