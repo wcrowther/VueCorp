@@ -33,7 +33,7 @@ public static partial class Endpoints
 			if (result.Success)
 				return Results.Ok(result.Data);
 
-			return Results.BadRequest(result.Message);
+			return Results.BadRequest(result.Exception.Message);
 		})
 		.Validate<UserCreate>(false)
 		.WithName("Signup");

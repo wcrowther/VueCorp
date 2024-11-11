@@ -6,49 +6,31 @@ namespace coreApi.Models.Generic;
 
 public class Result<T>
 {
-	public bool Success { get; init; }
+	private T _data;
 
-	public string Message { get; init; }
+	public bool Success => Exception is null && Data is not null;
 
 	public Exception Exception { get; init; }
 
 	public T Data { get; init; }
 
-	public static Result<T> Ok (T data = default, string message = null)
-	{
-		return new() { Success = true, Data = data, Message = message };
-	}
+	public static implicit operator Result<T>(T data) => new() { Data = data };
 
-	public static Result<T> Error(string message, Exception exception = null)
-	{
-		return new() { Success = false, Message = message, Exception = exception };
-	}
+	public static implicit operator Result<T>(Exception ex) => new() { Exception = ex };
 
-	public static Result<T> HasData(T data = default, string message = "", string noDataMessage = "")
-	{
-		bool hasData = data is not null;
-		return new() { Success = hasData, Data = data, Message = hasData ? message : noDataMessage };
-	}
+	public static Result<T> Ok(T data) => new() { Data = data };
 
-	public static Result<T> HasCount(T data = default, string message = "", string noDataMessage = "")
-	{
-		string nullError = noDataMessage.IsNullOrEmpty() ? "HasCount() data type cannot be null" : noDataMessage;
-		string ienumerableError = "HasCount() data type must be able to be converted to type IEnumerable<object>";
+	public static Result<T> Error(string message, T data = default) => new() { Exception = new Exception(message), Data = data };
 
-		if (data is null)
-			return Error(nullError, new Exception(nullError));
-		
-		if (data is IEnumerable<object> e)
-			return new() { Success = e.Any(), Data = data, Message = e.Any() ? message : noDataMessage };
-		
-		return Error(ienumerableError, new Exception(ienumerableError));
-	}
+	public static Result<T> Error(Exception exception, T data = default) => new() { Exception = exception, Data = data };
 }
 
-public class Result : Result<int>
+public class Result : Result<string>
 {
-	public static new Result Ok(int data = default, string message = null) => new Result { Data = data, Message = message };
+	public static implicit operator Result(string data) => new() { Data = data };
 
-	public static new Result Error(string message, Exception exception = null) => new Result { Message = message, Exception = exception};
+	public static implicit operator Result(Exception ex) => new() { Exception = ex };
+
+	public override string ToString() => Success ? Data : Exception.Message;
 }
 
