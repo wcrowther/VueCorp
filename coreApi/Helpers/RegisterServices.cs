@@ -11,7 +11,7 @@ namespace coreApi.Helpers
     {
         public static void AddMyServices(this IServiceCollection services)
         {
-			services.AddDbContext<coreApiDataContext>();
+			services.AddDbContext<CoreApiDataContext>();
 
 			// Logic Services
 			services.AddScoped<IAccountManager, AccountManager>();

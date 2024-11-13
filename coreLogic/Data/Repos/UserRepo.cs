@@ -12,11 +12,11 @@ namespace coreApi.Data
 {
     public class UserRepo : IUserRepo
     {
-		private readonly coreApiDataContext _dataContext;
+		private readonly CoreApiDataContext _dataContext;
 
 		public UserRepo()
 		{
-			_dataContext = new coreApiDataContext();
+			_dataContext = new CoreApiDataContext();
 		}
 
 		public IEnumerable<User> GetAllUsers()

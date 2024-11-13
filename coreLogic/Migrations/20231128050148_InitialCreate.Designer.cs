@@ -9,7 +9,7 @@ using coreApi.Data;
 
 namespace coreLogic.Migrations
 {
-    [DbContext(typeof(coreApiDataContext))]
+    [DbContext(typeof(CoreApiDataContext))]
     [Migration("20231128050148_InitialCreate")]
     partial class InitialCreate
     {

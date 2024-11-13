@@ -8,7 +8,7 @@ using coreApi.Data;
 
 namespace coreLogic.Migrations
 {
-    [DbContext(typeof(coreApiDataContext))]
+    [DbContext(typeof(CoreApiDataContext))]
     partial class coreApiDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

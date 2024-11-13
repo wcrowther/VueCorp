@@ -9,7 +9,7 @@ using coreApi.Data;
 
 namespace coreLogic.Migrations
 {
-    [DbContext(typeof(coreApiDataContext))]
+    [DbContext(typeof(CoreApiDataContext))]
     [Migration("20231202053457_AddingAddressColumns")]
     partial class AddingAddressColumns
     {

@@ -11,9 +11,9 @@ namespace coreApi.Data;
 
 public class AccountRepo : IAccountRepo
 {
-	private readonly coreApiDataContext _dataContext;
+	private readonly CoreApiDataContext _dataContext;
 
-	public AccountRepo(coreApiDataContext coreApiDataContext)
+	public AccountRepo(CoreApiDataContext coreApiDataContext)
 	{
 		_dataContext = coreApiDataContext;
 	}
@@ -83,7 +83,12 @@ public class AccountRepo : IAccountRepo
 
 		if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
 		{
-			predicate = predicate.And(s => s.StateProvince.Equals(pager.Search.StateProvinceFilter));
+			predicate = predicate.And(account => account.StateProvince.Equals(pager.Search.StateProvinceFilter));
+		}
+
+		if (!pager.Search.PostalCodeFilter.IsNullOrSpace())
+		{
+			predicate = predicate.And(account => account.PostalCode.StartsWith(pager.Search.PostalCodeFilter));
 		}
 
 		return predicate;

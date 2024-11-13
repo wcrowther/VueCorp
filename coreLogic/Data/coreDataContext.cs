@@ -3,11 +3,11 @@ using coreApi.Models;
 
 namespace coreApi.Data;
 
-public class coreApiDataContext : DbContext
+public class CoreApiDataContext : DbContext
 {
-	public coreApiDataContext() 
+	public CoreApiDataContext() 
 	{
-		DbPath      = "coreApiData.db";
+		DbPath = "coreApiData.db";
 	}
 
 	public string DbPath { get; }
@@ -22,6 +22,9 @@ public class coreApiDataContext : DbContext
 		options.UseSqlite($"Data Source={DbPath}");
 	}
 }
+
+
+
 
 // ALTERNATE WAY TO DO PATH
 // var folder	= Environment.SpecialFolder.LocalApplicationData;
