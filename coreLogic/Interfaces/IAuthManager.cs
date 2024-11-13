@@ -1,9 +1,9 @@
 ﻿using coreApi.Models;
-using coreApi.Models.Generic;
+using coreLogic.Models.Generic;
 
 namespace coreApi.Logic.Interfaces
 {
-    public interface IAuthManager
+	public interface IAuthManager
     {
 		AuthResponse Authenticate(AuthRequest model);
 

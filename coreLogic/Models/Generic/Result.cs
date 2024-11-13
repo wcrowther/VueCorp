@@ -1,22 +1,21 @@
 
-using WildHare.Extensions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace coreApi.Models.Generic;
+namespace coreLogic.Models.Generic;
 
 public class Result<T>
 {
-	private T _data;
-
-	public bool Success => Exception is null && Data is not null;
+	public T Data { get; init; }
 
 	public Exception Exception { get; init; }
 
-	public T Data { get; init; }
+	public bool Success => Exception is null;
+
+	public bool HasData => Data is not null;
+
 
 	public static implicit operator Result<T>(T data) => new() { Data = data };
 
 	public static implicit operator Result<T>(Exception ex) => new() { Exception = ex };
+
 
 	public static Result<T> Ok(T data) => new() { Data = data };
 

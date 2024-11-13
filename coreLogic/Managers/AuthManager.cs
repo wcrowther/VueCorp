@@ -4,7 +4,7 @@ using coreApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using coreApi.Models.Generic;
+using coreLogic.Models.Generic;
 
 namespace coreApi.Logic.Managers
 {
@@ -36,7 +36,7 @@ namespace coreApi.Logic.Managers
 		{
 			var existingUser = _userManager.GetUserByUsername(newUser.UserName);
 
-			if (existingUser is not null)
+			if (existingUser is null)
 				return Result<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
 
 			var user = _userManager.CreateUser(newUser);

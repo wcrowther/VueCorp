@@ -1,3 +1,5 @@
+using coreLogic.Models.Generic;
+
 namespace coreApi.Models.Generic;
 
 public class PagedList<T,TSearch>
