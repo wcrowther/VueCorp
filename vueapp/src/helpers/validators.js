@@ -35,7 +35,6 @@ export const authSignupValidator =
 	LastName:           { required }
 }
 
-
 export const userValidator = 
 {
 	FirstName:          { required },

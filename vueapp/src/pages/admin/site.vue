@@ -14,7 +14,7 @@
 
         <div class="z-0 bg-gradient-main h-[500px] absolute top-0 left-0 right-0"></div>
 
-        <div class="p-5 pt-5 sm:p-10 sm:pt-5 pb-14">
+        <div class="p-5 pt-5 pb-14 sm:p-10 sm:pt-5">
 
             <div class="flex justify-between items-center mb-7 relative z-20">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ pageTitle }}</h2>
@@ -23,18 +23,22 @@
                 </span>
             </div>
             
-            <div class="w-full min-h-[400px] relative z-20">
-                <div class="mb-3"><span class="font-bold">Mode: </span>
+            <div class="flex flex-wrap gap-y-5 mb-5 relative">
+                <div class="w-1/2">
+                    <span class="font-bold">Mode: </span>
                     {{ appStore.mode }}
                 </div>
-                <div class="mb-3"><span class="font-bold">import.meta.url:</span>
-                    {{ currentUrl }}
-                </div>                
-                <div class="mb-3"><span class="font-bold">BaseUrl:</span>
+                <div class="w-1/2">
+                    <span class="font-bold">BaseUrl:</span>
                     {{ baseUrl }}
-                </div>
-                <SiteMap />
+                </div>  
+                <div class="w-full">
+                    <span class="font-bold">import.meta.url:</span>
+                    {{ currentUrl }}
+                </div>  
             </div>
+
+            <SiteMap class="z-50 relative p-5 border border-color-primary" />
 
         </div>
 

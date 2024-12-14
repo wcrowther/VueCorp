@@ -1,7 +1,5 @@
 <script setup>
 
-    import ReverseCorner from '@/components/ReverseCorner.vue'
-
     const props = defineProps(
 	{
 		navText: { type: String, required: true }

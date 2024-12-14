@@ -15,7 +15,7 @@
 		if(isValidAuth)	
 			loginUser()
 		else
-			console.log(`IsValidAuth: ${isValidAuth}`) // OR USE MESSANGER HERE
+			console.log(`IsValidAuth: ${isValidAuth}`) // OR USE MESSENGER HERE
 	}
 
 </script>

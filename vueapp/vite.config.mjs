@@ -64,6 +64,8 @@ export default defineConfig({
                 secure: false
             }
         },
-        port: 7200
+        port: 7200,
+        open: true  // open the browser after compiling
     }
+ 
 })
