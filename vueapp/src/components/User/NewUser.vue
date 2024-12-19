@@ -7,6 +7,16 @@
 
 	const signupUser   		= () => signup(userData.value)
 
+	const validateAndSignup	= async () =>
+	{
+		let isValidAuth = await v$.value.$validate()
+	
+		if(isValidAuth)	
+			signupUser()
+		else
+			console.log(`IsValidAuth: ${isValidAuth}`) // OR USE MESSENGER HERE
+	}
+
 </script>
 
 <template>
@@ -18,7 +28,7 @@
 	<PasswordInput  labelName="Password" 	v-model="userData.Password"  :v$ />
 
 	<div class="select-none pt-5 flex justify-end gap-3 mb-5">
-		<button class="btn-primary" @click="signupUser">New User Sign Up</button>
+		<button class="btn-primary" @click="validateAndSignup">New User Sign Up</button>
 		<slot></slot>
 	</div>	
 

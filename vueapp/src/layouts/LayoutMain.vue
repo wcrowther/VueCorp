@@ -47,7 +47,7 @@
 		<NavBar class="" id="nav-bar">		
 			<NavTab navText="Home" 		to="/" />
 			<NavTab navText="Accounts" 	to="/accounts" />
-			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role != 'User'" />
+			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role == 'Admin'" />
 		</NavBar>
 
 		<div class="relative h-full min-h-[600px] bg-white" id="mainContent"> 

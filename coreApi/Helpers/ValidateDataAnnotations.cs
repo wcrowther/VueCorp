@@ -6,7 +6,7 @@ namespace coreApi.Helpers;
 
 public static class CustomRouteHandlerBuilder
 {
-	public static RouteHandlerBuilder Validate<T>(this RouteHandlerBuilder builder, bool firstErrorOnly = true)
+	public static RouteHandlerBuilder Validate<T>(this RouteHandlerBuilder builder, bool firstErrorOnly = true, string errorDivider = " ")
 	{ 
 		builder.AddEndpointFilter(async (invocationContext, next) =>
 		{
@@ -17,7 +17,7 @@ public static class CustomRouteHandlerBuilder
 			{
 				string errorMessage =	firstErrorOnly ? 
 										response.Results.FirstOrDefault().ErrorMessage : 
-										string.Join(" | ", response.Results.Select(x => x.ErrorMessage));
+										string.Join(errorDivider, response.Results.Select(x => x.ErrorMessage));
 
 				return Results.Problem(errorMessage, statusCode: 400);
 			}

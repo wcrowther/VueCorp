@@ -24,13 +24,17 @@
             </div>
             
             <div class="flex flex-wrap gap-y-5 mb-5 relative">
-                <div class="w-1/2">
+                <div class="w-full">
                     <span class="font-bold">Mode: </span>
                     {{ appStore.mode }}
                 </div>
                 <div class="w-1/2">
                     <span class="font-bold">BaseUrl:</span>
                     {{ baseUrl }}
+                </div>
+                <div class="w-1/2">
+                    <span class="font-bold">Page / Component Name:</span>
+                    {{ getCurrentInstance().type.__name  }}
                 </div>  
                 <div class="w-full">
                     <span class="font-bold">import.meta.url:</span>

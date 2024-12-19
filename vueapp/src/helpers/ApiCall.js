@@ -68,7 +68,7 @@ export async function apiCall(type, url, useAuth, body)
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
 		{
 			authStore.logout()
-			result.message		 = "The username or password you entered is incorrect."
+			result.message		 = "You need to be authorized for that content. Please log in."
 			result.toastType	 = 'WARNING'
 		}		
 		else if ([403].includes(err.response.status)) // Forbidden (known but does not have rights to content)

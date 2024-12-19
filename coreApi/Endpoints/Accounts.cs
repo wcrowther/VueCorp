@@ -11,7 +11,7 @@ public static partial class Endpoints
     public static void AccountEndpoints(this WebApplication app)
     {
         var accounts = app.MapGroup("/v1/accounts")
-						  //.RequireAuthorization()
+						  .RequireAuthorization()
                           .WithOpenApi()
 						  .WithTags("Accounts");
 
@@ -43,15 +43,14 @@ public static partial class Endpoints
 			return Results.Ok(acct);
 		})
 		.Validate<Account>(false);
-		//.ValidateDataAnnotationsFromBody();
 	}
 }
 
 
 
 
-
-
+// ============================================================================
+// .ValidateDataAnnotationsFromBody();
 // ============================================================================
 // NOT WORKING ON /saveAccount replacing ".ValidateDataAnnotations<Account>()"
 // ============================================================================

@@ -36,7 +36,7 @@ namespace coreApi.Logic.Managers
 		{
 			var existingUser = _userManager.GetUserByUsername(newUser.UserName);
 
-			if (existingUser is null)
+			if (existingUser is not null)
 				return Result<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
 
 			var user = _userManager.CreateUser(newUser);
