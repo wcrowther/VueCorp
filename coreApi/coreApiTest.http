@@ -1,13 +1,15 @@
 @coreApi.Server_HostAddress = https://localhost:9999
-@token =   eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3Y3Jvd3RoZXIyMiIsImp0aSI6ImFhMzM0OWY0LTM0MmQtNGNmNi05YjU3LWYzMzhkY2JmNGNkNyIsInVuaXF1ZV9uYW1lIjoid2Nyb3d0aGVyMjIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOlsiQWRtaW4iLCJVc2VyIl0sImV4cCI6MTcwMjc2NDk0NywiaXNzIjoibG9jYWwiLCJhdWQiOiJBbGwifQ.JVBWNLzT41JaL-85FtrZma4_x-URDdWApKcAB-s_CPStggxHnWk5mVrTV7f0dABIF4kC_u__-24Y7w6Ai3_DXA
+@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3Y3Jvd3RoZXIyMiIsImp0aSI6IjZiZDhjOTdmLTQwYWUtNDg2Yi1iYjVmLTljMWU4N2UwM2Q1YyIsInVuaXF1ZV9uYW1lIjoid2Nyb3d0aGVyMjIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTczNDczMzM3MiwiaXNzIjoibG9jYWwiLCJhdWQiOiJBbGwifQ.pEvvoVcC93RxQ-EYYcL6CFsNT0_8To51jw-9wb8tlPo65Mr-QIONEjQi_5vPvdECueTFQX6ZQgO-f9nStqbwzg
 
+
+###
 
 GET {{coreApi.Server_HostAddress}}/v1/weatherforecast/
 Accept: application/json
 
 ###
 
-POST {{coreApi.Server_HostAddress}}/v1/authenticate
+POST {{coreApi.Server_HostAddress}}/v1/authenticate/login
 accept: */* 
 Content-Type: application/json
 
@@ -15,6 +17,8 @@ Content-Type: application/json
 	"username": "wcrowther22",
 	"password": "Test123!"
 }
+
+###@token={{response.body.Token}}This is not working
 
 ###
 
@@ -24,7 +28,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-	"AccountId": 0,  
 	"AccountName": "Test Account",
 	"AccountEmail": "wtest@test.com",
 	"AccountPhone": "(404) 333 4444",
@@ -33,6 +36,22 @@ Accept: application/json
 	"StateProvince": "NY",
 	"PostalCode": "12345"
 }
+
+###
+
+GET {{coreApi.Server_HostAddress}}/v1/users/getAllUsers
+Authorization: bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+
+###
+
+GET {{coreApi.Server_HostAddress}}/v1/accounts/getAllAccounts
+Authorization: bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
 
 ###
 

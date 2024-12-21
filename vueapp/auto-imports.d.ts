@@ -9,6 +9,7 @@ declare global {
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
+  const KeyboardListeners: typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']
   const PageItem: typeof import('./src/models/Pager.js')['PageItem']
   const PagedList: typeof import('./src/models/Pager.js')['PagedList']
   const Pager: typeof import('./src/models/Pager.js')['Pager']
@@ -118,6 +119,7 @@ declare module 'vue' {
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/Pager.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/Pager.js')['PagedList']>
     readonly Pager: UnwrapRef<typeof import('./src/models/Pager.js')['Pager']>
@@ -220,6 +222,7 @@ declare module '@vue/runtime-core' {
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/Pager.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/Pager.js')['PagedList']>
     readonly Pager: UnwrapRef<typeof import('./src/models/Pager.js')['Pager']>

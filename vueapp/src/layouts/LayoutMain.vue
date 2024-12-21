@@ -1,31 +1,20 @@
 	
 <script setup>
 
-    const appStore     		= useAppStore()
-    const 
-	{ 
-		sideBarHidden,
-		showBreakpoints,
-		altColors
-	} 						= storeToRefs(appStore)
+    const appStore     			= useAppStore()
+    const {  sideBarHidden, showBreakpoints, altColors } 	
+								= storeToRefs(appStore)
+	const authStore     		= useAuthStore()
+    const { authUser } 			= storeToRefs(authStore)
 
-	const authStore     	= useAuthStore()
-    const { authUser } 		= storeToRefs(authStore)
-
-    // Listeners   =============================================================================
+    // Keyboard Listeners  =====================================================================
 
     const keys = function (e)   
     {
-        if (e.code === 'Escape')       { sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
+        if (e.code === 'Escape'){ sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
     }
 
-    const addKeyListeners       = () => document.addEventListener('keydown', keys, false)
-    const removeKeyListeners    = () => document.removeEventListener('keydown', keys, false)
-
-    onMounted(()    =>  addKeyListeners() )
-    onUnmounted(()  =>  removeKeyListeners() )
-
-	// =========================================================================================
+	KeyboardListeners(keys);
 
 </script>
 

@@ -32,17 +32,17 @@ namespace coreApi.Logic.Managers
 			return GetAuthResponse(user);
 		}
 
-		public Result<AuthResponse> Signup(UserCreate newUser)
+		public Returns<AuthResponse> Signup(UserCreate newUser)
 		{
 			var existingUser = _userManager.GetUserByUsername(newUser.UserName);
 
 			if (existingUser is not null)
-				return Result<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
+				return Returns<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
 
 			var user = _userManager.CreateUser(newUser);
 			var authResponse = GetAuthResponse(user);
 
-			return Result<AuthResponse>.Ok(authResponse);
+			return Returns<AuthResponse>.Ok(authResponse);
 		}
 
 		// ============================================================================

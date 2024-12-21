@@ -10,11 +10,10 @@
     const modelValue = defineModel()
     const rule  = computed(() => 
     {   
+        let rulename = props.ruleName ? props.ruleName : props.labelName.replace(' ','') 
+        // console.log('rulename: ' + rulename)
 
-        let r = props.ruleName ? props.ruleName : props.labelName.replace(' ','') 
-        console.log('rule: ' + r)
-
-        return r
+        return rulename
     })
 
     // ---------------------------------------------------------------------------------------------

@@ -1,12 +1,15 @@
 <script setup>
 
 	const props = defineProps({
-		show:             Boolean, 
-		title:            String,
-		teleportToBody:   { type: Boolean, default: true },
-		height:           { type: String, default: '300px' },
-		width:            { type: String, default: '500px' }
+		show:             	Boolean, 
+		title:            	String,
+		teleportToBody:   	{ type: Boolean, default: true },
+		height:           	{ type: String, default: '300px' },
+		width:            	{ type: String, default: '500px' },
+		overlayClickCloses: { type: Boolean, default: false }
 	})
+
+	defineOptions({ inheritAttrs: false })
 
 	const emits = defineEmits(["closeModal"])
 	emits("closeModal", true);
@@ -18,23 +21,27 @@
 	<Teleport to="body" :disabled="!teleportToBody">    
 		<Transition name="modal">
 
-			<div v-if="show" @click.self="$emit('closeModal')"
-                class="flex fixed z-[9999] top-0 left-0 w-full h-full bg-black bg-opacity-30
-				transition-opacity ease-in-out duration-75">
+			<div v-if="show"  id="ModalOverlay"
+				@click.self="props.overlayClickCloses && $emit('closeModal')"
+                class="flex fixed z-[9999] top-0 left-0 w-full h-full bg-black 
+				bg-opacity-30 transition-opacity ease-in-out duration-75">
 
 				<div class="m-auto bg-white rounded-sm shadow-lg shadow-color-dark-gray 
-                    max-h-screen max-w-screen transition-all relative" :style="{ height: props.height, width: props.width }">
+                    max-h-screen max-w-screen transition-all relative" v-bind="$attrs"
+					:style="{ height: props.height, width: props.width }" >
 
-					<div class="flex justify-between items-center px-5 w-full h-14 text-lg font-bold bg-gradient-modal select-none">
+					<div class="flex justify-between items-center px-5 w-full h-14 
+						text-lg font-bold bg-gradient-modal select-none">
 						<slot name="header">
 							<span>{{title || 'Title'}}</span>
-							<div class="h-7 w-7 bg-white hover:bg-color-light-blue rounded-full flex-center" @click="$emit('closeModal')">
+							<div class="h-7 w-7 bg-white hover:bg-color-light-blue rounded-full flex-center" 
+								@click="$emit('closeModal')">
 								<IconSymbol width="22px" class="text-color-dark-gray" icon="heroicons-solid:x" />
 							</div>
 						</slot>
 					</div>
 
-					<div class="p-6 overflow-auto">
+					<div class="p-6 overflow-auto" >
 						<slot>Default body</slot>
 					</div>
 

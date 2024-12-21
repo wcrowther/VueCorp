@@ -82,26 +82,18 @@
 
     const keys = function (e)   
     {
-        // console.log('ctrlKey: ' + e.ctrlKey + ' code: ' + e.code );   
-
         let ctrl = navigator.userAgentData.platform.match("Mac") ? e.metaKey : e.ctrlKey   
         if (e.code === 'KeyS' && ctrl) { confirmSave();  e.preventDefault(); }
     }
 
-    const addKeyListeners       = () => document.addEventListener('keydown', keys, false)
-    const removeKeyListeners    = () => document.removeEventListener('keydown', keys, false)
+	KeyboardListeners(keys);
 
     // Lifecycle & Watches  ==========================================================================
 
     onMounted(()    => 
     {
         getUserDetail()
-        addKeyListeners()
-    })
 
-    onUnmounted(() => 
-    { 
-        removeKeyListeners() 
     })
 
     watch(() => detailUserId.value, (newVal, oldVal) => 

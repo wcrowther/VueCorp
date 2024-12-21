@@ -7,6 +7,6 @@ namespace coreApi.Logic.Interfaces
     {
 		AuthResponse Authenticate(AuthRequest model);
 
-		Result<AuthResponse> Signup(UserCreate model);
+		Returns<AuthResponse> Signup(UserCreate model);
 	}
 }

@@ -107,6 +107,7 @@
     "watchPostEffect": true,
     "watchSyncEffect": true,
     "roleList": true,
-    "AuthRequest": true
+    "AuthRequest": true,
+    "KeyboardListeners": true
   }
 }
