@@ -1,20 +1,19 @@
 ﻿using coreApi.Models;
 using coreApi.Models.Generic;
 
-namespace coreApi.Data.Interfaces
+namespace coreApi.Data.Interfaces;
+
+public interface IUserRepo
 {
-    public interface IUserRepo
-    {
-        IEnumerable<User> GetAllUsers();
+    IEnumerable<User> GetAllUsers();
 
-		User GetUserByUserName(string username);
+	User GetUserByUserName(string username);
 
-		User GetUserById(int userId);
+	User GetUserById(int userId);
 
-		User CreateUser(UserCreate model, string passwordHash);
+	User CreateUser(UserCreate model, string passwordHash);
 
-		PagedList<User> GetPagedUsers(Pager pager);
+	PagedList<User> GetPagedUsers(Pager pager);
 
-		User SaveUser(User user);
-	}
+	User SaveUser(User user);
 }
