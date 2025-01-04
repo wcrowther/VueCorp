@@ -61,14 +61,14 @@ public class AccountRepo : IAccountRepo
 
 	private static ExpressionStarter<Account> BuildPredicate(Pager<SearchForAccount> pager, bool search = true)
 	{
-		var options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
+		var trimAndRemoveEmpty = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
 
 		// 'search' true means start with all, otherwise will start with empty.
 		// PredicateBuilder with no parameter will start with an empty list
 		// or populate with true to include all records
 
 		var predicate		= search ? PredicateBuilder.New<Account>(true) : PredicateBuilder.New<Account>();  
-		string[] filters	= pager.Search.Filter.Split(',', options);
+		string[] filters	= pager.Search.Filter.Split(',', trimAndRemoveEmpty);
 
 		foreach (string filter in filters)
 		{

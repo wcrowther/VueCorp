@@ -11,7 +11,9 @@
 
 <router-link class="nav-tab" active-class="active-tab">
 
-	<span class="">{{props.navText}}</span>
+	<slot>	
+		<span class="">{{props.navText}}</span>
+	</slot>
 	<ReverseCorner :pixelSize="7" class="hidden bottom-0 left-[-7px]" />
     <ReverseCorner :pixelSize="7" class="hidden bottom-0 right-[-7px] rotate-90" />	
 
@@ -22,7 +24,7 @@
 <style lang="postcss" scoped>
 
 	.nav-tab {
-		@apply text-[#121639] font-semibold font-sans text-base/10 rounded-t-md list-none h-9 px-4
+		@apply text-[#121639] font-semibold font-sans text-base/9 rounded-t-md list-none h-8 xs:h-9 px-2 xs:px-4 xs:text-base/10
 		flex relative bg-color-light-blue hover:bg-transparent hover:text-white opacity-80
 	}    
 	.active-tab {

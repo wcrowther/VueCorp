@@ -24,7 +24,7 @@
     const searchFilterDefaultName       = 'usersSearchFilterDefault'        
     const currentPage                   = ref(0)
     const activeItem                    = ref(null)
-    const showModal                     = ref(false)
+    const showAdvSearch                 = ref(false)
 
     const usersStore                    = useUsersStore()
     const       
@@ -158,7 +158,7 @@
                                 class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
                         </div>
                         <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray 
-                            flex-center rounded-full group" @click.prevent="showModal=true">
+                            flex-center rounded-full group" @click.prevent="showAdvSearch=true">
                             <IconSymbol title="Advanced Search" width="22px" 
                                 class="text-black group-hover:text-color-mid-gray" icon="heroicons:plus-20-solid" />
                         </span>
@@ -201,14 +201,17 @@
             </tbody>
         </table>
 
-        <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="true" 
+        <!-- <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="true" 
             height="400px" width="500px" @closeModal="showModal=false">
                 Advanced Search Features will go here.     
             <template #footer>
               <button class="btn-primary"  @click="showModal=false">OK</button>
               <button class="btn-delete" @click="showModal=false">Cancel</button>
             </template>
-        </ModalControl>
+        </ModalControl> -->
+
+        <UserAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager" 
+            @getListData="getListData"></UserAdvSearch>
  
     </div>
 

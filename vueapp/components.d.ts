@@ -44,6 +44,7 @@ declare module 'vue' {
     SubNavBar: typeof import('./src/components/SubNavBar.vue')['default']
     SwitchButton: typeof import('./src/components/SwitchButton.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
+    UserAdvSearch: typeof import('./src/components/User/UserAdvSearch.vue')['default']
     UsersDetail: typeof import('./src/components/User/UsersDetail.vue')['default']
     UsersList: typeof import('./src/components/User/UsersList.vue')['default']
   }

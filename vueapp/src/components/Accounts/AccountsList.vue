@@ -142,8 +142,8 @@
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
 
-        <div class="px-5 flex flex-wrap justify-between items-center shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] 
-            bg-gradient-side border-t border-r border-slate-300">
+        <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
+            bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
             <div class="flex gap-x-1 pt-5 pb-3 w-full">
                 <div class="h-10 w-full relative">

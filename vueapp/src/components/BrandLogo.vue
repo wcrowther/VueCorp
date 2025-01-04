@@ -14,7 +14,7 @@
 
 	.alt{ @apply text-black }    
 	.adjust-logo {
-		@apply m-auto xs:mr-0 
+		@apply m-auto xs:mr-0 text-center
 	}
 	
 </style>
