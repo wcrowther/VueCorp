@@ -90,6 +90,7 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
+  const useImagesStore: typeof import('./src/stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
@@ -200,6 +201,7 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
@@ -303,6 +305,7 @@ declare module '@vue/runtime-core' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>

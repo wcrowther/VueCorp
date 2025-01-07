@@ -108,6 +108,7 @@
     "watchSyncEffect": true,
     "roleList": true,
     "AuthRequest": true,
-    "KeyboardListeners": true
+    "KeyboardListeners": true,
+    "useImagesStore": true
   }
 }

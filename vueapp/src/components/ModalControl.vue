@@ -21,16 +21,16 @@
 	<Teleport to="body" :disabled="!teleportToBody">    
 		<Transition name="modal">
 
-			<div v-if="show"  id="ModalOverlay"
+			<div v-if="show" id="ModalOverlay"
 				@click.self="props.overlayClickCloses && $emit('closeModal')"
                 class="flex fixed z-[9999] top-0 left-0 w-full h-full bg-black 
-				bg-opacity-30 transition-opacity ease-in-out duration-75">
+					bg-opacity-30 transition-opacity ease-in-out duration-75">
 
-				<div class="m-auto bg-white rounded-sm shadow-lg shadow-color-dark-gray 
-                    max-h-screen max-w-screen transition-all relative" v-bind="$attrs"
-					:style="{ height: props.height, width: props.width }" >
+				<div class="flex flex-col m-auto max-h-screen max-w-screen transition-all relative 
+					bg-white rounded-sm shadow-lg shadow-color-dark-gray"
+					:style="{ height: props.height, width: props.width }">
 
-					<div class="flex justify-between items-center px-5 w-full h-14 
+					<div class="shrink-0 flex justify-between items-center pl-8 pr-5 w-full h-14 
 						text-lg font-bold bg-gradient-modal select-none">
 						<slot name="header">
 							<span>{{title || 'Title'}}</span>
@@ -41,11 +41,11 @@
 						</slot>
 					</div>
 
-					<div class="p-6 overflow-auto" >
+					<div class="p-8 h-full items-stretch overflow-y-auto" v-bind="$attrs">
 						<slot>Default body</slot>
 					</div>
 
-					<div class=" bg-white p-4 pb-6 absolute bottom-0 w-full flex justify-end gap-2 select-none">
+					<div class="shrink-0 bg-white p-4 pb-6 w-full h-18 flex justify-end gap-2 select-none">
 						<slot name="footer">
 							<button class="btn-primary" @click="$emit('closeModal')">Ok</button>
 						</slot>

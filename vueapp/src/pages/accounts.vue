@@ -31,12 +31,6 @@
 
 				<router-link to="/Accounts/Edit" class="px-1 py-2 font-bold hover:opacity-50" 
 					active-class="subnav-active" linkName="AccountsEdit">Edit</router-link>
-
-				<!-- 
-				<router-link to="/Accounts/View" class="px-1 py-2 font-bold hover:opacity-50" 
-					active-class="subnav-active" linkName="AccountsView">View</router-link>
-				<span class="px-1 text-gray-300">|</span> 
-				-->
 			</div>
 
 		</SubNavBar>

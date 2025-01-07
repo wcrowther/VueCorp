@@ -21,8 +21,13 @@ public class ContentManager : IContentManager
 		_contentRepo = contentRepo;
     }
 
-    public async Task<IEnumerable<Image>> GetImages()
-    {
-        return await _contentRepo.GetImages();
-    }
+	public async Task<List<Image>> GetImages()
+	{
+		return await Task.FromResult(_contentRepo.GetImages());
+	}
+
+	public async Task<PagedList<Image>> GetPagedImages(Pager pager)
+	{
+		return await Task.FromResult(_contentRepo.GetPagedImages(pager));
+	}
 }

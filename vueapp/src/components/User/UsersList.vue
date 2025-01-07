@@ -146,18 +146,18 @@
             bg-gradient-side border-t border-r border-slate-300">
             
             <div class="flex gap-x-1 pt-5 pb-3 w-full">
-                <div class="h-10 w-full relative">
+                <div class="h-8 w-full relative">
                     <input class="rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
                         id="filterInput" type="text" v-model="listPager.Search.Filter" placeholder="Search" spellcheck="false"
                         title="Search the list for User Names that start with this text. Add multiple conditions 
                                 separated by a comma. Click on + for more options." />
                 
-                    <div class="top-0 right-0 flex justify-end items-center gap-1 absolute h-full w-auto">
+                    <div class="top-0 right-0 flex justify-end items-center gap-0 absolute h-full w-auto">
                         <div class="p-1 w-auto flex-center">
                             <IconSymbol v-if="listPager.Search.Filter.length > 0" @click="resetFilter"
                                 class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
                         </div>
-                        <span class="p-1 mr-1.5 bg-color-mid-gray hover:bg-color-light-gray 
+                        <span class="mr-1.5 bg-color-mid-gray hover:bg-color-light-gray 
                             flex-center rounded-full group" @click.prevent="showAdvSearch=true">
                             <IconSymbol title="Advanced Search" width="22px" 
                                 class="text-black group-hover:text-color-mid-gray" icon="heroicons:plus-20-solid" />
@@ -201,17 +201,10 @@
             </tbody>
         </table>
 
-        <!-- <ModalControl :show="showModal" title="Advanced Search" :teleportToBody="true" 
-            height="400px" width="500px" @closeModal="showModal=false">
-                Advanced Search Features will go here.     
-            <template #footer>
-              <button class="btn-primary"  @click="showModal=false">OK</button>
-              <button class="btn-delete" @click="showModal=false">Cancel</button>
-            </template>
-        </ModalControl> -->
-
-        <UserAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager" 
-            @getListData="getListData"></UserAdvSearch>
+        <UserAdvSearch @getListData="getListData"
+            v-model:show="showAdvSearch" 
+            v-model:listPager="listPager">
+        </UserAdvSearch>
  
     </div>
 

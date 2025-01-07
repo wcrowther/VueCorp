@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    2: typeof import('./src/components/Content/ImageGallery copy 2.vue')['default']
     AccountAdvSearch: typeof import('./src/components/Accounts/AccountAdvSearch.vue')['default']
     AccountsDetail: typeof import('./src/components/Accounts/AccountsDetail.vue')['default']
     AccountsList: typeof import('./src/components/Accounts/AccountsList.vue')['default']
@@ -15,10 +16,15 @@ declare module 'vue' {
     BreakPoints: typeof import('./src/components/BreakPoints.vue')['default']
     CheckboxInput: typeof import('./src/components/Inputs/CheckboxInput.vue')['default']
     ConfirmDialog: typeof import('./src/components/ConfirmDialog.vue')['default']
+    copy: typeof import('./src/components/Content/ImageGallery copy.vue')['default']
     DetailMain: typeof import('./src/components/DetailMain.vue')['default']
     FooterBox: typeof import('./src/components/FooterBox.vue')['default']
     HomeView: typeof import('./src/components/HomeView.vue')['default']
     IconSymbol: typeof import('./src/components/IconSymbol.vue')['default']
+    ImageDetail: typeof import('./src/components/Content/ImageDetail.vue')['default']
+    ImageEditor: typeof import('./src/components/Content/ImageEditor.vue')['default']
+    ImageGallery: typeof import('./src/components/Content/ImageGallery.vue')['default']
+    ImageUpload: typeof import('./src/components/Content/ImageUpload.vue')['default']
     IntroView: typeof import('./src/components/IntroView.vue')['default']
     LayoutLogin: typeof import('./src/layouts/LayoutLogin.vue')['default']
     LayoutMain: typeof import('./src/layouts/LayoutMain.vue')['default']
@@ -42,7 +48,9 @@ declare module 'vue' {
     SideBar: typeof import('./src/components/SideBar.vue')['default']
     SiteMap: typeof import('./src/components/SiteMap.vue')['default']
     SubNavBar: typeof import('./src/components/SubNavBar.vue')['default']
+    SubTab: typeof import('./src/components/SubTab.vue')['default']
     SwitchButton: typeof import('./src/components/SwitchButton.vue')['default']
+    TabControl: typeof import('./src/components/TabControl.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
     UserAdvSearch: typeof import('./src/components/User/UserAdvSearch.vue')['default']
     UsersDetail: typeof import('./src/components/User/UsersDetail.vue')['default']

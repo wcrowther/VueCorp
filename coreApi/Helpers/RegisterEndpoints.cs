@@ -1,5 +1,4 @@
-﻿using LinqKit;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace coreApi.Helpers;
 

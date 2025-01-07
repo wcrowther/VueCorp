@@ -5,7 +5,7 @@ namespace coreLogic.Models
 	public class Image
 	{
 		[Required]
-		public int AccountId { get; set; }
+		public Guid ImageId { get; set; }
 
 		[Required]
 		public string ImageSrc { get; set; }

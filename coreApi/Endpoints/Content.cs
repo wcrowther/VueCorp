@@ -1,8 +1,10 @@
 ﻿using coreApi.Helpers;
 using coreApi.Logic.Interfaces;
 using coreApi.Models;
+using coreApi.Models.Generic;
 using coreLogic.Interfaces;
 using coreLogic.Models;
+using Microsoft.AspNetCore.Mvc;
 using WildHare.Extensions;
 
 namespace coreApi;
@@ -11,18 +13,28 @@ public static partial class Endpoints
 {
 	public static void ContentEndpoints(this WebApplication app)
 	{
-		var auth = app.MapGroup("/v1/content")
+		var content = app.MapGroup("/v1/content")
 					  .WithOpenApi()
 					  .WithTags("Content");
 
-		auth.MapPost("/getimages", (IContentManager _contentManager) =>
+		content.MapPost("/getimages", (IContentManager _contentManager) =>
 		{
-			var result = _contentManager.GetImages();
+			var results = _contentManager.GetImages();
 
-			return result == null ?
-					Results.Unauthorized() :
-					Results.Ok(result);
+			return results == null ?
+						Results.Unauthorized() :
+						Results.Ok(results);
 		})
 		.WithName("GetImages");
+
+		content.MapPost("/getPagedImages", (IContentManager _contentManager, [FromBody] Pager pager) =>
+		{
+			var results = _contentManager.GetPagedImages(pager);
+
+			return results == null ?
+						Results.Unauthorized() :
+						Results.Ok(results);
+		})
+		.WithName("GetPagedImages");
 	}
 }
