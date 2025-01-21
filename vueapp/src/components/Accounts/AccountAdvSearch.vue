@@ -3,7 +3,7 @@
     const listPager     = defineModel('listPager')
     const show          = defineModel('show')
 
-    const emits         = defineEmits(["getListData"])
+    const emits         = defineEmits(['getListData'])
     const getListData   = () => emits('getListData')
 
 </script> 
@@ -35,7 +35,9 @@
 </template>
 
 
-<!-- 
-Usage:
-        <AccountAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager" 
-            @getListData="getListData"></AccountAdvSearch>-->
+<!-- Usage:
+
+    <AccountAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager" 
+        @getListData="getListData">
+    </AccountAdvSearch>
+-->

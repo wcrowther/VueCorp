@@ -8,22 +8,10 @@
     })
 
     const modelValue = defineModel()
-    const rule  = computed(() => 
-    {   
-        let rulename = props.ruleName ? props.ruleName : props.labelName.replace(' ','') 
-        // console.log('rulename: ' + rulename)
+    const rule  = computed(() => props.ruleName ? props.ruleName : props.labelName.replace(' ',''))
 
-        return rulename
-    })
+    
 
-    // ---------------------------------------------------------------------------------------------
-    // OriginalValue Does not work as text fields are re-rendered so show as changed 
-    // after first refresh. Would need to put in place logic to re-render the component.
-    // :key on the top level of the component? Does not seem to work.
-    // ---------------------------------------------------------------------------------------------
-    // const originalValue = modelValue.value
-    // const hasChanged = computed(() => originalValue !== modelValue.value)
-    // ---------------------------------------------------------------------------------------------
 </script>
 
 <template>
@@ -33,7 +21,7 @@
                 :for="props.labelName">
                 {{props.labelName}}
             </span>
-            <template v-if="v$">
+            <template v-if="v$ && v$[rule] && v$[rule].$errors">
                 <span class="italic font-bold text-right text-xs text-color-red" 
                     v-for="error in v$[rule].$errors" :key="error.$uid">
                     {{ error.$message }}
@@ -55,9 +43,9 @@ EXAMPLES:
     <span class="inline-block h-2 w-2 text-xs rounded-full" title="Value has been changed" 
     :class="{ 'bg-color-light-blue': hasChanged }">&nbsp;</span>  
 
----------------------------------------------------------------------
-'defineModel' replaces the code below and the defineProps modelValue
-----------------------------------------------------------------------
+    -------------------------------------------------------------------------------------------
+    'defineModel' replaced the code below from older vue version and the defineProps modelValue
+    -------------------------------------------------------------------------------------------
     (in props)    modelValue: { type: String },
     const emits = defineEmits(['update:modelValue'])
     const value = computed(
@@ -65,6 +53,6 @@ EXAMPLES:
         get()       { return props.modelValue },
         set(value)  { emits('update:modelValue', value)  }
     })
------------------------------------------------------------------- 
+    ------------------------------------------------------------------------------------------- 
 -->
 

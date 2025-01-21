@@ -14,13 +14,13 @@
 
 <template>
 
-    <div :id="props.id" class="">
+    <div :id="props.id" class="h-full">
 
         <!-- Tabs -->
-        <div class="flex gap-2 justify-start z-20 pl-5 border-b-2 border-slate-300">
+        <div class="flex gap-2 justify-start h-8 z-20 pl-5 border-b-2 border-slate-300">
 
             <div v-for="(tab,idx) in props.tabList" :key="idx"
-                class="px-3 pt-1 pb-1 rounded-t-md border-2 bg-slate-300 border-slate-300 border-b-0 
+                class="px-3 pt-1 rounded-t-md border-2 bg-slate-300 border-slate-300 border-b-0 
                     font-bold select-none relative bottom-[-2px]"
                 :class="{ 'bg-white': isActive(tab) }" @click="activeTab = tab">
                 <span>{{ tab }}</span>
@@ -29,7 +29,8 @@
         </div>
 
         <!-- Content -->
-        <div class="z-10 h-auto min-h-60 p-5 bg-white opacity-100 pb-3 border-2 border-slate-300 border-t-0">
+        <div class="z-10 h-full min-h-60 p-5 opacity-100 pb-3 bg-white 
+            border-2 border-slate-300 border-t-0 overflow-y-auto scrollbar-thin">
 
            <slot></slot>
            <template v-for="(tab,idx) in props.tabList" :key="idx">

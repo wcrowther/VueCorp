@@ -24,8 +24,8 @@ public class User
     [JsonIgnore]
     public string PasswordHash { get; set; }
 
-	[AllowedValues("", "User", "Admin, SuperAdmin")]
+	[AllowedValues("User", "Admin", "SuperAdmin")]
 	public string Role { get; set; }
-
+		
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

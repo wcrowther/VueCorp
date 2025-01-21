@@ -63,7 +63,7 @@ export async function apiCall(type, url, useAuth, body)
 		else if ([400].includes(err.response.status)) 
 		{
 			result.message		 = err.response.data.detail || err.response.data || err.response.data.error || err.message 
-			result.toastType	 = 'INFO'
+			result.toastType	 = 'WARNING'
 		}		
 		else if ([401].includes(err.response.status)) // 401 - Unauthorized (unauthenticated)
 		{

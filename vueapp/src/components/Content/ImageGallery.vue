@@ -36,7 +36,6 @@
 
     const activeListItemId      = computed(() => activeItem.value ? activeItem.value[detailKeyName] : 0) 
 
-    const resetFilter           = ()        => listPager.value.Search.Filter = ''
     const isActiveItem          = (id)      => activeListItemId.value === id
     const listHasRecords        = ()        => itemsList.value.length  > 0
     const refreshItem           = (offset)  => refreshList(listPager.value.currentFirst() + offset)
@@ -127,29 +126,15 @@
 
         <ListPagerPrevNext :pager="listPager"></ListPagerPrevNext>
 
-        <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
-            bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
+        <div class="px-5 flex flex-wrap justify-between items-center
+             border-r border-slate-300 bg-gradient-side 
+             shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
             <div class="flex gap-x-1 pt-5 pb-3 w-full">
-                <div class="h-8 w-full relative">
-                    <input class="rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
-                        id="filterInput" type="text" v-model="listPager.Search.Filter" placeholder="Search" spellcheck="false"
-                        title="Search the list for Account Names that start with this text. Add multiple conditions 
-                                separated by a comma. Click on + for more options." />
-                
-                    <div class="top-0 right-0 flex justify-end items-center gap-0 absolute h-full w-auto">
-                        <div class="p-1 w-auto flex-center" @click="resetFilter">
-                            <IconSymbol v-if="listPager.Search.Filter.length > 0" 
-                                 class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
-                        </div>
-                        <span class="mr-1.5 bg-color-mid-gray hover:bg-color-light-gray
-                            flex-center rounded-full group" @click.prevent="showAdvSearch=true">
-                            <IconSymbol class="text-black group-hover:text-color-mid-gray"
-                                title="Advanced Search"  width="22px" icon="heroicons:plus-20-solid" />
-                        </span>
-                    </div>
-                </div>
+                <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch" 
+                    :showAdvSearchButton="false" />
             </div>
+
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager"></ListPager>
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>

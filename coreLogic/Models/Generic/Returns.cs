@@ -33,3 +33,16 @@ public class Returns : Returns<string>
 	public override string ToString() => Success ? Data : Exception.Message;
 }
 
+public class Error 
+{
+	public string Message { get; set; }
+
+	public Error InnerError { get; set; }
+
+
+	public static implicit operator Error(Exception ex) => new()
+	{
+		Message     = ex.Message,
+		InnerError  = ex.InnerException
+	};
+}

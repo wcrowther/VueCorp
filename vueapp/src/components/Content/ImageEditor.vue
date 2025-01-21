@@ -11,9 +11,10 @@
 <template>   
 
 	<ModalControl :show="show" title="Image Editor" id="Image Editor" 
-        height="90%" width="90%" @closeModal="show=false">
+        height="90%" width="90%" class=""
+        @closeModal="show=false">
 
-        <TabControl class="mp-10 h-full" 
+        <TabControl class="h-full" 
             title="" :tabList="['Gallery', 'Detail', 'Upload']" >
 
             <template #Gallery>       
@@ -28,7 +29,7 @@
                 <ImageUpload />
             </template>
 
-        </TabControl> 
+        </TabControl>
 
         <template #footer>
             <button class="btn-delete"   @click="show=false">Close</button>

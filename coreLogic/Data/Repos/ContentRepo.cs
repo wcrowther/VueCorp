@@ -5,6 +5,9 @@ using SeedPacket.Extensions;
 using System.Collections.Generic;
 using WildHare.Extensions;
 using coreApi.Models.Generic;
+using coreLogic.Helpers;
+using LinqKit;
+using System.Linq.Expressions;
 
 namespace coreApi.Data;
 
@@ -35,8 +38,11 @@ public class ContentRepo : IContentRepo
 	{
 		var images = GetImages();
 
+		var predicate = BuildPredicate(pager);
+
 		pager.TotalCount = images.Count;
-		var listItems	 = images.Skip(pager.FirstRecordInPage - 1)
+		var listItems	 = images.Where(predicate)
+								 .Skip(pager.FirstRecordInPage - 1)
 								 .Take(pager.PageSize)
 								 .ToList();
 
@@ -48,4 +54,33 @@ public class ContentRepo : IContentRepo
 
 		return pagedList;
 	}
+
+	// =======================================================================================
+
+	private static ExpressionStarter<Image> BuildPredicate(Pager pager, bool search = true)
+	{
+		// PredicateBuilder with 'search' true (default) means start with all, otherwise will start from empty list.
+
+		var trimAndRemoveEmpty = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
+
+		var predicate = search ? PredicateBuilder.New<Image>(true) : PredicateBuilder.New<Image>();
+
+		string[] filters = pager.Search.Filter.Split(',', trimAndRemoveEmpty);
+
+		foreach (string filter in filters)
+		{
+			if (filter.IsNullOrSpace())
+				continue;
+
+			predicate = predicate.Or(ImageFilter(filter.ToLower()));
+		}
+
+		return predicate;
+	}
+
+	private static Expression<Func<Image, bool>> ImageFilter(string f)
+	{
+		return p => p.ImageSrc.Contains(f, true);
+	}
+
 }

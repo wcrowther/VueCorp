@@ -27,7 +27,7 @@
                 </span>
             </template> 
         </div>
-        <select class="w-full p-2.5" name="states" id="states" v-bind="$attrs" v-model="modelValue">
+        <select class="w-full p-2.5" :name="rule" :id="rule" v-bind="$attrs" v-model="modelValue">
             <option v-if="showDefault" :disabled="defaultDisabled" value="">{{ defaultText }}</option>
             <option v-for="(value,key) in optionsList" :key="key" :value="key">{{ value }}</option>
         </select>
