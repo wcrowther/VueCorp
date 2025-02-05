@@ -49,11 +49,11 @@
 					</div>
 					
 					<!-- Content -->
-					<div class="p-8 h-full items-stretch overflow-y-auto scrollbar-thin" 
+					<div class="pb-8 h-full items-stretch overflow-y-auto scrollbar-thin" 
 						v-bind="$attrs"
 						><slot>Default body</slot></div>
 
-					<div class="shrink-0  p-4 pb-6 w-full h-18 flex
+					<div class="shrink-0 p-4 pb-6 w-full h-18 flex
 						justify-end gap-2 select-none">
 						<slot name="footer">
 							<button class="btn-primary" @click="$emit('closeModal')">Ok</button>

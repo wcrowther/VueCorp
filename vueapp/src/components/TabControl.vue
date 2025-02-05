@@ -17,20 +17,19 @@
     <div :id="props.id" class="h-full">
 
         <!-- Tabs -->
-        <div class="flex gap-2 justify-start h-8 z-20 pl-5 border-b-2 border-slate-300">
-
-            <div v-for="(tab,idx) in props.tabList" :key="idx"
-                class="px-3 pt-1 rounded-t-md border-2 bg-slate-300 border-slate-300 border-b-0 
-                    font-bold select-none relative bottom-[-2px]"
-                :class="{ 'bg-white': isActive(tab) }" @click="activeTab = tab">
-                <span>{{ tab }}</span>
-            </div>
+        <div class="flex gap-2 justify-start h-10 z-20 pl-5 border-b-2 border-slate-300">
+            <template v-for="(tab,idx) in props.tabList" :key="idx">
+                <div :class="[ isActive(tab) ? 'tab-active' :'tab-other' ]" @click="activeTab = tab">
+                    <span>{{ tab }}</span>
+                </div>
+                <span class="relative _bottom-5">|</span>
+            </template>
 
         </div>
 
         <!-- Content -->
         <div class="z-10 h-full min-h-60 p-5 opacity-100 pb-3 bg-white 
-            border-2 border-slate-300 border-t-0 overflow-y-auto scrollbar-thin">
+             border-t-0 overflow-y-auto scrollbar-thin">
 
            <slot></slot>
            <template v-for="(tab,idx) in props.tabList" :key="idx">
@@ -43,7 +42,17 @@
 
 </template>
 
+<style lang="postcss" scoped>
+    .tab-active { @apply mt-1 px-4 pt-[.35rem] pb-3 rounded-t-md border-2 bg-white border-slate-300 border-b-0 
+       text-sm font-bold select-none relative bottom-[-2px] }
+    .tab-other { @apply mt-2 mb-[.2rem] px-4 pb-[4px] leading-7 rounded-full border-2 border-transparent text-sm font-bold hover:bg-slate-300 }
+
+</style> 
+
 <!-- USAGE:
+
+    px-3 pt-1 rounded-t-md border-2 bg-slate-300 border-slate-300 border-b-0 
+                    font-bold select-none relative bottom-[-2px]
 
     <TabControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
 

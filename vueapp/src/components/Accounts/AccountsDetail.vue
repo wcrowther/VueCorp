@@ -1,5 +1,8 @@
 <script setup>
 
+	const appStore                      = useAppStore()
+	const { infoLevel }                 = storeToRefs(appStore)
+
     const accountsStore                 = useAccountsStore()
     const { account, detailAccountId }  = storeToRefs(accountsStore)
     const 
@@ -115,6 +118,17 @@
                     @click="addAccount">Add</button>    
                 <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>
             </span>
+        </div>
+
+        <div v-if="infoLevel > 1" class="text-sm">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+            Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+        </div>
+
+        <div v-if="infoLevel > 2" class="text-sm border border-gray rounded-xl p-5 pb-6">
+            <span class="font-bold">TIP:</span> Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+            Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
         </div>
 
         <div v-if="(!account || account.AccountId === 0)  && !isAddingAccount" class="w-[300px] font-bold">

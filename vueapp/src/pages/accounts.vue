@@ -11,17 +11,11 @@
 <template>
 	<LayoutMain>
 		
-		<SubNavBar class="relative overflow-hidden">  
-		
-			<div class="flex items-center">
+		<SubNavBar class="relative overflow-hidden"> 
+
+			<template #leftalign>
 				<RotateButton v-model="sideBarHidden" class="" title="toggle search"  /> 
-				<!-- 
-				<div @click="sideBarHidden=!sideBarHidden" 
-					class="pl-3 hover:opacity-50 cursor-pointer">
-					{{ sideBarHidden?'Show':'Hide' }} Search
-				</div>
-				-->
-			</div>
+			</template>
 
 			<div class="pr-5">
 				<router-link to="/Accounts/Main" class="px-1 py-2 font-bold hover:opacity-50" 

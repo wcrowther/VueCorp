@@ -10,12 +10,13 @@
 
 <template>   
 
-	<ModalControl :show="show" title="Image Editor" id="Image Editor" 
-        height="90%" width="90%" class=""
-        @closeModal="show=false">
+	<ModalControl :show="show" title="ImageEditor" id="ImageEditor" 
+        height="90%" width="90%" class="p-6 pb-10" @closeModal="show=false">
 
-        <TabControl class="h-full" 
-            title="" :tabList="['Gallery', 'Detail', 'Upload']" >
+        <!-- overflow-y-auto scrollbar-thin -->
+        <TabControl class="h-full" contentClass="p-5" 
+            id="ImageEditorTabControl" 
+            :tabList="['Gallery', 'Detail', 'Upload']" >
 
             <template #Gallery>       
                 <ImageGallery />
@@ -32,7 +33,7 @@
         </TabControl>
 
         <template #footer>
-            <button class="btn-delete"   @click="show=false">Close</button>
+            <button class="btn-delete" @click="show=false">Close</button>
         </template> 
 
 	</ModalControl>

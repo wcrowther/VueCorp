@@ -25,6 +25,7 @@ declare module 'vue' {
     ImageEditor: typeof import('./src/components/Content/ImageEditor.vue')['default']
     ImageGallery: typeof import('./src/components/Content/ImageGallery.vue')['default']
     ImageUpload: typeof import('./src/components/Content/ImageUpload.vue')['default']
+    InfoButton: typeof import('./src/components/InfoButton.vue')['default']
     IntroView: typeof import('./src/components/IntroView.vue')['default']
     LayoutLogin: typeof import('./src/layouts/LayoutLogin.vue')['default']
     LayoutMain: typeof import('./src/layouts/LayoutMain.vue')['default']

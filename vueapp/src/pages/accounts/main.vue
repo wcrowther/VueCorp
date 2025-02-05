@@ -7,7 +7,7 @@
         <SideBar>
             <AccountsList />
         </SideBar>     
-
+        
         <DetailMain class="bg-gradient-main">
             <AccountsDetail />
         </DetailMain>  

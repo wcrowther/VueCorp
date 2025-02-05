@@ -15,9 +15,9 @@
 		
 		<SubNavBar class="">
 
-			<div class="flex items-center">
+			<template #leftalign>
 				<RotateButton v-model="sideBarHidden" class="" title="toggle search"  /> 
-			</div>
+			</template>
 
 			<div class="pr-5">
 			

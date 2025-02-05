@@ -8,6 +8,7 @@ export const useAppStore = defineStore('AppStore',
         showBreakpoints:        useLocalStorage('showBreakpoints', true),
         persistSearch:          useLocalStorage('persistSearch', true),
         altColors:              useLocalStorage('altColors', false),
+        infoLevel:              useLocalStorage('infoLevel', 2),
         baseApiUrl:             import.meta.env.VITE_API_URL,
         baseUrl:                import.meta.env.BASE_URL,
         mode:                   import.meta.env.MODE

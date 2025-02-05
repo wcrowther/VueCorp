@@ -4,7 +4,7 @@
 
 <template>   
    
-   <div class="font-bold text-red mb-3 scrollbar-thin">Important</div>
+   <div class="font-bold text-red mb-3">Important</div>
 
 </template>
 

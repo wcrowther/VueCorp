@@ -122,9 +122,7 @@
 </script>
 
 <template>
-    <div class="h-full" id="imagesList">
-
-        <ListPagerPrevNext :pager="listPager"></ListPagerPrevNext>
+    <div class="h-full" id="ImageGallery">
 
         <div class="px-5 flex flex-wrap justify-between items-center
              border-r border-slate-300 bg-gradient-side 
@@ -141,8 +139,8 @@
             </div>
         </div>
 
-        <table class="w-full bg-gray-100 select-none shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] 
-            xs:shadow-none" id="accounts-list-table">
+        <table class="w-full bg-gray-100 select-none overflow-y-auto scrollbar-thin" id="accounts-list-table">
+
             <thead class="text-left bg-gradient-table-head border-t border-gray-300 ">
                 <th class="w-6 sm:w-8 py-5 bg-[#ddd]"></th>
                 <th class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</th>

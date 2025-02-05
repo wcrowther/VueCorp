@@ -37,3 +37,10 @@
 	</div>
 
 </template>
+
+<!-- Usage:
+ 
+    <ConfirmDialog :isVisible="showConfirmSave"
+		message="Save User Data?" @confirm="saveUserDetail" @cancel="cancelAction" />
+-->
+

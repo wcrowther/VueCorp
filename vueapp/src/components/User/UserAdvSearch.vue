@@ -13,7 +13,7 @@
 	<ModalControl :show="show" title="Advanced Search" id="AccountAdvSearch"
         height="400px" width="500px" @closeModal="show=false">
 
-        <div class="">
+        <div class="p-5 pb-0">
             <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />

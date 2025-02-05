@@ -34,7 +34,7 @@
 		</BrandBar>  
 
 		<NavBar class="navbar-gradient" id="nav-bar">		
-			<NavTab to="/" class="group" >
+			<NavTab to="/" class="group">
 				<IconSymbol width="18px" class="mt-[8px] xs:mt-[10px] text-color-dark-gray
 					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
 			</NavTab>
