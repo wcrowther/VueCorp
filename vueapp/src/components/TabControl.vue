@@ -22,7 +22,6 @@
                 <div :class="[ isActive(tab) ? 'tab-active' :'tab-other' ]" @click="activeTab = tab">
                     <span>{{ tab }}</span>
                 </div>
-                <span class="relative _bottom-5">|</span>
             </template>
 
         </div>

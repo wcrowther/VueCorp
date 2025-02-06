@@ -121,20 +121,21 @@
 
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
-            <span class="flex flex-wrap gap-3"> 
+            <span class="flex flex-wrap items-center gap-2"> 
 
-                <div class="">
-                    <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
-                        class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
-                    <IconSymbol v-else width="28px" @click="cancelAdd" title="Cancel"
-                        class="icon-symbol" icon="heroicons:x-circle-16-solid" />
-                </div>
+                <IconSymbol v-if="!isAddingUser" width="35px" 
+                    @click="addUser" title="Add User"
+                    class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
+                <IconSymbol v-else width="34px" 
+                    @click="cancelAdd" title="Cancel"
+                    class="icon-symbol" icon="heroicons:x-circle-16-solid" />
+
                                 
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
-                    <IconSymbol width="22px" @click="confirmSave" title="Save User"
+                    <IconSymbol width="29px" @click="confirmSave" title="Save User"
                         class="icon-symbol mt-[2px]" icon="fa-solid:save" />
-                    <IconSymbol width="28px"  @click="confirmDelete" title="Delete User"
-                        class="icon-symbol -ml-[4px]" icon="heroicons:trash-16-solid" />
+                    <IconSymbol width="46px"  @click="confirmDelete" title="Delete User"
+                        class="icon-symbol -ml-[7px]" icon="material-symbols-light:delete-sharp" />    
                 </template>
 
             </span>

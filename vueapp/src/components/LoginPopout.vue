@@ -152,7 +152,7 @@
     .label-row      { @apply flex h-9 items-center }
     .label-title    { @apply w-36 font-bold whitespace-nowrap }
     .label-value    { @apply w-52 flex-grow whitespace-nowrap }
-    .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue }
+    /* .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue } */
 
 </style> 
  

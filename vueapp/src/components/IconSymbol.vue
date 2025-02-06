@@ -40,3 +40,11 @@
     <Icon :inline="props.inline" class="icon-symbol" :class="{'inline': props.inline}" />
 </template>
 
+
+<!-- ALTERNATE VERSION FOR DEBUGGING SPACE ISSUES
+<template>
+    <div class="bg-red"> 
+        <Icon :inline="props.inline" class="icon-symbol" :class="{'inline': props.inline}" v-bind="$attrs"   />
+    </div> 
+</template>
+-->
