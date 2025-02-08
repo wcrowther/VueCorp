@@ -124,18 +124,24 @@
 <template>
     <div class="h-full" id="ImageGallery">
 
-        <div class="px-5 flex flex-wrap justify-between items-center
-             border-r border-slate-300 bg-gradient-side 
-             shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
-            
-            <div class="flex gap-x-1 pt-5 pb-3 w-full">
-                <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch" 
-                    :showAdvSearchButton="false" />
+        <div class="flex flex-wrap gap-5 mt-5 mb-10">
+            <div class="flex-grow w-[45%] text-sm">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo a distinctio sint,
+                enim totam neque repudiandae optio fuga accusantium odio, nesciunt,
+                eum velit et sed autem iusto tempora. A, at.
             </div>
+            <div class="px-5 flex flex-wrap justify-between items-center
+                 bg-gradient-side sm:min-w-[400px] w-full md:w-fit">
 
-            <div class="w-full flex justify-between items-center select-none my-3">
-                <ListPager class="mr-2" id='listPager' v-bind:pager="listPager"></ListPager>
-                <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
+                <div class="flex gap-x-1 pt-5 pb-3 w-full">
+                    <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch"
+                        :showAdvSearchButton="false" />
+                </div>
+            
+                <div class="flex justify-between items-center w-full select-none my-3">
+                    <ListPager class="mr-2" id='listPager' v-bind:pager="listPager"></ListPager>
+                    <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
+                </div>
             </div>
         </div>
 
@@ -159,7 +165,7 @@
                     </td>
                     <td class="pr-4 py-1 h-8 max-w-[200px] break-words text-sm"
                         :title="`ImageSrc: ${image.ImageSrc}`" >
-                        <img :src="`/public/images/${image.ImageSrc}`" class="w-24 border" />
+                        <img :src="`/images/${image.ImageSrc}`" class="w-24 border" />
                     </td>
                 </tr>
             </tbody>
