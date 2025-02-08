@@ -10,7 +10,6 @@ declare module 'vue' {
     AccountAdvSearch: typeof import('./src/components/Accounts/AccountAdvSearch.vue')['default']
     AccountsDetail: typeof import('./src/components/Accounts/AccountsDetail.vue')['default']
     AccountsList: typeof import('./src/components/Accounts/AccountsList.vue')['default']
-    AccountsListOld: typeof import('./src/components/Accounts/AccountsListOld.vue')['default']
     BrandBar: typeof import('./src/components/BrandBar.vue')['default']
     BrandLogo: typeof import('./src/components/BrandLogo.vue')['default']
     BreakPoints: typeof import('./src/components/BreakPoints.vue')['default']
