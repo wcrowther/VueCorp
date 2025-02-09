@@ -3,17 +3,17 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace coreApi.Helpers
 {
-    public static class RegisterSwagger 
+	public static class RegisterSwagger 
     {
 		// Adds Authorization field to Swagger documents
 		// If we use Type = 'SecuritySchemeType.ApiKey' then we have to prefix 'Bearer '
 		// 'SecuritySchemeType.Http' works better 
 
-		public static Action<SwaggerGenOptions> AddSwaggerGenOptions()
+		public static Action<SwaggerGenOptions> AddMySwaggerGenOptions()
         {
             return c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
+				c.SwaggerDoc("v1", new OpenApiInfo 
 				{ 
 					Title = "VueCorp API", 
 					Version = "v1"

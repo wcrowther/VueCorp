@@ -12,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
 builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>()); // builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(RegisterSwagger.AddSwaggerGenOptions());
+
+builder.Services.AddSwaggerGen(RegisterSwagger.AddMySwaggerGenOptions());
 builder.Services.AddCors();
 
 builder.Services.AddAuthentication(cfg =>
@@ -46,6 +47,7 @@ app.UseStaticFiles();
 	app.UseSwagger(options =>
 	{
 		options.RouteTemplate = "docs/{documentName}/docs.json";
+		options.SerializeAsV2 = true;  // Required for DotNet 9 to work 
 	});
     app.UseSwaggerUI(options =>
     {
