@@ -1,14 +1,8 @@
 @coreApi.Server_HostAddress = https://localhost:9999
-@token = eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ3Y3Jvd3RoZXIyMiIsImp0aSI6IjZiZDhjOTdmLTQwYWUtNDg2Yi1iYjVmLTljMWU4N2UwM2Q1YyIsInVuaXF1ZV9uYW1lIjoid2Nyb3d0aGVyMjIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTczNDczMzM3MiwiaXNzIjoibG9jYWwiLCJhdWQiOiJBbGwifQ.pEvvoVcC93RxQ-EYYcL6CFsNT0_8To51jw-9wb8tlPo65Mr-QIONEjQi_5vPvdECueTFQX6ZQgO-f9nStqbwzg
 
 
-###
-
-GET {{coreApi.Server_HostAddress}}/v1/weatherforecast/
-Accept: application/json
-
-###
-
+### FOR AUTHENTICATION LOGIN HERE !
+# @name login
 POST {{coreApi.Server_HostAddress}}/v1/authenticate/login
 accept: */* 
 Content-Type: application/json
@@ -18,12 +12,9 @@ Content-Type: application/json
 	"password": "Test123!"
 }
 
-###@token={{response.body.Token}}This is not working
-
 ###
-
 POST {{coreApi.Server_HostAddress}}/v1/accounts/saveAccount
-Authorization: bearer {{token}}
+Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
@@ -40,7 +31,7 @@ Accept: application/json
 ###
 
 GET {{coreApi.Server_HostAddress}}/v1/users/getAllUsers
-Authorization: bearer {{token}}
+Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
@@ -48,20 +39,22 @@ Accept: application/json
 ###
 
 GET {{coreApi.Server_HostAddress}}/v1/accounts/getAllAccounts
-Authorization: bearer {{token}}
+Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
 
-###
+### SIGN UP USER
 
 POST {{coreApi.Server_HostAddress}}/v1/authenticate/signup
 Content-Type: application/json
 Accept: application/json
 
 {  
-	"UserName": "wtest112@test.com",
+	"UserName": "wtest113@test.com",
 	"Password": "Test123!",
 	"FirstName": "Will",
-	"LastName": "Test112"
+	"LastName": "Test112",
+	"UserEmail": "willTest113@gmail.com",
+	"Role": "User"
 }
