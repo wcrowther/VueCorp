@@ -1,7 +1,9 @@
 using coreApi.Helpers;
 using coreApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
@@ -11,10 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
 builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>()); // builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen(RegisterSwagger.AddMySwaggerGenOptions());
 builder.Services.AddCors();
+
+Log.Logger = new LoggerConfiguration()
+	.ReadFrom.Configuration(builder.Configuration)
+	.CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddAuthentication(cfg =>
 {
@@ -34,6 +39,9 @@ builder.Services.AddAuthentication(cfg =>
 builder.Services.AddAuthorizationBuilder()
 	.AddPolicy("User", policy => policy.RequireRole("User"))
 	.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(RegisterSwagger.AddMySwaggerGenOptions());
 
 builder.Services.AddMyServices();
 

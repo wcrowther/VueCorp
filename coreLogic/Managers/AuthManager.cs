@@ -6,21 +6,27 @@ using System.Security.Claims;
 using System.Text;
 using coreLogic.Models.Generic;
 using Verifier = BCrypt.Net.BCrypt;
+using Microsoft.Extensions.Logging;
 
 namespace coreApi.Logic.Managers
 {
-	public class AuthManager(AppSettings appSettings, IUserManager userManager) 
+	public class AuthManager(AppSettings appSettings, 
+							 IUserManager userManager,
+							 ILogger<AuthManager> logger) 
 		: IAuthManager
     {
 		public AuthResponse Authenticate(AuthRequest model)
 		{
 			var user = userManager.GetUserByUsername(model.UserName);
 
-			// return null if user not found
 			if (user == null || !Verifier.Verify(model.Password, user.PasswordHash))
-				return null;
+			{
+				logger.LogInformation($"Info: Authenticating user not found for: '{model.UserName}'");
 
-			// authentication successful so generate jwt token
+				return null;
+			}
+
+			logger.LogInformation($"Info: Authenticated user '{model.UserName}'");
 
 			return GetAuthResponse(user);
 		}
