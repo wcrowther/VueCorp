@@ -17,11 +17,10 @@ public static partial class Endpoints
         {
             AuthResponse result = _authManager.Authenticate(model);
 
-            if (result == null)
-                return Results.Unauthorized();
-
-            return Results.Ok(result);
-        })
+			return	result == null 
+					? Results.Unauthorized() 
+					: Results.Ok(result);
+		})
 		.Validate<AuthRequest>(false)
         .WithName("Authenticate");
 

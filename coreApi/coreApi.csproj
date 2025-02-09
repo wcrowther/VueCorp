@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-       <TargetFramework>net8.0</TargetFramework>
+       <TargetFramework>net9.0</TargetFramework>
        <ImplicitUsings>enable</ImplicitUsings>
 	   <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	   <SpaRoot>..\vueapp</SpaRoot>
@@ -61,20 +61,20 @@
 	</ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.0.1" />
-        <PackageReference Include="Microsoft.OpenApi" Version="1.6.22" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
+        <PackageReference Include="Microsoft.OpenApi" Version="1.6.23" />
         <PackageReference Include="SeedPacket" Version="5.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.1.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.1.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.2.1" />
-        <PackageReference Include="System.Text.Json" Version="8.0.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0" />
+        <PackageReference Include="System.Text.Json" Version="9.0.1" />
         <PackageReference Include="WildHare" Version="2.0.0" />
     </ItemGroup>
 

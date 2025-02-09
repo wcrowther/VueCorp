@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~P:coreApi.Models.Generic.PagedList`2.ListItems")]
+[assembly: SuppressMessage("Style", "IDE0023:Use block body for conversion operator", Justification = "<Pending>", Scope = "member", Target = "~M:coreLogic.Models.Generic.Error.op_Implicit(System.Exception)~coreLogic.Models.Generic.Error")]

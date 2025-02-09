@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    2: typeof import('./src/components/Content/ImageGallery copy 2.vue')['default']
     AccountAdvSearch: typeof import('./src/components/Accounts/AccountAdvSearch.vue')['default']
     AccountsDetail: typeof import('./src/components/Accounts/AccountsDetail.vue')['default']
     AccountsList: typeof import('./src/components/Accounts/AccountsList.vue')['default']
@@ -16,7 +15,6 @@ declare module 'vue' {
     BreakPoints: typeof import('./src/components/BreakPoints.vue')['default']
     CheckboxInput: typeof import('./src/components/Inputs/CheckboxInput.vue')['default']
     ConfirmDialog: typeof import('./src/components/ConfirmDialog.vue')['default']
-    copy: typeof import('./src/components/Inputs/TextInput copy.vue')['default']
     DetailMain: typeof import('./src/components/DetailMain.vue')['default']
     FooterBox: typeof import('./src/components/FooterBox.vue')['default']
     HomeView: typeof import('./src/components/HomeView.vue')['default']
@@ -50,7 +48,6 @@ declare module 'vue' {
     SideBar: typeof import('./src/components/SideBar.vue')['default']
     SiteMap: typeof import('./src/components/SiteMap.vue')['default']
     SubNavBar: typeof import('./src/components/SubNavBar.vue')['default']
-    SubTab: typeof import('./src/components/SubTab.vue')['default']
     SwitchButton: typeof import('./src/components/SwitchButton.vue')['default']
     TabControl: typeof import('./src/components/TabControl.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
