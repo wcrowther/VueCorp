@@ -7,6 +7,7 @@ using System.Text;
 using coreLogic.Models.Generic;
 using Verifier = BCrypt.Net.BCrypt;
 using Microsoft.Extensions.Logging;
+using System.Security.Cryptography;
 
 namespace coreApi.Logic.Managers
 {
@@ -53,6 +54,16 @@ namespace coreApi.Logic.Managers
 			authResponse.Token  = GenerateJwt(authResponse, user.Role);
 
 			return authResponse;
+		}
+
+		public string GenerateJwtRefreshToken()
+		{
+			var randomNumber = new byte[32];
+			using (var rng = RandomNumberGenerator.Create())
+			{
+				rng.GetBytes(randomNumber);
+				return Convert.ToBase64String(randomNumber);
+			}
 		}
 
 		private string GenerateJwt(AuthResponse authResponse, string userRoles)
