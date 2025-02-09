@@ -19,6 +19,8 @@ public class AuthResponse(User user, DateTime expiration)
 
 	public string Token { get; set; }
 
+	public string RefreshToken { get; set; }
+
 	public override string ToString() => $"{UserName} ({UserId}) FullName: {FirstName} {LastName}";
 
 }
