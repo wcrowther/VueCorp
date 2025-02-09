@@ -28,15 +28,16 @@
 
 		<BreakPoints :show="showBreakpoints" />
 
-		<BrandBar class="flex justify-between items-center px-4 pr-5">
+		<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3">
 			<LoginPopout />
 			<BrandLogo />
 		</BrandBar>  
 
 		<NavBar class="navbar-gradient" id="nav-bar">		
 			<NavTab to="/" class="group">
-				<IconSymbol width="18px" class="mt-[8px] xs:mt-[10px] text-color-dark-gray
+				<IconSymbol width="18px" class="text-[#121639] block xs:hidden 
 					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
+				<span class="hidden xs:block">Home</span>
 			</NavTab>
 			<NavTab navText="Content" 	to="/content" />
 			<NavTab navText="Accounts" 	to="/accounts" />
@@ -57,6 +58,6 @@
 
 	.box-shadow { @apply shadow-[-14px_14px_18px_0px_rgba(97,97,97,0.75)] shadow-color-mid-gray }    
 	.active-tab .icon-symbol { @apply text-orange hover:text-black }
-	.navbar-gradient { @apply bg-[linear-gradient(58deg,#577fa8_4%,#1c2157_50%)]  } 
+	.navbar-gradient { @apply bg-[linear-gradient(90deg,#7ab7d8_2%,#1c2157_50%)] md:ml-3 } 
 
 </style>

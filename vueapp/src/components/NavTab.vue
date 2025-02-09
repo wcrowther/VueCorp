@@ -24,11 +24,11 @@
 <style lang="postcss" scoped>
 
 	.nav-tab {
-		@apply text-[#121639] font-semibold font-sans rounded-t-md list-none px-4 h-9 text-base/10
-		flex relative bg-color-light-blue hover:bg-transparent hover:text-white opacity-80
+		@apply text-[#121639] font-semibold font-sans rounded-full list-none px-4 h-[30px] text-base/[33px]
+		flex items-center relative bg-[#669ac5] mb-[6px] hover:bg-transparent hover:text-white opacity-80
 	}    
 	.active-tab {
-		@apply text-orange hover:text-black bg-gradient-tab-active opacity-100
+		@apply text-orange hover:text-black bg-gradient-tab-active rounded-t-md opacity-100 m-0 h-9 rounded-b-none
 	}
 	.active-tab .corner {
 		@apply block

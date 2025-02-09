@@ -26,6 +26,8 @@ public class User
 
 	[AllowedValues("User", "Admin", "SuperAdmin")]
 	public string Role { get; set; }
-		
+
+	public string RefreshToken { get; set; }
+
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }
