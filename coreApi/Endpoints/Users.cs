@@ -1,7 +1,7 @@
 ﻿using coreApi.Helpers;
-using coreApi.Logic.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
+using coreLogic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace coreApi;
@@ -45,13 +45,13 @@ public static partial class Endpoints
 		.Validate<User>(false)
 		.RequireAuthorization("Admin"); 
 
-		users.MapPost("/createUser", (IUserManager _userManager, [FromBody] UserCreate newUser) =>
+		users.MapPost("/createUser", (IUserManager _userManager, [FromBody] UserToCreate userToCreate) =>
 		{
-			var acct = _userManager.CreateUser(newUser);
+			var acct = _userManager.CreateUser(userToCreate);
 
 			return Results.Ok(acct);
 		})
-		.Validate<UserCreate>();
+		.Validate<UserToCreate>();
 	}
 }
 

@@ -1,7 +1,7 @@
 
 namespace coreApi.Models;
 
-public class AuthResponse(User user, DateTime expiration)
+public class AuthResponse(User user, string token)
 {
 	public int UserId { get; init; } = user.UserId;
 
@@ -15,11 +15,11 @@ public class AuthResponse(User user, DateTime expiration)
 
 	public string Role { get; init; } = user.Role;
 
-	public DateTime Expiration { get; init; } = expiration;
+	public string Token { get; set; } = token;
 
-	public string Token { get; set; }
+	public string RefreshToken { get; init; } = user.RefreshToken;
 
-	public string RefreshToken { get; set; }
+	public DateTime RefreshTokenExpiration { get; init; } = user.RefreshTokenExpiration;
 
 	public override string ToString() => $"{UserName} ({UserId}) FullName: {FirstName} {LastName}";
 

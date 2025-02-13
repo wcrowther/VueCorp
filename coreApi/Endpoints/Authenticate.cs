@@ -1,6 +1,6 @@
 ﻿using coreApi.Helpers;
-using coreApi.Logic.Interfaces;
 using coreApi.Models;
+using coreLogic.Interfaces;
 using WildHare.Extensions;
 
 namespace coreApi;
@@ -25,7 +25,7 @@ public static partial class Endpoints
         .WithName("Authenticate");
 
 
-		auth.MapPost("/signup", (UserCreate model, IAuthManager _authManager) =>
+		auth.MapPost("/signup", (UserToCreate model, IAuthManager _authManager) =>
 		{
 			var result = _authManager.Signup(model);
 
@@ -34,7 +34,7 @@ public static partial class Endpoints
 
 			return Results.BadRequest(result.Exception.Message);
 		})
-		.Validate<UserCreate>(false)
+		.Validate<UserToCreate>(false)
 		.WithName("Signup");
 	}
 }

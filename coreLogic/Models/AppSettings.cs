@@ -7,4 +7,8 @@ public class AppSettings
 	public string AuthIssuer { get; set; }
 
 	public string AuthAudience { get; set; }
+
+	public int TokenExpirationMinutes { get; set; }
+
+	public int RefreshTokenExpirationDays { get; set; }
 }

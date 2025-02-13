@@ -29,5 +29,7 @@ public class User
 
 	public string RefreshToken { get; set; }
 
+	public DateTime RefreshTokenExpiration { get; set; }
+
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

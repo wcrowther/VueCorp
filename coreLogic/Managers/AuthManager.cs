@@ -1,97 +1,73 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using coreApi.Logic.Interfaces;
-using coreApi.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+﻿using coreApi.Models;
+using coreLogic.Adapters;
+using coreLogic.Interfaces;
+using coreLogic.Models;
 using coreLogic.Models.Generic;
-using Verifier = BCrypt.Net.BCrypt;
 using Microsoft.Extensions.Logging;
-using System.Security.Cryptography;
+using Verifier = BCrypt.Net.BCrypt;
 
-namespace coreApi.Logic.Managers
+namespace coreLogic.Managers;
+
+public class AuthManager(	IUserManager userManager,
+							ITokenManager tokenManager,
+							ILogger<AuthManager> logger
+						)
+: IAuthManager
 {
-	public class AuthManager(AppSettings appSettings, 
-							 IUserManager userManager,
-							 ILogger<AuthManager> logger) 
-		: IAuthManager
-    {
-		public AuthResponse Authenticate(AuthRequest model)
+	public AuthResponse Authenticate(AuthRequest model)
+	{
+		var user = userManager.GetUserByUsername(model.UserName);
+
+		if (user == null || !Verifier.Verify(model.Password, user.PasswordHash))
 		{
-			var user = userManager.GetUserByUsername(model.UserName);
+			logger.LogInformation($"Authenticating user not found for: '{model.UserName}'");
 
-			if (user == null || !Verifier.Verify(model.Password, user.PasswordHash))
-			{
-				logger.LogInformation($"Info: Authenticating user not found for: '{model.UserName}'");
-
-				return null;
-			}
-
-			logger.LogInformation($"Info: Authenticated user '{model.UserName}'");
-
-			return GetAuthResponse(user);
+			return null;
 		}
 
-		public Returns<AuthResponse> Signup(UserCreate newUser)
-		{
-			var existingUser = userManager.GetUserByUsername(newUser.UserName);
+		logger.LogInformation($"AuthManager.Authenticate user '{model.UserName}'");
 
-			if (existingUser is not null)
-				return Returns<AuthResponse>.Error($"Not able to sign up user {newUser.UserName}");
+		return GetAuthResponse(user);
+	}
 
-			var user = userManager.CreateUser(newUser);
-			var authResponse = GetAuthResponse(user);
+	public Returns<AuthResponse> Signup(UserToCreate userToCreate)
+	{
+		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
-			return Returns<AuthResponse>.Ok(authResponse);
-		}
+		if (existingUser is not null)
+			return Returns<AuthResponse>.Error($"Not able to sign up user {userToCreate.UserName}");
 
-		// ============================================================================
+		var user = userManager.CreateUser(userToCreate);
+		var authResponse = GetAuthResponse(user);
 
-		private AuthResponse GetAuthResponse(User user)
-		{
-			var expires			= DateTime.UtcNow.AddDays(7);
-			var authResponse	= new AuthResponse(user, expires);
-			authResponse.Token  = GenerateJwt(authResponse, user.Role);
+		return Returns<AuthResponse>.Ok(authResponse);
+	}
 
-			return authResponse;
-		}
+	public Returns<AuthResponse> RefreshAuth(AuthRefreshRequest request)
+	{
+		var user = userManager.GetUserById(request.UserId);
 
-		public string GenerateJwtRefreshToken()
-		{
-			var randomNumber = new byte[32];
-			using (var rng = RandomNumberGenerator.Create())
-			{
-				rng.GetBytes(randomNumber);
-				return Convert.ToBase64String(randomNumber);
-			}
-		}
+		if (user == null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiration <= DateTime.Now)
+			return Returns<AuthResponse>.Error($"Not able to refresh token for userId: {request.UserId}");
 
-		private string GenerateJwt(AuthResponse authResponse, string userRoles)
-        {
-			var baseClaims = new List<Claim>()
-            {
-                new (JwtRegisteredClaimNames.Sub,        authResponse.UserName),
-                new (JwtRegisteredClaimNames.Jti,        Guid.NewGuid().ToString()),
-                new (JwtRegisteredClaimNames.UniqueName, authResponse.UserName),
-			};
+		user        = userManager.UpdateUserRefreshToken(user);
 
-			var options		= StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
-			var roleClaims	= userRoles.Split(',', options).Select(s => new Claim(ClaimTypes.Role, s));
+		var token = tokenManager.GenerateJwt(user);
 
-			baseClaims.AddRange(roleClaims);
+		logger.LogInformation($"AuthManager.RefreshAuth refresh user: '{user.UserName}'");
 
-            var key     = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.AuthSigningKey));
-            var creds   = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-            var token   = new JwtSecurityToken
-            (
-				claims:				baseClaims,
-				issuer:				appSettings.AuthIssuer,
-                audience:           appSettings.AuthAudience,
-                expires:            DateTime.Now.AddMinutes(20),
-                signingCredentials: creds
-            );
+		return user.ToAuthResponse(token);
+	}
 
-			return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-    }
+	// ============================================================================
+
+	private AuthResponse GetAuthResponse(User user)
+	{
+		if (user is null)
+			return null;
+
+		var token = tokenManager.GenerateJwt(user);
+
+		return new AuthResponse(user, token);
+	}
 }

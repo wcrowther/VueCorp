@@ -1,21 +1,23 @@
 ﻿using coreApi.Models;
 using coreApi.Models.Generic;
 
-namespace coreApi.Logic.Interfaces;
+namespace coreLogic.Interfaces;
 
 public interface IUserManager
 {
-    IEnumerable<User> GetAllUsers();
+	IEnumerable<User> GetAllUsers();
 
 	User GetUserByUsername(string username);
 
 	User GetUserById(int id);
 
-	User CreateUser(UserCreate model, string passwordHash);
+	User CreateUser(UserToCreate model, string passwordHash);
 
 	PagedList<User> GetPagedUsers(Pager pager);
 
 	User SaveUser(User user);
 
-	User CreateUser(UserCreate newUser);
+	User CreateUser(UserToCreate userToCreate);
+
+	User UpdateUserRefreshToken(User user);
 }

@@ -1,83 +1,68 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using coreApi.Data;
-using coreApi.Data.Interfaces;
-using coreApi.Logic.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
-using System.Security.Principal;
-using WildHare.Extensions;
+using coreLogic.Data.Interfaces;
+using coreLogic.Interfaces;
+using bCrypt = BCrypt.Net.BCrypt;
 
-namespace coreApi.Managers;
+namespace coreLogic.Managers;
 
-public class UserManager : IUserManager
+public class UserManager(IUserRepo userRepo,
+							ITokenManager tokenManager)
+: IUserManager
 {
-    private readonly IUserRepo _userRepo;
-
-    public UserManager(IUserRepo userRepo)
-    {
-        _userRepo = userRepo;
-    }
-
-    public IEnumerable<User> GetAllUsers()
-    {
-        return _userRepo.GetAllUsers();
-    }
+	public IEnumerable<User> GetAllUsers()
+	{
+		return userRepo.GetAllUsers();
+	}
 
 	public User GetUserByUsername(string username)
 	{
-		return _userRepo.GetUserByUserName(username);
+		return userRepo.GetUserByUserName(username);
 	}
 
 	public User GetUserById(int id)
-    {
-		return _userRepo.GetUserById(id);
+	{
+		return userRepo.GetUserById(id);
 	}
 
-	public User CreateUser(UserCreate model, string passwordHash)
+	public User CreateUser(UserToCreate model, string passwordHash)
 	{
-		return _userRepo.CreateUser(model, passwordHash);
+		return userRepo.CreateUser(model, passwordHash);
 	}
 
 	public PagedList<User> GetPagedUsers(Pager pager)
 	{
 		pager ??= new Pager();
 
-		return _userRepo.GetPagedUsers(pager);
+		return userRepo.GetPagedUsers(pager);
 	}
 
 	public User SaveUser(User user)
 	{
-		_userRepo.SaveUser(user);
+		userRepo.SaveUser(user);
 
 		return user;
 	}
 
-	public User CreateUser(UserCreate newUser)
+	public User CreateUser(UserToCreate userToCreate)
 	{
-		string passwordHash = BCrypt.Net.BCrypt.HashPassword(newUser.Password);
-		var user			= _userRepo.CreateUser(newUser, passwordHash);
+		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
 
-		return user;
+		userToCreate.RefreshToken           = token;
+		userToCreate.RefreshTokenExpiration = expiration;
+
+		string passwordHash = bCrypt.HashPassword(userToCreate.Password);
+
+		return userRepo.CreateUser(userToCreate, passwordHash);
+	}
+
+	public User UpdateUserRefreshToken(User user)
+	{
+		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
+
+		user.RefreshToken           = token;
+		user.RefreshTokenExpiration = expiration;
+
+		return SaveUser(user);
 	}
 }
-
-// Generate token until Expiration
-// private string  OldGenerateJwtToken(AuthenticateResponse authResponse)
-//     {
-//         var tokenHandler = new JwtSecurityTokenHandler();
-//         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-// 
-//         var tokenDescriptor = new SecurityTokenDescriptor
-//         {
-//             Subject             = new ClaimsIdentity(new[] { new Claim("id", authResponse.Id.ToString()) }),
-//             Expires             = authResponse.Expiration,
-//             SigningCredentials  = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-//         };
-// 
-//         var token = tokenHandler.CreateToken(tokenDescriptor);
-// 
-//         return tokenHandler.WriteToken(token);
-//     }
-// 
-// }
