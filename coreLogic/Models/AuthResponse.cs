@@ -21,6 +21,8 @@ public class AuthResponse(User user, string token)
 
 	public DateTime RefreshTokenExpiration { get; init; } = user.RefreshTokenExpiration;
 
+	public string RefreshToken { get; set; }
+
 	public override string ToString() => $"{UserName} ({UserId}) FullName: {FirstName} {LastName}";
 
 }
