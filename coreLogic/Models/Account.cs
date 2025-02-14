@@ -13,6 +13,8 @@ public class Account
 	[Required, EmailAddress]
     public string AccountEmail { get; set; } = "";
 
+	public string AccountUrl { get; set; } = "";
+
 	[Required, Phone]
 	public string AccountPhone { get; set; } = "";
 

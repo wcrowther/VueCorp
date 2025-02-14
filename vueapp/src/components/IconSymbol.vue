@@ -36,15 +36,17 @@
 
 </script>
 
+
 <template>
     <Icon :inline="props.inline" class="icon-symbol" :class="{'inline': props.inline}" />
 </template>
 
 
-<!-- ALTERNATE VERSION FOR DEBUGGING SPACE ISSUES
+<!-- TroubleShooting VERSION
 <template>
-    <div class="bg-red"> 
+    <span class="bg-red"> 
         <Icon :inline="props.inline" class="icon-symbol" :class="{'inline': props.inline}" v-bind="$attrs"   />
-    </div> 
+    </span> 
 </template>
--->
+ -->
+

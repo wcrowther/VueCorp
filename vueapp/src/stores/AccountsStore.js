@@ -7,6 +7,7 @@ export const useAccountsStore = defineStore('AccountsStore',
     ({
         accountsPager:      new Pager(),
         accountsList:       [],
+        accountsAll:        [],
         account:            {},
         detailAccountId:    0
     }),
@@ -16,6 +17,25 @@ export const useAccountsStore = defineStore('AccountsStore',
         addNewAccount()
         {
             this.account = new Account()
+        },
+        async getAllAccounts ()
+        {
+            try 
+            {
+                console.log('--- Get All Accounts From Server')
+                // logJson('getAllAccounts request', JSON.stringify())
+
+                const result = await apiGet(`/accounts/getAllAccounts`)
+                
+                if(result.success) 
+                {
+                    this.accountsAll   = result.data.Result 
+                }
+            }
+            catch (err)
+            { 
+                messageStore.showError(err.message) 
+            }
         },
         async getPagedAccounts (pager)
         {

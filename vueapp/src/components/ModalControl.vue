@@ -49,9 +49,9 @@
 					</div>
 					
 					<!-- Content -->
-					<div class="pb-8 h-full items-stretch overflow-y-auto scrollbar-thin" 
-						v-bind="$attrs"
-						><slot>Default body</slot></div>
+					<div class="pb-8 h-full items-stretch" v-bind="$attrs">
+						<slot>Default body</slot>
+					</div>
 
 					<div class="shrink-0 p-4 pb-6 w-full h-18 flex
 						justify-end gap-2 select-none">

@@ -134,8 +134,8 @@
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="29px" @click="confirmSave" title="Save User"
                         class="icon-symbol mt-[2px]" icon="fa-solid:save" />
-                    <IconSymbol width="46px"  @click="confirmDelete" title="Delete User"
-                        class="icon-symbol -ml-[7px]" icon="material-symbols-light:delete-sharp" />    
+                    <IconSymbol width="44px" @click="confirmDelete" title="Delete User"
+                        class="icon-symbol ml-[-2px]" icon="material-symbols-light:delete-sharp" />    
                 </template>
 
             </span>

@@ -3,17 +3,30 @@
     const appStore                  = useAppStore()
     const { sideBarHidden }         = storeToRefs(appStore)
 
-    const accountTitle  = ref('Accounts View')
-    const accountName   = ref('Spacely Sprockets')
-    const emailAddress  = ref('wcrowther@rent.com')
-    const url           = ref('https://www.liveloverly.com')
-    const isActive      = ref(true)
-    const showActive    = ref(true)
-    const showInActive  = ref(true)
+    const accountsStore     	= useAccountsStore()
+    const { accountsAll } 		= storeToRefs(accountsStore)
+    const { getAllAccounts }	= accountsStore
+
+    const showActive            = ref(true)
+    const showInActive          = ref(true)
+    const accountTitle          = ref('Accounts View Page')
+    const detailIndex           = ref(1)
+    const showDetail            = ref(false)
+    const fullScreen            = ref(false)
+    const enableWideScreen      = ref(false)
+    const numberButton          = ref(0)
 
     const addAccount    = () => alert('Add Account?')
 
-    // const confirmSave   = () => alert('Confirm Save?')
+    const getListData = async () =>
+    {
+        await getAllAccounts()
+    } 
+
+    onMounted(() =>    
+    {        
+        getListData()
+    })
 
 </script>
 
@@ -58,8 +71,57 @@
                     </div>
                 </div>
 
-                <div class="py-3 pl-3 pr-3 mb-3 border-y-2 border-color-light-blue last:border
+                
+            <MasterDetail class="mb-10" 
+                v-model:detailIndex="detailIndex" v-model:showDetail="showDetail" 
+                :fullScreen="fullScreen" :colsVisible="numberButton"
+                :enableWideScreen  gridTemplateColumns="50px 2fr 1fr 2fr 2fr">
+
+                <template #master>
+
+                    <div class="py-2 border-b-4 border-gray-300 font-bold">Id</div>
+                    <div class="py-2 border-b-4 border-gray-300 font-bold">Account Name</div>
+                    <div class="py-2 border-b-4 border-gray-300 font-bold">Status</div>
+                    <div class="py-2 border-b-4 border-gray-300 font-bold">Email</div>
+                    <div class="py-2 border-b-4 border-gray-300 font-bold">Feed Url</div>
+
+                    <template v-for="(act, idx) in accountsAll" :key="act.AccountId">
+                        <span :class="[ { selected: detailIndex === idx+1 },'data-row hover-row']"
+                              class="py-3 border-b border-gray-300">{{ act.AccountId }}</span>
+                        <span class="py-3 border-b border-gray-300">{{ act.AccountName }}</span>
+                        <span class="py-3 border-b border-gray-300">{{act.IsActive ? 'Active' :'Inactive'}}</span>
+                        <span class="py-3 border-b border-gray-300">{{ act.AccountEmail }}</span>
+                        <span class="py-3 border-b border-gray-300">{{ act.AccountUrl }}</span>
+                    </template>
+
+                </template>
+
+                <template #detail>
+                
+                    <div class="w-full h-full border border-red"> xxx</div>
+                    <!-- ="detailProps"
+                    <template v-for="(co, idx) in companyList" :key="idx">
+
+                        <div v-if="detailIndex === idx+1"
+                            class="bg-white p-5 h-full w-full pointer-events-auto border border-black">
+                            <h3 class="text-lg font-bold">{{ co.company }}</h3>
+                            {{ co.content }}
+                            <div class="border border-black p-3 mt-2">DetailProps.isWideScreen(from component): {{ detailProps.isWideScreen }}</div>
+                            <div class="mt-10">
+                                <button class="custom-button pointer-events-auto" 
+                                @click="showDetail = false">Ok</button>
+                            </div>
+                        </div>
+
+                    </template> -->
+
+                </template>
+
+            </MasterDetail> 
+
+                <!-- <div class="py-3 pl-3 pr-3 mb-3 border-y-2 border-color-light-blue last:border
                     bg-slate-300 flex flex-wrap justify-between items-start">
+                    <div class="w-36 flex-grow">Id</div>
                     <div class="w-36 flex-grow font-bold">Account Name</div>
                     <div class="w-20 pl-1 text-right xs:text-left">Status</div>
                     <div class="w-40 flex-grow">Email</div>
@@ -67,17 +129,18 @@
                     <div class="w-40 flex-grow">Modified</div>
                     <div class="w-12 flex-grow text-right">Actions</div>
                 </div>
-                <div v-for="idx in 5" :key="idx"
+                <div v-for="act in accountsAll" :key="act.AccountId"
                     class="py-3 border-b border-color-dark-gray last:border-b flex flex-wrap justify-between items-start gap-y-2">
-                    <span class="w-40 flex-grow font-bold">{{ accountName }}</span>
-                    <span class="w-20 text-right xs:text-left">{{isActive?'Active' :'InActive'}}</span>
-                    <span class="w-40 flex-grow">{{ emailAddress }}</span>
-                    <span class="w-60 flex-grow">{{ url }}</span>
+                    <span class="w-40 flex-grow font-bold">{{ act.AccountId }}</span>
+                    <span class="w-40 flex-grow font-bold">{{ act.AccountName }}</span>
+                    <span class="w-20 text-right xs:text-left">{{act.IsActive ? 'Active' :'Inactive'}}</span>
+                    <span class="w-40 flex-grow">{{ act.AccountEmail }}</span>
+                    <span class="w-60 flex-grow">{{ act.AccountUrl }}</span>
                     <span class="w-40 flex-grow">Dec. 6, 2023</span>
                     <span class="w-12 flex-grow flex justify-end">
                         <button class="btn-primary">Edit</button>
                     </span>
-                </div> 
+                </div>  -->
 
             </div>
         </div>
@@ -85,3 +148,8 @@
     </div>  
 
 </template>
+
+<style scoped>
+
+    .selected       { @apply border-r-white border-r-8 border-opacity-80 text-black }
+</style>
