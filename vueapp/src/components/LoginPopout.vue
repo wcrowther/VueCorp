@@ -49,7 +49,7 @@
         </div>
 
         <router-link v-if="!isLoggedIn" title="Login"
-            class="text-white tracking-wider rounded-full" to='/login'>Login 
+            class="p-3 text-white tracking-wider" to='/login'>Login 
         </router-link>
         
         <div v-if="showPopout"

@@ -39,7 +39,8 @@
 	<div v-if="(modelValue > 0 && modelValue < 4)" 
 		class="rounded-full h-5 px-2 text-xs leading-[1.3rem] tracking-wider font-bold text-white select-none
 			bg-color-primary hover:bg-orange cursor-pointer text-center align-middle"
-		@click="setInfoLevel(1)"  @click.right.prevent="setInfoLevel(-1)" title="Change Help detail level.">
+		@click="setInfoLevel(1)"  @click.right.prevent="setInfoLevel(-1)" 
+		title="Change Help detail level.">
 		{{infoLevelText}}
 	</div>  
 

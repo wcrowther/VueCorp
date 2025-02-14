@@ -121,7 +121,7 @@
 
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
-            <span class="flex flex-wrap gap-1.5"> 
+            <span class="flex flex-wrap gap-3"> 
 
                 <div class="">
                     <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
@@ -132,9 +132,9 @@
                                 
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="22px" @click="confirmSave" title="Save User"
-                        class="icon-symbol mt-[2px] mr-[2px]" icon="fa-solid:save" />
+                        class="icon-symbol mt-[2px]" icon="fa-solid:save" />
                     <IconSymbol width="28px"  @click="confirmDelete" title="Delete User"
-                        class="icon-symbol" icon="heroicons:trash-16-solid" />
+                        class="icon-symbol -ml-[4px]" icon="heroicons:trash-16-solid" />
                 </template>
 
             </span>

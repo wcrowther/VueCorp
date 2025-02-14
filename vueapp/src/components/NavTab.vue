@@ -24,8 +24,8 @@
 <style lang="postcss" scoped>
 
 	.nav-tab {
-		@apply text-[#121639] font-semibold font-sans rounded-full list-none px-4 h-[30px] text-base/[33px]
-		flex items-center relative bg-[#669ac5] mb-[6px] hover:bg-transparent hover:text-white opacity-80
+		@apply text-[#bddaef] font-semibold tracking-wide font-sans rounded-full list-none px-4 h-[28px] text-sm
+		flex items-center relative bg-[#445292] mb-[8px] hover:bg-transparent hover:text-white opacity-80
 	}    
 	.active-tab {
 		@apply text-orange hover:text-black bg-gradient-tab-active rounded-t-md opacity-100 m-0 h-9 rounded-b-none

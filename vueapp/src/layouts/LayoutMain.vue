@@ -20,10 +20,10 @@
 
 <template>
 
-	<div class="fixed top-0 bottom-0 left-0 right-0" id="background-div"
+	<div id="background-div" class="fixed top-0 bottom-0 left-0 right-0" 
 		:class="{'bg-gradient-back': !altColors}"></div>
 
-	<div class="main-width mb-10 relative z-0" id="layout-main"
+	<div id="layout-main" class="main-width mb-10 relative z-0" 
 		:class="{ '' : altColors }"><!-- box-shadow -->
 
 		<BreakPoints :show="showBreakpoints" />
@@ -33,7 +33,8 @@
 			<BrandLogo />
 		</BrandBar>  
 
-		<NavBar class="navbar-gradient" id="nav-bar">		
+		<NavBar id="nav-bar" class="navbar-gradient">
+
 			<NavTab to="/" class="group">
 				<IconSymbol width="18px" class="text-[#121639] block xs:hidden 
 					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
@@ -42,6 +43,7 @@
 			<NavTab navText="Content" 	to="/content" />
 			<NavTab navText="Accounts" 	to="/accounts" />
 			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role == 'Admin'" />
+
 		</NavBar>
 
 		<div class="relative h-full min-h-[600px] bg-white" id="mainContent"> 

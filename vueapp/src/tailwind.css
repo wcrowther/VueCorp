@@ -62,16 +62,16 @@
 			shadow-smfocus:border-orange focus:ring-orange;
 	}
 	.btn-delete, .btn-disable { 
-		@apply bg-color-mid-gray text-color-dark-gray select-none
+		@apply bg-color-mid-gray text-color-dark-gray select-none text-sm
 			hover:bg-white tracking-wide font-bold rounded-md px-4 py-0.5 w-fit border-blue focus:border; 
 	}
 	.btn-primary { 
-		@apply bg-color-primary text-[#121639] hover:bg-white select-none
-			font-sans tracking-wide font-bold rounded-md px-4 py-[3px] w-fit;
+		@apply bg-color-primary text-[#121639] hover:bg-white select-none text-sm
+			font-sans tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit;
 	}
 	.btn-secondary { 
-		@apply bg-transparent border border-[#121639] text-[#121639] opacity-70 hover:opacity-100 hover:bg-white select-none
-			font-sans tracking-wide font-bold rounded-md px-4 py-[3px] w-fit;
+		@apply bg-transparent border border-[#121639] text-[#121639] opacity-70 text-sm select-none
+			font-sans tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit hover:opacity-100 hover:bg-white;
 	}
 
 
