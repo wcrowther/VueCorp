@@ -12,8 +12,16 @@ using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
-builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>()); // builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
-builder.Services.AddCors();
+builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>());
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowSpecificOrigin",
+		policy => policy.WithOrigins(builder.Configuration["App:AllowOrigins"]) 
+						.AllowCredentials()
+						.AllowAnyHeader()
+						.AllowAnyMethod());
+});
+
 
 Log.Logger = new LoggerConfiguration()
 	.ReadFrom.Configuration(builder.Configuration)
@@ -71,11 +79,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
-app.UseCors(builder => builder
-   .AllowAnyOrigin()
-   .AllowAnyMethod()
-   .AllowAnyHeader()
-);
+app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -91,7 +95,7 @@ app.Run();
 
 
 
-
+// builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
 
 
 // ========================================================================================================

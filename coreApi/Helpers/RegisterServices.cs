@@ -21,6 +21,7 @@ namespace coreApi.Helpers
 			services.AddScoped<IAuthManager,	AuthManager>();
 			services.AddScoped<IContentManager, ContentManager>();
 			services.AddScoped<ITokenManager,	TokenManager>();
+			services.AddScoped<ICookieManager,  CookieManager>();
 
 			// Data Services
 			services.AddScoped<IAccountRepo,    AccountRepo>();

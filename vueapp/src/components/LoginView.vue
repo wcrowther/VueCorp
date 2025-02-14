@@ -22,8 +22,10 @@
 
 <template>
 
-	<TextInput 		labelName="UserName" 	v-model="authRequest.UserName" :v$ />
-	<PasswordInput 	labelName="Password" 	v-model="authRequest.Password" :v$ />
+	<form>
+		<TextInput 		labelName="UserName" autocomplete="username" v-model="authRequest.UserName" :v$ />
+		<PasswordInput 	labelName="Password" autocomplete="password" v-model="authRequest.Password" :v$ />
+	</form>
 
 	<div class="select-none pt-5 flex justify-between gap-3 mb-20">
 		<slot></slot>

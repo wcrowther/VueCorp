@@ -3,7 +3,9 @@ using coreLogic.Adapters;
 using coreLogic.Interfaces;
 using coreLogic.Models;
 using coreLogic.Models.Generic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
 using Verifier = BCrypt.Net.BCrypt;
 
 namespace coreLogic.Managers;
@@ -43,14 +45,14 @@ public class AuthManager(	IUserManager userManager,
 		return Returns<AuthResponse>.Ok(authResponse);
 	}
 
-	public Returns<AuthResponse> RefreshAuth(AuthRefreshRequest request)
+	public Returns<AuthResponse> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
 	{
 		var user = userManager.GetUserById(request.UserId);
 
 		if (user == null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiration <= DateTime.Now)
 			return Returns<AuthResponse>.Error($"Not able to refresh token for userId: {request.UserId}");
 
-		user        = userManager.UpdateUserRefreshToken(user);
+		user = userManager.UpdateUserRefreshToken(user, httpContext);
 
 		var token = tokenManager.GenerateJwt(user);
 

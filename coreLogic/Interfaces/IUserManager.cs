@@ -1,5 +1,6 @@
 ﻿using coreApi.Models;
 using coreApi.Models.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace coreLogic.Interfaces;
 
@@ -19,5 +20,5 @@ public interface IUserManager
 
 	User CreateUser(UserToCreate userToCreate);
 
-	User UpdateUserRefreshToken(User user);
+	User UpdateUserRefreshToken(User user, HttpContext httpContext);
 }

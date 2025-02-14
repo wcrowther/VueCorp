@@ -1,6 +1,8 @@
 ﻿using coreApi.Helpers;
 using coreApi.Models;
 using coreLogic.Interfaces;
+using coreLogic.Models;
+using System.Runtime.CompilerServices;
 using WildHare.Extensions;
 
 namespace coreApi;
@@ -29,13 +31,26 @@ public static partial class Endpoints
 		{
 			var result = _authManager.Signup(model);
 
-			if (result.Success)
-				return Results.Ok(result.Data);
-
-			return Results.BadRequest(result.Exception.Message);
+			return	result.Success 
+					? Results.Ok(result.Data) 
+					: Results.BadRequest(result.Exception.Message);
 		})
 		.Validate<UserToCreate>(false)
 		.WithName("Signup");
+
+
+		auth.MapPost("/refreshAuth", (	AuthRefreshRequest request, 
+										IAuthManager _authManager,
+										HttpContext httpContext  ) =>
+		{
+			var result = _authManager.RefreshAuth(request, httpContext);
+
+			return	result.Success 
+					? Results.Ok(result.Data) 
+					: Results.BadRequest(result.Exception.Message);
+		})
+		.Validate<AuthRefreshRequest>(false)
+		.WithName("RefreshAuth");
 	}
 }
 

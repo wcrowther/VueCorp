@@ -20,12 +20,13 @@ export async function apiCall(type, url, useAuth, body)
 		error: 			{}
 	}
 
-	let callOptions =  
+	let request =  
 	{
-		baseURL: 	appStore.baseApiUrl,
-		url:		url,
-		method: 	`${type}`, // POST, GET, etc
-		headers: 	{}
+		baseURL: 			appStore.baseApiUrl,
+		url:				url,
+		method: 			`${type}`, 				// POST, GET, etc
+		headers: 			{},
+		withCredentials: 	true  					// Sends Auth cookie
 	}	
 
 	// console.log(`apiCall: ${type} (useAuth: ${useAuth}) from Url: ${url}`)
@@ -34,20 +35,20 @@ export async function apiCall(type, url, useAuth, body)
 	{
 		// logJson('apiCall', JSON.stringify(body))
 
-		callOptions.headers['Content-Type'] = 'application/json'
-		callOptions.headers['Access-Control-Allow-Private-Network'] = 'true'
+		request.headers['Content-Type'] = 'application/json'
+		request.headers['Access-Control-Allow-Private-Network'] = 'true'
 		
-		callOptions.data = JSON.stringify(body)
+		request.data = JSON.stringify(body)
 	}
 
 	if (!!useAuth === true && authStore.authUser && authStore.authUser.Token) 
 	{
-		callOptions.headers['Authorization'] = `Bearer ${authStore.authUser.Token}`
+		request.headers['Authorization'] = `Bearer ${authStore.authUser.Token}`
 	}
 
 	try 
 	{
-		result 			= await axios(callOptions)
+		result 			= await axios(request)
 		result.success	= true
 	} 
 	catch (err) 

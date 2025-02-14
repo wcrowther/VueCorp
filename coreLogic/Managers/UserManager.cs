@@ -2,11 +2,13 @@ using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Data.Interfaces;
 using coreLogic.Interfaces;
+using Microsoft.AspNetCore.Http;
 using bCrypt = BCrypt.Net.BCrypt;
 
 namespace coreLogic.Managers;
 
-public class UserManager(IUserRepo userRepo,
+public class UserManager(	IUserRepo userRepo,
+							ICookieManager cookieManager,
 							ITokenManager tokenManager)
 : IUserManager
 {
@@ -56,13 +58,17 @@ public class UserManager(IUserRepo userRepo,
 		return userRepo.CreateUser(userToCreate, passwordHash);
 	}
 
-	public User UpdateUserRefreshToken(User user)
+	public User UpdateUserRefreshToken(User user, HttpContext httpContext)
 	{
 		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
 
 		user.RefreshToken           = token;
 		user.RefreshTokenExpiration = expiration;
 
-		return SaveUser(user);
+		var refreshedUser = SaveUser(user);
+
+		cookieManager.SetRefreshTokenCookie(user.RefreshToken, httpContext);
+
+		return refreshedUser;
 	}
 }
