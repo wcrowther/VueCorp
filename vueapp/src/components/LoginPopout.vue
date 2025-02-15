@@ -56,7 +56,7 @@
         </router-link>
         
         <div v-if="showPopout"
-            class="z-[90] absolute min-h-[520px] w-[380px] top-0 rounded-tl-[30px] 
+            class="z-[90] absolute min-h-[520px] w-[385px] top-0 rounded-tl-[30px] 
                 border border-color-gray bg-gradient-main shadow-lg shadow-color-mid-gray">
             
             <IconSymbol v-if="pinPopout" class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-closed-20-solid" />

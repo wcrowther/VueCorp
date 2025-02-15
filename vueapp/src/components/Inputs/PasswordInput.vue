@@ -25,7 +25,7 @@
             </template>
         </div>
         <div class="flex justify-center items-center relative">
-            <input class="w-full pr-12" :id="props.labelName" :name="props.labelName" spellcheck="false"
+            <input class="w-full text-sm pr-12" :id="props.labelName" :name="props.labelName" spellcheck="false"
                 :type="showPassword ? 'text' : 'password'" v-model="modelValue" />
 
                 <IconSymbol v-if="!showPassword" @click="showPassword=true" 

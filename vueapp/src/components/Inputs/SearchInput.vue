@@ -18,7 +18,7 @@
 
 <template>
     <div class="h-8 w-full relative">
-        <input class="rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
+        <input class="text-sm rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
             id="filterInput" type="text" v-model="modelValue" placeholder="Search" spellcheck="false"
             :title="props.inputTitle" />
         

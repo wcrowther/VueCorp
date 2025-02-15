@@ -31,7 +31,7 @@
             </template>
         </div>
         <div class="flex justify-center items-center relative">
-            <input class="w-full" type="text" :id="props.labelName" :name="props.labelName"
+            <input class="w-full text-sm" type="text" :id="props.labelName" :name="props.labelName"
                 v-model="phoneDisplay" spellcheck="false" />
         </div>
     </div>

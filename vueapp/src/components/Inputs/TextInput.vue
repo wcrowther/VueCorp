@@ -3,7 +3,8 @@
     const props = defineProps (
     {
         labelName:  { type: String, required: true }, 
-        ruleName:   { type: String },  
+        ruleName:   { type: String }, 
+        spellCheck: { type: Boolean },
         v$:         { type: Object }
     })
 
@@ -29,8 +30,8 @@
             </template>
         </div>
         <div class="flex justify-center items-center relative">
-            <input class="w-full" type="text" :id="props.labelName" :name="props.labelName"
-                v-model="modelValue" v-bind="$attrs" spellcheck="false" />
+            <input class="w-full text-sm" type="text" :id="props.labelName" :name="props.labelName"
+                v-model="modelValue" v-bind="$attrs" :spellcheck="props.spellCheck" />
         </div>
     </div>
 </template>

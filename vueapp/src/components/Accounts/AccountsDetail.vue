@@ -126,7 +126,7 @@
             Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
         </div>
 
-        <div v-if="infoLevel > 2" class="text-sm border border-gra bg-white rounded-xl p-5 pb-6">
+        <div v-if="infoLevel > 2" class="text-sm border border-gray bg-white rounded-xl p-5 pb-6 w-full">
             <span class="font-bold">TIP:</span> Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
             Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
         </div>
