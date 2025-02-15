@@ -3,7 +3,7 @@ export const useAuthStore = defineStore('AuthStore',
 {
     state: () => 
     ({
-        authUser:       useLocalStorage('authUser', {}),
+        authUser:       useLocalStorage('authUser', new AuthUser()),
         isBusy:         false,
         error:          '',
         returnUrl:      '/'
@@ -14,9 +14,10 @@ export const useAuthStore = defineStore('AuthStore',
         {
            return (state.authUser && state.authUser.Token && state.authUser.Token.length > 0) ? true : false
         },
-        userName:       (state) => state.authUser.FirstName || 'UserName',
-        firstInitial:   (state) => state.authUser.FirstName.charAt(0).toUpperCase() || 'U',
-        expiration:     (state) => state.authUser.Expiration || '---'
+        userName:               (state) => state.authUser.FirstName || 'UserName',
+        firstInitial:           (state) => state.authUser.FirstName.charAt(0).toUpperCase() || 'U',
+        tokenExpiration:        (state) => state.authUser.RefreshTokenExpiration || '---',
+        refreshTokenExpiration: (state) => state.authUser.TokenExpiration || '---'
     },
     actions:
     {

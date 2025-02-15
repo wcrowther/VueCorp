@@ -16,60 +16,60 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
-	public AuthResponse Authenticate(AuthRequest model)
+	public AuthUser Authenticate(AuthRequest authRequest)
 	{
-		var user = userManager.GetUserByUsername(model.UserName);
+		var user = userManager.GetUserByUsername(authRequest.UserName);
 
-		if (user == null || !Verifier.Verify(model.Password, user.PasswordHash))
+		if (user == null || !Verifier.Verify(authRequest.Password, user.PasswordHash))
 		{
-			logger.LogInformation($"Authenticating user not found for: '{model.UserName}'");
+			logger.LogInformation($"Authenticating user not found for: '{authRequest.UserName}'");
 
 			return null;
 		}
 
-		logger.LogInformation($"AuthManager.Authenticate user '{model.UserName}'");
+		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");
 
 		return GetAuthResponse(user);
 	}
 
-	public Returns<AuthResponse> Signup(UserToCreate userToCreate)
+	public Returns<AuthUser> Signup(UserToCreate userToCreate)
 	{
 		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
 		if (existingUser is not null)
-			return Returns<AuthResponse>.Error($"Not able to sign up user {userToCreate.UserName}");
+			return Returns<AuthUser>.Error($"Not able to sign up user {userToCreate.UserName}");
 
 		var user = userManager.CreateUser(userToCreate);
 		var authResponse = GetAuthResponse(user);
 
-		return Returns<AuthResponse>.Ok(authResponse);
+		return Returns<AuthUser>.Ok(authResponse);
 	}
 
-	public Returns<AuthResponse> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
+	public Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
 	{
 		var user = userManager.GetUserById(request.UserId);
 
 		if (user == null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiration <= DateTime.Now)
-			return Returns<AuthResponse>.Error($"Not able to refresh token for userId: {request.UserId}");
+			return Returns<AuthUser>.Error($"Not able to refresh token for userId: {request.UserId}");
 
 		user = userManager.UpdateUserRefreshToken(user, httpContext);
 
-		var token = tokenManager.GenerateJwt(user);
+		var (token, expiration) = tokenManager.GenerateJwtToken(user);
 
 		logger.LogInformation($"AuthManager.RefreshAuth refresh user: '{user.UserName}'");
 
-		return user.ToAuthResponse(token);
+		return user.ToAuthResponse(token, expiration);
 	}
 
 	// ============================================================================
 
-	private AuthResponse GetAuthResponse(User user)
+	private AuthUser GetAuthResponse(User user)
 	{
 		if (user is null)
 			return null;
 
-		var token = tokenManager.GenerateJwt(user);
+		var (token, tokenExpiration) = tokenManager.GenerateJwtToken(user);
 
-		return new AuthResponse(user, token);
+		return new AuthUser(user, token, tokenExpiration);
 	}
 }

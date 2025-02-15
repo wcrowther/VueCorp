@@ -11,7 +11,7 @@ namespace coreLogic.Managers;
 public class TokenManager(AppSettings appSettings)
 : ITokenManager
 {
-	public string GenerateJwt(User user)
+	public (string token, DateTime expiration) GenerateJwtToken(User user)
 	{
 		var baseClaims = new List<Claim>()
 			{
@@ -27,16 +27,18 @@ public class TokenManager(AppSettings appSettings)
 
 		var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.AuthSigningKey));
 		var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-		var token = new JwtSecurityToken
+		var expiration = DateTime.Now.AddMinutes(appSettings.TokenExpirationMinutes);
+		var jwtToken = new JwtSecurityToken
 		(
 			claims: baseClaims,
 			issuer: appSettings.AuthIssuer,
 			audience: appSettings.AuthAudience,
-			expires: DateTime.Now.AddMinutes(appSettings.TokenExpirationMinutes),
+			expires: expiration,
 			signingCredentials: creds
 		);
+		var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
-		return new JwtSecurityTokenHandler().WriteToken(token);
+		return (token, expiration);
 	}
 
 	public (string token, DateTime expiration) GenerateRefreshTokenAndExpiration()

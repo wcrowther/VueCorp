@@ -11,7 +11,7 @@
 <template>   
 
 	<ModalControl :show="show" title="ImageEditor" id="ImageEditor" 
-        height="90%" width="90%" class="p-6 pb-10" @closeModal="show=false">
+        height="90%" width="90%" class="p-6 pb-10 overflow-hidden" @closeModal="show=false">
 
         <!-- overflow-y-auto scrollbar-thin -->
         <TabControl class="h-full" contentClass="p-5" 

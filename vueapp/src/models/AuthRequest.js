@@ -5,7 +5,4 @@ function AuthRequest (userName, password)
 	this.Password	= password || ''
 }
 
-export
-{
-	AuthRequest
-}
+export { AuthRequest }

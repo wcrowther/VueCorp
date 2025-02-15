@@ -18,11 +18,11 @@
 
         <!-- Tabs -->
         <div class="flex gap-2 justify-start h-10 z-20 pl-5 border-b-2 border-slate-300">
+        
             <template v-for="(tab,idx) in props.tabList" :key="idx">
                 <div :class="[ isActive(tab) ? 'tab-active' :'tab-other' ]" @click="activeTab = tab">
                     <span>{{ tab }}</span>
                 </div>
-                <span class="relative _bottom-5">|</span>
             </template>
 
         </div>

@@ -7,6 +7,7 @@ export {}
 declare global {
   const Account: typeof import('./src/models/Account.js')['Account']
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
+  const AuthUser: typeof import('./src/models/AuthUser.js')['AuthUser']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
   const KeyboardListeners: typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']
@@ -118,6 +119,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly Account: UnwrapRef<typeof import('./src/models/Account.js')['Account']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
+    readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
@@ -222,6 +224,7 @@ declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly Account: UnwrapRef<typeof import('./src/models/Account.js')['Account']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
+    readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>

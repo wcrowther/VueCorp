@@ -1,22 +1,14 @@
 <script setup>
 
-    const { copy }          = useClipboard()
-
     const authStore	        = useAuthStore()
-    const { logout }        = authStore
-	const { 
-        firstInitial,  
-        authUser, 
-        isLoggedIn,  
-        expiration }        = storeToRefs(authStore)        
-
     const appStore          = useAppStore()
-    const { 
-        showPrevNext, 
-        showBreakpoints,
-        altColors }         = storeToRefs(appStore) // ,persistSearch
-
     const messageStore      = useMessageStore()
+
+    const { copy }          = useClipboard()
+    const { logout }        = authStore
+
+	const { firstInitial, authUser, isLoggedIn, tokenExpiration }   = storeToRefs(authStore)        
+    const { showPrevNext, showBreakpoints, altColors }              = storeToRefs(appStore) 
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -31,10 +23,9 @@
 
     const tokenToClipboard = () => { copy(authUser.value.Token); messageStore.showInfo('Value copied to the clipboard.'); }
 
-
     const fullName = computed(() => authUser.value.LastName ? `${authUser.value.FirstName} ${authUser.value.LastName}` : '---')
 
-    const tokenDisplay      = computed(() => 
+    const tokenDisplay = computed(() => 
     {
         let token = authUser.value.Token
         return token ? `${token.slice(0,6)}...${token.slice(token.length - 6)}` : '---'
@@ -94,7 +85,7 @@
                 <div class="label-row">
                     <div class="label-title"
                         title="JWT token expiration date">Expiration:</div>
-                    <div class="label-value">{{ dateTimeFormat(expiration) }}</div>
+                    <div class="label-value">{{ dateTimeFormat(tokenExpiration) }}</div>
                 </div>
                 <div class="label-row">
                     <div class="label-title" 

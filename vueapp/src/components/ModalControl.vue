@@ -18,7 +18,7 @@
     {
 		// Prevents scrolling behind overlay. marginRight should be width 
 		// of scrollbar but that width could be different on different browers.
-		document.body.style.marginRight = newVal ? '16px': 'initial'
+		// document.body.style.marginRight = newVal ? '16px': 'initial'
 		document.body.style.overflow    = newVal ? 'hidden': 'auto'
     })
 
@@ -49,7 +49,7 @@
 					</div>
 					
 					<!-- Content -->
-					<div class="pb-8 h-full items-stretch overflow-y-auto scrollbar-thin" 
+					<div class="pb-8 h-full items-stretch scrollbar-thin" 
 						v-bind="$attrs"
 						><slot>Default body</slot></div>
 

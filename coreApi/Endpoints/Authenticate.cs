@@ -17,7 +17,7 @@ public static partial class Endpoints
 
         auth.MapPost("/login", (AuthRequest model, IAuthManager _authManager) =>
         {
-            AuthResponse result = _authManager.Authenticate(model);
+            AuthUser result = _authManager.Authenticate(model);
 
 			return	result == null 
 					? Results.Unauthorized() 

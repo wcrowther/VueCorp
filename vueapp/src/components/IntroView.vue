@@ -9,8 +9,8 @@
 </script>
 
 <template>
-    <div class="bg-white h-[600px] flex justify-center items-center">
-        <div class="bg-white min-h-[15rem] w-[600px] shadow-lg shadow-color-mid-gray border-t
+    <div class="h-[600px] flex justify-center items-center">
+        <div class="min-h-[15rem] w-[600px] shadow-lg shadow-color-mid-gray border-t
             border-color-light-gray m-auto">
 
             <div class="w-full p-5 font-bold text-center border-b border-color-mid-gray">Intro-View</div>

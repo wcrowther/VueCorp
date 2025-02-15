@@ -159,7 +159,7 @@
                     </td>
                     <td class="pr-4 py-1 h-8 max-w-[200px] break-words text-sm"
                         :title="`ImageSrc: ${image.ImageSrc}`" >
-                        <img :src="`/public/images/${image.ImageSrc}`" class="w-24 border" />
+                        <img :src="`/images/${image.ImageSrc}`" class="w-24 border" />
                     </td>
                 </tr>
             </tbody>

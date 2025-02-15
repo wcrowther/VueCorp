@@ -109,6 +109,7 @@
     "roleList": true,
     "AuthRequest": true,
     "KeyboardListeners": true,
-    "useImagesStore": true
+    "useImagesStore": true,
+    "AuthUser": true
   }
 }

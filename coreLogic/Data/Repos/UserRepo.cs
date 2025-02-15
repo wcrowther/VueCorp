@@ -3,6 +3,8 @@ using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Data.Interfaces;
 using coreLogic.Helpers;
+using coreLogic.Interfaces;
+using coreLogic.Managers;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -14,11 +16,14 @@ public class UserRepo
 : IUserRepo, IDisposable
 {
 	private readonly CoreApiDataContext _dataContext;
+	private readonly ITokenManager _tokenManager;
 	private bool _disposed;
 
-	public UserRepo()
+
+	public UserRepo(ITokenManager tokenManager)
 	{
 		_dataContext = new CoreApiDataContext();
+		_tokenManager = tokenManager;
 	}
 
 	public IEnumerable<User> GetAllUsers()
@@ -143,10 +148,29 @@ public class UserRepo
 			_disposed = true;
 		}
 	}
-
 	public void Dispose()
 	{
 		Dispose(true);
 		GC.SuppressFinalize(this);
 	}
 }
+
+
+
+// ====================================================================================================
+//	Example for adding missing data
+// ====================================================================================================
+//	public void GenerateRefreshTokensForWhereEmpty()
+//	{
+//		var allUsers = _dataContext.Users.Where(w => string.IsNullOrEmpty(w.RefreshToken));
+
+//		foreach (var user in allUsers)
+//		{
+//			var (token, expiration) = _tokenManager.GenerateRefreshTokenAndExpiration();
+//			user.RefreshToken = token;
+//			user.RefreshTokenExpiration = expiration;
+
+//			_dataContext.Update(user);
+//		}
+//		_dataContext.SaveChanges();
+//	}

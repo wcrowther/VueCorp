@@ -4,7 +4,7 @@ namespace coreLogic.Interfaces;
 
 public interface ITokenManager
 {
-	string GenerateJwt(User user);
+	(string token, DateTime expiration) GenerateJwtToken(User user);
 
 	(string token, DateTime expiration) GenerateRefreshTokenAndExpiration();
 }

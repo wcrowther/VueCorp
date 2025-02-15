@@ -8,9 +8,9 @@ namespace coreLogic.Interfaces;
 
 public interface IAuthManager
 {
-	AuthResponse Authenticate(AuthRequest model);
+	AuthUser Authenticate(AuthRequest model);
 
-	Returns<AuthResponse> Signup(UserToCreate userToCreate);
+	Returns<AuthUser> Signup(UserToCreate userToCreate);
 
-	Returns<AuthResponse> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext);
+	Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext);
 }
