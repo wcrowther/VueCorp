@@ -37,6 +37,6 @@
 </script>
 
 <template>
-    <Icon :inline="props.inline" class="icon-symbol" :class="{'inline': props.inline}" />
+    <Icon :inline="props.inline" :class="{'inline': props.inline}" />
 </template>
 

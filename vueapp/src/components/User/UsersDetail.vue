@@ -59,7 +59,6 @@
         {
             let message = 'Cannot save as user is not valid.'
             messageStore.showError(message) 
-            console.log(message)
         }    
     }
 

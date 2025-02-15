@@ -19,7 +19,7 @@
 
 <template>
 
-	<div class="flex items-center relative rounded-full h-8 border font-normal
+	<div class="flex items-center relative rounded-full h-8 border font-normal w-fit
 		p-1 border-warm-600 bg-white select-none" @click="modelValue = !modelValue" :title="title">
 
 		<span class="flex absolute top-0 py-1 z-10 left-[9px]">{{ props.falseText }}</span>

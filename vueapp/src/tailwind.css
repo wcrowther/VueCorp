@@ -63,7 +63,7 @@
 	}
 	.btn-delete, .btn-disable { 
 		@apply bg-color-mid-gray text-color-dark-gray select-none text-sm
-			hover:bg-white tracking-wide font-bold rounded-md px-4 py-0.5 w-fit border-blue focus:border; 
+			hover:bg-white tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit border-blue focus:border; 
 	}
 	.btn-primary { 
 		@apply bg-color-primary text-[#121639] hover:bg-white select-none text-sm

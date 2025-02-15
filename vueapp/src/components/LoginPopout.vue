@@ -16,6 +16,8 @@
         showBreakpoints,
         altColors }         = storeToRefs(appStore) // ,persistSearch
 
+    const messageStore      = useMessageStore()
+
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
 
@@ -27,7 +29,8 @@
         logout()
     }  
 
-    const tokenToClipboard  = () => copy(authUser.value.Token)
+    const tokenToClipboard = () => { copy(authUser.value.Token); messageStore.showInfo('Value copied to the clipboard.'); }
+
 
     const fullName = computed(() => authUser.value.LastName ? `${authUser.value.FirstName} ${authUser.value.LastName}` : '---')
 
@@ -60,7 +63,7 @@
             <IconSymbol v-else           class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-open-20-solid" />
 
             <div class="px-7 pt-10 pb-12">
-                <div class="flex h-9 self-start justify-between my-5">
+                <div class="flex self-start justify-between my-5">
                     <button class="btn-delete hover:bg-warm-100" @click="logoutUser">Logout</button>
                 </div>
                 <div class="label-row">
@@ -97,7 +100,8 @@
                     <div class="label-title" 
                         title="JWT Token">Token:</div>
                     <div class="label-value flex items-center">{{ tokenDisplay }}
-                        <IconSymbol class="text-color-mid-blue ml-2" title="Copy JWT Token" @click="tokenToClipboard" width="16px" icon="heroicons:clipboard-20-solid" />
+                        <IconSymbol class="text-color-mid-blue ml-2 hover:text-gray-700" title="Copy JWT Token" 
+                            @click="tokenToClipboard()" width="16px" icon="heroicons:clipboard-20-solid" />
                     </div>
                 </div>
                 <div class="label-row">
@@ -138,10 +142,10 @@
                         <div class="ml-2 mt-2">{{ usPhoneFormat(numbers) }}</div>
                     </div>
                 </div> 
-                
-                <SwitchButton class="bg-color-blue-gray text-white font-bold" title="Toggle Pin"  
+               
+                <SwitchButton class="mt-3 bg-color-blue-gray text-white font-bold w-[100px]" title="Toggle Pin"  
                     buttonName="PinPopout" v-model="pinPopout" /> 
-                --> 
+                -->  
             </div>
         </div>
     </div>
@@ -149,10 +153,11 @@
 </template>
 
 <style lang="postcss" scoped>
+
     .label-row      { @apply flex h-9 items-center }
     .label-title    { @apply w-36 font-bold whitespace-nowrap }
     .label-value    { @apply w-52 flex-grow whitespace-nowrap }
-    .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue }
+    .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue hover:text-gray-700}
 
 </style> 
  
