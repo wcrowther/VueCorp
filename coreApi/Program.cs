@@ -4,12 +4,15 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System;
 using System.Text;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 // ========================================================================================================
 
 var builder = WebApplication.CreateBuilder(args);
+
+var environment = builder.Environment;
 
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
 builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>());
@@ -38,10 +41,13 @@ builder.Services.AddAuthentication(cfg =>
 {
     c.TokenValidationParameters = new TokenValidationParameters()
     {
-        ValidIssuer         = builder.Configuration["App:AuthIssuer"],
-        ValidAudience       = builder.Configuration["App:AuthAudience"],
+		ValidateLifetime	= true,						// Ensures the token is not expired
+		ClockSkew			= TimeSpan.Zero,			// Optional: Remove default 5-minute tolerance for expiration
+		ValidIssuer         = builder.Configuration["App:AuthIssuer"],
+		ValidAudience       = builder.Configuration["App:AuthAudience"],
         IssuerSigningKey    = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["App:AuthSigningKey"])),
-    };
+	};
+	c.IncludeErrorDetails   = environment.IsDevelopment();
 });
 
 builder.Services.AddAuthorizationBuilder()
