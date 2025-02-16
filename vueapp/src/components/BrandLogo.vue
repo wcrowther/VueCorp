@@ -1,6 +1,6 @@
 <script setup>
     //const appStore     		= useAppStore()
-    //const { altColors } 	= storeToRefs(appStore)
+    // const { altColors } 	= storeToRefs(appStore)
 </script>
 
 <template>
