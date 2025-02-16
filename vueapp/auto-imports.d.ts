@@ -124,7 +124,7 @@ declare module 'vue' {
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IsNotDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsNotDuplicateMessage']>
+    readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
@@ -230,7 +230,7 @@ declare module '@vue/runtime-core' {
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
-    readonly IsNotDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsNotDuplicateMessage']>
+    readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>

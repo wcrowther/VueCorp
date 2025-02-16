@@ -29,7 +29,7 @@ export const useMessageStore = defineStore('MessageStore',
             if(['DEFAULT', 'SUCCESS', 'INFO', 'WARNING', 'ERROR'].indexOf(type) === 0)
                 type = TYPE.DEFAULT
         
-            if(IsNotDuplicateMessage(message, this))
+            if(!IsDuplicateMessage(message, this))
             {
                 toast(message, 
                 {
@@ -42,7 +42,7 @@ export const useMessageStore = defineStore('MessageStore',
             }
 
             this.lastMessage    = message
-            this.lastTime       = new Date()
+            this.lastDateTime   = new Date()
         }
     }
 })

@@ -3,10 +3,10 @@ export const useAuthStore = defineStore('AuthStore',
 {
     state: () => 
     ({
-        authUser:       useLocalStorage('authUser', new AuthUser()),
-        isBusy:         false,
-        error:          '',
-        returnUrl:      '/'
+        authUser:           useLocalStorage('authUser', new AuthUser()),
+        isBusy:             false,
+        error:              '',
+        returnUrl:          '/'
     }),
     getters:
     {

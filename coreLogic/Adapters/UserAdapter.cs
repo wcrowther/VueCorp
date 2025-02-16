@@ -9,8 +9,6 @@ public static partial class Adapter
 		if (user == null)
 			return null;
 
-		var authResponse = new AuthUser(user, token, expiration);
-
-		return authResponse;
+		return new AuthUser(user, token, expiration);
 	}
 }
