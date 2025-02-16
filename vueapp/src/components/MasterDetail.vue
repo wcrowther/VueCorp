@@ -2,7 +2,7 @@
 
 	import { computed }			from 'vue'
 	import { useBreakpoints } 	from '@vueuse/core' 
-	import tailwindConfig		from '../../tailwind.config.mjs'
+	import { theme }			from '../../tailwind.config.mjs'
 
 	const props = defineProps(
 	{
@@ -17,7 +17,7 @@
 	const detailIndex 	= defineModel('detailIndex', { type: Number , 	required: true})	
 	const showDetail 	= defineModel('showDetail',  { type: Boolean, 	required: true })	
 
-	const screens 				= tailwindConfig.theme.screens
+	const screens 				= theme.screens
 	const breakpoints  			= useBreakpoints(screens)
 	const greaterThanBreakpoint = breakpoints.greater(props.wideBreakpoint) 
 	const isWideScreen  		= computed(() => props.enableWideScreen && greaterThanBreakpoint.value )

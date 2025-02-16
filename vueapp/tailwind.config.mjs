@@ -1,4 +1,4 @@
-import forms from '@tailwindcss/forms';
+//import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 /*eslint-env node*/
@@ -119,9 +119,10 @@ export const theme = {
     }
   }
 };
-export const plugins = [
-  require('@tailwindcss/forms'),
-];
+
+// export const plugins = [
+//   require('@tailwindcss/forms'),
+// ];
 
 
 /** new: #443b1f #a57524 #d6901a*/

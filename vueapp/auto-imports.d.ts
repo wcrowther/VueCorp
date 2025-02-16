@@ -10,12 +10,12 @@ declare global {
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
   const KeyboardListeners: typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']
-  const PageItem: typeof import('./src/models/Pager.js')['PageItem']
-  const PagedList: typeof import('./src/models/Pager.js')['PagedList']
-  const Pager: typeof import('./src/models/Pager.js')['Pager']
-  const Search: typeof import('./src/models/Pager.js')['Search']
-  const SearchForAccount: typeof import('./src/models/Pager.js')['SearchForAccount']
-  const User: typeof import('./src/models/User.js')['User']
+  const PageItem: typeof import('./src/models/pager.js')['PageItem']
+  const PagedList: typeof import('./src/models/pager.js')['PagedList']
+  const Pager: typeof import('./src/models/pager.js')['Pager']
+  const Search: typeof import('./src/models/pager.js')['Search']
+  const SearchForAccount: typeof import('./src/models/pager.js')['SearchForAccount']
+  const User: typeof import('./src/models/user.js')['User']
   const accountValidator: typeof import('./src/helpers/validators.js')['accountValidator']
   const apiCall: typeof import('./src/helpers/ApiCall.js')['apiCall']
   const apiGet: typeof import('./src/helpers/ApiCall.js')['apiGet']
@@ -92,7 +92,7 @@ declare global {
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useImagesStore: typeof import('./src/stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
-  const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
+  const useMessageStore: typeof import('./src/stores/messageStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
@@ -121,12 +121,12 @@ declare module 'vue' {
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
-    readonly PageItem: UnwrapRef<typeof import('./src/models/Pager.js')['PageItem']>
-    readonly PagedList: UnwrapRef<typeof import('./src/models/Pager.js')['PagedList']>
-    readonly Pager: UnwrapRef<typeof import('./src/models/Pager.js')['Pager']>
-    readonly Search: UnwrapRef<typeof import('./src/models/Pager.js')['Search']>
-    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/Pager.js')['SearchForAccount']>
-    readonly User: UnwrapRef<typeof import('./src/models/User.js')['User']>
+    readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
+    readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
+    readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
+    readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
+    readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
     readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>
@@ -203,7 +203,7 @@ declare module 'vue' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/messageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -225,12 +225,12 @@ declare module '@vue/runtime-core' {
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
-    readonly PageItem: UnwrapRef<typeof import('./src/models/Pager.js')['PageItem']>
-    readonly PagedList: UnwrapRef<typeof import('./src/models/Pager.js')['PagedList']>
-    readonly Pager: UnwrapRef<typeof import('./src/models/Pager.js')['Pager']>
-    readonly Search: UnwrapRef<typeof import('./src/models/Pager.js')['Search']>
-    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/Pager.js')['SearchForAccount']>
-    readonly User: UnwrapRef<typeof import('./src/models/User.js')['User']>
+    readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
+    readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
+    readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
+    readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
+    readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
     readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>
@@ -307,7 +307,7 @@ declare module '@vue/runtime-core' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/messageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
