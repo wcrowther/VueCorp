@@ -1,12 +1,12 @@
 <script setup>
-    const appStore     		= useAppStore()
-    const { altColors } 	= storeToRefs(appStore)
+    //const appStore     		= useAppStore()
+    //const { altColors } 	= storeToRefs(appStore)
 </script>
 
 <template>
-	<router-link class="block h-10 w-[130px] bg-contain bg-no-repeat bg-brand-logo leading-loose
+	<router-link class="mr-6 block h-[18px] w-[100px] bg-brand-logo bg-contain bg-no-repeat leading-loose
 		bg-center font-serif text-white text-xl/10 align-middle text-right relative" 		
-        :class="{ 'alt': altColors , 'adjust-logo': appStore.showPrevNext}" to='/' title="Homepage / Logo">VueCorp
+        to='/' title="Homepage / Logo">
 	</router-link> 
 </template>
 
@@ -18,3 +18,6 @@
 	}
 	
 </style>
+
+
+<!--  :class="{ 'alt': altColors , 'adjust-logo': appStore.showPrevNext}" -->

@@ -16,8 +16,8 @@ export const useAuthStore = defineStore('AuthStore',
         },
         userName:               (state) => state.authUser.FirstName || 'UserName',
         firstInitial:           (state) => state.authUser.FirstName.charAt(0).toUpperCase() || 'U',
-        tokenExpiration:        (state) => state.authUser.RefreshTokenExpiration || '---',
-        refreshTokenExpiration: (state) => state.authUser.TokenExpiration || '---'
+        tokenExpiration:        (state) => state.authUser.TokenExpiration || '---',
+        refreshTokenExpiration: (state) => state.authUser.RefreshTokenExpiration || '---'
     },
     actions:
     {

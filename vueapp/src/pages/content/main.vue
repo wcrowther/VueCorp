@@ -3,9 +3,6 @@
     const pageTitle         = ref('Content Main')
     const showImageEditor   = ref(false)
 
-    const authStore			    = useAuthStore()
-	const { tokenExpiration }   = storeToRefs(authStore)
-
 </script>
 
 <template>
@@ -14,9 +11,7 @@
 
         <ImageEditor v-model:show="showImageEditor"></ImageEditor>
 
-        <div class="z-0 bg-gradient-main h-[300px] absolute top-0 left-0 right-0">
-            Token Expiration: {{ tokenExpiration }}
-        </div>
+        <div class="z-0 bg-gradient-main h-[300px] absolute top-0 left-0 right-0"></div>
 
         <div class="z-10 p-5 pt-5 sm:p-10 sm:pt-5">
 

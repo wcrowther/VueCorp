@@ -62,8 +62,18 @@ export const usPhoneFormat = (str) =>
     return out
 }
 
-// NOW USING DAYJS as moment.js is now in maintenance mode
-// https://day.js.org/docs/en/display/format
+export const IsNotDuplicateMessage = (message, self)  =>
+{
+    let milliseconds    = !isNaN(self.lastDateTime)  ? Date.now() - self.lastDateTime : 0
+    let isNotDuplicate  = milliseconds >= self.duplicateThreshold || message != self.lastMessage
+
+    if(!isNotDuplicate)
+        console.log(`Duplicate Message: ${message}`)
+
+    return isNotDuplicate
+}
+
+// NOW USING DAYJS :  https://day.js.org/docs/en/display/format
 
 export const dateTimeFormat = (date, format) => dayjs(date).format(format || "MM-DD-YYYY h:mm:ssa")
 export const dateFormat     = (date) => dayjs(date).format("MM-DD-YYYY")

@@ -10,6 +10,9 @@ export const useMessageStore = defineStore('MessageStore',
         messageHistory:     [],   // Will add history
         messageDuration:    4000,
         errorDuration:      8000,
+        duplicateThreshold: 2000, // 2 seconds
+        lastMessage:        '',
+        lastDateTime:       ''
     }),
     getters:{},
     actions:
@@ -26,14 +29,20 @@ export const useMessageStore = defineStore('MessageStore',
             if(['DEFAULT', 'SUCCESS', 'INFO', 'WARNING', 'ERROR'].indexOf(type) === 0)
                 type = TYPE.DEFAULT
         
-            toast(message, 
+            if(IsNotDuplicateMessage(message, this))
             {
-                type: type.toLowerCase(),
-                position: POSITION.TOP_CENTER,
-                timeout: duration || this.errorDuration,
-                hideProgressBar: true,
-                transition: "Vue-Toastification__slideBlurred"
-            })
+                toast(message, 
+                {
+                    type: type.toLowerCase(),
+                    position: POSITION.TOP_CENTER,
+                    timeout: duration || this.errorDuration,
+                    hideProgressBar: true,
+                    transition: "Vue-Toastification__slideBlurred"
+                })
+            }
+
+            this.lastMessage    = message
+            this.lastTime       = new Date()
         }
     }
 })

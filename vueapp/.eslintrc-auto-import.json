@@ -110,6 +110,8 @@
     "AuthRequest": true,
     "KeyboardListeners": true,
     "useImagesStore": true,
-    "AuthUser": true
+    "AuthUser": true,
+    "IsDuplicateMessage": true,
+    "IsNotDuplicateMessage": true
   }
 }
