@@ -2,6 +2,7 @@
 using coreApi.Models;
 using coreLogic.Interfaces;
 using coreLogic.Models;
+using coreLogic.Models.Generic;
 using System.Runtime.CompilerServices;
 using WildHare.Extensions;
 
@@ -29,7 +30,7 @@ public static partial class Endpoints
 
 		auth.MapPost("/signup", (UserToCreate model, IAuthManager _authManager) =>
 		{
-			var result = _authManager.Signup(model);
+			Returns<AuthUser> result = _authManager.Signup(model);
 
 			return	result.Success 
 					? Results.Ok(result.Data) 
@@ -43,7 +44,7 @@ public static partial class Endpoints
 										IAuthManager _authManager,
 										HttpContext httpContext  ) =>
 		{
-			var result = _authManager.RefreshAuth(request, httpContext);
+			Returns<AuthUser> result = _authManager.RefreshAuth(request, httpContext);
 
 			return	result.Success 
 					? Results.Ok(result.Data) 

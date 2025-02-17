@@ -4,8 +4,8 @@
     const appStore          = useAppStore()
     const messageStore      = useMessageStore()
 
-    const { copy }          = useClipboard()
-    const { logout }        = authStore
+    const { copy }                  = useClipboard()
+    const { logout, refreshAuth }   = authStore
 
 	const { firstInitial, authUser, isLoggedIn, tokenExpiration }   = storeToRefs(authStore)        
     const { showPrevNext, showBreakpoints, altColors }              = storeToRefs(appStore) 
@@ -21,6 +21,8 @@
         logout()
     }  
 
+
+
     const tokenToClipboard = () => { copy(authUser.value.Token); messageStore.showInfo('Value copied to the clipboard.'); }
 
     const fullName = computed(() => authUser.value.LastName ? `${authUser.value.FirstName} ${authUser.value.LastName}` : '---')
@@ -30,6 +32,19 @@
         let token = authUser.value.Token
         return token ? `${token.slice(0,6)}...${token.slice(token.length - 6)}` : '---'
     })
+
+    const refreshAuthToken = () =>
+    {
+        let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId, authUser.value.RefreshToken)
+        refreshAuth(authRefreshRequest)
+    }
+
+    // const numbers           = ref()
+    // const filteredToNumbers = computed(
+    // {
+    //     get: () => numbers.value,
+    //     set: (newValue) =>  numbers.value = numbersOnly(newValue)
+    // });
 
 </script>
 
@@ -54,8 +69,9 @@
             <IconSymbol v-else           class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-open-20-solid" />
 
             <div class="px-7 pt-10 pb-12">
-                <div class="flex self-start justify-between my-5">
+                <div class="flex gap-x-2 my-5">
                     <button class="btn-delete hover:bg-warm-100" @click="logoutUser">Logout</button>
+                    <button class="btn-delete hover:bg-warm-100" @click="refreshAuthToken">Refresh Token</button>
                 </div>
                 <div class="label-row">
                     <div class="label-title"
@@ -116,24 +132,23 @@
                         <CheckboxInput labelName="" v-model="altColors" />
                     </div>
                 </div>
-                <!-- 
+
+                <!--  
+                <div class="flex">
+                    <div class="label-title">Numbers Only:</div>
+                    <div class="label-value flex flex-col">
+                        <input class="" type="text" v-model="filteredToNumbers" spellcheck="false" />
+                        <div class="ml-2 mt-2">{{ numbersOnly(numbers, '-.,') }}</div>
+                        <div class="ml-2 mt-2">{{ usPhoneFormat(numbers) }}</div>
+                    </div>
+                </div> 
                 <div class="label-row">
                     <div class="label-title" 
                         title="Persist search on page load">Persist Search</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="persistSearch" />
                     </div>
-                </div>
-
-                <div class="flex">
-                    <div class="label-title">Numbers Only:</div>
-                    <div class="label-value flex flex-col">
-                        <input class="" type="text" v-model="numbers" spellcheck="false" />
-                        <div class="ml-2 mt-2">{{ numbersOnly(numbers, '-.,') }}</div>
-                        <div class="ml-2 mt-2">{{ usPhoneFormat(numbers) }}</div>
-                    </div>
-                </div> 
-               
+                </div>    
                 <SwitchButton class="mt-3 bg-color-blue-gray text-white font-bold w-[100px]" title="Toggle Pin"  
                     buttonName="PinPopout" v-model="pinPopout" /> 
                 -->  

@@ -63,7 +63,7 @@ export const useAccountsStore = defineStore('AccountsStore',
                 {
                     this.account = result.data.Result
 
-                    log('Account Saved Succesfully.')
+                    console.log('Account Saved Succesfully.')
                     messageStore.showSuccess('Account Saved Successfully.')
                 }
             } 

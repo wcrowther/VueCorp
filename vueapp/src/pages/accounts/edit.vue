@@ -20,23 +20,19 @@
             <div class="w-full min-h-[400px] relative z-20"></div>
         </div>
 
+        <!-- -->
+        <div class="flex pl-5 gap-3">
+        
+            <IconSymbol class="transition-transform duration-500" :class="{'rotate-[-450deg]': isTop}"
+                :color="isTop ? 'green': 'red'" @click="isTop=!isTop" width="96px" icon="mdi:arrow-down-thick" />
+        
+            <IconSymbol width="96px" :inline="false" :vertical-flip="true" 
+                color="red" class="border border-red" icon="mdi:arrow-down-box" />
+        
+            <div class="bg-red contents h-fit w-fit">
+                <IconSymbol class="" width="96px" icon="heroicons:academic-cap-16-solid" />
+            </div> 
+
+        </div>
     </div>  
-
 </template>
-
-
-<!-- 
-<div class="flex pl-5 gap-3">
-
-    <IconSymbol class="transition-transform duration-500" :class="{'rotate-[-450deg]': isTop}"
-        :color="isTop ? 'green': 'red'" @click="isTop=!isTop" width="96px" icon="mdi:arrow-down-thick" />
-
-    <IconSymbol width="96px" :inline="false" :vertical-flip="true" 
-        color="red" class="border border-red" icon="mdi:arrow-down-box" />
-
-    <div class="bg-red contents h-fit w-fit">
-        <IconSymbol class="" width="96px" icon="heroicons:academic-cap-16-solid" />
-    </div> 
-    
-</div>
--->

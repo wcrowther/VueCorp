@@ -10,7 +10,9 @@ export function KeyboardListeners(keys)
   onUnmounted(() => removeKeyListeners())
 }
 
-/*
+
+/* EXAMPLE CODE:
+
   import { KeyboardListeners } from './helpers/KeyboardListeners'
 
   const keys = function (e)   // EXAMPLE LOGIC

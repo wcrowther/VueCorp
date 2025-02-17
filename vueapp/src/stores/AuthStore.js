@@ -6,7 +6,8 @@ export const useAuthStore = defineStore('AuthStore',
         authUser:           useLocalStorage('authUser', new AuthUser()),
         isBusy:             false,
         error:              '',
-        returnUrl:          '/'
+        returnUrl:          '/',
+        autoRefreshMinutes: 2
     }),
     getters:
     {
@@ -65,7 +66,25 @@ export const useAuthStore = defineStore('AuthStore',
         async redirect (route)
         {
             this.router.push(route || '/')
-        }
+        },
+        async refreshAuth (authRefreshRequest)
+        {
+            try
+            {
+                console.log(`Refresh Token updated at ${timeFormat(Date.now())}.`)
+                
+                const result  = await apiPost(`/authenticate/refreshAuth`, authRefreshRequest)
+
+                if(result.success) 
+                {
+                    this.authUser = result.data
+                }
+            }
+            catch(err)
+            {
+                useMessageStore().showError(err.message)   
+            }
+        },
     }
 })
 

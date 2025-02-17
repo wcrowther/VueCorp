@@ -2,19 +2,21 @@
 <script setup>
 
     const appStore     			= useAppStore()
-    const {  sideBarHidden, showBreakpoints, altColors } 	
-								= storeToRefs(appStore)
 	const authStore     		= useAuthStore()
-    const { authUser } 			= storeToRefs(authStore)
 
-    // Keyboard Listeners  =====================================================================
+    const { sideBarHidden, showBreakpoints, altColors }	= storeToRefs(appStore)
+    const { authUser  } 								= storeToRefs(authStore)
+
+    // Keyboard Listeners & AutoRefreshToken  ========================================================
 
     const keys = function (e)   
     {
         if (e.code === 'Escape'){ sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
     }
 
-	KeyboardListeners(keys);
+	KeyboardListeners(keys)
+
+	AutoRefreshToken()	
 
 </script>
 

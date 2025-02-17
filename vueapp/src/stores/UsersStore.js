@@ -1,6 +1,4 @@
 
-const messageStore  = useMessageStore()
-
 export const useUsersStore = defineStore('UsersStore',
 {
     state: () => 
@@ -8,7 +6,6 @@ export const useUsersStore = defineStore('UsersStore',
         usersPager:      new Pager(),
         usersList:       [],
         user:            new User(),
-
         detailUserId:    0
     }),
     getters:{},
@@ -22,7 +19,7 @@ export const useUsersStore = defineStore('UsersStore',
         {
             try 
             {
-                log('--- >>> Get UsersList From Server')
+                console.log('--- >>> Get UsersList From Server')
                 
                 const result = await apiPost(`/users/getPagedUsers`, pager)
                 
@@ -32,7 +29,7 @@ export const useUsersStore = defineStore('UsersStore',
                     this.usersList   = result.data.ListItems   
                 }
             }
-            catch (err){ messageStore.showError(err.message) }
+            catch (err){ useMessageStore().showError(err.message) }
         },
         async getUserDetailData (userId)
         {
@@ -46,13 +43,13 @@ export const useUsersStore = defineStore('UsersStore',
                         this.user = result.data
                 }
             } 
-            catch (err) {  messageStore.showError(err.message) }
+            catch (err) {  useMessageStore().showError(err.message) }
         },
         async saveUser ()
         {
             try 
             {
-                log('Save User!')
+                console.log('Save User!')
                 
                 const result = await apiPost(`/users/saveUser/`, this.user)
 
@@ -60,13 +57,13 @@ export const useUsersStore = defineStore('UsersStore',
                 {
                     this.user = result.data
 
-                    log('User Saved Succesfully.')
-                    messageStore.showSuccess('User Saved Successfully.')
+                    console.log('User Saved Succesfully.')
+                    useMessageStore().showSuccess('User Saved Successfully.')
                 }
             } 
             catch (err)
             { 
-                messageStore.showError(err.message) 
+                useMessageStore().showError(err.message) 
             }
         }
     }

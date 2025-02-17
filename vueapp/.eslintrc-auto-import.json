@@ -112,6 +112,9 @@
     "useImagesStore": true,
     "AuthUser": true,
     "IsDuplicateMessage": true,
-    "IsNotDuplicateMessage": true
+    "IsNotDuplicateMessage": true,
+    "useAuth": true,
+    "AuthRefreshRequest": true,
+    "AutoRefreshToken": true
   }
 }
