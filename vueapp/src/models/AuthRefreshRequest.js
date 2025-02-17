@@ -1,8 +1,9 @@
 
-function AuthRefreshRequest (userId, refreshToken)
+function AuthRefreshRequest (userId)
 {
 	this.UserId			= userId || ''
-	this.RefreshToken	= refreshToken || ''
+	// RefreshToken is stored in an http only cookie on the server so not needed here
+	// this.RefreshToken	= refreshToken || ''
 }
 
 export { AuthRefreshRequest }

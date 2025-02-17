@@ -3,11 +3,12 @@ export const useAuthStore = defineStore('AuthStore',
 {
     state: () => 
     ({
-        authUser:           useLocalStorage('authUser', new AuthUser()),
-        isBusy:             false,
-        error:              '',
-        returnUrl:          '/',
-        autoRefreshMinutes: 29
+        authUser:               useLocalStorage('authUser', new AuthUser()),
+        isBusy:                 false,
+        error:                  '',
+        returnUrl:              '/',
+        autoRefreshMinutes:     29,
+        lastRequestDatetime:    ''
     }),
     getters:
     {

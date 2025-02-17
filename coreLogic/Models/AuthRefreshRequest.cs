@@ -4,6 +4,7 @@
 	{
 		public int UserId { get; set; }
 
-		public string RefreshToken { get; set; }
+		// Refresh token is stored in an http only cookie
+		// public string RefreshToken { get; set; }
 	}
 }

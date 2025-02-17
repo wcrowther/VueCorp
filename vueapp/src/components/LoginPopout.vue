@@ -7,8 +7,9 @@
     const { copy }                  = useClipboard()
     const { logout, refreshAuth }   = authStore
 
-	const { firstInitial, authUser, isLoggedIn, tokenExpiration }   = storeToRefs(authStore)        
-    const { showPrevNext, showBreakpoints, altColors }              = storeToRefs(appStore) 
+	const { firstInitial, authUser, isLoggedIn, 
+            tokenExpiration, lastRequestDatetime }      = storeToRefs(authStore)        
+    const { showPrevNext, showBreakpoints, altColors }  = storeToRefs(appStore) 
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -35,7 +36,7 @@
 
     const refreshAuthToken = () =>
     {
-        let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId, authUser.value.RefreshToken)
+        let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
         refreshAuth(authRefreshRequest)
     }
 
@@ -102,6 +103,11 @@
                     <div class="label-title"
                         title="JWT token expiration date">Expiration:</div>
                     <div class="label-value">{{ dateTimeFormat(tokenExpiration) }}</div>
+                </div>
+                <div class="label-row">
+                    <div class="label-title"
+                        title="JWT token expiration date">Last Request:</div>
+                    <div class="label-value">{{ dateTimeFormat(lastRequestDatetime) || '---' }}</div>
                 </div>
                 <div class="label-row">
                     <div class="label-title" 

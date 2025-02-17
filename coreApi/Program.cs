@@ -1,11 +1,11 @@
 using coreApi.Helpers;
 using coreApi.Models;
+using coreLogic.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System;
 using System.Text;
+using WildHare.Extensions;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
 
 // ========================================================================================================
@@ -19,12 +19,11 @@ builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSet
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowSpecificOrigin",
-		policy => policy.WithOrigins(builder.Configuration["App:AllowOrigins"]) 
+		policy => policy.WithOrigins(builder.Configuration["App:AllowedOrigins"].Split(";", true))
 						.AllowCredentials()
 						.AllowAnyHeader()
 						.AllowAnyMethod());
 });
-
 
 Log.Logger = new LoggerConfiguration()
 	.ReadFrom.Configuration(builder.Configuration)
@@ -32,6 +31,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+// WJC: BREAK OUT AUTHENTICATION INTO ITS OWN METHOD
 builder.Services.AddAuthentication(cfg =>
 {
     cfg.DefaultAuthenticateScheme   = JwtBearerDefaults.AuthenticationScheme;
@@ -51,13 +51,14 @@ builder.Services.AddAuthentication(cfg =>
 });
 
 builder.Services.AddAuthorizationBuilder()
-	.AddPolicy("User", policy => policy.RequireRole("User"))
-	.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+	.AddPolicy("User",		 policy => policy.RequireRole("User"))
+	.AddPolicy("Admin",		 policy => policy.RequireRole("Admin"))
+	.AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(RegisterSwagger.AddMySwaggerGenOptions());
 
-builder.Services.AddMyServices();
+builder.Services.AddMyServices();  // Dependency Injection of My Services
 
 // ========================================================================================================
 
@@ -65,8 +66,10 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
+// WJC: BREAK OUT SWAGGER INTO ITS OWN METHOD
+
 //if (app.Environment.IsDevelopment()){
-	app.UseSwagger(options =>
+app.UseSwagger(options =>
 	{
 		options.RouteTemplate = "docs/{documentName}/docs.json";
 		options.SerializeAsV2 = true;  // Required for DotNet 9 to work 
@@ -88,48 +91,13 @@ app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.RegisterEndpoints();
 
 app.MapFallbackToFile("/index.html");
 
+// ========================================================================================================
+
 app.Run();
-
-
-
-
-
-
-// builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
-
-
-// ========================================================================================================
-// Needed by Jason Watmore example
-//
-// app.UseMiddleware<JwtMiddleware>();
-// ========================================================================================================
-// FROM Shawn Wildermuth example (Not needed for DotNet 7...)
-//
-// builder.Services.AddAuthorization(auth =>
-// {
-//     var authPolicyBuilder = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme);
-//     authPolicyBuilder       = authPolicyBuilder.RequireAuthenticatedUser();
-//     auth.DefaultPolicy       = authPolicyBuilder.Build();
-// });
-// 
-// builder.Services.AddAuthentication(cfg =>
-// {
-//     cfg.DefaultAuthenticateScheme   = JwtBearerDefaults.AuthenticationScheme;
-//     cfg.DefaultChallengeScheme      = JwtBearerDefaults.AuthenticationScheme;
-// })
-// .AddJwtBearer(c =>
-// {
-//     c.TokenValidationParameters = new TokenValidationParameters()
-//     {
-//         ValidIssuer         = TokenSecurity.ISSUER,
-//         ValidAudience       = TokenSecurity.AUDIENCE,
-//         IssuerSigningKey    = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(TokenSecurity.SIGNING_KEY)),
-//     };
-// });
-// ========================================================================================================

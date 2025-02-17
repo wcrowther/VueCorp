@@ -19,5 +19,13 @@ namespace coreLogic.Helpers
 			}
 			return true;
 		}
+
+		public static string[] Split(this string str, string separator, bool removeEmptyEntries, bool trimEntries = true)
+		{
+			StringSplitOptions options = trimEntries ? StringSplitOptions.TrimEntries : StringSplitOptions.None;
+			options |= removeEmptyEntries ? StringSplitOptions.RemoveEmptyEntries : StringSplitOptions.None;
+
+			return str.Split(separator, options);
+		}
 	}
 }

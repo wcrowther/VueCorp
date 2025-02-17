@@ -1,18 +1,20 @@
 ﻿using coreApi.Models;
 using coreLogic.Adapters;
+using coreLogic.Helpers;
 using coreLogic.Interfaces;
 using coreLogic.Models;
 using coreLogic.Models.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using System.Net.Http;
+using WildHare.Extensions;
 using Verifier = BCrypt.Net.BCrypt;
 
 namespace coreLogic.Managers;
 
 public class AuthManager(	IUserManager userManager,
 							ITokenManager tokenManager,
-							ILogger<AuthManager> logger
+							ILogger<AuthManager> logger,
+							AppSettings appSettings
 						)
 : IAuthManager
 {
@@ -47,9 +49,15 @@ public class AuthManager(	IUserManager userManager,
 
 	public Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
 	{
-		var user = userManager.GetUserById(request.UserId);
+		var user			= userManager.GetUserById(request.UserId);
+		var refreshToken	= httpContext.Request.Cookies["RefreshToken"];
+		var domain			= httpContext.Request.Headers.Origin.ToString();
+		var allowedDomains  = appSettings.AllowedOrigins.Split(";", true);
 
-		if (user == null || user.RefreshToken != request.RefreshToken || user.RefreshTokenExpiration <= DateTime.Now)
+		if (!IsAllowedDomain(domain, allowedDomains))
+			return Returns<AuthUser>.Error("Not able to refresh token from this domain");
+
+		if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiration <= DateTime.Now)
 			return Returns<AuthUser>.Error($"Not able to refresh token for userId: {request.UserId}");
 
 		user = userManager.UpdateUserRefreshToken(user, httpContext);
@@ -71,5 +79,13 @@ public class AuthManager(	IUserManager userManager,
 		var (token, tokenExpiration) = tokenManager.GenerateJwtToken(user);
 
 		return new AuthUser(user, token, tokenExpiration);
+	}
+
+	private static bool IsAllowedDomain(string domain, string[] allowedDomains)
+	{
+		if (allowedDomains?[0] == "*")  // '*' allows all
+			return true;
+
+		return allowedDomains.Any(a => a.Equals(domain,StringComparison.OrdinalIgnoreCase));
 	}
 }

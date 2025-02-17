@@ -11,7 +11,7 @@ export function AutoRefreshToken()
 
 	const refreshToken = () =>
 	{
-		let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId, authUser.value.RefreshToken)
+		let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
 		refreshAuth(authRefreshRequest)
 	}
 
