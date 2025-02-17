@@ -62,11 +62,11 @@
 			shadow-smfocus:border-orange focus:ring-orange;
 	}
 	.btn-delete, .btn-disable { 
-		@apply bg-color-mid-gray text-color-dark-gray select-none text-sm
-			hover:bg-white tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit border-blue focus:border; 
+		@apply bg-color-mid-gray text-color-dark-gray select-none text-sm 
+			hover:bg-white tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit; 
 	}
 	.btn-primary { 
-		@apply bg-color-primary text-[#121639] hover:bg-white select-none text-sm
+		@apply bg-color-primary text-[#121639] hover:bg-white select-none text-sm 
 			font-sans tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit;
 	}
 	.btn-secondary { 

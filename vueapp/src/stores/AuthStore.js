@@ -7,7 +7,7 @@ export const useAuthStore = defineStore('AuthStore',
         isBusy:             false,
         error:              '',
         returnUrl:          '/',
-        autoRefreshMinutes: 2
+        autoRefreshMinutes: 29
     }),
     getters:
     {

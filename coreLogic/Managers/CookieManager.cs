@@ -12,7 +12,7 @@ public class CookieManager(AppSettings appSettings) : ICookieManager
 		{
 			HttpOnly	= true,						// Prevent access from JavaScript
 			Secure		= true,						// Require HTTPS
-			SameSite	= SameSiteMode.Strict,		// Prevent CSRF attacks
+			SameSite	= SameSiteMode.None,		// Prevent CSRF attacks
 			Expires		= DateTime.Now.AddDays(appSettings.RefreshTokenExpirationDays)
 		});
 	}

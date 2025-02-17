@@ -73,8 +73,7 @@ export const IsDuplicateMessage = (message, self)  =>
     let milliseconds = !isNaN(lastDate)  ? Date.now() - lastDate : undefined
     let isDuplicate  = milliseconds && milliseconds < self.duplicateThreshold && message === self.lastMessage
 
-    if(isDuplicate)
-        console.log(`Duplicate Message: '${message}' ${milliseconds} shown ms ago`)
+    // if(isDuplicate) console.log(`Duplicate Message: '${message}' ${milliseconds} shown ms ago`)
 
     return isDuplicate
 }
