@@ -1,13 +1,20 @@
 
 <script setup>
 
+    // Setup  ==========================================================================================
+
+    const accountsStore                         = useAccountsStore()
+    const appStore                              = useAppStore()
+
+    const { getPagedAccounts }                  = accountsStore
+
+    const { accountsList:    itemsList,        
+            accountsPager:   listPager,       
+            detailAccountId: activeDetailId }   = storeToRefs(accountsStore)
+    const { sideBarHidden, persistSearch }      = storeToRefs(appStore)  
+
     // Page Specific  =================================================================================
 
-    const appStore                  = useAppStore()
-    const {  sideBarHidden, 
-             persistSearch 
-    }                               = storeToRefs(appStore)  
-    
     const { width: windowWidth }    = useWindowSize()
     
     watch(() => windowWidth.value, (newVal, oldVal) => 
@@ -25,15 +32,6 @@
     const currentPage                   = ref(0)
     const activeItem                    = ref(null)
     const showAdvSearch                 = ref(false)
-
-    const accountsStore                 = useAccountsStore()
-    const       
-    {       
-        accountsList:    itemsList,        
-        accountsPager:   listPager,       
-        detailAccountId: activeDetailId       
-    }                                   = storeToRefs(accountsStore)
-    const { getPagedAccounts }          = accountsStore
 
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault

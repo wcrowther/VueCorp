@@ -27,5 +27,10 @@ namespace coreLogic.Helpers
 
 			return str.Split(separator, options);
 		}
+
+		public static byte[] ToUtf8Bytes(this string str)
+		{
+			return Encoding.UTF8.GetBytes(str);
+		}
 	}
 }

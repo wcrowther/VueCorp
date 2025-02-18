@@ -1,18 +1,26 @@
 
 <script setup>
 
+    // Setup  ==========================================================================================
+
+    const usersStore                        = useUsersStore()
+    const appStore                          = useAppStore()
+
+    const { getPagedUsers }                 = usersStore
+
+    const { usersList:    itemsList,        
+            usersPager:   listPager,       
+            detailUserId: activeDetailId }  = storeToRefs(usersStore)
+    const { sideBarHidden }                 = storeToRefs(appStore)    
+
     // Page Specific  =================================================================================
 
     const { width: windowWidth }      = useWindowSize()
-    const appStore                    = useAppStore()
-    const { sideBarHidden }           = storeToRefs(appStore)    
-    
+
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
         if(newVal < 480 && oldVal >= 480)
-        {
             sideBarHidden.value = true
-        }
     });
 
     // ===============================================================================================
@@ -21,19 +29,11 @@
 
     const detailKeyName                 = 'UserId'
     const pageSizeDefaultName           = 'usersPageSizeDefault'
-    const searchFilterDefaultName       = 'usersSearchFilterDefault'        
+    const searchFilterDefaultName       = 'usersSearchFilterDefault'
+            
     const currentPage                   = ref(0)
     const activeItem                    = ref(null)
     const showAdvSearch                 = ref(false)
-
-    const usersStore                    = useUsersStore()
-    const       
-    {       
-        usersList:    itemsList,        
-        usersPager:   listPager,       
-        detailUserId: activeDetailId       
-    }                                   = storeToRefs(usersStore)
-    const { getPagedUsers }             = usersStore
 
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
