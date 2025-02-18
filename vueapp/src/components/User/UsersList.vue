@@ -135,7 +135,7 @@
 <template>
     <div class="" id="usersListView">
 
-        <ListPagerPrevNext :pager="listPager"></ListPagerPrevNext>
+        <MobilePagerPrevNext :pager="listPager"></MobilePagerPrevNext>
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
     

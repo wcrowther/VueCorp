@@ -131,9 +131,12 @@
 <template>
     <div class="" id="accountsList">
 
-        <ListPagerPrevNext :pager="listPager"></ListPagerPrevNext>
-
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
+      
+        <InfoBox class="py-3 mb-3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+        </InfoBox>
 
         <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
@@ -150,6 +153,13 @@
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager"></ListPager>
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
             </div>
+
+            <MobilePagerPrevNext :pager="listPager"></MobilePagerPrevNext>
+
+            <HelpBox class="mb-5">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+            </HelpBox>
 
         </div>
 

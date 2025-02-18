@@ -26,8 +26,8 @@
 		switch (modelValue.value)
 		{
 			case 1: return "?"
-			case 2: return "Help"
-			case 3: return "Help+"
+			case 2: return "Info"
+			case 3: return "Help"
 			default: 2
 		}
 	})
@@ -37,8 +37,8 @@
 <template>
 	
 	<div v-if="(modelValue > 0 && modelValue < 4)" 
-		class="rounded-full h-5 px-2 text-xs leading-[1.3rem] tracking-wider font-bold text-white select-none
-			bg-color-primary hover:bg-orange cursor-pointer text-center align-middle"
+		class="badge-button cursor-pointer text-white bg-color-primary hover:bg-orange"
+		:class="{'bg-orange hover:opacity-70': modelValue === 3}"
 		@click="setInfoLevel(1)"  @click.right.prevent="setInfoLevel(-1)" 
 		title="Change Help detail level.">
 		{{infoLevelText}}
