@@ -2,10 +2,8 @@
 <script setup>
 
     const appStore     			= useAppStore()
-	const authStore     		= useAuthStore()
 
     const { sideBarHidden, showBreakpoints, altColors }	= storeToRefs(appStore)
-    const { authUser  } 								= storeToRefs(authStore)
 
     // Keyboard Listeners & AutoRefreshToken  ========================================================
 
@@ -22,39 +20,29 @@
 
 <template>
 
-	<div id="background-div" class="fixed top-0 bottom-0 left-0 right-0" 
-		:class="{'bg-gradient-back': !altColors}"></div>
+	<div class="h-full">
 
-	<div id="layout-main" class="main-width mb-10 relative z-0" 
-		:class="{ '' : altColors }"><!-- box-shadow -->
+		<div id="background-div" class="fixed top-0 bottom-0 left-0 right-0"
+			:class="{'bg-gradient-back': !altColors}"></div>
 
-		<BreakPoints :show="showBreakpoints" />
+		<div id="layout-main" class="main-width mb-10 relative z-0 h-full"
+			:class="{ '' : altColors }"><!-- box-shadow -->
 
-		<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3">
-			<LoginPopout />
-			<BrandLogo />
-		</BrandBar>  
+			<BreakPoints :show="showBreakpoints" />
+			
+			<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3">
+				<LoginPopout />
+				<BrandLogo />
+			</BrandBar>
 
-		<NavBar id="nav-bar" class="navbar-gradient">
+			<NavBarMain />
 
-			<NavTab to="/" class="group">
-				<IconSymbol width="18px" class="text-[#bddaef] block xs:hidden 
-					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
-				<span class="hidden xs:block">Home</span>
-			</NavTab>
-			<!-- Hide Until Complete: 
-				<NavTab navText="Content" to="/content" /> 
-			-->
-			<NavTab navText="Accounts" 	to="/accounts" />
-			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role == 'Admin'" />
-
-		</NavBar>
-
-		<div class="relative h-full min-h-[600px] bg-white" id="mainContent"> 
-			<slot></slot>
+			<div class="relative h-full min-h-[600px] bg-white" id="mainContent">
+				<slot></slot>
+			</div>
+			
+			<FooterBox />
 		</div>
-
-		<FooterBox />
 
 	</div> 
 
