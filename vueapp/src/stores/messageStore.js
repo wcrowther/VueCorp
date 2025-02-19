@@ -10,7 +10,7 @@ export const useMessageStore = defineStore('MessageStore',
         messageHistory:     [],   // Will add history
         messageDuration:    4000,
         errorDuration:      8000,
-        duplicateThreshold: 2000, // 2 seconds
+        duplicateThreshold: 3000, // 3 seconds
         lastMessage:        '',
         lastDateTime:       ''
     }),

@@ -21,9 +21,8 @@
 
         <div class="mb-5">
             VueCorp is an opensource project to provide a streamlined DotNet solution that combines
-            the latest Vuejs 3.4 Composition API technology with the latest .Net 8.0 Minimal API 
-            backend. This project is not intended for commercial profit but rather for .NET developers
-            as an educational doorway into these technologies.
+            the latest Vuejs 3.5 Composition API technology with the latest .Net 9.0 Minimal API 
+            backend for .NET developers as an educational doorway into these technologies.
         </div> 
 
         <div class="mb-5 italic ">

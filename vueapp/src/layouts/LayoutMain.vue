@@ -38,11 +38,13 @@
 		<NavBar id="nav-bar" class="navbar-gradient">
 
 			<NavTab to="/" class="group">
-				<IconSymbol width="18px" class="text-[#121639] block xs:hidden 
+				<IconSymbol width="18px" class="text-[#bddaef] block xs:hidden 
 					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
 				<span class="hidden xs:block">Home</span>
 			</NavTab>
-			<NavTab navText="Content" 	to="/content" />
+			<!-- Hide Until Complete: 
+				<NavTab navText="Content" to="/content" /> 
+			-->
 			<NavTab navText="Accounts" 	to="/accounts" />
 			<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role == 'Admin'" />
 

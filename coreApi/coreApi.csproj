@@ -110,8 +110,14 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
-
-    <Target Name="CopyCustomFiles" BeforeTargets="Publish">
+	
+	<!-- Do I need this?
+	<PropertyGroup>
+		<BuildCommand>npm run build</BuildCommand>
+	</PropertyGroup>
+	--> 
+	
+	<Target Name="CopyCustomFiles" BeforeTargets="Publish">
 	   <!-- Can be relative or absolute path: C:\Git\VueCorp\LICENSE.txt-->
 	   <ItemGroup>
 		  <MyFiles Include="..\LICENSE.txt" />

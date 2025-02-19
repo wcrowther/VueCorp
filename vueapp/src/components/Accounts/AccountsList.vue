@@ -130,11 +130,6 @@
     <div class="" id="accountsList">
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
-      
-        <InfoBox class="py-3 mb-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
-        </InfoBox>
 
         <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
@@ -143,7 +138,8 @@
                 <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch"></SearchInput>
             </div>
 
-            <div v-if="listPager.Search.StateProvinceFilter.length > 0" class="">
+            <div v-if="listPager.Search.StateProvinceFilter.length > 0" 
+                class="ml-5 text-sm mt-2 italic">
                 Filters: {{ listPager.Search.StateProvinceFilter }}
             </div>
 
@@ -154,10 +150,14 @@
 
             <MobilePagerPrevNext :pager="listPager"></MobilePagerPrevNext>
 
-            <HelpBox class="mb-5">
+            <HelpBox class="mb-3">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
             </HelpBox>
+
+            <InfoBox class="py-3 mb-5">
+                Search for Accounts that start with this text or are equal to the AccountId. Add multiple conditions separated by a comma.
+            </InfoBox>
 
         </div>
 
