@@ -133,9 +133,9 @@
 </script>
 
 <template>
-    <div class="" id="usersListView">
+    <div class="absolute h-full min-w-[300px] right-0 top-0" id="usersListView">
 
-        <MobilePagerPrevNext :pager="listPager"></MobilePagerPrevNext>
+        <MobilePagerPrevNext :pager="listPager" />
 
         <!-- grey: bg-[#929292] filterInput: shadow-[-2px_2px_2px_2px_rgba(0,0,0,0.1)] ended up no.-->
     
@@ -186,7 +186,7 @@
         </table>
 
         <UserAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager"
-            @getListData="getListData"></UserAdvSearch>
+            @getListData="getListData" />
  
     </div>
 

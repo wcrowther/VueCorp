@@ -9,11 +9,12 @@
 
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
-        if(newVal < breakPoint && oldVal >= breakPoint)
-        {
+        if(newVal < breakPoint &&  oldVal >= breakPoint) 
             sideBarHidden.value = true
-        }
+        else if (newVal >= breakPoint &&  oldVal < breakPoint)
+            sideBarHidden.value = false
     });
+
 
 </script>
 
@@ -21,9 +22,14 @@
 
     <!-- NOTE: 'v-show' NOT 'v-if' as we want to keep alive content and not have to recreate it  -->
     
-    <div v-show="!sideBarHidden"
-        class="absolute w-[96%] xs:w-1/3 xs:relative h-full z-50">
-        <slot></slot>
+    <div class="absolute z-50 xs:relative h-screen flex-none transform transition-all duration-[300ms] overflow-hidden"
+        :class="[ sideBarHidden ? 'w-0' : 'w-full xs:w-[300px]']">
+        <slot></slot> 
     </div>
 
 </template>
+
+
+<!-- 
+    <div class="bg-red h-screen">FAKE CONTENT</div> 
+-->

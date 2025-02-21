@@ -4,13 +4,13 @@
 
 <template>
 
-    <div class="flex" id="adminUsers">
+    <div class="flex flex-row h-screen" id="adminUsers">
 
-        <SideBar>
+        <SideBar class="transform transition-all duration-[500ms] h-full">
             <UsersList />
         </SideBar>     
 
-        <DetailMain class="bg-gradient-main">
+        <DetailMain class="grow bg-gradient-main">
             <UsersDetail />
         </DetailMain>  
 

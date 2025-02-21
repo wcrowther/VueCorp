@@ -16,9 +16,7 @@
 			<span class="hidden xs:block">Home</span>
 		</NavTab>
 
-		<!-- Hide until Content is complete:
-			<NavTab navText="Content" to="/content" />
-		-->
+		<!-- <NavTab navText="Content" to="/content" /> -- Hide until Content is complete -->
 
 		<NavTab navText="Accounts" 	to="/accounts" />
 

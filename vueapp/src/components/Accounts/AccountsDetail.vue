@@ -104,11 +104,6 @@
         <div class="w-full flex justify-between items-center">
             <h2 class="text-2xl font-display font-bold flex-grow">{{ accountTitle }}</h2>
             <span class="flex flex-wrap gap-1.5"> 
-                <!--               
-                    <span class="">{{isAddingAccount}}</span>
-                    <span class="">{{hasKeys(account)}}</span> 
-                    <span class="">{{account.AccountId}}</span> 
-                -->
                 <button v-if="isAddingAccount || hasKeys(account) && account.AccountId > 0" 
                     class="btn-primary" @click="confirmSave">Save</button>
                 <button v-if="!isAddingAccount" class="btn-primary"
