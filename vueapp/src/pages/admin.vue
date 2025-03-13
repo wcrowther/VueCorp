@@ -13,7 +13,7 @@
 <template>
 	<LayoutMain>
 		
-		<SubNavBar class="">
+		<SubNavBar>
 
 			<template #leftalign>
 				<RotateButton v-model="sideBarHidden" class="" title="toggle search"  /> 

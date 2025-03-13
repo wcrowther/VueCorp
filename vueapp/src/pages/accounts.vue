@@ -11,22 +11,26 @@
 <template>
 	<LayoutMain>
 		
-		<SubNavBar class="relative overflow-hidden"> 
+		<SubNavBar> 
 
 			<template #leftalign>
 				<RotateButton v-model="sideBarHidden" class="" title="toggle search"  /> 
 			</template>
 
 			<div class="pr-5">
-				<router-link to="/Accounts/Main" 
+				<router-link to="/Accounts/Main"  linkName="AccountsMain"
 					class="px-1 py-2 font-bold hover:opacity-50" 
-					active-class="subnav-active" linkName="AccountsMain">Main</router-link>
+					active-class="subnav-active">
+					Main
+				</router-link>
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Accounts/Edit" 
+				<router-link to="/Accounts/Notes" linkName="AccountsEdit" 
 					class="px-1 py-2 font-bold hover:opacity-50" 
-					active-class="subnav-active" linkName="AccountsEdit">Edit</router-link>
+					active-class="subnav-active">
+					Notes
+				</router-link>
 			</div>
 
 		</SubNavBar>

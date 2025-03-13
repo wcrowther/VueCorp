@@ -6,13 +6,13 @@
 
     <div class="flex flex-row h-screen" id="adminUsers">
 
-        <SideBar class="transform transition-all duration-[500ms] h-full">
+        <MainSidebar class="transform transition-all duration-[500ms] h-full">
             <UsersList />
-        </SideBar>     
+        </MainSidebar>     
 
-        <DetailMain class="grow bg-gradient-main">
+        <MainContent class="grow bg-gradient-main">
             <UsersDetail />
-        </DetailMain>  
+        </MainContent>  
 
     </div> 
 

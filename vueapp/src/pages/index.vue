@@ -3,7 +3,7 @@
 <template>
 		
 	<LayoutMain>
-		<SubNavBar class="relative overflow-hidden" />
+		<SubNavBar />
 		<HomeView />
 	</LayoutMain>
 		

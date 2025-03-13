@@ -10,8 +10,7 @@
 <template>
 	<LayoutMain>
 		
-		<SubNavBar class=""></SubNavBar>
-		
+		<SubNavBar />
 		<router-view />
 
 	</LayoutMain>

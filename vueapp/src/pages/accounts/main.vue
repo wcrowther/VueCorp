@@ -4,13 +4,13 @@
 <template>
     <div class="flex" id="accounts-main">
 
-        <SideBar>
+        <MainSidebar>
             <AccountsList />
-        </SideBar>     
+        </MainSidebar>     
         
-        <DetailMain class="bg-gradient-main">
+        <MainContent class="bg-gradient-main">
             <AccountsDetail />
-        </DetailMain>  
+        </MainContent>  
 
     </div>
 </template> 
