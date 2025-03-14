@@ -9,20 +9,13 @@ using WildHare.Extensions;
 
 namespace coreApi.Data;
 
-public class AccountRepo : IAccountRepo
+public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 {
-	private readonly CoreApiDataContext _dataContext;
-
-	public AccountRepo(CoreApiDataContext coreApiDataContext)
-	{
-		_dataContext = coreApiDataContext;
-	}
-
 	public virtual async Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager)
 	{
 		var predicate = BuildPredicate(pager);
 
-		var query = _dataContext.Accounts.Where(predicate);
+		var query = coreApiDataContext.Accounts.Where(predicate);
 
 		pager.TotalCount = await query.CountAsync();
 		var listItems	 = await query.OrderBy(p => p.AccountName)
@@ -41,18 +34,18 @@ public class AccountRepo : IAccountRepo
 
 	public async Task<List<Account>> GetAllAccounts()
 	{
-		return await _dataContext.Accounts.ToListAsync();
+		return await coreApiDataContext.Accounts.ToListAsync();
 	}
 
 	public async Task<Account> GetAccountById(int accountId)
 	{
-		return await _dataContext.Accounts.FirstOrDefaultAsync(x => x.AccountId == accountId);
+		return await coreApiDataContext.Accounts.FirstOrDefaultAsync(x => x.AccountId == accountId);
 	}
 
 	public async Task<Account> SaveAccount(Account account)
 	{
-		_dataContext.Update(account);
-		await _dataContext.SaveChangesAsync();
+		coreApiDataContext.Update(account);
+		await coreApiDataContext.SaveChangesAsync();
 
 		return account;
 	}
