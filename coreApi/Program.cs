@@ -3,6 +3,7 @@ using coreApi.Models;
 using coreLogic.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualBasic;
 using Serilog;
 using System.Text;
 using WildHare.Extensions;
@@ -31,7 +32,6 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-// WJC: BREAK OUT AUTHENTICATION INTO ITS OWN METHOD
 builder.Services.AddAuthentication(cfg =>
 {
     cfg.DefaultAuthenticateScheme   = JwtBearerDefaults.AuthenticationScheme;
@@ -56,7 +56,8 @@ builder.Services.AddAuthorizationBuilder()
 	.AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"));
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(RegisterSwagger.AddMySwaggerGenOptions());
+
+builder.Services.AddMySwaggerGen();
 
 builder.Services.AddMyServices();  // Dependency Injection of My Services
 
@@ -66,25 +67,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-// WJC: BREAK OUT SWAGGER INTO ITS OWN METHOD
-
-//if (app.Environment.IsDevelopment()){
-app.UseSwagger(options =>
-	{
-		options.RouteTemplate = "docs/{documentName}/docs.json";
-		options.SerializeAsV2 = true;  // Required for DotNet 9 to work 
-	});
-    app.UseSwaggerUI(options =>
-    {
-		options.EnableTryItOutByDefault();
-		
-		options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
-		options.RoutePrefix = "docs";
-		options.EnableTryItOutByDefault();
-		options.InjectStylesheet("/swagger-ui/custom.css");
-		options.InjectJavascript("/swagger-ui/custom.js");
-    });
-//}
+app.UseMySwagger();
 
 app.UseHttpsRedirection();
 
@@ -94,7 +77,7 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-app.RegisterEndpoints();
+app.RegisterMyEndpoints();
 
 app.MapFallbackToFile("/index.html");
 

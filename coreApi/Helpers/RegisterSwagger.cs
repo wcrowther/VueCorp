@@ -1,49 +1,90 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace coreApi.Helpers
 {
 	public static class RegisterSwagger 
     {
-		// Adds Authorization field to Swagger documents
-		// If we use Type = 'SecuritySchemeType.ApiKey' then we have to prefix 'Bearer '
-		// 'SecuritySchemeType.Http' works better 
 
-		public static Action<SwaggerGenOptions> AddMySwaggerGenOptions()
-        {
-            return c =>
-            {
-				c.SwaggerDoc("v1", new OpenApiInfo 
-				{ 
-					Title = "VueCorp API", 
+		public static void AddMySwaggerGen(this IServiceCollection services)
+		{
+			services.AddSwaggerGen(AddMySwaggerGenOptions());
+		}	
+
+		public static void UseMySwagger(this WebApplication app, bool allEnvironments = true)
+		{
+			if (allEnvironments || app.Environment.IsDevelopment())
+			{
+				app.UseSwagger(MyUseSwaggerOptions());
+				app.UseSwaggerUI(MyUseSwaggerUIOptions());
+			}
+		}
+
+		// ==================================================================================
+
+		private static Action<SwaggerGenOptions> AddMySwaggerGenOptions()
+		{
+			return options =>
+			{
+				options.SwaggerDoc("v1", new OpenApiInfo
+				{
+					Title = "VueCorp API",
 					Version = "v1"
 				});
 
-                c.AddSecurityDefinition("Bearer", 
+				options.AddSecurityDefinition("Bearer",
 					new OpenApiSecurityScheme()
 					{
 						In              = ParameterLocation.Header,
-						Type            = SecuritySchemeType.Http, 
+						Type            = SecuritySchemeType.ApiKey,
+						Scheme          = JwtBearerDefaults.AuthenticationScheme,
 						Name            = "Authorization",
-						Scheme          = "Bearer",
 						BearerFormat    = "JWT",
-						Description     = "JWT Authorization header using the Bearer scheme."
+						Description     = "Add 'Bearer ' + JWT token from 'login' call below."
 					}
 				);
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
-                    }
-                });
-            };
-        }
-    }
+				options.AddSecurityRequirement(new OpenApiSecurityRequirement {
+					{
+						new OpenApiSecurityScheme
+						{
+							Reference = new OpenApiReference
+							{
+								Type = ReferenceType.SecurityScheme,
+								Id = "Bearer"
+							}
+						},
+						Array.Empty<string>()
+					}
+				});
+			};
+		}
+
+		private static Action<SwaggerOptions> MyUseSwaggerOptions()
+		{
+			return options =>
+			{
+				options.RouteTemplate = "docs/{documentName}/docs.json";
+				options.SerializeAsV2 = true;  // Required for DotNet 9 to work 
+			};
+		}
+
+		private static Action<SwaggerUIOptions> MyUseSwaggerUIOptions()
+		{
+			return options =>
+			{
+				options.EnableTryItOutByDefault();
+
+				options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
+				options.RoutePrefix = "docs";
+				options.EnableTryItOutByDefault();
+				options.InjectStylesheet("/swagger-ui/custom.css");
+				options.InjectJavascript("/swagger-ui/custom.js");
+			};
+		}
+
+
+	}
 }
