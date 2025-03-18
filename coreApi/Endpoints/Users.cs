@@ -15,41 +15,52 @@ public static partial class Endpoints
 					   .WithOpenApi()
 					   .WithTags("Users");
 
-		users.MapGet("/getAllUsers", (IUserManager _userManager) =>
-        {
-            var users = _userManager.GetAllUsers();
 
-            return users;
+		// getAllUsers
+		users.MapGet("/getAllUsers", (IUserManager userManager) =>
+        {
+            var allUsers = userManager.GetAllUsers();
+
+            return allUsers;
         });
 
-		users.MapPost("/getPagedUsers", (IUserManager _userManager, [FromBody] Pager pager) =>
+		// getPagedUsers
+		users.MapPost("/getPagedUsers", (	IUserManager userManager, 
+											[FromBody] Pager pager) =>
 		{
-			var accounts = _userManager.GetPagedUsers(pager);
+			var pagedList = userManager.GetPagedUsers(pager);
 
-			return Results.Ok(accounts);
+			return Results.Ok(pagedList);
 		});
 
-		users.MapGet("/getUserById/{userId}", (IUserManager _userManager, int userId) =>
+		// getUserById
+		users.MapGet("/getUserById/{userId}", (		IUserManager userManager, 
+													int userId) =>
 		{
-			var acct = _userManager.GetUserById(userId);
+			var user = userManager.GetUserById(userId);
 
-			return Results.Ok(acct);
+			return Results.Ok(user);
 		});
 
-		users.MapPost("/saveUser", (IUserManager _userManager, [FromBody] User user) =>
+		// saveUser
+		users.MapPost("/saveUser", (	IUserManager userManager, 
+										[FromBody] User user) =>
 		{
-			var acct = _userManager.SaveUser(user);
+			var savedUser = userManager.SaveUser(user);
 
-			return Results.Ok(acct);
+			return Results.Ok(savedUser);
 		})
 		.Validate<User>(false)
-		.RequireAuthorization("Admin"); 
+		.RequireAuthorization("Admin");
 
-		users.MapPost("/createUser", (IUserManager _userManager, [FromBody] UserToCreate userToCreate) =>
+		// createUser
+		users.MapPost("/createUser", (	IUserManager _userManager,
+										[FromBody] UserToCreate userToCreate,
+										HttpContext httpContext) =>
 		{
-			var acct = _userManager.CreateUser(userToCreate);
+			var createdUser = _userManager.CreateUser(userToCreate, httpContext);
 
-			return Results.Ok(acct);
+			return Results.Ok(createdUser);
 		})
 		.Validate<UserToCreate>();
 	}

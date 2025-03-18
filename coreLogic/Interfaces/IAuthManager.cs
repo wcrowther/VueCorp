@@ -9,7 +9,7 @@ public interface IAuthManager
 {
 	Returns<AuthUser> Authenticate(AuthRequest authRequest);
 
-	Returns<AuthUser> Signup(UserToCreate userToCreate);
+	Returns<AuthUser> Signup(UserToCreate userToCreate, HttpContext httpContext);
 
 	Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext);
 }

@@ -43,6 +43,7 @@ export const useMessageStore = defineStore('MessageStore',
 
             this.lastMessage    = message
             this.lastDateTime   = new Date()
+            
             console.log(`${type}: ${message}`)
         }
     }

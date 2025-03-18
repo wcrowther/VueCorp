@@ -10,5 +10,7 @@ public class Search
 
     public string Sort { get; set; } = "";
 
-    public bool SortDesc { get; set; } = false;
+    public bool SortDesc { get; set; }
+
+	public static readonly Search Default = new();
 }

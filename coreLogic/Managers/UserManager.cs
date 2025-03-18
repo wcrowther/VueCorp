@@ -46,7 +46,7 @@ public class UserManager(	IUserRepo userRepo,
 		return user;
 	}
 
-	public User CreateUser(UserToCreate userToCreate)
+	public User CreateUser(UserToCreate userToCreate, HttpContext httpContext)
 	{
 		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
 
@@ -55,7 +55,11 @@ public class UserManager(	IUserRepo userRepo,
 
 		string passwordHash = bCrypt.HashPassword(userToCreate.Password);
 
-		return userRepo.CreateUser(userToCreate, passwordHash);
+		var createdUser = userRepo.CreateUser(userToCreate, passwordHash);
+
+		cookieManager.SetRefreshTokenCookie(createdUser.RefreshToken, httpContext);
+
+		return createdUser;
 	}
 
 	public User UpdateUserRefreshToken(User user, HttpContext httpContext)

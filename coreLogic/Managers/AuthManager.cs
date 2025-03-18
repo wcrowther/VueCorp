@@ -36,14 +36,14 @@ public class AuthManager(	IUserManager userManager,
 		return GetAuthResponse(user);
 	}
 
-	public Returns<AuthUser> Signup(UserToCreate userToCreate)
+	public Returns<AuthUser> Signup(UserToCreate userToCreate, HttpContext httpContext)
 	{
 		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
 		if (existingUser is not null)
 			return Returns<AuthUser>.Error($"Not able to sign up user {userToCreate.UserName}");
 
-		var user = userManager.CreateUser(userToCreate);
+		var user = userManager.CreateUser(userToCreate, httpContext);
 		var authResponse = GetAuthResponse(user);
 
 		return Returns<AuthUser>.Ok(authResponse);

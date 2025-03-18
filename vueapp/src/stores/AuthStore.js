@@ -71,14 +71,13 @@ export const useAuthStore = defineStore('AuthStore',
         async refreshAuth (authRefreshRequest)
         {
             try
-            {
-                console.log(`Refresh Token updated at ${timeFormat(Date.now())}.`)
-                
+            {                
                 const result  = await apiPost(`/authenticate/refreshAuth`, authRefreshRequest)
 
                 if(result.success) 
                 {
                     this.authUser = result.data
+                    console.log(`Refresh Token updated at ${timeFormat(Date.now())}.`)
                 }
             }
             catch(err)

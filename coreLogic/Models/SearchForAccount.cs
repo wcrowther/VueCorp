@@ -1,5 +1,4 @@
 ﻿using coreApi.Models.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace coreApi.Models;
 
@@ -9,4 +8,5 @@ public class SearchForAccount : Search
 
 	public string PostalCodeFilter { get; set; } = "";
 
+	public readonly static new SearchForAccount Default = new();
 }

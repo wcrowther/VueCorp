@@ -16,7 +16,9 @@ public static partial class Endpoints
                       .WithOpenApi()
 					  .WithTags("Authenticate");
 
-        auth.MapPost("/login", (AuthRequest model, IAuthManager _authManager) =>
+		// login
+        auth.MapPost("/login", (	AuthRequest model, 
+									IAuthManager _authManager) =>
         {
             Returns<AuthUser> returns = _authManager.Authenticate(model);
 
@@ -25,12 +27,14 @@ public static partial class Endpoints
 					: Results.Unauthorized();
 		})
 		.Validate<AuthRequest>(false)
-        .WithName("Authenticate");
+        .WithName("Login");
 
-
-		auth.MapPost("/signup", (UserToCreate model, IAuthManager _authManager) =>
+		// signup
+		auth.MapPost("/signup", (		UserToCreate model, 
+										IAuthManager _authManager,
+										HttpContext httpContext) =>
 		{
-			Returns<AuthUser> returns = _authManager.Signup(model);
+			Returns<AuthUser> returns = _authManager.Signup(model, httpContext);
 
 			return	returns.Success 
 					? Results.Ok(returns.Data) 
@@ -39,7 +43,7 @@ public static partial class Endpoints
 		.Validate<UserToCreate>(false)
 		.WithName("Signup");
 
-
+		// refreshAuth
 		auth.MapPost("/refreshAuth", (	AuthRefreshRequest request, 
 										IAuthManager _authManager,
 										HttpContext httpContext  ) =>

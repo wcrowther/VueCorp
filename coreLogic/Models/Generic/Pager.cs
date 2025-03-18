@@ -29,7 +29,7 @@ public class Pager<TSearch>
 
     public int TotalCount { get; set; } = 10000;
 
-    public virtual TSearch Search { get; set; } = default;
+    public virtual TSearch Search { get; set; } 
 
     public override string ToString() => JsonConvert.SerializeObject(this);
 
@@ -38,5 +38,5 @@ public class Pager<TSearch>
 
 public class Pager : Pager<Search>
 {
-    public override Search Search { get; set; } = default;
+    public override Search Search { get; set; } = Search.Default;
 }
