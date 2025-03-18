@@ -11,6 +11,8 @@ export function AutoRefreshToken()
 
 	const refreshToken = () =>
 	{
+		console.log(`AutoRefreshToken.refreshToken: ${authUser.value.UserId}.`)
+
 		let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
 		refreshAuth(authRefreshRequest)
 	}
