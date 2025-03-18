@@ -18,15 +18,17 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
-	public AuthUser Authenticate(AuthRequest authRequest)
+	public Returns<AuthUser> Authenticate(AuthRequest authRequest)
 	{
 		var user = userManager.GetUserByUsername(authRequest.UserName);
 
 		if (user == null || !Verifier.Verify(authRequest.Password, user.PasswordHash))
 		{
-			logger.LogInformation($"Authenticating user not found for: '{authRequest.UserName}'");
+			string message = $"Not able to sign up user {authRequest.UserName}";
 
-			return null;
+			logger.LogInformation(message);
+
+			return Returns<AuthUser>.Error(message);
 		}
 
 		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");

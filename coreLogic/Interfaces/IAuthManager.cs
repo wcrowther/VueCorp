@@ -1,14 +1,13 @@
 ﻿using coreApi.Models;
 using coreLogic.Models;
 using coreLogic.Models.Generic;
-
 using Microsoft.AspNetCore.Http;
 
 namespace coreLogic.Interfaces;
 
 public interface IAuthManager
 {
-	AuthUser Authenticate(AuthRequest model);
+	Returns<AuthUser> Authenticate(AuthRequest authRequest);
 
 	Returns<AuthUser> Signup(UserToCreate userToCreate);
 
