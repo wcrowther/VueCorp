@@ -34,7 +34,7 @@ public static partial class Endpoints
 
 			return	returns.Success 
 					? Results.Ok(returns.Data) 
-					: Results.BadRequest(returns.Exception.Message);
+					: Results.BadRequest(returns.Fault.Message);
 		})
 		.Validate<UserToCreate>(false)
 		.WithName("Signup");
@@ -48,7 +48,7 @@ public static partial class Endpoints
 
 			return	returns.Success 
 					? Results.Ok(returns.Data) 
-					: Results.BadRequest(returns.Exception.Message);
+					: Results.BadRequest(returns.Fault.Message);
 		})
 		.Validate<AuthRefreshRequest>(false)
 		.WithName("RefreshAuth");

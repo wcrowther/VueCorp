@@ -5,44 +5,47 @@ public class Returns<T>
 {
 	public T Data { get; init; }
 
-	public Exception Exception { get; init; }
+	public Fault Fault { get; init; }
 
-	public bool Success => Exception is null;
+	public bool Success => Fault is null;
 
 	public bool HasData => Data is not null;
 
 
 	public static implicit operator Returns<T>(T data) => new() { Data = data };
 
-	public static implicit operator Returns<T>(Exception ex) => new() { Exception = ex };
+	public static implicit operator Returns<T>(Fault fault) => new() { Fault = fault };
 
 
 	public static Returns<T> Ok(T data) => new() { Data = data };
 
-	public static Returns<T> Error(string message, T data = default) => new() { Exception = new Exception(message), Data = data };
+	public static Returns<T> Error(string message, T data = default) => new() { Fault = new Fault { Message = message }, Data = data };
 
-	public static Returns<T> Error(Exception exception, T data = default) => new() { Exception = exception, Data = data };
+	public static Returns<T> Error(Fault fault, T data = default) => new() { Fault = fault, Data = data };
 }
 
 public class Returns : Returns<string>
 {
 	public static implicit operator Returns(string data) => new() { Data = data };
 
-	public static implicit operator Returns(Exception ex) => new() { Exception = ex };
+	public static implicit operator Returns(Fault fault) => new() { Fault = fault };
 
-	public override string ToString() => Success ? Data : Exception.Message;
+	public override string ToString() => Success ? Data : Fault.Message;
 }
 
-public class Error 
+public class Fault 
 {
 	public string Message { get; set; }
 
-	public Error InnerError { get; set; }
+	public Fault InnerFault { get; set; }
 
 
-	public static implicit operator Error(Exception ex) => new()
+	public static implicit operator Fault(Exception ex)
 	{
-		Message     = ex.Message,
-		InnerError  = ex.InnerException
-	};
+		return new()
+		{
+			Message     = ex.Message,
+			InnerFault  = ex.InnerException
+		};
+	}
 }
