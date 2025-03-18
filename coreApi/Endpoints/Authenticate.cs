@@ -18,11 +18,11 @@ public static partial class Endpoints
 
         auth.MapPost("/login", (AuthRequest model, IAuthManager _authManager) =>
         {
-            AuthUser result = _authManager.Authenticate(model);
+            Returns<AuthUser> returns = _authManager.Authenticate(model);
 
-			return	result == null 
-					? Results.Unauthorized() 
-					: Results.Ok(result);
+			return	returns.Success
+					? Results.Ok(returns.Data)
+					: Results.Unauthorized();
 		})
 		.Validate<AuthRequest>(false)
         .WithName("Authenticate");
@@ -30,11 +30,11 @@ public static partial class Endpoints
 
 		auth.MapPost("/signup", (UserToCreate model, IAuthManager _authManager) =>
 		{
-			Returns<AuthUser> result = _authManager.Signup(model);
+			Returns<AuthUser> returns = _authManager.Signup(model);
 
-			return	result.Success 
-					? Results.Ok(result.Data) 
-					: Results.BadRequest(result.Exception.Message);
+			return	returns.Success 
+					? Results.Ok(returns.Data) 
+					: Results.BadRequest(returns.Exception.Message);
 		})
 		.Validate<UserToCreate>(false)
 		.WithName("Signup");
@@ -44,11 +44,11 @@ public static partial class Endpoints
 										IAuthManager _authManager,
 										HttpContext httpContext  ) =>
 		{
-			Returns<AuthUser> result = _authManager.RefreshAuth(request, httpContext);
+			Returns<AuthUser> returns = _authManager.RefreshAuth(request, httpContext);
 
-			return	result.Success 
-					? Results.Ok(result.Data) 
-					: Results.BadRequest(result.Exception.Message);
+			return	returns.Success 
+					? Results.Ok(returns.Data) 
+					: Results.BadRequest(returns.Exception.Message);
 		})
 		.Validate<AuthRefreshRequest>(false)
 		.WithName("RefreshAuth");
