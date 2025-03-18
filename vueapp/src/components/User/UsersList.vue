@@ -78,8 +78,9 @@
 
         await getPagedUsers(listPager.value)
 
-        currentPage.value   = listPager.value.currentPage()
-        activeItem.value    = itemsList.value[listPager.value.offset()]
+        currentPage.value           = listPager.value.currentPage()
+        activeItem.value            = itemsList.value[listPager.value.offset()]
+        listPageSizeDefault.value   = listPager.value.PageSize
 
         setActiveItem()
     } 
