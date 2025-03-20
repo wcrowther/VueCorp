@@ -7,3 +7,5 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>", Scope = "member", Target = "~P:coreApi.Models.Generic.PagedList`2.ListItems")]
 [assembly: SuppressMessage("Style", "IDE0023:Use block body for conversion operator", Justification = "<Pending>", Scope = "member", Target = "~M:coreLogic.Models.Generic.Error.op_Implicit(System.Fault)~coreLogic.Models.Generic.Error")]
+[assembly: SuppressMessage("Performance", "CA1848:Use the LoggerMessage delegates", Justification = "<Pending>", Scope = "member", Target = "~M:coreLogic.Managers.AuthManager.Authenticate(coreApi.Models.AuthRequest)~coreLogic.Models.Generic.Returns{coreApi.Models.AuthUser}")]
+[assembly: SuppressMessage("Usage", "CA2254:Template should be a static expression", Justification = "<Pending>", Scope = "member", Target = "~M:coreLogic.Managers.AuthManager.Authenticate(coreApi.Models.AuthRequest)~coreLogic.Models.Generic.Returns{coreApi.Models.AuthUser}")]
