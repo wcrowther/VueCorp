@@ -5,13 +5,13 @@ const authStore     	= useAuthStore()
 const { refreshAuth }   = authStore
 const { authUser  } 	= storeToRefs(authStore)
 
-export function AutoRefreshToken()
+export function AutoRefreshAuth()
 {
 	let interval = null
 
 	const refreshToken = () =>
 	{
-		console.log(`AutoRefreshToken.refreshToken: ${authUser.value.UserId}.`)
+		console.log(`AutoRefreshAuth.refreshToken: ${authUser.value.UserId}.`)
 
 		let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
 		refreshAuth(authRefreshRequest)

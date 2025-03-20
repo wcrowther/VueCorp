@@ -5,7 +5,7 @@
 
     const { sideBarHidden, showBreakpoints, altColors }	= storeToRefs(appStore)
 
-    // Keyboard Listeners & AutoRefreshToken  ========================================================
+    // Keyboard Listeners & AutoRefreshAuth  ========================================================
 
     const keys = function (e)   
     {
@@ -14,7 +14,7 @@
 
 	KeyboardListeners(keys)
 
-	AutoRefreshToken()	
+	AutoRefreshAuth()	
 
 </script>
 

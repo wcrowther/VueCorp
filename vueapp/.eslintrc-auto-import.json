@@ -115,6 +115,7 @@
     "IsNotDuplicateMessage": true,
     "useAuth": true,
     "AuthRefreshRequest": true,
-    "AutoRefreshToken": true
+    "AutoRefreshToken": true,
+    "AutoRefreshAuth": true
   }
 }

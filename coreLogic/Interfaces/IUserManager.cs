@@ -12,8 +12,6 @@ public interface IUserManager
 
 	User GetUserById(int id);
 
-	User CreateUser(UserToCreate model, string passwordHash);
-
 	PagedList<User> GetPagedUsers(Pager pager);
 
 	User SaveUser(User user);

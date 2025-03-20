@@ -27,11 +27,6 @@ public class UserManager(	IUserRepo userRepo,
 		return userRepo.GetUserById(id);
 	}
 
-	public User CreateUser(UserToCreate model, string passwordHash)
-	{
-		return userRepo.CreateUser(model, passwordHash);
-	}
-
 	public PagedList<User> GetPagedUsers(Pager pager)
 	{
 		pager ??= new Pager();
@@ -41,21 +36,14 @@ public class UserManager(	IUserRepo userRepo,
 
 	public User SaveUser(User user)
 	{
-		userRepo.SaveUser(user);
-
-		return user;
+		return userRepo.SaveUser(user);
 	}
 
 	public User CreateUser(UserToCreate userToCreate, HttpContext httpContext)
 	{
-		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
+		tokenManager.CreateNewRefreshTokenForUser(userToCreate);
 
-		userToCreate.RefreshToken           = token;
-		userToCreate.RefreshTokenExpiration = expiration;
-
-		string passwordHash = bCrypt.HashPassword(userToCreate.Password);
-
-		var createdUser = userRepo.CreateUser(userToCreate, passwordHash);
+		var createdUser = userRepo.CreateUser(userToCreate, bCrypt.HashPassword(userToCreate.Password));
 
 		cookieManager.SetRefreshTokenCookie(createdUser.RefreshToken, httpContext);
 
@@ -64,10 +52,7 @@ public class UserManager(	IUserRepo userRepo,
 
 	public User UpdateUserRefreshToken(User user, HttpContext httpContext)
 	{
-		var (token, expiration) = tokenManager.GenerateRefreshTokenAndExpiration();
-
-		user.RefreshToken           = token;
-		user.RefreshTokenExpiration = expiration;
+		tokenManager.CreateNewRefreshTokenForUser(user);
 
 		var refreshedUser = SaveUser(user);
 

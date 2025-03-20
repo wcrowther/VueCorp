@@ -1,10 +1,12 @@
 ﻿using coreApi.Models;
 using coreLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace coreLogic.Managers;
 
-public class CookieManager(AppSettings appSettings) : ICookieManager
+public class CookieManager(	AppSettings appSettings) 
+: ICookieManager
 {
 	public void SetRefreshTokenCookie(string refreshToken, HttpContext httpContext)
 	{

@@ -6,6 +6,7 @@ using coreLogic.Models;
 using coreLogic.Models.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
 using WildHare.Extensions;
 using Verifier = BCrypt.Net.BCrypt;
 
@@ -18,7 +19,7 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
-	public Returns<AuthUser> Authenticate(AuthRequest authRequest)
+	public Returns<AuthUser> Authenticate(AuthRequest authRequest, HttpContext httpContext)
 	{
 		var user = userManager.GetUserByUsername(authRequest.UserName);
 
@@ -32,6 +33,8 @@ public class AuthManager(	IUserManager userManager,
 		}
 
 		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");
+
+		user = userManager.UpdateUserRefreshToken(user, httpContext);
 
 		return GetAuthResponse(user);
 	}

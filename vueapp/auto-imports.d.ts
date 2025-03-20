@@ -9,6 +9,7 @@ declare global {
   const AuthRefreshRequest: typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
   const AuthUser: typeof import('./src/models/AuthUser.js')['AuthUser']
+  const AutoRefreshAuth: typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']
   const AutoRefreshToken: typeof import('./src/helpers/AutoRefreshToken.js')['AutoRefreshToken']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
@@ -126,7 +127,7 @@ declare module 'vue' {
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
-    readonly AutoRefreshToken: UnwrapRef<typeof import('./src/helpers/AutoRefreshToken.js')['AutoRefreshToken']>
+    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
@@ -233,7 +234,7 @@ declare module '@vue/runtime-core' {
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
-    readonly AutoRefreshToken: UnwrapRef<typeof import('./src/helpers/AutoRefreshToken.js')['AutoRefreshToken']>
+    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>

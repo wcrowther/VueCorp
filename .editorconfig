@@ -1,7 +1,7 @@
 ﻿[*.cs]
 
 # Default severity for all analyzer diagnostics
-dotnet_analyzer_diagnostic.severity = suggestion
+dotnet_analyzer_diagnostic.severity = none
 
 # IDE0055: Fix formatting
 dotnet_diagnostic.IDE0055.severity = none
@@ -100,6 +100,9 @@ dotnet_diagnostic.IDE0160.severity = none
 dotnet_diagnostic.IDE0058.severity = none
 csharp_prefer_system_threading_lock = true:suggestion
 csharp_space_around_binary_operators = ignore
+
+# CA2254: Template should be a static expression
+dotnet_diagnostic.CA2254.severity = none
 
 [*.{cs,vb}]
 #### Naming styles ####

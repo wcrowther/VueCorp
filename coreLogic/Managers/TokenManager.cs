@@ -51,4 +51,14 @@ public class TokenManager(AppSettings appSettings)
 
 		return (Convert.ToBase64String(randomNumber), expiration);
 	}
+
+	public User CreateNewRefreshTokenForUser(User user)
+	{
+		var (token, expiration) = GenerateRefreshTokenAndExpiration();
+
+		user.RefreshToken           = token;
+		user.RefreshTokenExpiration = expiration;
+
+		return user;
+	}
 }

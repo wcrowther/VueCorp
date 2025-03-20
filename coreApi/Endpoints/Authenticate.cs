@@ -18,9 +18,10 @@ public static partial class Endpoints
 
 		// login
         auth.MapPost("/login", (	AuthRequest model, 
-									IAuthManager _authManager) =>
-        {
-            Returns<AuthUser> returns = _authManager.Authenticate(model);
+									IAuthManager _authManager,
+									HttpContext httpContext) =>
+		{
+            Returns<AuthUser> returns = _authManager.Authenticate(model, httpContext);
 
 			return	returns.Success
 					? Results.Ok(returns.Data)
