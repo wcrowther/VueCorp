@@ -17,11 +17,13 @@
 		if(isValidAuth)	
 			return loginUser()
 
-		messageStore.showInfo('Please enter a valid UserName and Password.');
+		messageStore.showInfo('Please enter a valid UserName and Password');
+		console.log(v$.value.$errors.map(e => `${e.$property} : ${e.$message}`).join('\n'))
 
-		v$.value.$errors.forEach(error => {
-			console.log(`${error.$property} : ${error.$message}`) 
-		});
+		// Alternate version:
+		// v$.value.$errors.forEach(error => {
+		// 	console.log(`${error.$property} : ${error.$message}`) 
+		// });
 	}
 
 </script>
