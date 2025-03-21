@@ -7,9 +7,10 @@
 
 <template>
 
-	<LayoutLogin>
+	<LayoutAuth>
 
-		<div id="mainContent" class="p-10 pb-12 relative h-full bg-color-lighter-gray"> 
+		<div id="mainContent" 
+			class="p-10 pb-12 relative h-full bg-color-lighter-gray"> 
 
 			<LoginView v-if="!showNewUser">
 				<span class="btn-secondary" @click="showNewUser=true">New User Signup</span>
@@ -21,6 +22,6 @@
 
 		</div>
 
-	</LayoutLogin>	
+	</LayoutAuth>	
 
 </template>
