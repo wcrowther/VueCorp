@@ -5,7 +5,7 @@ export const useAccountsStore = defineStore('AccountsStore',
 {
     state: () => 
     ({
-        accountsPager:      new Pager(),
+        accountsPager:      new PagerModel(),
         accountsList:       [],
         account:            {},
         detailAccountId:    0
@@ -15,7 +15,7 @@ export const useAccountsStore = defineStore('AccountsStore',
     {
         addNewAccount()
         {
-            this.account = new Account()
+            this.account = new AccountModel()
         },
         async getPagedAccounts (pager)
         {
@@ -28,7 +28,7 @@ export const useAccountsStore = defineStore('AccountsStore',
                 
                 if(result.success) 
                 {
-                    this.accountsPager  = Object.assign(new Pager(), result.data.Result.Pager)
+                    this.accountsPager  = Object.assign(new PagerModel(), result.data.Result.Pager)
                     this.accountsList   = result.data.Result.ListItems   
                 }
             }
@@ -85,7 +85,7 @@ export const useAccountsStore = defineStore('AccountsStore',
 //     axios.post(queryUrl, pager, axiosConfig) 
 //     .then((result) => 
 //     {
-//         this.accountsPager    = Object.assign(new Pager(), result.data.pager)
+//         this.accountsPager    = Object.assign(new PagerModel(), result.data.pager)
 //         this.accountsList     = result.data.listItems // NOTE: casing of listItems  
 // 
 //         console.log(JSON.parse(JSON.stringify(this.accountsPager))) 

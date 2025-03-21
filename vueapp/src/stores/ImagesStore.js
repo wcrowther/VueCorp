@@ -5,7 +5,7 @@ export const useImagesStore = defineStore('ImagesStore',
 {
     state: () => 
     ({
-        imagesPager:        new Pager(),
+        imagesPager:        new PagerModel(),
         imagesList:         [],
         imageDetail:        {},
         detailImageName:    ''
@@ -24,7 +24,7 @@ export const useImagesStore = defineStore('ImagesStore',
                 
                 if(result.success) 
                 {
-                    this.imagesPager  = Object.assign(new Pager(), result.data.Result.Pager)
+                    this.imagesPager  = Object.assign(new PagerModel(), result.data.Result.Pager)
                     this.imagesList   = result.data.Result.ListItems   
                 }
             }

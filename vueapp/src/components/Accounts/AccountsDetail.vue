@@ -98,7 +98,7 @@
 <template>
     <div class="flex flex-wrap gap-5" id="AccountsDetailView">
         
-        <ConfirmDialog :isVisible="isConfirmVisible"
+        <ConfirmDialog v-if="isConfirmVisible"
 			message="Save Account Data?" @confirm="saveAccountDetail" @cancel="cancelAction" />
 
         <div class="w-full flex justify-between items-center">

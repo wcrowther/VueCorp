@@ -1,6 +1,6 @@
 
 
-function Pager (pageSize, groupSize, search)
+function PagerModel (pageSize, groupSize, search)
 {
     this.pages              = []
 
@@ -8,7 +8,7 @@ function Pager (pageSize, groupSize, search)
     this.PageSize           = pageSize || 15
     this.GroupSize          = groupSize || 5
     this.TotalCount         = 0
-    this.Search             = search || new Search()
+    this.Search             = search || new SearchModel()
 
     // Record Functions =============================================================================
 
@@ -96,7 +96,7 @@ function Pager (pageSize, groupSize, search)
     }
 }
 
-function Search(filter, filterType, sort, sortDesc)
+function SearchModel(filter, filterType, sort, sortDesc)
 {
     this.Filter     = filter || ''
     this.FilterType = filterType || ''      
@@ -138,9 +138,9 @@ function PagedList (pager, list, result)
 
 export
 {
-    Pager,
+    PagerModel,
     PageItem,
     PagedList,
-    Search,
+    SearchModel,
     SearchForAccount
 }

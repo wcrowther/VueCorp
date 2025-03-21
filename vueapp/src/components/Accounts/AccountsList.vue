@@ -33,6 +33,9 @@
     const activeItem                    = ref(null)
     const showAdvSearch                 = ref(false)
 
+    const searchInput                   = ref(null) // used to call method searchInput.value.focusInput()   
+                                                    // on a component. useTemplateRef('searchInput') in Vue 3.5+
+
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
 
@@ -68,7 +71,7 @@
     {
         if(refresh)
         {
-            let newPager                = new Pager()
+            let newPager                = new PagerModel()
             newPager.Search.Filter      = listPager.value.Search.Filter
             newPager.PageSize           = listPager.value.PageSize
             listPager.value             = newPager
@@ -90,14 +93,16 @@
         // console.log(e.code);    
         if      (e.code === 'ArrowUp')    { listPager.value.goToPrevious();     e.preventDefault();}
         else if (e.code === 'ArrowDown')  { listPager.value.goToNext();         e.preventDefault();}
-        else if (e.code === 'Home')       { listPager.value.goToFirstPage();    e.preventDefault();}
-        else if (e.code === 'End')        { listPager.value.goToLastPage();     e.preventDefault();}
         else if (e.code === 'PageDown')   { listPager.value.goToPreviousPage(); e.preventDefault();}
         else if (e.code === 'PageUp')     { listPager.value.goToNextPage();     e.preventDefault();} 
+        else if (e.code === 'Home')       { searchInput.value.focusInput();     e.preventDefault();} 
+    }  
 
-        // 'Ctrl+S' to Save is in AccountsDetail control
-    }
+    // 'Ctrl+S' to Save is in AccountsDetail control
 
+    // ALT: else if (e.code === 'Home') { listPager.value.goToFirstPage(); e.preventDefault();}
+    // ALT: else if (e.code === 'End')  { listPager.value.goToLastPage();  e.preventDefault();}
+   
 	KeyboardListeners(keys);
 
     // Lifecycle & Watches  ==========================================================================
@@ -105,6 +110,7 @@
     onMounted(() =>    
     {        
         refreshList(1, true)
+        searchInput.value.focusInput()
     })
 
     watch(() => listPager.value.CurrentRecord, (newVal, oldVal) => 
@@ -133,7 +139,7 @@
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
             <div class="flex gap-x-1 pt-5 w-full">
-                <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch"></SearchInput>
+                <SearchInput ref="searchInput" v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch" />
             </div>
 
             <div v-if="listPager.Search.StateProvinceFilter.length > 0" 
@@ -142,11 +148,11 @@
             </div>
 
             <div class="w-full flex justify-between items-center select-none my-3">
-                <ListPager class="mr-2" id='listPager' v-bind:pager="listPager"></ListPager>
+                <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
             </div>
 
-            <MobilePagerPrevNext :pager="listPager"></MobilePagerPrevNext>
+            <MobilePagerPrevNext :pager="listPager" />
 
             <HelpBox class="mb-3">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 

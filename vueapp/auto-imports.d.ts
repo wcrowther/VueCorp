@@ -6,6 +6,7 @@
 export {}
 declare global {
   const Account: typeof import('./src/models/Account.js')['Account']
+  const AccountModel: typeof import('./src/models/AccountModel.js')['AccountModel']
   const AuthRefreshRequest: typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
   const AuthUser: typeof import('./src/models/AuthUser.js')['AuthUser']
@@ -16,12 +17,16 @@ declare global {
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
   const IsNotDuplicateMessage: typeof import('./src/helpers/global.js')['IsNotDuplicateMessage']
   const KeyboardListeners: typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']
-  const PageItem: typeof import('./src/models/pager.js')['PageItem']
-  const PagedList: typeof import('./src/models/pager.js')['PagedList']
+  const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
+  const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const Pager: typeof import('./src/models/pager.js')['Pager']
-  const Search: typeof import('./src/models/pager.js')['Search']
-  const SearchForAccount: typeof import('./src/models/pager.js')['SearchForAccount']
+  const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
+  const Search: typeof import('./src/models/PagerModel.js')['Search']
+  const SearchForAccount: typeof import('./src/models/PagerModel.js')['SearchForAccount']
+  const SearchModel: typeof import('./src/models/PagerModel.js')['SearchModel']
+  const SearchMoel: typeof import('./src/models/PagerModel.js')['SearchMoel']
   const User: typeof import('./src/models/user.js')['User']
+  const UserModel: typeof import('./src/models/UserModel.js')['UserModel']
   const accountValidator: typeof import('./src/helpers/validators.js')['accountValidator']
   const apiCall: typeof import('./src/helpers/ApiCall.js')['apiCall']
   const apiGet: typeof import('./src/helpers/ApiCall.js')['apiGet']
@@ -123,7 +128,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
-    readonly Account: UnwrapRef<typeof import('./src/models/Account.js')['Account']>
+    readonly AccountModel: UnwrapRef<typeof import('./src/models/AccountModel.js')['AccountModel']>
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
@@ -132,12 +137,12 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
-    readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
-    readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
-    readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
-    readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
-    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
-    readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
+    readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
+    readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
+    readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
+    readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
+    readonly UserModel: UnwrapRef<typeof import('./src/models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
     readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>
@@ -230,7 +235,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
-    readonly Account: UnwrapRef<typeof import('./src/models/Account.js')['Account']>
+    readonly AccountModel: UnwrapRef<typeof import('./src/models/AccountModel.js')['AccountModel']>
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
@@ -239,12 +244,12 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
-    readonly PageItem: UnwrapRef<typeof import('./src/models/pager.js')['PageItem']>
-    readonly PagedList: UnwrapRef<typeof import('./src/models/pager.js')['PagedList']>
-    readonly Pager: UnwrapRef<typeof import('./src/models/pager.js')['Pager']>
-    readonly Search: UnwrapRef<typeof import('./src/models/pager.js')['Search']>
-    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/pager.js')['SearchForAccount']>
-    readonly User: UnwrapRef<typeof import('./src/models/user.js')['User']>
+    readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
+    readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
+    readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
+    readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
+    readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
+    readonly UserModel: UnwrapRef<typeof import('./src/models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
     readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>

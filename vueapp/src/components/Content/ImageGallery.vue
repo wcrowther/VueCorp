@@ -63,7 +63,7 @@
     {
         if(refresh)
         {
-            let newPager                = new Pager()
+            let newPager                = new PagerModel()
             newPager.Search.Filter      = listPager.value.Search.Filter
             newPager.PageSize           = listPager.value.PageSize
             listPager.value             = newPager

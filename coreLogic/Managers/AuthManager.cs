@@ -37,7 +37,7 @@ public class AuthManager(	IUserManager userManager,
 		user = userManager.UpdateUserRefreshToken(user, httpContext);
 
 		return GetAuthResponse(user);
-	}
+		}
 
 	public Returns<AuthUser> Signup(UserToCreate userToCreate, HttpContext httpContext)
 	{

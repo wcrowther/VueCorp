@@ -1,5 +1,6 @@
 <script setup>
 
+    const messageStore      = useMessageStore()
 	const authStore			= useAuthStore()
 	const { login }			= authStore
 
@@ -8,29 +9,34 @@
 	const v$ 				= useVuelidate(authRequestValidator, authRequest.value)
 
 	const loginUser   		= () => login(authRequest.value)
+
 	const validateAndLogin	= async () =>
 	{
 		let isValidAuth = await v$.value.$validate()
 
 		if(isValidAuth)	
-			loginUser()
-		else
-			console.log(`IsValidAuth: ${isValidAuth}`) // OR USE MESSENGER HERE
+			return loginUser()
+
+		messageStore.showInfo('Please enter a valid UserName and Password.');
+
+		v$.value.$errors.forEach(error => {
+			console.log(`${error.$property} : ${error.$message}`) 
+		});
 	}
 
 </script>
 
 <template>
 
-	<form>
+	<form id="LoginView">
 		<TextInput 		labelName="UserName" autocomplete="username" v-model="authRequest.UserName" :v$ />
 		<PasswordInput 	labelName="Password" autocomplete="password" v-model="authRequest.Password" :v$ />
-	</form>
 
-	<div class="select-none pt-5 flex justify-between gap-3 mb-20">
-		<slot></slot>
-		<button class="btn-primary" @click.prevent="validateAndLogin">Login</button>
-	</div>	
+		<div class="select-none pt-5 flex justify-between gap-3 mb-20">
+			<slot></slot>
+			<button class="btn-primary" @click.prevent="validateAndLogin">Login</button>
+		</div>	
+	</form>
 
 </template>
 

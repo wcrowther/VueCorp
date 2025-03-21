@@ -3,9 +3,9 @@ export const useUsersStore = defineStore('UsersStore',
 {
     state: () => 
     ({
-        usersPager:      new Pager(),
+        usersPager:      new PagerModel(),
         usersList:       [],
-        user:            new User(),
+        user:            new UserModel(),
         detailUserId:    0
     }),
     getters:{},
@@ -13,7 +13,7 @@ export const useUsersStore = defineStore('UsersStore',
     {
         addNewUser()
         {
-            this.user = new User()
+            this.user = new UserModel()
         },
         async getPagedUsers (pager)
         {
@@ -25,7 +25,7 @@ export const useUsersStore = defineStore('UsersStore',
                 
                 if(result.success) 
                 {
-                    this.usersPager  = Object.assign(new Pager(), result.data.Pager)
+                    this.usersPager  = Object.assign(new PagerModel(), result.data.Pager)
                     this.usersList   = result.data.ListItems   
                 }
             }
@@ -49,8 +49,6 @@ export const useUsersStore = defineStore('UsersStore',
         {
             try 
             {
-                console.log('Save User!')
-                
                 const result = await apiPost(`/users/saveUser/`, this.user)
 
                 if(result.success) 

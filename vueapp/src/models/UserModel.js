@@ -1,5 +1,5 @@
 
-function User (userId, userName, firstName, lastName, userEmail, role)
+function UserModel (userId, userName, firstName, lastName, userEmail, role)
 {
 	this.UserId		= userId || 0
 	this.UserName	= userName || ''
@@ -11,5 +11,5 @@ function User (userId, userName, firstName, lastName, userEmail, role)
 
 export
 {
-	User
+	UserModel
 }

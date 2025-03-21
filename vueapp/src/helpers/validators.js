@@ -43,4 +43,3 @@ export const userValidator =
 	UserEmail:          { required , minLength: minLength(6) },
     Role:               { required }
 }
-

@@ -1,5 +1,5 @@
 
-function Account (accountId, accountName)
+function AccountModel (accountId, accountName)
 {
     this.AccountId          = accountId || 0
     this.AccountName        = accountName || ''
@@ -9,12 +9,12 @@ function Account (accountId, accountName)
     this.City               = '' 
     this.StateProvince      = '' 
     this.PostalCode         = ''
-    this.IsInvoiceAccount     = false
-    this.IsAutoPay            = false
+    this.IsInvoiceAccount   = false
+    this.IsAutoPay          = false
     this.IsActive           = false 
 }
 
 export
 {
-    Account
+    AccountModel
 }

@@ -116,6 +116,11 @@
     "useAuth": true,
     "AuthRefreshRequest": true,
     "AutoRefreshToken": true,
-    "AutoRefreshAuth": true
+    "AutoRefreshAuth": true,
+    "UserModel": true,
+    "AccountModel": true,
+    "PagerModel": true,
+    "SearchMoel": true,
+    "SearchModel": true
   }
 }

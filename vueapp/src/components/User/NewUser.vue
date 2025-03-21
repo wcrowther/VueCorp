@@ -2,7 +2,7 @@
 
 	const authStore			= useAuthStore()
 	const { signup }		= authStore
-	const userData 			= ref(new User())
+	const userData 			= ref(new UserModel())
 	const v$ 				= useVuelidate(authSignupValidator, userData.value)
 
 	const signupUser   		= () => signup(userData.value)

@@ -4,7 +4,7 @@
 
     const props = defineProps(
     {
-        pager: Pager,
+        pager: PagerModel,
         id: String 
     })
 

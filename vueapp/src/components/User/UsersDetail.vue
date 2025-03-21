@@ -53,7 +53,7 @@
 
         if(isValidUser)
         {
-             showConfirmSave.value = true
+            showConfirmSave.value = true
         }
         else
         {
@@ -112,11 +112,11 @@
 <template>
 
     <div class="flex flex-wrap gap-5" id="UsersDetailView">
- 
-        <ConfirmDialog :isVisible="showConfirmSave"
-			message="Save User Data?" @confirm="saveUserDetail" @cancel="cancelAction" />
 
-        <div class="w-full flex justify-between items-center    ">
+        <ConfirmDialog v-if="showConfirmSave" message="Save User Data?" 
+			@confirm="saveUserDetail" @cancel="cancelAction" />
+
+        <div class="w-full flex justify-between items-center">
 
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 

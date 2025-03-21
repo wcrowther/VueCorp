@@ -10,8 +10,14 @@
 
     const modelValue    = defineModel()
     const showAdvSearch = defineModel('showAdvSearch')
+    const filterInput   = ref(null)
+
+    // -------------------------------------------------------------------
 
     const resetFilter   = () => modelValue.value = ''
+    const focusInput    = () => filterInput.value?.focus()
+
+    defineExpose({ focusInput }) // exposes to Parent
 
 </script>
 
@@ -20,7 +26,7 @@
     <div class="h-8 w-full relative">
         <input class="text-sm rounded-full w-full h-full pl-5 pr-5 sm:pr-9 select-all border-color-dark-gray"
             id="filterInput" type="text" v-model="modelValue" placeholder="Search" spellcheck="false"
-            :title="props.inputTitle" />
+            ref="filterInput" :title="props.inputTitle" />
         
         <div class="top-0 right-0 flex justify-end items-center gap-0 absolute h-full w-auto">
             <div class="p-1 w-auto flex-center" @click="resetFilter">
