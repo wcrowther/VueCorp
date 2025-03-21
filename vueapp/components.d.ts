@@ -55,6 +55,7 @@ declare module 'vue' {
     TabControl: typeof import('./src/components/TabControl.vue')['default']
     TextInput: typeof import('./src/components/Inputs/TextInput.vue')['default']
     UserAdvSearch: typeof import('./src/components/User/UserAdvSearch.vue')['default']
+    UserPopout: typeof import('./src/components/UserPopout.vue')['default']
     UsersDetail: typeof import('./src/components/User/UsersDetail.vue')['default']
     UsersList: typeof import('./src/components/User/UsersList.vue')['default']
   }

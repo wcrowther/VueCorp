@@ -31,7 +31,7 @@
 			<BreakPoints :show="showBreakpoints" />
 			
 			<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3">
-				<LoginPopout />
+				<UserPopout />
 				<BrandLogo />
 			</BrandBar>
 
