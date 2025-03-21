@@ -24,7 +24,7 @@
     
     <div class="absolute z-50 xs:relative flex-none transform transition-all duration-[300ms] overflow-hidden"
         :class="[ sideBarHidden ? 'w-0' : 'w-full xs:w-[300px]']">
-        <div class="absolute right-0 bg-yellow w-full min-w-[300px] xs:relative xs:w-[300px] xs:min-w-1">
+        <div class="absolute right-0 w-full min-w-[300px] xs:relative xs:w-[300px] xs:min-w-1">
             <slot></slot>
         </div> 
     </div>
