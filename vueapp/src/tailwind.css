@@ -10,7 +10,7 @@
 		box-sizing: border-box;
 	}
 	
-	body{
+	html,body{
 		min-width: 380px;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
@@ -80,23 +80,30 @@
 	}
 
 	/*=====================================================================
-		Custom page scrollbar
-	===================================================================== */
+		Custom page scrollbar 
+	===================================================================== 
+	*/
 
-	body { overflow-y: scroll; scrollbar-width: thin; scrollbar-color: var(--thumbBG) var(--scrollbarBG); }
-	body::-webkit-scrollbar 		{ width: 15px;}
-	body::-webkit-scrollbar-corner 	{ background: var(--scrollbarBG); }
-	body::-webkit-scrollbar-track 	{ background: var(--scrollbarBG); }
-	body::-webkit-scrollbar-thumb 	{ background-color: var(--thumbBG); 
-		border: 2px solid var(--scrollbarBG); border-radius: 6px;
+	html { 
+		overflow-y: scroll; 
+		scrollbar-width: auto; 
+		scrollbar-color: var(--scrollbarBG) var(--thumbBG) ; 
 	}
-
+	html::-webkit-scrollbar 		{ width: thin;}
+	html::-webkit-scrollbar-corner 	{ background: var(--scrollbarBG); }
+	html::-webkit-scrollbar-track 	{ background: var(--scrollbarBG); }
+	html::-webkit-scrollbar-thumb 	{ background-color: var(--thumbBG); 
+									  border: 2px solid var(--scrollbarBG); 
+									  border-radius: 6px;
+	} 
+	
 	/*===================================================================== */
 
 	.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #b7b7b7 white; }
 	.scrollbar-thin::-webkit-scrollbar { width: 16px; }
 	.scrollbar-thin::-webkit-scrollbar-track { @apply bg-gray-200; }
 	.scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-gray-400 rounded-lg; }
+	
 	.scrollbar-medium { scrollbar-width: 12px; scrollbar-color: #b7b7b7 white; }
 	.scrollbar-medium::-webkit-scrollbar { width: 12px; }
 	.scrollbar-medium::-webkit-scrollbar-track { @apply bg-gray-200; }

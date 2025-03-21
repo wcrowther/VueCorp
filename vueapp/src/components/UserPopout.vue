@@ -22,9 +22,11 @@
         logout()
     }  
 
-
-
-    const tokenToClipboard = () => { copy(authUser.value.Token); messageStore.showInfo('Value copied to the clipboard.'); }
+    const tokenToClipboard = () => 
+    { 
+        copy(authUser.value.Token); 
+        messageStore.showInfo('Value copied to the clipboard.'); 
+    }
 
     const fullName = computed(() => authUser.value.LastName ? `${authUser.value.FirstName} ${authUser.value.LastName}` : '---')
 
@@ -40,12 +42,12 @@
         refreshAuth(authRefreshRequest)
     }
 
-    // const numbers           = ref()
-    // const filteredToNumbers = computed(
-    // {
-    //     get: () => numbers.value,
-    //     set: (newValue) =>  numbers.value = numbersOnly(newValue)
-    // });
+    const numbers           = ref()
+    const filteredToNumbers = computed(
+    {
+        get: () => numbers.value,
+        set: (newValue) =>  numbers.value = numbersOnly(newValue)
+    });
 
 </script>
 
@@ -59,7 +61,7 @@
         </div>
 
         <router-link v-if="!isLoggedIn" title="Login"
-            class="p-3 text-white tracking-wider" to='/login'>Login 
+            class="p-3 text-white tracking-wider" to='/auth/login'>Login 
         </router-link>
         
         <div v-if="showPopout"
@@ -139,7 +141,7 @@
                     </div>
                 </div>
 
-                <!--  
+               
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
                     <div class="label-value flex flex-col">
@@ -148,7 +150,7 @@
                         <div class="ml-2 mt-2">{{ usPhoneFormat(numbers) }}</div>
                     </div>
                 </div> 
-                <div class="label-row">
+                 <!--  <div class="label-row">
                     <div class="label-title" 
                         title="Persist search on page load">Persist Search</div>
                     <div class="label-value">
