@@ -6,8 +6,7 @@
 </script>
 
 <template>
-    <div class="relative h-14 pl-5 pr-10 flex justify-end items-center
-        overflow-hidden bg-white select-none">
+    <div class="relative h-14 pl-5 pr-10 flex justify-end items-center overflow-hidden select-none">
         
         <div class="mr-auto">
             <slot name="leftalign"></slot>

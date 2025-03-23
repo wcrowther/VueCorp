@@ -24,16 +24,18 @@ export const theme = {
       main: '-8px 8px 18px -4px rgba(97,97,97,0.75)'
     },
     backgroundImage: {
-      'brand-logo': 'url("/images/VueCorp_sans_white.png")', /*images/Brand_Logo_2_White.png */
+      'brand-logo1': 'url("/images/VueCorp_sans_white.png")', 
+      'brand-logo': 'url("/images/VueCorp_sans_white.png")', 
+      'brand-logo-alt': 'url("/images/VueCorp_sans_navy.png")', 
       'space-stars': 'url("images/space-stars.png")',
       'gradient-brand': 'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
-      'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
+        'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
       'gradient-brand-alt': 'linear-gradient( 20deg, #b8d7ed 20%, transparent 60%)',
       'gradient-back': 'linear-gradient( to bottom, #1c2157 30%, black 100%)',
       'gradient-modal-bar': 'linear-gradient( 58deg, #e8e8e8 20%, rgb(125 125 125) 100%)',
       'gradient-table-head': 'linear-gradient( 58deg, #dddddd 50%, #bdbdbd 100%)',
       'gradient-tab-bar': 'linear-gradient( 58deg, #1c2157 50%, black 100%)',
-      'gradient-subnav': 'linear-gradient( 0deg, #dbeaf3 0%, white 50%)',
+      'gradient-subnav': 'linear-gradient( 170deg, #bdbdbd 0%, white 10%)',
       'gradient-background': 'linear-gradient( to right, #7cb9da 20%, #1b2157 80%)',
       'gradient-main': 'linear-gradient( 205deg, #b8d7ed 0%, white 35%)',
       'gradient-modal': 'linear-gradient( 205deg, #b8d7ed 30%, white 65%)',
@@ -48,7 +50,7 @@ export const theme = {
       'gradient-stripes3': 'repeating-linear-gradient(220deg, #1e293b, #1e293b 10px, black 10px, black 20px)',
       'gradient-white': 'linear-gradient( 0deg, white 0%, white 100%)',
       'gradient-tab': 'linear-gradient( 131deg, #91a5bd 0%, #91a5bd 30%)',
-      'gradient-tab-active': 'linear-gradient( 157deg, #dadada 7%, white 35%)',
+      'gradient-tab-active': 'linear-gradient( 220deg, #dadada 0%, white 20%)',
       // linear-gradient(0deg, rgb(147 147 147 / 30%) 0%, transparent 30%), 
       // linear-gradient( 33deg, transparent 50%, #c4c4c4 80%), 
       // angled version below

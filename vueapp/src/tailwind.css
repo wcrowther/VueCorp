@@ -16,7 +16,6 @@
 		-moz-osx-font-smoothing: grayscale;
 		--scrollbarBG: #1c2157;
 		--thumbBG: #6fa2ca;
-		overflow-y: scroll;
 	}
 
 	[type='text'],

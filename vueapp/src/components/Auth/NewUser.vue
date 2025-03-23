@@ -34,7 +34,7 @@
 		<PasswordInput  labelName="Password" 	v-model="userData.Password"  :v$ />
 	
 		<div class="select-none pt-5 flex justify-end gap-3 mb-5">
-			<button class="btn-primary" @click="validateAndSignup">New User Sign Up</button>
+			<button class="btn-primary" @click.prevent="validateAndSignup">New User Sign Up</button>
 			<slot></slot>
 		</div>	
 	</form>

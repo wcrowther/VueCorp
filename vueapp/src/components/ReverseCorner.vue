@@ -15,20 +15,15 @@
     const color     = ref(props.color)
     const styles    = computed(() => ({ width: size.value, height: size.value }) )
 
-    onMounted(() =>     
-    {
-        // console.log('props.pixelSize: ' + props.pixelSize)
-    })
-
 </script>
 
 <template>
-    <div class="corner shape absolute overflow-hidden" :style="styles"></div>
+    <div class="corner absolute overflow-hidden" :style="styles"></div>
 </template>
 
-// Important: Should not be scoped
-<style lang="postcss"> 
 
+<style lang="postcss"> 
+    /* Important: Should not be scoped. Not this is CSS NOT tailwind */
     .corner:before
     {
         content: "";

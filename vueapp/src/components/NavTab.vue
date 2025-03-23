@@ -1,15 +1,14 @@
 <script setup>
+	const appStore     		= useAppStore()
+    const { altColors }	= storeToRefs(appStore)
 
-    const props = defineProps(
-	{
-		navText: { type: String }
-	});
+    const props = defineProps({ navText: { type: String } });
 
 </script>
 
 <template>
 
-<router-link class="nav-tab" active-class="active-tab">
+<router-link :class="[altColors ? 'nav-tab-alt': 'nav-tab']" active-class="active-tab">
 
 	<slot><span class="">{{props.navText}}</span></slot>
 	<ReverseCorner :pixelSize="7" class="hidden bottom-0 left-[-7px]" />
@@ -23,10 +22,14 @@
 
 	.nav-tab {
 		@apply text-[#bddaef] font-semibold tracking-wide font-sans rounded-full list-none px-4 pt-px h-[28px] text-sm
-		flex items-center relative bg-[#445292] mb-[6px] hover:bg-transparent hover:text-white opacity-80
+		flex items-center relative bg-[#445292] mb-[6px] hover:bg-transparent hover:text-white
+	}   	
+	.nav-tab-alt {
+		@apply text-[#1b2157] font-semibold tracking-wide font-sans rounded-full list-none px-4 pt-px h-[28px] text-sm
+		flex items-center relative bg-white mb-[6px] hover:opacity-50 
 	}    
 	.active-tab {
-		@apply text-orange hover:text-black bg-gradient-tab-active rounded-t-md opacity-100 m-0 h-9 rounded-b-none
+		@apply text-orange hover:text-black bg-gradient-tab-active rounded-t-md opacity-100 m-0 h-9 rounded-b-none hover:opacity-100 
 	}
 	.active-tab .corner {
 		@apply block

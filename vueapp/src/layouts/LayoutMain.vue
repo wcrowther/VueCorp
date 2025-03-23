@@ -37,7 +37,7 @@
 
 			<NavBarMain />
 
-			<div class="relative h-full min-h-[600px] bg-white" id="mainContent">
+			<div :class="['relative h-full min-h-[600px] bg-white', altColors ? 'shadow-[-5px_5px_5px_0px_rgba(195,195,195,0.5)]' : '' ]">
 				<slot></slot>
 			</div>
 			
@@ -50,8 +50,6 @@
 	
 <style lang="postcss" scoped>
 
-	.box-shadow { @apply shadow-[-14px_14px_18px_0px_rgba(97,97,97,0.75)] shadow-color-mid-gray }    
 	.active-tab .icon-symbol { @apply text-orange hover:text-black }
-	.navbar-gradient { @apply bg-[linear-gradient(90deg,#7ab7d8_2%,#1c2157_50%)] md:ml-3 } 
-
+	
 </style>
