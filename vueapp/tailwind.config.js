@@ -24,9 +24,7 @@ export const theme = {
       main: '-8px 8px 18px -4px rgba(97,97,97,0.75)'
     },
     backgroundImage: {
-      'brand-logo1': 'url("/images/VueCorp_sans_white.png")', 
-      'brand-logo': 'url("/images/VueCorp_sans_white.png")', 
-      'brand-logo-alt': 'url("/images/VueCorp_sans_navy.png")', 
+      'brand-logo': 'var(--logo-url)',
       'space-stars': 'url("images/space-stars.png")',
       'gradient-brand': 'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
         'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',

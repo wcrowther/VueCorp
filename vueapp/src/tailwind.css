@@ -5,10 +5,17 @@
 
 @layer base 
 {
-
-	* {
-		box-sizing: border-box;
+	:root {
+		--logo-url: url('/images/VueCorp_sans_white.png');
 	}
+
+	.alt-theme {
+		--logo-url: url('/images/VueCorp_sans_navy.png');
+	}
+
+	/* ---------------------------------------------- */
+
+	* { box-sizing: border-box; }
 	
 	html,body{
 		min-width: 380px;

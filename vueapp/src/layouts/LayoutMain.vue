@@ -2,7 +2,6 @@
 <script setup>
 
     const appStore     			= useAppStore()
-
     const { sideBarHidden, showBreakpoints, altColors }	= storeToRefs(appStore)
 
     // Keyboard Listeners & AutoRefreshAuth  ========================================================
@@ -20,7 +19,9 @@
 
 <template>
 
-	<div class="h-full">
+	<!-- Adding theme here cascades down to the whole page  -->
+	
+	<div class="h-full" :class="{'alt-theme': altColors}">
 
 		<div id="background-div" class="fixed top-0 bottom-0 left-0 right-0"
 			:class="{'bg-gradient-back': !altColors}"></div>
