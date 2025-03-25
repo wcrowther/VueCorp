@@ -17,19 +17,20 @@ export const theme = {
     '2xl': '1536px'
   },
   extend: {
-    /*dropShadow: {
-      main: '-8px 8px 19px 0px rgba(97,97,97,0.66)'
-    },*/
+    dropShadow: {
+      'theme-layout': 'var(--theme-shadow)',
+    },
     boxShadow: {
-      main: '-8px 8px 18px -4px rgba(97,97,97,0.75)'
+      main: '-8px 8px 18px -4px rgba(97,97,97,0.75)',
+      'theme-layout': 'var(--theme-shadow)',
     },
     backgroundImage: {
       'brand-logo': 'var(--logo-url)',
-      'space-stars': 'url("images/space-stars.png")',
-      'gradient-brand': 'linear-gradient( 200deg, rgb(55, 48, 163, 0.5) 65%, rgb(132, 190, 224, 0.5) 100% ),' +
-        'linear-gradient( 205deg, rgb(0, 19, 10, 1.0) 17%, rgb(117, 182, 213, 1) 100% )',
-      'gradient-brand-alt': 'linear-gradient( 20deg, #b8d7ed 20%, transparent 60%)',
-      'gradient-back': 'linear-gradient( to bottom, #1c2157 30%, black 100%)',
+      'gradient-brand': 'var(--gradient-brand)',
+      'gradient-navbar': 'var(--gradient-navbar)',
+      'gradient-back': 'var(--gradient-back)',
+      'gradient-footer': 'var(--gradient-footer)',
+
       'gradient-modal-bar': 'linear-gradient( 58deg, #e8e8e8 20%, rgb(125 125 125) 100%)',
       'gradient-table-head': 'linear-gradient( 58deg, #dddddd 50%, #bdbdbd 100%)',
       'gradient-tab-bar': 'linear-gradient( 58deg, #1c2157 50%, black 100%)',
@@ -41,7 +42,6 @@ export const theme = {
       'gradient-side-alt': 'linear-gradient( 187deg, #868686 0%, white 75%)',
       'gradient-side2': 'linear-gradient( to right, white 75%, #e9e9e9 100%)',
       'gradient-main3': 'linear-gradient( 205deg, #e5e5e5 45%, white 100%)',
-      'gradient-footer': 'radial-gradient( circle, #77b1d5 30%, #242d66 100%)',
       'gradient-stripes': 'linear-gradient( 45deg, rgb(55, 48, 163, 0.5) 22%, #1c2157 83% ),' +
         'repeating-linear-gradient(-45deg, red, red 5px, blue 5px, blue 10px)',
       'gradient-stripes2': 'repeating-linear-gradient(135deg, #1e293b, #1e293b 10px, black 10px, black 20px)',
@@ -105,7 +105,8 @@ export const theme = {
       'color-light-blue': '#b8d7ed',
       'color-mid-blue': '#6fa2ca',
       'color-blue': '#1c2157',
-      'color-dark-blue': '#3e5091'
+      'color-dark-blue': '#3e5091',
+      'color-theme-footer-text': 'var(--theme-footer-text)'
     }),
     fontFamily: {
       sans: 'Roboto, "Trebuchet MS", Verdana, Helvetica, Sans-Serif',

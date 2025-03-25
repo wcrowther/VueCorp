@@ -141,7 +141,7 @@
 </script>
 
 <template>
-    <div class="" id="usersListView">
+    <div id="usersList">
     
         <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
            bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">

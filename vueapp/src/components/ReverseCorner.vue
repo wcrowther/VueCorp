@@ -23,7 +23,7 @@
 
 
 <style lang="postcss"> 
-    /* Important: Should not be scoped. Not this is CSS NOT tailwind */
+    /* Important: Should not be scoped. Note: this is CSS NOT tailwind */
     .corner:before
     {
         content: "";

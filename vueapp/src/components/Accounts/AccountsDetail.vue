@@ -11,6 +11,7 @@
 
     const isAddingAccount               = ref(false)
     const isConfirmVisible              = ref(false)
+    // const detailInput                = ref(null)  
 
 	const rules = computed(() => accountValidator)
   
@@ -69,7 +70,8 @@
     const keys = function (e)   
     {
         let ctrl = navigator.userAgentData.platform.match("Mac") ? e.metaKey : e.ctrlKey   
-        if (e.code === 'KeyS' && ctrl) { confirmSave();  e.preventDefault(); }
+        if (e.code === 'KeyS' && ctrl) { confirmSave();                     e.preventDefault(); }
+        // else if (e.code === 'End')     { detailInput.value.focusInput();    e.preventDefault();} 
     }
 
 	KeyboardListeners(keys)
@@ -133,14 +135,18 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div class="mb-3 pb-1 flex justify-end">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-sm">
+                <div v-if="!isAddingAccount" 
+                    class="-m-5 mb-5 p-3 flex flex-wrap justify-between border-b border-color-blue-gray">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
+                        {{account.AccountName}}
+                    </span>
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         Account Id: {{account.AccountId}}
                     </span>
                 </div>
                 
-                <TextInput labelName="Account Name" v-model="account.AccountName" :v$ />
-                <TextInput labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
+                <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
+                <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
                 <PhoneInput labelName="Main Phone" ruleName="AccountPhone" v-model="account.AccountPhone" :v$ />
 
                 <!-- 

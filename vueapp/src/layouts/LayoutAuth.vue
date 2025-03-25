@@ -2,27 +2,35 @@
 <script setup>
 
     const appStore     		= useAppStore()
-    const { altColors }		= storeToRefs(appStore)
+    const { altTheme }		= storeToRefs(appStore)
 
 </script>
 
 <template>
 
-	<div class="fixed top-0 bottom-0 left-0 right-0" 
-		:class="{'bg-gradient-back': !altColors}" id="background-div"></div>
+	<!-- Adding theme here cascades down to the whole page  -->	
+	<div class="h-full" :class="[altTheme ? 'alt-theme': 'theme']">
 
-	<div class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto" id="layout-login">
+		<div id="background-div" 
+			class="fixed top-0 bottom-0 left-0 right-0 bg-gradient-back">
+		</div>
 
-		<div :class="{ 'box-shadow' : altColors }">
+		<div id="layout-login"
+			class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto" >
 
-			<BrandBar class="pr-5 md:mx-3">
+
+			<BrandBar class="shadow-theme-layout pr-5 md:mx-3">
 				<BrandLogo />
 			</BrandBar>  
 
-			<slot></slot>	
-			
-			<FooterBox />
-		</div>
+			<div class="shadow-theme-layout border-r border-gray-200">
+				<slot></slot>
+			</div>	
+
+			<FooterBox class="shadow-theme-layout" />
+
+		</div>	
+
 	</div>
 
 </template> 

@@ -9,7 +9,7 @@
 
 	const { firstInitial, authUser, isLoggedIn, 
             tokenExpiration, lastRequestDatetime }      = storeToRefs(authStore)        
-    const { showPrevNext, showBreakpoints, altColors }  = storeToRefs(appStore) 
+    const { showPrevNext, showBreakpoints, altTheme }  = storeToRefs(appStore) 
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -135,9 +135,9 @@
                 </div> 
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Toggle off alternate color scheme.">Alt Colors:</div>
+                        title="Toggle off alternate color scheme.">Alt Theme:</div>
                     <div class="label-value">
-                        <CheckboxInput labelName="" v-model="altColors" />
+                        <CheckboxInput labelName="" v-model="altTheme" />
                     </div>
                 </div>
 

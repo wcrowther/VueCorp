@@ -1,16 +1,16 @@
 
-<script setup>
-</script>
+<script setup></script>
 
 <template>
 
-    <div class="flex flex-row h-screen" id="adminUsers">
+    <div id="admin-users"
+        class="flex">
 
-        <MainSidebar class="transform transition-all duration-[500ms] h-full">
+        <MainSidebar>
             <UsersList />
         </MainSidebar>     
 
-        <MainContent class="grow bg-gradient-main">
+        <MainContent>
             <UsersDetail />
         </MainContent>  
 

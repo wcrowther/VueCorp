@@ -135,7 +135,7 @@
 <template>
     <div id="accountsList">
 
-        <div class="px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
+        <div class="pb-3 px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
             <div class="flex gap-x-1 pt-5 w-full">
@@ -154,14 +154,14 @@
 
             <MobilePagerPrevNext :pager="listPager" />
 
+            <InfoBox class="mb-3">
+                Search for Accounts that start with this text or are equal to the AccountId. Add multiple conditions separated by a comma.
+            </InfoBox>
+            
             <HelpBox class="mb-3">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
             </HelpBox>
-
-            <InfoBox class="py-3 mb-5">
-                Search for Accounts that start with this text or are equal to the AccountId. Add multiple conditions separated by a comma.
-            </InfoBox>
 
         </div>
 
@@ -174,7 +174,8 @@
                 <th class="pr-4 min-w-[100px]">Account</th>
             </thead>
 
-            <tbody v-if="listHasRecords()" >
+            <tbody v-if="listHasRecords()">
+
                 <tr v-for="(a, index) in itemsList" 
                     class="border-y bg-gradient-side2 border-gray-300"
                     :class="{ 'active-row' : isActiveItem(a.AccountId) }"
@@ -191,16 +192,17 @@
                     <td class="pr-4 py-1 h-8 max-w-[200px] break-words text-sm"
                         :title="'Account Id: ' + a.AccountId" >{{ a.AccountName }}</td>
                 </tr>
-            </tbody>
 
+            </tbody>
             <tbody v-else class="h-20 text-center font-bold">
                 <tr>
                     <td colspan="3" class="px-4 py-1">No Accounts found</td>
                 </tr>
             </tbody>
-
             <tfoot>
-                <td colspan="3" class="h-8 bg-[#e9e9e9]">&nbsp;</td>
+                <tr>
+                    <td colspan="3" class="h-8 bg-[#e9e9e9]">&nbsp;</td>        
+                </tr>
             </tfoot>
 
         </table>
