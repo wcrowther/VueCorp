@@ -1,9 +1,7 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-
 <script setup>
 
-	import { definePage } from 'vue-router/auto'
-	definePage({ redirect: '/Content/Main' })
+	const router = useRouter();
+	router.replace('/content/main'); // Redirects to target route
 	
 </script>
 

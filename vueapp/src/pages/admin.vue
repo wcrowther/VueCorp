@@ -1,9 +1,7 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-
 <script setup>
 
-	import { definePage } from 'vue-router/auto'
-	definePage({ redirect: '/Admin/Users' })
+	const router = useRouter();
+	router.replace('/admin/users'); // Redirects to target route
 	
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)

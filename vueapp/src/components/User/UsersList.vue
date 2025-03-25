@@ -163,9 +163,11 @@
             shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)]" id="word-list-table">
 
             <thead class="text-left bg-gradient-table-head border-t border-gray-300">
-                <th class="w-6 sm:w-8 py-5"></th>
-                <th class="hidden md:table-cell pr-4 select-none">UserId</th>
-                <th class="pr-4 min-w-[100px]">Last Name, First</th>
+                <tr>
+                    <th class="w-6 sm:w-8 py-5"></th>
+                    <th class="hidden md:table-cell pr-4 select-none">UserId</th>
+                    <th class="pr-4 min-w-[100px]">Last Name, First</th>
+                </tr>
             </thead>
 
             <tbody v-if="listHasRecords()" >

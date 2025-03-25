@@ -142,10 +142,11 @@
         <table class="w-full bg-gray-100 select-none overflow-y-auto scrollbar-thin" id="accounts-list-table">
 
             <thead class="text-left bg-gradient-table-head border-t border-gray-300 ">
-                <th class="w-6 sm:w-8 py-5 bg-[#ddd]"></th>
-                <th class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</th>
-                <th class="pr-4 min-w-[100px]">ImageSrc</th>
+                <td class="w-6 sm:w-8 py-5 bg-[#ddd]"></td>
+                <td class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</td>
+                <td class="pr-4 min-w-[100px]">ImageSrc</td>
             </thead>
+            
             <tbody v-if="listHasRecords()" >
                 <tr v-for="(image, index) in itemsList" class="border-y bg-gradient-side2 border-gray-300"
                     :class="{ 'active-row' : isActiveItem(image.ImageSrc) }"

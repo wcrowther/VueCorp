@@ -1,8 +1,8 @@
 <script setup>
 
-	import { definePage } from 'vue-router/auto'
-	definePage({ redirect: '/Accounts/Main' })
-
+	const router = useRouter();
+	router.replace('/accounts/main'); // Redirects to target route
+	
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)
 

@@ -169,9 +169,11 @@
             shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)]" id="accounts-list-table">
 
             <thead class="text-left bg-gradient-table-head border-t border-gray-300 ">
-                <th class="w-6 sm:w-8 py-5 bg-[#ddd]"></th>
-                <th class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</th>
-                <th class="pr-4 min-w-[100px]">Account</th>
+                <tr>
+                    <th class="w-6 sm:w-8 py-5 bg-[#ddd]"></th>
+                    <th class="hidden md:table-cell pr-4 select-none bg-[#ddd]">Id</th>
+                    <th class="pr-4 min-w-[100px]">Account</th>
+                </tr>
             </thead>
 
             <tbody v-if="listHasRecords()">
