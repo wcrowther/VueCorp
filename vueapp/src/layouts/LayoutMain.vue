@@ -1,8 +1,7 @@
 	
 <script setup>
 
-    const appStore   = useAppStore()
-
+    const appStore   									= useAppStore()
     const { sideBarHidden, showBreakpoints, altTheme }	= storeToRefs(appStore)
 
     // Keyboard Listeners & AutoRefreshAuth  ========================================================
@@ -21,14 +20,14 @@
 <template>
 
 	<!-- Adding theme here cascades down to the whole page  -->	
-	<div class="h-full" :class="[altTheme ? 'alt-theme': 'theme']">
+	<div id="layout-main" 
+		class="h-full" :class="[altTheme ? 'alt-theme': 'theme']">
 
 		<div id="background-div" 
 			class="fixed top-0 bottom-0 left-0 right-0 bg-gradient-back">
 		</div>
 
-		<div id="layout-main" 
-			class="main-width mb-10 relative z-0 h-full">
+		<div class="main-width mb-10 relative z-0 h-full">
 
 			<BreakPoints :show="showBreakpoints" />
 			
@@ -44,6 +43,7 @@
 			</div>
 			
 			<FooterBox class="shadow-theme-layout" />
+			
 		</div>
 
 	</div> 

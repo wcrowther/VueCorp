@@ -27,7 +27,6 @@
                 Esse aliquam distinctio odio soluta, quibusdam placeat, incidunt ad non, 
                 illo alias est quaerat nesciunt iure repudiandae dolor! 
                 Cum odit aperiam debitis.
-                <!-- <IntroView /> -->
             </div>
         </div>
 

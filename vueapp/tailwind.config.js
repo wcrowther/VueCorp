@@ -106,7 +106,9 @@ export const theme = {
       'color-mid-blue': '#6fa2ca',
       'color-blue': '#1c2157',
       'color-dark-blue': '#3e5091',
-      'color-theme-footer-text': 'var(--theme-footer-text)'
+      'color-theme-footer-text': 'var(--theme-footer-text)',
+      'color-theme-nav-tab-text': 'var(--theme-footer-text)',
+      'color-theme-nav-tab-back': 'var(--theme-footer-text)'
     }),
     fontFamily: {
       sans: 'Roboto, "Trebuchet MS", Verdana, Helvetica, Sans-Serif',
