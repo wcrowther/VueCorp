@@ -29,7 +29,7 @@ public class AuthManager(	IUserManager userManager,
 
 			logger.LogInformation(message);
 
-			return Returns<AuthUser>.Error(message);
+			return Returns<AuthUser>.Failure(message);
 		}
 
 		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");
@@ -44,12 +44,12 @@ public class AuthManager(	IUserManager userManager,
 		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
 		if (existingUser is not null)
-			return Returns<AuthUser>.Error($"Not able to sign up user {userToCreate.UserName}");
+			return Returns<AuthUser>.Failure($"Not able to sign up user {userToCreate.UserName}");
 
 		var user = userManager.CreateUser(userToCreate, httpContext);
 		var authResponse = GetAuthResponse(user);
 
-		return Returns<AuthUser>.Ok(authResponse);
+		return Returns<AuthUser>.Success(authResponse);
 	}
 
 	public Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
@@ -60,10 +60,10 @@ public class AuthManager(	IUserManager userManager,
 		var allowedDomains  = appSettings.AllowedOrigins.Split(";", true);
 
 		if (!IsAllowedDomain(domain, allowedDomains))
-			return Returns<AuthUser>.Error("Not able to refresh token from this domain");
+			return Returns<AuthUser>.Failure("Not able to refresh token from this domain");
 
 		if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiration <= DateTime.Now)
-			return Returns<AuthUser>.Error($"Not able to refresh token for userId: {request.UserId}");
+			return Returns<AuthUser>.Failure($"Not able to refresh token for userId: {request.UserId}");
 
 		user = userManager.UpdateUserRefreshToken(user, httpContext);
 

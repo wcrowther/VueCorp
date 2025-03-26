@@ -23,7 +23,7 @@ public static partial class Endpoints
 		{
             Returns<AuthUser> returns = _authManager.Authenticate(model, httpContext);
 
-			return	returns.Success
+			return	returns.Ok
 					? Results.Ok(returns.Data)
 					: Results.Unauthorized();
 		})
@@ -37,9 +37,9 @@ public static partial class Endpoints
 		{
 			Returns<AuthUser> returns = _authManager.Signup(model, httpContext);
 
-			return	returns.Success 
+			return	returns.Ok 
 					? Results.Ok(returns.Data) 
-					: Results.BadRequest(returns.Fault.Message);
+					: Results.BadRequest(returns.Error.Message);
 		})
 		.Validate<UserToCreate>(false)
 		.WithName("Signup");
@@ -51,9 +51,9 @@ public static partial class Endpoints
 		{
 			Returns<AuthUser> returns = _authManager.RefreshAuth(request, httpContext);
 
-			return	returns.Success 
+			return	returns.Ok 
 					? Results.Ok(returns.Data) 
-					: Results.BadRequest(returns.Fault.Message);
+					: Results.BadRequest(returns.Error.Message);
 		})
 		.Validate<AuthRefreshRequest>(false)
 		.WithName("RefreshAuth");
