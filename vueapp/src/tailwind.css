@@ -15,6 +15,8 @@
 		--gradient-footer: radial-gradient( circle, #77b1d5 30%, #242d66 100%);
 		--theme-footer-text: white;	
 		--theme-shadow: none;
+		--scrollbarBG:  #445292;
+		--thumbBG: #1c2157;
 	}
 
 	.alt-theme {
@@ -25,6 +27,8 @@
 		--gradient-footer: radial-gradient(circle, #f7f7f7  15%, #c2c2c2 70%);
 		--theme-footer-text: #1c2157;
 		--theme-shadow: -5px 5px 5px 0px rgba(183,183,183,0.75);
+		--scrollbarBG: #d4d4d4;
+		--thumbBG: #ebebeb;
 	}
 
 	/* ---------------------------------------------- */
@@ -35,8 +39,6 @@
 		min-width: 380px;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		--scrollbarBG: #1c2157;
-		--thumbBG: #6fa2ca;
 	}
 
 	[type='text'],

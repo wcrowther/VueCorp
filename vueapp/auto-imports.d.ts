@@ -9,21 +9,23 @@ declare global {
   const AuthRefreshRequest: typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
   const AuthUser: typeof import('./src/models/AuthUser.js')['AuthUser']
-  const AutoRefreshAuth: typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']
+  const AutoRefreshAuth: typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
+  const HtmlHeadBody: typeof import('./src/composables/HtmlHeadBody.js')['HtmlHeadBody']
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
-  const KeyboardListeners: typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']
+  const KeyboardListeners: typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
   const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
   const SearchForAccount: typeof import('./src/models/PagerModel.js')['SearchForAccount']
   const SearchModel: typeof import('./src/models/PagerModel.js')['SearchModel']
+  const SetHtmlHeadBody: typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']
   const UserModel: typeof import('./src/models/UserModel.js')['UserModel']
   const accountValidator: typeof import('./src/helpers/validators.js')['accountValidator']
-  const apiCall: typeof import('./src/helpers/ApiCall.js')['apiCall']
-  const apiGet: typeof import('./src/helpers/ApiCall.js')['apiGet']
-  const apiPost: typeof import('./src/helpers/ApiCall.js')['apiPost']
+  const apiCall: typeof import('./src/composables/ApiCall.js')['apiCall']
+  const apiGet: typeof import('./src/composables/ApiCall.js')['apiGet']
+  const apiPost: typeof import('./src/composables/ApiCall.js')['apiPost']
   const authRequestValidator: typeof import('./src/helpers/validators.js')['authRequestValidator']
   const authSignupValidator: typeof import('./src/helpers/validators.js')['authSignupValidator']
   const computed: typeof import('vue')['computed']
@@ -123,21 +125,22 @@ declare module 'vue' {
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
-    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']>
+    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
-    readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
+    readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
     readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
+    readonly SetHtmlHeadBody: UnwrapRef<typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
     readonly UserModel: UnwrapRef<typeof import('./src/models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
-    readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
-    readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>
-    readonly apiPost: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiPost']>
+    readonly apiCall: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiCall']>
+    readonly apiGet: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiGet']>
+    readonly apiPost: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiPost']>
     readonly authRequestValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['authRequestValidator']>
     readonly authSignupValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['authSignupValidator']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -230,21 +233,22 @@ declare module '@vue/runtime-core' {
     readonly AuthRefreshRequest: UnwrapRef<typeof import('./src/models/AuthRefreshRequest.js')['AuthRefreshRequest']>
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
-    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/helpers/AutoRefreshAuth.js')['AutoRefreshAuth']>
+    readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
-    readonly KeyboardListeners: UnwrapRef<typeof import('./src/helpers/KeyboardListeners.js')['KeyboardListeners']>
+    readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
     readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
+    readonly SetHtmlHeadBody: UnwrapRef<typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
     readonly UserModel: UnwrapRef<typeof import('./src/models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['accountValidator']>
-    readonly apiCall: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiCall']>
-    readonly apiGet: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiGet']>
-    readonly apiPost: UnwrapRef<typeof import('./src/helpers/ApiCall.js')['apiPost']>
+    readonly apiCall: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiCall']>
+    readonly apiGet: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiGet']>
+    readonly apiPost: UnwrapRef<typeof import('./src/composables/ApiCall.js')['apiPost']>
     readonly authRequestValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['authRequestValidator']>
     readonly authSignupValidator: UnwrapRef<typeof import('./src/helpers/validators.js')['authSignupValidator']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

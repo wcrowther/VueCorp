@@ -1,8 +1,8 @@
 	
 <script setup>
 
-    const appStore   									= useAppStore()
-    const { sideBarHidden, showBreakpoints, altTheme }	= storeToRefs(appStore)
+    const appStore   							= useAppStore()
+    const { sideBarHidden, showBreakpoints }	= storeToRefs(appStore)
 
     // Keyboard Listeners & AutoRefreshAuth  ========================================================
 
@@ -11,17 +11,15 @@
         if (e.code === 'Escape'){ sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
     }
 
-	KeyboardListeners(keys)
-
-	AutoRefreshAuth()	
+	KeyboardListeners(keys)		// Sets Key listeners for all pages using this layout
+	AutoRefreshAuth()			// Refreshes JWT Tokens
+	SetHtmlHeadBody() 			// Sets CSS 'theme' or 'alt-theme' for this layout
 
 </script>
 
 <template>
 
-	<!-- Adding theme here cascades down to the whole page  -->	
-	<div id="layout-main" 
-		class="h-full" :class="[altTheme ? 'alt-theme': 'theme']">
+	<div id="layout-main">
 
 		<div id="background-div" 
 			class="fixed top-0 bottom-0 left-0 right-0 bg-gradient-back">

@@ -2,6 +2,7 @@
 import { createPinia }          from 'pinia'
 import router                   from './router/router'
 import Toast                    from "vue-toastification"
+import { createHead }           from '@unhead/vue/client'
 import './toaster.css'  
 import './tailwind.css'
 
@@ -13,9 +14,12 @@ pinia.use(({ store }) =>
     store.router = markRaw(router)
 })
 
+const head = createHead()
+
 createApp(App)
     .use(pinia)
     .use(router)
+    .use(head)
     .use(Toast, 
         {   transition: "Vue-Toastification__fade",
             maxToasts: 10,

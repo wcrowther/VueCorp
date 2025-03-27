@@ -112,6 +112,8 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true
+    "watchSyncEffect": true,
+    "HtmlHeadBody": true,
+    "SetHtmlHeadBody": true
   }
 }

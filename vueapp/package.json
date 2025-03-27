@@ -11,6 +11,7 @@
 		"predev": "node aspnetcore-https.js"
 	},
 	"dependencies": {
+		"@unhead/vue": "^2.0.2",
 		"@vuelidate/core": "^2.0.3",
 		"@vuelidate/validators": "^2.0.4",
 		"@vueuse/core": "^10.7.0",

@@ -4,6 +4,8 @@
     const appStore     		= useAppStore()
     const { altTheme }		= storeToRefs(appStore)
 
+	SetHtmlHeadBody() 			// Sets CSS 'theme' or 'alt-theme' for this layout
+	
 </script>
 
 <template>

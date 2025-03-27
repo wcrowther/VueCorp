@@ -18,7 +18,7 @@
 <template>
     <div class="mb-3">
         <div class="pb-1 flex justify-between items-baseline">
-            <span class="text-color-dark-blue font-bold whitespace-nowrap text-sm"
+            <span class="text-color-dark-blue font-bold whitespace-nowrap text-xs"
                 :for="props.labelName">
                 {{props.labelName}}
             </span>

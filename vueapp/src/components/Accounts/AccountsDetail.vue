@@ -137,12 +137,19 @@
 
                 <div v-if="!isAddingAccount" 
                     class="-m-5 mb-5 p-3 flex flex-wrap justify-between border-b border-color-blue-gray">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap">
                         {{account.AccountName}}
                     </span>
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
+                    <span class="text-color-dark-blue font-bold whitespace-nowrap">
                         Account Id: {{account.AccountId}}
                     </span>
+                </div>
+
+                <div v-if="!isAddingAccount" 
+                    class="-m-5 mb-5 p-3 flex flex-wrap justify-between text-color-dark-blue 
+                        whitespace-nowrap text-xs italic">
+                    <span>Modified: 2/24/2025</span>
+                    <span>Created: 1/22/2024</span>
                 </div>
                 
                 <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
