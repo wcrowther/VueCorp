@@ -1,5 +1,8 @@
 <script setup>
 
+    const appStore     		= useAppStore()
+    const { pagerDebugger }	= storeToRefs(appStore)
+
     const pager = computed(() => props.pager)
 
     const props = defineProps(
@@ -8,10 +11,7 @@
         id: String 
     })
 
-    watchEffect( () => 
-    {  
-        props.pager.createPages();
-    })
+    watchEffect( () => { props.pager.createPages(); })
 
 </script>
 
@@ -39,7 +39,7 @@
              </tr>
          </table>
 
-        <ListPagerDebugger :pager="pager" :show="false"></ListPagerDebugger>
+        <ListPagerDebugger :pager="pager" :show="pagerDebugger"></ListPagerDebugger>
      </div>
 </template>
 

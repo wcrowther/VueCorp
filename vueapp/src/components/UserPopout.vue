@@ -4,12 +4,17 @@
     const appStore          = useAppStore()
     const messageStore      = useMessageStore()
 
-    const { copy }                  = useClipboard()
+    const { copy                }   = useClipboard()
     const { logout, refreshAuth }   = authStore
-
-	const { firstInitial, authUser, isLoggedIn, 
-            tokenExpiration, lastRequestDatetime }      = storeToRefs(authStore)        
-    const { showPrevNext, showBreakpoints, altTheme }  = storeToRefs(appStore) 
+	const { firstInitial, 
+            authUser, 
+            isLoggedIn, 
+            tokenExpiration, 
+            lastRequestDatetime }   = storeToRefs(authStore)        
+    const { showPrevNext, 
+            showBreakpoints, 
+            altTheme, 
+            pagerDebugger       }   = storeToRefs(appStore) 
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -28,6 +33,12 @@
         messageStore.showInfo('Value copied to the clipboard.'); 
     }
 
+    const refreshAuthToken = () =>
+    {
+        let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
+        refreshAuth(authRefreshRequest)
+    }
+
     const fullName = computed(() => authUser.value.LastName ? `${authUser.value.FirstName} ${authUser.value.LastName}` : '---')
 
     const tokenDisplay = computed(() => 
@@ -35,12 +46,6 @@
         let token = authUser.value.Token
         return token ? `${token.slice(0,6)}...${token.slice(token.length - 6)}` : '---'
     })
-
-    const refreshAuthToken = () =>
-    {
-        let authRefreshRequest = new AuthRefreshRequest(authUser.value.UserId)
-        refreshAuth(authRefreshRequest)
-    }
 
     // const numbers           = ref()
     // const filteredToNumbers = computed(
@@ -121,7 +126,7 @@
                 </div>
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Prev/Next buttons for mobile pager(only show at low res)">Prev / Next:</div>
+                        title="Prev/Next buttons for mobile pager (only show at low res)">Prev / Next:</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showPrevNext" />
                     </div>
@@ -135,12 +140,18 @@
                 </div> 
                 <div class="label-row">
                     <div class="label-title" 
-                        title="Toggle off alternate color scheme.">Alt Theme:</div>
+                        title="Toggle on/off alternate color scheme.">Alt Theme:</div>
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="altTheme" />
                     </div>
                 </div>
-
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Toggle on/off alternate color scheme.">Pager Debugger:</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="pagerDebugger" />
+                    </div>
+                </div>
                <!--  
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
@@ -168,7 +179,7 @@
 
 <style lang="postcss" scoped>
 
-    .label-row      { @apply flex h-9 items-center }
+    .label-row      { @apply flex h-8 items-center }
     .label-title    { @apply w-36 font-bold whitespace-nowrap }
     .label-value    { @apply w-52 flex-grow whitespace-nowrap }
     .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue hover:text-gray-700}

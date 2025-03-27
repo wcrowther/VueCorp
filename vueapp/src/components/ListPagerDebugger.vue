@@ -1,6 +1,6 @@
 <script setup>
 
-    import { useDraggable }                 from '@vueuse/core'
+    import { useDraggable } from '@vueuse/core'
 
     const pager = computed(() => props.pager); 
 
@@ -12,7 +12,7 @@
     const el = ref(null)
 
     // `style` will be a helper computed for `left: ?px; top: ?px;`
-    const { style } = useDraggable(el, 
+    const { x,y,style } = useDraggable(el, 
     {
         initialValue: { x: 400, y: 30 },
     })
@@ -24,7 +24,14 @@
             class="absolute top-14 right-0 z-[1000] w-[200px] pb-3 mb-1 drop-shadow-xl 
                 text-sm/loose leading-[25px] bg-white border"> 
 
-            <div class="p-2 bg-color-blue text-white font-bold select-none">Pager Debugger</div>
+            <div class="p-2 bg-color-blue text-white font-bold select-none">
+                Pager Debugger 
+            </div>
+
+            <div class="px-2 flex">
+                <span class="w-1/2">x: {{x.toFixed(2)}}</span>
+                <span class="w-1/2">y: {{y.toFixed(2)}}</span>
+            </div>
 
             <div class="px-2 bg-[#ddd]">CurrentRecord:   {{ pager.CurrentRecord }}</div>
             <div class="px-2 bg-[#ddd]">GroupSize:       {{ pager.GroupSize }}</div>

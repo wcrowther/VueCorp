@@ -31,6 +31,8 @@
                 target="_blank">https://github.com/wcrowther/VueCorp</a>
         </div> 
 
+        <IntroView />
+
     </div>  
 
 </template>
