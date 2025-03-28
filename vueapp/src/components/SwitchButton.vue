@@ -20,7 +20,8 @@
 <template>
 
 	<div class="flex items-center relative rounded-full h-8 border font-normal w-fit
-		p-1 border-warm-600 bg-white select-none" @click="modelValue = !modelValue" :title="title">
+		p-1 border-warm-600 bg-white select-none" 
+		@click="modelValue = !modelValue" :title="title">
 
 		<span class="flex absolute top-0 py-1 z-10 left-[9px]">{{ props.falseText }}</span>
 		<span class="flex absolute top-0 py-1 z-10 right-3">{{ props.trueText }}</span>
@@ -35,14 +36,16 @@
 </template>
   
 
-<!-- 
-==============================================================================================   
+<!-- Examples (Boolean button)
 	
-const showWords = ref(false)
+	const showWords = ref(false)
 
-<SwitchButton class="bg-color-orange text-white" buttonName="PinPopout" v-model="showWords" />
+	<SwitchButton class="bg-color-orange text-white" buttonName="PinPopout" v-model="showWords" />
 
-============================================================================================== 
+    <div class="mt-7 flex flex-wrap gap-5 mb-3">
+        <SwitchButton class="bg-color-mid-blue text-white transition-colors" buttonName="Active"  
+            :class="{'!bg-color-dark-blue' : account.IsActive}" v-model="account.IsActive" />
+    </div> 
 -->
   
   

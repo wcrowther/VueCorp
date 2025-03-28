@@ -98,7 +98,7 @@
 </script>
 
 <template>
-    <div class="flex flex-wrap gap-5" id="AccountsDetailView">
+    <div class="flex flex-wrap gap-5" id="AccountDetailView">
         
         <ConfirmDialog v-if="isConfirmVisible"
 			message="Save Account Data?" @confirm="saveAccountDetail" @cancel="cancelAction" />
@@ -135,35 +135,25 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div v-if="!isAddingAccount" 
-                    class="-m-5 mb-5 p-3 flex flex-wrap justify-between border-b border-color-blue-gray">
+                <TitleBox v-if="!isAddingAccount">
                     <span class="text-color-dark-blue font-bold whitespace-nowrap">
                         {{account.AccountName}}
                     </span>
                     <span class="text-color-dark-blue font-bold whitespace-nowrap">
                         Account Id: {{account.AccountId}}
                     </span>
-                </div>
+                </TitleBox>
 
-                <div v-if="!isAddingAccount" 
-                    class="-m-5 mb-5 p-3 flex flex-wrap justify-between text-color-dark-blue 
-                        whitespace-nowrap text-xs italic">
-                    <span>Modified: 2/24/2025</span>
-                    <span>Created: 1/22/2024</span>
-                </div>
+                <MetaBox v-if="!isAddingAccount">
+                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
+                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
+                </MetaBox>
                 
                 <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
                 <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
                 <PhoneInput labelName="Main Phone" ruleName="AccountPhone" v-model="account.AccountPhone" :v$ />
 
-                <!-- 
-                <div class="mt-7 flex flex-wrap gap-5 mb-3">
-                    <SwitchButton class="bg-color-mid-blue text-white transition-colors" buttonName="Active"  
-                        :class="{'!bg-color-dark-blue' : account.IsActive}" v-model="account.IsActive" />
-                </div> 
-                -->
-
-                <div class="mt-7 flex flex-wrap gap-5 mb-3">
+                <div class="mt-7 flex flex-wrap justify-between gap-5 mb-3">
                     <CheckboxInput labelName="Is Active" v-model="account.IsActive" />
                     <CheckboxInput labelName="Is Invoice" v-model="account.IsInvoice" />
                     <CheckboxInput labelName="Is AutoPay" v-model="account.IsAutoPay" />

@@ -10,11 +10,13 @@
             authUser, 
             isLoggedIn, 
             tokenExpiration, 
-            lastRequestDatetime }   = storeToRefs(authStore)        
+            lastRequestDatetime }   = storeToRefs(authStore)  
+                  
     const { showPrevNext, 
             showBreakpoints, 
             altTheme, 
-            pagerDebugger       }   = storeToRefs(appStore) 
+            pagerDebugger}          = storeToRefs(appStore) 
+    const { resetLocalStorage   }   = appStore
 
     const showPopout        = ref(false)
     const pinPopout         = ref(false)
@@ -78,8 +80,9 @@
 
             <div class="px-7 pt-10 pb-12">
                 <div class="flex gap-x-2 my-5">
-                    <button class="btn-delete hover:bg-warm-100" @click="logoutUser">Logout</button>
-                    <button class="btn-delete hover:bg-warm-100" @click="refreshAuthToken">Refresh Token</button>
+                    <button class="btn-delete" title="Log out user" @click="logoutUser">Logout</button>
+                    <button class="btn-delete" title="Refresh user auth token" @click="refreshAuthToken">Refresh Token</button>
+                    <button class="btn-delete" title="Reset App preferences" @click="resetLocalStorage">Reset</button>
                 </div>
                 <div class="label-row">
                     <div class="label-title"

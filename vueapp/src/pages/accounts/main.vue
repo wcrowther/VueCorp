@@ -9,7 +9,7 @@
         </MainSidebar>     
         
         <MainContent class="bg-gradient-main">
-            <AccountsDetail />
+            <AccountDetail />
         </MainContent>  
 
     </div>

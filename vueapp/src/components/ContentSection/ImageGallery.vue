@@ -90,7 +90,7 @@
         else if (e.code === 'PageDown')   { listPager.value.goToPreviousPage(); e.preventDefault();}
         else if (e.code === 'PageUp')     { listPager.value.goToNextPage();     e.preventDefault();} 
 
-        // 'Ctrl+S' to Save is in AccountsDetail control
+        // 'Ctrl+S' to Save is in AccountDetail control
     }
 
 	KeyboardListeners(keys);

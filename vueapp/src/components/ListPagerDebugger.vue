@@ -2,6 +2,10 @@
 
     import { useDraggable } from '@vueuse/core'
 
+    const appStore            = useAppStore()
+    const { pagerDebuggerX,
+            pagerDebuggerY  } = storeToRefs(appStore)
+
     const pager = computed(() => props.pager); 
 
     const props = defineProps({
@@ -11,11 +15,18 @@
 
     const el = ref(null)
 
-    // `style` will be a helper computed for `left: ?px; top: ?px;`
     const { x,y,style } = useDraggable(el, 
     {
-        initialValue: { x: 400, y: 30 },
+        initialValue: { x: pagerDebuggerX, y: pagerDebuggerY },
     })
+
+    watchEffect(() => 
+    { 
+        pagerDebuggerX.value = x.value
+        pagerDebuggerY.value = y.value
+    })
+    
+
 </script>
 
 <template>

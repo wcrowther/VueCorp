@@ -77,7 +77,7 @@ export const useAuthStore = defineStore('AuthStore',
                 if(result.success) 
                 {
                     this.authUser = result.data
-                    console.log(`Refresh Token updated at ${timeFormat(Date.now())}.`)
+                    useMessageStore().showInfo(`Refresh Token updated at ${timeFormat(Date.now())}`)
                 }
             }
             catch(err)

@@ -98,7 +98,7 @@
         else if (e.code === 'Home')       { searchInput.value.focusInput();     e.preventDefault();} 
     }  
 
-    // 'Ctrl+S' to Save is in AccountsDetail control
+    // 'Ctrl+S' to Save is in AccountDetail control
 
     // ALT: else if (e.code === 'Home') { listPager.value.goToFirstPage(); e.preventDefault();}
     // ALT: else if (e.code === 'End')  { listPager.value.goToLastPage();  e.preventDefault();}

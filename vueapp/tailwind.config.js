@@ -102,7 +102,7 @@ export const theme = {
       'color-secondary': '#9b6f24',
       'color-tertiary': '#d6901a',
       'color-blue-gray': '#99b3cf',
-      'color-light-blue': '#b8d7ed',
+      'color-light-blue': '#e5f1f9',
       'color-mid-blue': '#6fa2ca',
       'color-blue': '#1c2157',
       'color-dark-blue': '#3e5091',

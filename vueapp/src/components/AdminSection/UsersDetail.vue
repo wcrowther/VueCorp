@@ -149,15 +149,19 @@
 
             <div class="p-5 min-w-[200px] relative grow linear-gray">
 
-                <div v-if="!isAddingUser" 
-                    class="-m-5 mb-5 p-3 flex flex-wrap justify-between border-b border-color-blue-gray">
+                <TitleBox v-if="!isAddingUser">
                     <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserName: {{user.UserName}}
                     </span>
                     <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
                         UserId: {{user.UserId}}
                     </span>
-                </div>
+                </TitleBox>
+
+                <MetaBox v-if="!isAddingAccount">
+                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
+                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
+                </MetaBox>
 
                 <template v-if="isAddingUser">
                     <TextInput labelName="UserName"     v-model="user.UserName"     :v$ />                
@@ -167,7 +171,7 @@
                 <TextInput labelName="First Name" v-model="user.FirstName" :v$ />
                 <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
                 <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
-                <SelectInput labelName="Role"    v-model="user.Role" :v$ :optionsList="roleList" />
+                <SelectInput labelName="Role"  v-model="user.Role" :v$ :optionsList="roleList" />
             </div>
         </div>
 
