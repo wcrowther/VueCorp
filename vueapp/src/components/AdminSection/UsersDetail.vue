@@ -158,9 +158,9 @@
                     </span>
                 </TitleBox>
 
-                <MetaBox v-if="!isAddingAccount">
-                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
-                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
+                <MetaBox v-if="!isAddingUser">
+                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025 by wcrowther</span>
+                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024 by wcrowther</span>
                 </MetaBox>
 
                 <template v-if="isAddingUser">
@@ -172,6 +172,7 @@
                 <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
                 <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
                 <SelectInput labelName="Role"  v-model="user.Role" :v$ :optionsList="roleList" />
+
             </div>
         </div>
 

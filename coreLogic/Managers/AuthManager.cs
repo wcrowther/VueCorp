@@ -36,20 +36,20 @@ public class AuthManager(	IUserManager userManager,
 
 		user = userManager.UpdateUserRefreshToken(user, httpContext);
 
-		return GetAuthResponse(user);
-		}
+		return Returns<AuthUser>.Result(GetAuthResponse(user));
+	}
 
 	public Returns<AuthUser> Signup(UserToCreate userToCreate, HttpContext httpContext)
 	{
 		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
 		if (existingUser is not null)
-			return Returns<AuthUser>.Failure($"Not able to sign up user {userToCreate.UserName}");
+			return new Error($"Not able to sign up user {userToCreate.UserName}");
 
 		var user = userManager.CreateUser(userToCreate, httpContext);
 		var authResponse = GetAuthResponse(user);
 
-		return Returns<AuthUser>.Success(authResponse);
+		return Returns<AuthUser>.Result(authResponse);
 	}
 
 	public Returns<AuthUser> RefreshAuth(AuthRefreshRequest request, HttpContext httpContext)
@@ -71,7 +71,7 @@ public class AuthManager(	IUserManager userManager,
 
 		logger.LogInformation($"AuthManager.RefreshAuth refresh user: '{user.UserName}'");
 
-		return user.ToAuthResponse(token, expiration);
+		return Returns<AuthUser>.Result(user.ToAuthResponse(token, expiration));
 	}
 
 	// ============================================================================
