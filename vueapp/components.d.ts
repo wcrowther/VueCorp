@@ -20,6 +20,7 @@ declare module 'vue' {
     FooterBox: typeof import('./src/components/Layout/FooterBox.vue')['default']
     HelpBox: typeof import('./src/components/Boxes/HelpBox.vue')['default']
     HomeView: typeof import('./src/components/HomeView.vue')['default']
+    HomeView2: typeof import('./src/components/HomeView2.vue')['default']
     IconSymbol: typeof import('./src/components/IconSymbol.vue')['default']
     ImageDetail: typeof import('./src/components/ContentSection/ImageDetail.vue')['default']
     ImageEditor: typeof import('./src/components/ContentSection/ImageEditor.vue')['default']

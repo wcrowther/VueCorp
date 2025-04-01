@@ -18,7 +18,7 @@
 			class="fixed top-0 bottom-0 left-0 right-0 bg-gradient-back">
 		</div>
 
-		<div class="relative z-0 h-full w-[380px] sm:w-[560px] mt-10 mx-auto" >
+		<div class="relative z-0 h-full w-[390px] sm:w-[560px] mt-10 mx-auto" >
 
 			<BrandBar class="pr-5 md:mx-3 shadow-theme-layout ">
 				<BrandLogo />

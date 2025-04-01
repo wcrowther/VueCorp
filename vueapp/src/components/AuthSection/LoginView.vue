@@ -33,12 +33,18 @@
 	<form id="LoginView">
 		<TextInput 		labelName="UserName" autocomplete="username" v-model="authRequest.UserName" :v$ />
 		<PasswordInput 	labelName="Password" autocomplete="password" v-model="authRequest.Password" :v$ />
-
-		<div class="select-none pt-5 flex justify-between gap-3 mb-20">
+		<div class="select-none pt-5 flex justify-between gap-3 mb-10">
 			<slot></slot>
 			<button class="btn-primary" @click.prevent="validateAndLogin">Login</button>
-		</div>	
+		</div>
 	</form>
+	<div class="mb-10 flex flex-wrap">
+		<div class="w-full mb-5">New users click
+			<span class="italic font-bold">New User Signup</span> above or use the login below. User 
+			data will be persisted but will be wiped on an intermittent basis.</div>
+		<div class="w-1/2 "><b>UserName:</b> TestUser </div>
+		<div class="w-1/2 text-end"><b>Password:</b> Test123!</div>
+	</div>
 
 </template>
 
