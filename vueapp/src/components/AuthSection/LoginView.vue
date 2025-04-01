@@ -42,8 +42,8 @@
 		<div class="w-full mb-5">New users click
 			<span class="italic font-bold">New User Signup</span> above or use the login below. User 
 			data will be persisted but will be wiped on an intermittent basis.</div>
-		<div class="w-1/2 "><b>UserName:</b> TestUser </div>
-		<div class="w-1/2 text-end"><b>Password:</b> Test123!</div>
+		<div class="w-1/2 "><b>UserName:</b> testuser55555</div>
+		<div class="w-1/2 text-end"><b>Password:</b> Test55555!</div>
 	</div>
 
 </template>
