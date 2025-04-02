@@ -7,8 +7,9 @@ using coreLogic.Models.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
+using System.Xml;
 using WildHare.Extensions;
-using Verifier = BCrypt.Net.BCrypt;
+using static System.Environment;
 
 namespace coreLogic.Managers;
 
@@ -23,11 +24,15 @@ public class AuthManager(	IUserManager userManager,
 	{
 		var user = userManager.GetUserByUsername(authRequest.UserName);
 
-		if (user == null || !Verifier.Verify(authRequest.Password, user.PasswordHash))
+		if (user == null || !BCrypt.Net.BCrypt.Verify(authRequest.Password, user.PasswordHash))
 		{
-			string message = $"Not able to sign up user {authRequest.UserName}";
+			string attemptHash	= BCrypt.Net.BCrypt.HashPassword(authRequest.Password);
+			string message		= $"Not able to authenticate user {authRequest.UserName}. ";
+			string techMessage	= user is  null 
+								  ? "UserName not found in database."
+								  : $"Password incorrect. AttemptHash: {attemptHash}.";
 
-			logger.LogInformation(message);
+			logger.LogInformation(message + NewLine + techMessage);
 
 			return Returns<AuthUser>.Failure(message);
 		}
