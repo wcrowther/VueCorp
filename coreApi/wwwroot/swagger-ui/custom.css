@@ -40,6 +40,7 @@ body {
     color: #3a4b8b;
     display: inline;
     line-height: 1;
+	margin-right: 5px !important;
 }
 .swagger-ui .btn.authorize svg {
     fill: #3a4b8b;
@@ -75,6 +76,14 @@ body {
     margin-left: 0;
     margin-right: 0;
     padding-right: 10px;
+}
+.swagger-ui .markdown p {
+	line-height: 1.75;
+	color: #3a4b8b;
+}
+#api_key_value {
+	width: 100%;
+	max-width: 100%;
 }
 
 
