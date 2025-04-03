@@ -40,7 +40,7 @@ declare module 'vue' {
     ModalControl: typeof import('./src/components/ModalControl.vue')['default']
     NavBar: typeof import('./src/components/Layout/NavBar.vue')['default']
     NavBarMain: typeof import('./src/components/Layout/NavBarMain.vue')['default']
-    NavTab: typeof import('./src/components/NavTab.vue')['default']
+    NavTab: typeof import('./src/components/Layout/NavTab.vue')['default']
     NewUser: typeof import('./src/components/AuthSection/NewUser.vue')['default']
     PasswordInput: typeof import('./src/components/Inputs/PasswordInput.vue')['default']
     PhoneInput: typeof import('./src/components/Inputs/PhoneInput.vue')['default']

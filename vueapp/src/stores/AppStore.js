@@ -13,6 +13,7 @@ export const useAppStore = defineStore('AppStore',
         pagerDebuggerX:         useLocalStorage('pagerDebuggerX', 400),
         pagerDebuggerY:         useLocalStorage('pagerDebuggerY', 30),
         baseApiUrl:             import.meta.env.VITE_API_URL,
+        apiDocsUrl:             import.meta.env.VITE_API_DOCS_URL,
         baseUrl:                import.meta.env.BASE_URL,
         mode:                   import.meta.env.MODE
     }),

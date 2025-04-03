@@ -1,7 +1,8 @@
 <script setup>
 
     const homeTitle     = ref("Welcome to VueCorp")
-    // const confirmSave   = () => alert('Confirm Save')
+    const appStore      = useAppStore()
+
 
 </script>
 
@@ -32,14 +33,24 @@
                 </p> 
             </div>
 
-            <div class="w-full md:w-1/3 grow italic p-3 min-w-[200px] 
+            <div class="w-full md:w-1/3 grow italic p-5 min-w-[200px] flex flex-wrap gap-y-3
                 border border-color-light-blue md:border-0 bg-gradient-source">
-                
-                <span>The source for VueCorp is at: </span>
-                <a class="inline font-bold link-underline text-blue break-words lg:break-normal" 
-                    href="https://github.com/wcrowther/VueCorp" target="_blank">
-                    https://github.com/wcrowther/VueCorp
-                </a>
+
+                <div class="w-full sm:w-1/2 md:w-full h-fit">
+                    <div class="">View the customized DotNet c#:</div>
+                    <a class="block font-bold link-underline text-blue break-words lg:break-normal"
+                        :href="appStore.apiDocsUrl">
+                        VueCorp API Documentation
+                    </a>
+                </div>
+
+                <div class="w-full sm:w-1/2 md:w-full h-fit text-left sm:text-right md:text-left">
+                    <div>The source for VueCorp is at: </div>
+                    <a class="block font-bold link-underline text-blue break-all lg:break-normal"
+                        href="https://github.com/wcrowther/VueCorp" target="_blank">
+                        https://github.com/wcrowther/VueCorp
+                    </a>
+                </div>
 
             </div>
 
