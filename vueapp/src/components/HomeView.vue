@@ -55,12 +55,6 @@
             </div>
 
             <div class="pr-5 w-full grow">
-                <p class="pb-3">
-                    We started with the Microsoft's <b>Vue and Asp.Net Core</b> template that has a 
-                    solution that includes a <b>VueJs .esproj</b> built using Vite for the client SPA project and a
-                    separate C# DotNet Minimal API .proj for the backend that is integrated so that it
-                    can be built and published with a single click.
-                </p>
                 <p class="pb-3">    
                     Then we added real-world examples that show you how to integrate client side Pinia stores 
                     utilizing <b>JWT tokens</b> for api security to fetch data from your DotNet backend. The client 
