@@ -131,51 +131,45 @@
         </div>
 
         <div v-if="account && account.AccountId > 0 || isAddingAccount"  
-             class="w-[300px] flex-1 border border-color-blue-gray bg-white">
+            class="w-[300px] flex-1 border border-color-blue-gray bg-white p-5 min-w-[200px] grow ">
 
-            <div class="p-5 min-w-[200px] relative grow linear-gray">
+            <TitleBox v-if="!isAddingAccount">
+                <span>{{account.AccountName}}</span>
+                <span>Account Id: {{account.AccountId}}</span>
+            </TitleBox>
 
-                <TitleBox v-if="!isAddingAccount">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap">
-                        {{account.AccountName}}
-                    </span>
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap">
-                        Account Id: {{account.AccountId}}
-                    </span>
-                </TitleBox>
+            <CreatorBox v-if="!isAddingAccount">
+                <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
+                <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
+            </CreatorBox>
+            
+            <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
+            <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
+            <PhoneInput labelName="Main Phone" ruleName="AccountPhone" v-model="account.AccountPhone" :v$ />
 
-                <MetaBox v-if="!isAddingAccount">
-                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
-                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
-                </MetaBox>
-                
-                <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
-                <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
-                <PhoneInput labelName="Main Phone" ruleName="AccountPhone" v-model="account.AccountPhone" :v$ />
-
-                <div class="mt-7 flex flex-wrap justify-between gap-5 mb-3">
-                    <CheckboxInput labelName="Is Active" v-model="account.IsActive" />
-                    <CheckboxInput labelName="Is Invoice" v-model="account.IsInvoice" />
-                    <CheckboxInput labelName="Is AutoPay" v-model="account.IsAutoPay" />
-                </div>
-
+            <div class="mt-7 flex flex-wrap justify-between gap-5 mb-3">
+                <CheckboxInput labelName="Is Active" v-model="account.IsActive" />
+                <CheckboxInput labelName="Is Invoice" v-model="account.IsInvoice" />
+                <CheckboxInput labelName="Is AutoPay" v-model="account.IsAutoPay" />
             </div>
+
         </div>
 
         <div v-if="account && account.AccountId > 0 || isAddingAccount"  
-            class="w-[300px] flex-1 border border-color-blue-gray bg-white">
+            class="w-[300px] flex-1 border border-color-blue-gray bg-white p-5 min-w-[200px] grow">
 
-            <div class="p-5 min-w-[200px] relative grow linear-gray">
-                <TextInput labelName="Street Address" v-model="account.StreetAddress" :v$ />
-                <TextInput labelName="City" ruleName="City" v-model="account.City" :v$ />
-                <SelectInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" 
-                    :optionsList="usStatesList" defaultText="-- Pick a State --" :v$ />
-                <TextInput labelName="Postal Code" ruleName="PostalCode" v-model="account.PostalCode" :v$ />
-            </div>
-        
+            <!-- <TitleBox class="bg-transparent">
+                <span>Account Address</span>
+            </TitleBox> -->
+
+            <TextInput labelName="Street Address" v-model="account.StreetAddress" :v$ />
+            <TextInput labelName="City" ruleName="City" v-model="account.City" :v$ />
+            <SelectInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" 
+                :optionsList="usStatesList" defaultText="-- Pick a State --" :v$ />
+            <TextInput labelName="Postal Code" ruleName="PostalCode" v-model="account.PostalCode" :v$ />        
         </div>
-    </div>
 
+    </div>
 </template>
 
 <style lang="postcss" scoped></style> 

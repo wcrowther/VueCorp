@@ -124,16 +124,16 @@
 
                 <div class="">
                     <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
-                        class="icon-symbol" icon="heroicons:plus-circle-16-solid" />
+                        class="text-color-mid-blue hover:text-white" icon="heroicons:plus-circle-16-solid" />
                     <IconSymbol v-else width="28px" @click="cancelAdd" title="Cancel"
-                        class="icon-symbol" icon="heroicons:x-circle-16-solid" />
+                        class="text-color-mid-blue hover:text-white" icon="heroicons:x-circle-16-solid" />
                 </div>
                                 
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="22px" @click="confirmSave" title="Save User"
-                        class="icon-symbol mt-[2px]" icon="fa-solid:save" />
+                        class="text-color-mid-blue hover:text-white mt-[2px]" icon="fa-solid:save" />
                     <IconSymbol width="28px"  @click="confirmDelete" title="Delete User"
-                        class="icon-symbol -ml-[4px]" icon="heroicons:trash-16-solid" />
+                        class="text-color-mid-blue hover:text-white -ml-[4px]" icon="heroicons:trash-16-solid" />
                 </template>
 
             </span>
@@ -145,43 +145,34 @@
         </div>
 
         <div v-if="user && user.UserId > 0 || isAddingUser"  
-             class="w-[300px] flex-1 border border-color-blue-gray bg-white">
+            class="w-[300px] flex-1 border border-color-blue-gray bg-white p-5 min-w-[200px] grow">
 
-            <div class="p-5 min-w-[200px] relative grow linear-gray">
+            <TitleBox v-if="!isAddingUser">
+                <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
+                    UserName: {{user.UserName}}
+                </span>
+                <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
+                    UserId: {{user.UserId}}
+                </span>
+            </TitleBox>
 
-                <TitleBox v-if="!isAddingUser">
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
-                        UserName: {{user.UserName}}
-                    </span>
-                    <span class="text-color-dark-blue font-bold whitespace-nowrap text-l">
-                        UserId: {{user.UserId}}
-                    </span>
-                </TitleBox>
+            <CreatorBox v-if="!isAddingUser">
+                <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025 by wcrowther</span>
+                <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024 by wcrowther</span>
+            </CreatorBox>
 
-                <MetaBox v-if="!isAddingUser">
-                    <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025 by wcrowther</span>
-                    <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024 by wcrowther</span>
-                </MetaBox>
+            <template v-if="isAddingUser">
+                <TextInput labelName="UserName"     v-model="user.UserName"     :v$ />                
+                <TextInput labelName="UserPassword" v-model="user.UserPassword" :v$ />                
+            </template>
 
-                <template v-if="isAddingUser">
-                    <TextInput labelName="UserName"     v-model="user.UserName"     :v$ />                
-                    <TextInput labelName="UserPassword" v-model="user.UserPassword" :v$ />                
-                </template>
+            <TextInput labelName="First Name" v-model="user.FirstName" :v$ />
+            <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
+            <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
+            <SelectInput labelName="Role"  v-model="user.Role" :v$ :optionsList="roleList" />
 
-                <TextInput labelName="First Name" v-model="user.FirstName" :v$ />
-                <TextInput labelName="Last Name"  v-model="user.LastName"  :v$ />
-                <TextInput labelName="UserEmail"  v-model="user.UserEmail" :v$ />
-                <SelectInput labelName="Role"  v-model="user.Role" :v$ :optionsList="roleList" />
-
-            </div>
         </div>
 
     </div>
 
 </template>
-
-<style lang="postcss" scoped>
-	.icon-symbol {
-        @apply text-color-mid-blue hover:text-white
-    }    
-</style>

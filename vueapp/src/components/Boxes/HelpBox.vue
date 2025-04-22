@@ -15,3 +15,15 @@
         <slot></slot>
     </div>
 </template>
+
+<!-- 
+USE:  Wrap around content that you only want to appear when infoLevel is Help (3)
+      determined by the InfoLevel control.
+
+EXAMPLES: 
+
+    <HelpBox>
+        Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+    </HelpBox>
+-->
+

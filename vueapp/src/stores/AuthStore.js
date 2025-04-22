@@ -87,31 +87,3 @@ export const useAuthStore = defineStore('AuthStore',
         },
     }
 })
-
-
-// ======================================================================================
-// ALTERNATE SYNTAX EXAMPLE
-// ======================================================================================
-// async loginAlt (model)
-// {
-//    try 
-//    {
-//        this.isBusy         = true
-//     
-//        let queryUrl        = `${baseApiUrl}/authenticate/`
-//        const result        = await axios.post(queryUrl, model, this.axiosConfig )
-//        this.authUser       = result.data
-// 
-//        console.log("--- >>> Logging In - authUser")
-//        console.log(JSON.parse(JSON.stringify(this.authUser))) 
-// 
-//        this.router.push('/')
-//    } 
-//    catch (err) 
-//    { 
-//        console.error(err) 
-//        this.error = err
-//    }
-//    finally { this.isBusy = false }
-// },
-

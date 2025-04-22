@@ -155,7 +155,8 @@
             <MobilePagerPrevNext :pager="listPager" />
 
             <InfoBox class="mb-3">
-                Search for Accounts that start with this text or are equal to the AccountId. Add multiple conditions separated by a comma.
+                Enter search text for the start of an Account Name or are a number that is to the AccountId. 
+                You can add multiple conditions separated by a comma.
             </InfoBox>
             
             <HelpBox class="mb-3">
