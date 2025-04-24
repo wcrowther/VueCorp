@@ -26,7 +26,7 @@ public class Returns<T>(T data = default, Error error = null)
 	public static Returns<T> Failure(Error error) => new(error: error);
 
 	public static Returns<T> Failure(Exception exception) => new(error: exception);
-	
+
 	public static implicit operator Returns<T>(Error error) => Failure(error);
 
 	public static implicit operator Returns<T>(Exception exception) => Failure(exception);
@@ -52,9 +52,10 @@ public class Returns(string data = null, Error error = null) : Returns<string>(d
 	public static new Returns Failure(Exception exception)
 		=> new(error: exception);
 
+
 	public static implicit operator Returns(Error error) => Failure(error);
 
 	public static implicit operator Returns(Exception exception) => Failure(exception);
 
-	public override string ToString() => Ok ? Data ?? "" : Error.Message;
+	public override string ToString() => Ok ? Data.ToString() ?? "" : Error.Message;
 }

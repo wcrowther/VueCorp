@@ -10,33 +10,33 @@ public static partial class Endpoints
 {
     public static void AccountEndpoints(this WebApplication app)
     {
-        var accounts = app.MapGroup("/v1/accounts")
+        var endpoints = app.MapGroup("/v1/accounts")
 						  .RequireAuthorization()
                           .WithOpenApi()
 						  .WithTags("Accounts");
 
-        accounts.MapGet("/getAllAccounts", (IAccountManager _accountManager) =>
+        endpoints.MapGet("/getAllAccounts", (IAccountManager _accountManager) =>
         {
             var accounts = _accountManager.GetAllAccounts();
 
             return Results.Ok(accounts);
         });
 
-        accounts.MapPost("/getPagedAccounts", (IAccountManager _accountManager, [FromBody] Pager<SearchForAccount> pager) =>
+        endpoints.MapPost("/getPagedAccounts", (IAccountManager _accountManager, [FromBody] Pager<SearchForAccount> pager) =>
         {
             var accounts = _accountManager.GetPagedAccounts(pager);
 
             return Results.Ok(accounts);
         });
 
-        accounts.MapGet("/getAccountById/{accountId}", (IAccountManager _accountManager, int accountId) =>
+        endpoints.MapGet("/getAccountById/{accountId}", (IAccountManager _accountManager, int accountId) =>
         {
             var acct = _accountManager.GetAccountById(accountId);
 
             return Results.Ok(acct);
         });
 
-		accounts.MapPost("/saveAccount", (IAccountManager _accountManager, [FromBody] Account account) =>
+		endpoints.MapPost("/saveAccount", (IAccountManager _accountManager, [FromBody] Account account) =>
 		{
 			var acct = _accountManager.SaveAccount(account);
 
