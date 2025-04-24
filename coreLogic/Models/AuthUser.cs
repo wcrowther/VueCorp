@@ -1,5 +1,9 @@
 
+using coreLogic.Models.Generic;
+
 namespace coreApi.Models;
+
+public class AuthUserOrError : Returns<AuthUser> { }
 
 public class AuthUser(User user, string token, DateTime tokenExpiration)
 {

@@ -65,7 +65,7 @@ public class AuthManager(	IUserManager userManager,
 		var allowedDomains  = appSettings.AllowedOrigins.Split(";", true);
 
 		if (!IsAllowedDomain(domain, allowedDomains))
-			return Returns<AuthUser>.Failure("Not able to refresh token from this domain");
+			return AuthUserOrError.Failure("Not able to refresh token from this domain");
 
 		if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiration <= DateTime.Now)
 			return Returns<AuthUser>.Failure($"Not able to refresh token for userId: {request.UserId}");

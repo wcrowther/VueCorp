@@ -13,11 +13,11 @@ public static partial class Endpoints
 {
 	public static void ContentEndpoints(this WebApplication app)
 	{
-		var content = app.MapGroup("/v1/content")
+		var endpoints = app.MapGroup("/v1/endpoints")
 					  .WithOpenApi()
 					  .WithTags("Content");
 
-		content.MapPost("/getimages", (IContentManager _contentManager) =>
+		endpoints.MapPost("/getimages", (IContentManager _contentManager) =>
 		{
 			var results = _contentManager.GetImages();
 
@@ -27,7 +27,7 @@ public static partial class Endpoints
 		})
 		.WithName("GetImages");
 
-		content.MapPost("/getPagedImages", (IContentManager _contentManager, [FromBody] Pager pager) =>
+		endpoints.MapPost("/getPagedImages", (IContentManager _contentManager, [FromBody] Pager pager) =>
 		{
 			var results = _contentManager.GetPagedImages(pager);
 
