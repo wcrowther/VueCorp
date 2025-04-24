@@ -10,7 +10,7 @@ public static partial class Endpoints
 {
     public static void AccountEndpoints(this WebApplication app)
     {
-        var endpoints = app.MapGroup("/v1/endpoints")
+        var endpoints = app.MapGroup("/v1/accounts")
 						  .RequireAuthorization()
                           .WithOpenApi()
 						  .WithTags("Accounts");

@@ -13,7 +13,7 @@ public static partial class Endpoints
 {
 	public static void ContentEndpoints(this WebApplication app)
 	{
-		var endpoints = app.MapGroup("/v1/endpoints")
+		var endpoints = app.MapGroup("/v1/content")
 					  .WithOpenApi()
 					  .WithTags("Content");
 
