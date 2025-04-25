@@ -3,6 +3,7 @@ using coreApi.Data.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
 using coreApi.Logic.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace coreApi.Logic;
 
@@ -35,8 +36,9 @@ public class AccountManager : IAccountManager
         return await _accountRepo.GetPagedAccounts(pager);
     }
 
-	public async Task<Account> SaveAccount(Account account)
+	public async Task<Account> SaveAccount(Account account, User user)
 	{
+		// account.ModifiedBy = user.UserId;
 		await _accountRepo.SaveAccount(account);
 
 		return account;

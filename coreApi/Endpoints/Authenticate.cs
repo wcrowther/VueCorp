@@ -18,8 +18,8 @@ public static partial class Endpoints
 
 		// login
         endpoints.MapPost("/login", (	AuthRequest model, 
-									IAuthManager _authManager,
-									HttpContext httpContext) =>
+										IAuthManager _authManager,
+										HttpContext httpContext) =>
 		{
             Returns<AuthUser> returns = _authManager.Authenticate(model, httpContext);
 
@@ -31,7 +31,7 @@ public static partial class Endpoints
         .WithName("Login");
 
 		// signup
-		endpoints.MapPost("/signup", (		UserToCreate model, 
+		endpoints.MapPost("/signup", (	UserToCreate model, 
 										IAuthManager _authManager,
 										HttpContext httpContext) =>
 		{
@@ -46,8 +46,8 @@ public static partial class Endpoints
 
 		// refreshAuth
 		endpoints.MapPost("/refreshAuth", (	AuthRefreshRequest request, 
-										IAuthManager _authManager,
-										HttpContext httpContext  ) =>
+											IAuthManager _authManager,
+											HttpContext httpContext  ) =>
 		{
 			Returns<AuthUser> returns = _authManager.RefreshAuth(request, httpContext);
 

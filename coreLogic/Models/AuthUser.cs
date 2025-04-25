@@ -27,7 +27,5 @@ public class AuthUser(User user, string token, DateTime tokenExpiration)
 
 	public DateTime TokenExpiration { get; set; }			= tokenExpiration;
 
-	// ----------------------------------------------------------------------------------
-
 	public override string ToString() => $"{UserName} ({UserId}) FullName: {FirstName} {LastName}";
 }

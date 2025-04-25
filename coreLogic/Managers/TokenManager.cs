@@ -25,10 +25,10 @@ public class TokenManager(AppSettings appSettings)
 
 		baseClaims.AddRange(roleClaims);
 
-		var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.AuthSigningKey));
-		var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-		var expiration = DateTime.Now.AddMinutes(appSettings.TokenExpirationMinutes);
-		var jwtToken = new JwtSecurityToken
+		var key			= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.AuthSigningKey));
+		var creds		= new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+		var expiration	= DateTime.Now.AddMinutes(appSettings.TokenExpirationMinutes);
+		var jwtToken	= new JwtSecurityToken
 		(
 			claims: baseClaims,
 			issuer: appSettings.AuthIssuer,
@@ -36,6 +36,7 @@ public class TokenManager(AppSettings appSettings)
 			expires: expiration,
 			signingCredentials: creds
 		);
+
 		var token = new JwtSecurityTokenHandler().WriteToken(jwtToken);
 
 		return (token, expiration);

@@ -31,5 +31,7 @@ public class User
 
 	public DateTime RefreshTokenExpiration { get; set; }
 
+	// public bool IsActive { get; set; } // Not implemented yet
+
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

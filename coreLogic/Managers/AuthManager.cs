@@ -20,6 +20,15 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
+	public Returns<User> GetCurrentUser(HttpContext httpContext)
+	{
+		string userName = httpContext.User.Identity.Name;
+		var user		= userName.IsNullOrEmpty() ? null : userManager.GetUserByUsername(userName);
+
+		return Returns<User>.Result(user, "Not able to get the current user.");	
+	}
+
+
 	public Returns<AuthUser> Authenticate(AuthRequest authRequest, HttpContext httpContext)
 	{
 		var user = userManager.GetUserByUsername(authRequest.UserName);
@@ -43,6 +52,11 @@ public class AuthManager(	IUserManager userManager,
 
 		return Returns<AuthUser>.Result(GetAuthResponse(user));
 	}
+
+	// if (!user.IsActive) // not implemented above yet
+	// {
+	//		return Returns<AuthUser>.Failure($"User {user.UserName} is not active.");
+	// }
 
 	public Returns<AuthUser> Signup(UserToCreate userToCreate, HttpContext httpContext)
 	{
