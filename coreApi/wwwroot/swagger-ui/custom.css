@@ -6,20 +6,23 @@ body {
 /* ------------------------------------------------------------ */
 
 /* Hide Swagger logo */
-.topbar-wrapper img[alt="Swagger UI"], 
-.topbar-wrapper span {
-    visibility: hidden;
+.topbar-wrapper img[alt="Swagger UI"],
+.topbar-wrapper span,
+#logo_small_svg__SW_TM-logo-on-dark {
+	visibility: hidden;
 }
+
 /* Add custom logo */
 .topbar-wrapper .link:after {
-    content: '';
-    visibility: visible;
-    display: block;
-    position: absolute;
-    font-style: italic;
-    height: 40px;
-    width: 130px;
-    background: #3a4b8b url(/docs/White_Brand_Logo.png) no-repeat
+	content: '';
+	visibility: visible;
+	display: block;
+	position: absolute;
+	font-style: italic;
+	height: 40px;
+	width: 150px;
+	background: left center url(/docs/VueCorp_sans.png) no-repeat;
+	background-size: 75%;
 }
 
 /* ------------------------------------------------------------ */

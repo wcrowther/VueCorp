@@ -1,6 +1,6 @@
 <script setup>
 
-    const homeTitle     = ref("Welcome to VueCorp")
+    const homeTitle     = ref("Welcome to VueCorp Starter Solution")
     const appStore      = useAppStore()
 
 
@@ -24,11 +24,11 @@
 
             <div class="pr-5 w-2/3 grow">
                 <p class="pb-3 text-lg">
-                    <b>VueCorp</b> is an open source project to promote using <b>VueJs</b> with 
-                    <b>DotNet</b> backend technologies to create a simple yet powerful application environment. 
-                    We started with the Microsoft's <b>Vue and Asp.Net Core</b> template that has a 
-                    solution that includes a <b>VueJs .esproj</b> built using <b>Vite</b> for client 
-                    the <b>SPA</b> project and a separate <b>C# DotNet Minimal API .proj</b> for the backend 
+                    <b>VueCorp</b> is an open source project to promote using <b>Vue.js</b> with a
+                    <b>DotNet</b> backend to create a simple yet powerful application environment. 
+                    We started with the Microsoft's <b>Vue and Asp.Net Core</b> template which includes
+                    a solution containing a <b>VueJs .esproj project</b> built using <b>Vite</b> for client 
+                    the <b>SPA</b> project and a separate <b>C# DotNet Minimal API .csproj</b> for the backend 
                     that is integrated so that it can be built and published with a <b>single click</b>.
                 </p> 
             </div>
@@ -77,7 +77,7 @@
                 </p>
             </div>
 
-            <!-- Still working on <HomeView2 /> -->
+            <HomeView2 /> <!-- Still working on -->
             
         </div>
 
