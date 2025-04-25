@@ -67,8 +67,10 @@
             <span class="text-sm m-auto">{{firstInitial}}</span>
         </div>
 
-        <router-link v-if="!isLoggedIn" title="Login"
-            class="p-3 text-white tracking-wider" to='/auth/login'>Login 
+        <router-link v-if="!isLoggedIn" title="Login" to='/auth/login'
+            class="flex pt-px px-4 items-center relative h-[28px] text-sm font-semibold rounded-full tracking-wider
+                text-white/80 bg-[white]/20 hover:text-white hover:bg-white/0">
+            Login 
         </router-link>
         
         <div v-if="showPopout"

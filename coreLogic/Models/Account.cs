@@ -1,3 +1,4 @@
+using coreLogic.Models.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace coreApi.Models;

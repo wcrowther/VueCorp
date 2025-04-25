@@ -12,12 +12,12 @@ public static partial class Endpoints
 {
     public static void AuthenticateEndpoints(this WebApplication app)
     {
-        var auth = app.MapGroup("/v1/authenticate")
+        var endpoints = app.MapGroup("/v1/authenticate")
                       .WithOpenApi()
 					  .WithTags("Authenticate");
 
 		// login
-        auth.MapPost("/login", (	AuthRequest model, 
+        endpoints.MapPost("/login", (	AuthRequest model, 
 									IAuthManager _authManager,
 									HttpContext httpContext) =>
 		{
@@ -31,7 +31,7 @@ public static partial class Endpoints
         .WithName("Login");
 
 		// signup
-		auth.MapPost("/signup", (		UserToCreate model, 
+		endpoints.MapPost("/signup", (		UserToCreate model, 
 										IAuthManager _authManager,
 										HttpContext httpContext) =>
 		{
@@ -45,7 +45,7 @@ public static partial class Endpoints
 		.WithName("Signup");
 
 		// refreshAuth
-		auth.MapPost("/refreshAuth", (	AuthRefreshRequest request, 
+		endpoints.MapPost("/refreshAuth", (	AuthRefreshRequest request, 
 										IAuthManager _authManager,
 										HttpContext httpContext  ) =>
 		{

@@ -1,3 +1,4 @@
+using coreApi;
 using coreApi.Helpers;
 using coreApi.Models;
 using coreLogic.Helpers;
@@ -81,6 +82,13 @@ app.RegisterMyEndpoints();
 
 app.MapFallbackToFile("/index.html");
 
+if (environment.IsDevelopment())
+{
+	app.UseMiddleware<DebugMiddleware>();
+}
+
 // ========================================================================================================
 
 app.Run();
+
+
