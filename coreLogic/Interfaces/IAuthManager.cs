@@ -7,7 +7,7 @@ namespace coreLogic.Interfaces;
 
 public interface IAuthManager
 {
-	Returns<User> GetCurrentUser(HttpContext httpContext);
+	(User user, Errors errors) GetCurrentUser(HttpContext httpContext);
 
 	Returns<AuthUser> Authenticate(AuthRequest authRequest, HttpContext httpContext);
 

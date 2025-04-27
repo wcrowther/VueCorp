@@ -20,12 +20,15 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
-	public Returns<User> GetCurrentUser(HttpContext httpContext)
+	public (User user, Errors errors) GetCurrentUser(HttpContext httpContext)
 	{
 		string userName = httpContext.User.Identity.Name;
 		var user		= userName.IsNullOrEmpty() ? null : userManager.GetUserByUsername(userName);
 
-		return Returns<User>.Result(user, "Not able to get the current user.");	
+		if (user is null)
+			return (null, Errors.One("Not able to get current User."));
+
+		return (user, Errors.Empty);	
 	}
 
 

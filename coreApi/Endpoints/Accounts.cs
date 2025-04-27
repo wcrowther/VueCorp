@@ -2,6 +2,7 @@
 using coreApi.Logic.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
+using coreLogic.Helpers;
 using coreLogic.Interfaces;
 using coreLogic.Models.Generic;
 using Microsoft.AspNetCore.Mvc;
@@ -46,14 +47,16 @@ public static partial class Endpoints
 												HttpContext httpContext,
 												[FromBody] Account account) =>
 		{
-			var returnsUser = _authManager.GetCurrentUser(httpContext);
+			var response = _authManager.GetCurrentUser(httpContext);
 
-			if (!returnsUser.Ok)
-				return Results.BadRequest(returnsUser.Error.Message);
+			if (response.IsFailure())
+				return Results.BadRequest(response.errors.Message);
 
-			var acct = _accountManager.SaveAccount(account, returnsUser.Data);
+			var acct = _accountManager.SaveAccount(account, response.user);
 
-			return Results.Ok(acct);
+			return  acct.Map(
+				acct => Results.Ok(acct), 
+				errors => Results.BadRequest(errors));
 		})
 		.Validate<Account>(false);
 	}

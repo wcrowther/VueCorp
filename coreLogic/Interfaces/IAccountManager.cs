@@ -1,5 +1,6 @@
 ﻿using coreApi.Models;
 using coreApi.Models.Generic;
+using coreLogic.Models.Generic;
 
 namespace coreApi.Logic.Interfaces
 {
@@ -11,6 +12,6 @@ namespace coreApi.Logic.Interfaces
 
 		Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager);
 
-		Task<Account> SaveAccount(Account account, User user);
+		Task<(Account,Errors)> SaveAccount(Account account, User user);
 	}
 }
