@@ -28,7 +28,7 @@
     </ol>
 
     <div class="flex flex-wrap gap-y-5 bg-[#e9f3fa] p-10 -mx-10">
-        <h3 class="font-bold text-base">Vue 3.5 Client App with Composition Api / Vite / Pinia</h3>
+        <h3 class="font-bold text-base">Vue 3.6 Client App with Composition Api / Vite / Pinia</h3>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dolores at
             quisquam consequatur libero. Fuga blanditiis quo iure qui reprehenderit eos,
