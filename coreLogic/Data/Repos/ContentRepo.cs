@@ -8,19 +8,13 @@ using coreApi.Models.Generic;
 using coreLogic.Helpers;
 using LinqKit;
 using System.Linq.Expressions;
+using coreLogic.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace coreApi.Data;
 
 public class ContentRepo : IContentRepo
 {
-	private readonly CoreApiDataContext _dataContext;
-
-	public ContentRepo()
-	{
-		_dataContext = new CoreApiDataContext();
-	}
-
-
 	public List<Image> GetImages()
 	{
 		string directoryPath	= @"C:\Git\VueCorp\vueapp\public\images";

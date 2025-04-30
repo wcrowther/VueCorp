@@ -16,6 +16,7 @@ namespace coreLogic.Managers;
 public class AuthManager(	IUserManager userManager,
 							ITokenManager tokenManager,
 							ILogger<AuthManager> logger,
+							//HttpContext httpContext,
 							AppSettings appSettings
 						)
 : IAuthManager
@@ -27,7 +28,6 @@ public class AuthManager(	IUserManager userManager,
 
 		return Returns<User>.Result(user, "Not able to get the current user.");	
 	}
-
 
 	public Returns<AuthUser> Authenticate(AuthRequest authRequest, HttpContext httpContext)
 	{

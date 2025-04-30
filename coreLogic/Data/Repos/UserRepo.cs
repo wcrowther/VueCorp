@@ -3,8 +3,6 @@ using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Data.Interfaces;
 using coreLogic.Helpers;
-using coreLogic.Interfaces;
-using coreLogic.Managers;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -12,33 +10,24 @@ using WildHare.Extensions;
 
 namespace coreLogic.Data.Repos;
 
-public class UserRepo
+public class UserRepo(CoreApiDataContext coreApiDataContext)
 : IUserRepo, IDisposable
 {
-	private readonly CoreApiDataContext _dataContext;
-	private readonly ITokenManager _tokenManager;
 	private bool _disposed;
-
-
-	public UserRepo(ITokenManager tokenManager)
-	{
-		_dataContext = new CoreApiDataContext();
-		_tokenManager = tokenManager;
-	}
 
 	public IEnumerable<User> GetAllUsers()
 	{
-		return _dataContext.Users;
+		return coreApiDataContext.Users;
 	}
 
 	public User GetUserByUserName(string username)
 	{
-		return _dataContext.Users.FirstOrDefault(x => x.UserName == username);
+		return coreApiDataContext.Users.FirstOrDefault(x => x.UserName == username);
 	}
 
 	public User GetUserById(int userId)
 	{
-		return _dataContext.Users.FirstOrDefault(x => x.UserId == userId);
+		return coreApiDataContext.Users.FirstOrDefault(x => x.UserId == userId);
 	}
 
 	public User CreateUser(UserToCreate model, string passwordHash)
@@ -55,8 +44,8 @@ public class UserRepo
 			PasswordHash            = passwordHash,
 		};
 
-		_dataContext.Add(newUser);
-		_dataContext.SaveChanges();
+		coreApiDataContext.Add(newUser);
+		coreApiDataContext.SaveChanges();
 
 		return newUser;
 	}
@@ -65,7 +54,7 @@ public class UserRepo
 	{
 		var predicate = BuildPredicate(pager);
 
-		var query = _dataContext.Users.Where(predicate);
+		var query = coreApiDataContext.Users.Where(predicate);
 
 		pager.TotalCount = query.Count();
 		var listItems = query.OrderBy(p => p.LastName ?? "")
@@ -86,14 +75,14 @@ public class UserRepo
 	{
 		// Password cannot be changed by this call so get the original PasswordHash and set it
 
-		var passwordHash = _dataContext.Users.AsNoTracking()
+		var passwordHash = coreApiDataContext.Users.AsNoTracking()
 									   .FirstOrDefault(u => u.UserId == user.UserId)
 									   ?.PasswordHash;
 		if (passwordHash is not null)
 			user.PasswordHash = passwordHash;
 
-		_dataContext.Update(user);
-		_dataContext.SaveChanges();
+		coreApiDataContext.Update(user);
+		coreApiDataContext.SaveChanges();
 
 		return user;
 	}
@@ -143,7 +132,7 @@ public class UserRepo
 		if (!_disposed)
 		{
 			if (disposing)
-				_dataContext.Dispose();
+				coreApiDataContext.Dispose();
 
 			_disposed = true;
 		}

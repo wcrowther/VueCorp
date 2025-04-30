@@ -1,10 +1,11 @@
+using coreLogic.Interfaces;
 using coreLogic.Models.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace coreApi.Models;
 
-public class Account
+public class Account // : IAuditable
 {
     [Required]
 	public int AccountId { get; set; }
@@ -38,12 +39,12 @@ public class Account
 
 	// [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	// public DateTime DateCreated { get; set; }
-
+	// 
 	// [DatabaseGenerated(DatabaseGeneratedOption.Computed)] // Set to auto-update on modification in DB
 	// public DateTime DateModified { get; set; }
-
+	// 
 	// public int CreatorId { get; set; }
-
+	// 
 	// public int ModifierId { get; set; }
 
 	public override string ToString() => $"{AccountName} AccountId: {AccountId}";

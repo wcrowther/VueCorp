@@ -16,7 +16,7 @@ public class AccountManager : IAccountManager
                            IAccountRepo accountRepo)
     {
         _appSettings = appSettings.Value;
-        _accountRepo =   accountRepo;
+        _accountRepo = accountRepo;
     }
 
     public async Task<List<Account>> GetAllAccounts()
