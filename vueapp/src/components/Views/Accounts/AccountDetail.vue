@@ -138,10 +138,7 @@
                 <span>Account Id: {{account.AccountId}}</span>
             </TitleBox>
 
-            <CreatorBox v-if="!isAddingAccount">
-                <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025</span>
-                <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024</span>
-            </CreatorBox>
+            <CreatorBox v-if="!isAddingAccount" :IAuditable="account" />
             
             <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
             <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />

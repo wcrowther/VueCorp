@@ -1,10 +1,11 @@
 
+using coreLogic.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace coreApi.Models;
 
-public class User
+public class User : IAuditable
 {
 	public int UserId { get; set; }
 
@@ -31,7 +32,15 @@ public class User
 
 	public DateTime RefreshTokenExpiration { get; set; }
 
-	// public bool IsActive { get; set; } // Not implemented yet
+	public bool IsActive { get; set; }
+
+	public DateTime DateCreated { get; set; }
+
+	public DateTime DateModified { get; set; }
+
+	public int CreatorId { get; set; }
+
+	public int ModifierId { get; set; }
 
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

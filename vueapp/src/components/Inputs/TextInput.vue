@@ -11,8 +11,6 @@
     const modelValue = defineModel()
     const rule  = computed(() => props.ruleName ? props.ruleName : props.labelName.replace(' ',''))
 
-    
-
 </script>
 
 <template>

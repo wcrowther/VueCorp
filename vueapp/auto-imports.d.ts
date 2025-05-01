@@ -13,6 +13,7 @@ declare global {
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
   const HtmlHeadBody: typeof import('./src/composables/HtmlHeadBody.js')['HtmlHeadBody']
+  const IAuditable: typeof import('./src/models/IAuditable.js')['IAuditable']
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
   const KeyboardListeners: typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
@@ -128,6 +129,7 @@ declare module 'vue' {
     readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
@@ -236,6 +238,7 @@ declare module '@vue/runtime-core' {
     readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>

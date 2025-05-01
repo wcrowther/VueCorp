@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace coreApi.Models;
 
-public class Account // : IAuditable
+public class Account : IAuditable
 {
     [Required]
 	public int AccountId { get; set; }
@@ -37,15 +37,13 @@ public class Account // : IAuditable
 
 	public bool IsActive { get; set; } = true;
 
-	// [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-	// public DateTime DateCreated { get; set; }
-	// 
-	// [DatabaseGenerated(DatabaseGeneratedOption.Computed)] // Set to auto-update on modification in DB
-	// public DateTime DateModified { get; set; }
-	// 
-	// public int CreatorId { get; set; }
-	// 
-	// public int ModifierId { get; set; }
+	public DateTime DateCreated { get; set; }
+	
+	public DateTime DateModified { get; set; }
+	
+	public int CreatorId { get; set; }
+	
+	public int ModifierId { get; set; }
 
 	public override string ToString() => $"{AccountName} AccountId: {AccountId}";
 }

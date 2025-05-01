@@ -65,13 +65,11 @@ export const dateTimeFormat = (date, format) => dayjs(date).format(format || "MM
 export const dateFormat     = (date) => dayjs(date).format("MM-DD-YYYY")
 export const timeFormat     = (date) => dayjs(date).format("HH:mm:ss")
 
-
-
 export const IsDuplicateMessage = (message, self)  =>
 {
-    let lastDate   = Date.parse(self.lastDateTime) 
-    let milliseconds = !isNaN(lastDate)  ? Date.now() - lastDate : undefined
-    let isDuplicate  = milliseconds && milliseconds < self.duplicateThreshold && message === self.lastMessage
+    let lastDate        = Date.parse(self.lastDateTime) 
+    let milliseconds    = !isNaN(lastDate)  ? Date.now() - lastDate : undefined
+    let isDuplicate     = milliseconds && milliseconds < self.duplicateThreshold && message === self.lastMessage
 
     // if(isDuplicate) console.log(`Duplicate Message: '${message}' ${milliseconds} shown ms ago`)
 

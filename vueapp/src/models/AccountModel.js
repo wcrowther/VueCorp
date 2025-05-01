@@ -12,6 +12,10 @@ function AccountModel (accountId, accountName)
     this.IsInvoiceAccount   = false
     this.IsAutoPay          = false
     this.IsActive           = false 
+    this.CreatedDate        = null 
+    this.ModifiedDate       = null 
+    this.CreatedId          = 0
+    this.ModifiedId         = 0
 }
 
 export

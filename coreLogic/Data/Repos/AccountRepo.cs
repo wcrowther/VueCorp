@@ -93,8 +93,6 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 	}
 }
 
-
-
 // =================================================================================================================
 // Use SeedPacket to generate list
 // private List<Account> Accounts => new List<Account>().Seed(127, new Random(43454)).ToList();

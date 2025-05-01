@@ -114,6 +114,7 @@
     "watchPostEffect": true,
     "watchSyncEffect": true,
     "HtmlHeadBody": true,
-    "SetHtmlHeadBody": true
+    "SetHtmlHeadBody": true,
+    "IAuditable": true
   }
 }
