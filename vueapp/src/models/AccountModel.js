@@ -14,8 +14,8 @@ function AccountModel (accountId, accountName)
     this.IsActive           = false 
     this.CreatedDate        = null 
     this.ModifiedDate       = null 
-    this.CreatedId          = 0
-    this.ModifiedId         = 0
+    this.CreatorId          = 0
+    this.ModifierId         = 0
 }
 
 export
