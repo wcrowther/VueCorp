@@ -7,15 +7,18 @@
             type: Object, 
             required: true,
             validator(value){
-                var required = ["DateCreated", "DateModified", "CreatorId", "ModifierId"]
-                if(!required.every(prop => Object.hasOwn(value, prop))) 
-                    console.warn('CreatorBox: IAuditable object must implement all required fields')
-                return true
+                const requiredFields = ["DateCreated", "DateModified", "CreatorId", "ModifierId"];
+                for (const prop of requiredFields) {
+                    if (!Object.hasOwn(value, prop)) {
+                        console.log(`CreatorBox does not implement: ${prop}`);
+                    }
+                }
+                return true;
             }
         } 
     })
 
-    const { DateCreated, DateModified, CreatorId, ModifierId } = props.IAuditable;
+    const { DateCreated, CreatorId,  DateModified, ModifierId } = props.IAuditable;
 
 </script>
 
@@ -23,12 +26,12 @@
 
     <div class="-m-5 mb-5 p-3 flex flex-wrap gap-2 justify-between
         text-slate-400 whitespace-nowrap text-xs italic overflow-hidden">
-        <span :title="`Modified: ${dateTimeFormat(DateModified)}  by Will Crowther ${CreatorId}`">
+        <span :title="`Modified: ${dateTimeFormat(DateModified)}  by Will Crowther ${ModifierId}`">
             Modified: {{dateFormat(DateModified)}} 
         </span>
-        <span :title="`Created: ${dateTimeFormat(DateCreated)} by Will Crowther ${ModifierId}`">
+        <span :title="`Created: ${dateTimeFormat(DateCreated)} by Will Crowther ${CreatorId}`">
             Created: {{dateFormat(DateCreated)}}
-        </span>
+        </span> 
     </div>
 
 </template>

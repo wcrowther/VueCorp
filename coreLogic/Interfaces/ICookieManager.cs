@@ -4,5 +4,5 @@ namespace coreLogic.Interfaces;
 
 public interface ICookieManager
 {
-	void SetRefreshTokenCookie(string refreshToken, HttpContext httpContext);
+	void SetRefreshTokenCookie(string refreshToken);
 }

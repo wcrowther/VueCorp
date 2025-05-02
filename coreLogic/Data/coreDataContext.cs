@@ -7,29 +7,21 @@ using System;
 
 namespace coreApi.Data;
 
-public class CoreApiDataContext(DbContextOptions<CoreApiDataContext> options) // 
+public class CoreApiDataContext(DbContextOptions<CoreApiDataContext> options,
+								IUserClaimsManager currentUserManager) 
 : DbContext(options)
 {
-	//private readonly IAuthManager _authManager;
-	//private readonly HttpContext _httpContext;
+	public override int SaveChanges()
+	{
+		ApplyAuditInfo();
+		return base.SaveChanges();
+	}
 
-	//public CoreApiDataContext(	DbContextOptions<CoreApiDataContext> options)
-								//IAuthManager authManager,
-								//HttpContext httpContext
-								//)
-	//: base(options)
-	//{
-		//_authManager=authManager;
-		//_httpContext=httpContext;
-	//}
-
-	// public override int SaveChanges()
-	// {
-	// 	ApplyAuditInfo();
-	// 	return base.SaveChanges();
-	// }
-
-	// public string DbPath { get; }
+	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	{
+		ApplyAuditInfo();
+		return await base.SaveChangesAsync(cancellationToken);
+	}
 
 	public DbSet<Account> Accounts { get; set; }
 
@@ -37,38 +29,29 @@ public class CoreApiDataContext(DbContextOptions<CoreApiDataContext> options) //
 
 	// ============================================================================================================
 
-	// private void ApplyAuditInfo()
-	// {
-	// 	var now		= DateTime.Now;
-	// 	var userId	= _authManager.GetCurrentUser(_httpContext).Data.UserId;
-	// 
-	// 	foreach (var entry in ChangeTracker.Entries<IAuditable>())
-	// 	{
-	// 		if (entry.State == EntityState.Added)
-	// 		{
-	// 			entry.Entity.DateCreated	= now;
-	// 			entry.Entity.CreatorId		= userId;
-	// 		}
-	// 
-	// 		if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
-	// 		{
-	// 			entry.Entity.DateModified	= now;
-	// 			entry.Entity.ModifierId		= userId;
-	// 		}
-	// 	}
-	// }
-	// public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-	// {
-	// 	ApplyAuditInfo();
-	// 	return await base.SaveChangesAsync(cancellationToken);
-	// }
+	private void ApplyAuditInfo()
+	{
+		var now		= DateTime.Now;
+		var userId	= currentUserManager.GetCurrentUserId(); 
 
-	// ============================================================================================================
-	// The following configures EF to create a Sqlite database file in the special "local" folder for your platform.
-	// protected override void OnConfiguring(DbContextOptionsBuilder options)
-	// {
-	// 	options.UseSqlite($"Data Source=coreApiData.db");
-	// }
+		if(userId == null)
+			return;
+
+		foreach (var entry in ChangeTracker.Entries<IAuditable>())
+		{
+			if (entry.State == EntityState.Added)
+			{
+				entry.Entity.DateCreated	= now;
+				entry.Entity.CreatorId		= userId.Value;
+			}
+	
+			if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
+			{
+				entry.Entity.DateModified	= now;
+				entry.Entity.ModifierId		= userId.Value;
+			}
+		}
+	}
 }
 
 

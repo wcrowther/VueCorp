@@ -5,12 +5,13 @@ using Microsoft.Extensions.Logging;
 
 namespace coreLogic.Managers;
 
-public class CookieManager(	AppSettings appSettings) 
+public class CookieManager(	AppSettings appSettings,
+							IHttpContextAccessor accessor) 
 : ICookieManager
 {
-	public void SetRefreshTokenCookie(string refreshToken, HttpContext httpContext)
+	public void SetRefreshTokenCookie(string refreshToken)
 	{
-		httpContext.Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
+		accessor.HttpContext.Response.Cookies.Append("refreshToken", refreshToken, new CookieOptions
 		{
 			HttpOnly	= true,						// Prevent access from JavaScript
 			Secure		= true,						// Require HTTPS

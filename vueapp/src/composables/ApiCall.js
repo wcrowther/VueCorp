@@ -51,6 +51,8 @@ export async function apiCall(type, url, useAuth, body)
 		result 			= await axios(request)
 		result.success	= true
 
+		// logJson('result', JSON.stringify(result))
+
 		authStore.lastRequestDatetime = Date.now()
 	} 
 	catch (err) 

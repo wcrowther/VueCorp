@@ -43,10 +43,9 @@ public static partial class Endpoints
 
 		endpoints.MapPost("/saveAccount", (		IAccountManager _accountManager,
 												IAuthManager _authManager,
-												HttpContext httpContext,
 												[FromBody] Account account) =>
 		{
-			var returnsUser = _authManager.GetCurrentUser(httpContext);
+			var returnsUser = _authManager.GetCurrentUser();
 
 			if (!returnsUser.Ok)
 				return Results.BadRequest(returnsUser.Error.Message);

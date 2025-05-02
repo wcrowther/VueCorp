@@ -9,7 +9,8 @@ namespace coreLogic.Managers;
 
 public class UserManager(	IUserRepo userRepo,
 							ICookieManager cookieManager,
-							ITokenManager tokenManager)
+							ITokenManager tokenManager
+						)
 : IUserManager
 {
 	public IEnumerable<User> GetAllUsers()
@@ -39,24 +40,24 @@ public class UserManager(	IUserRepo userRepo,
 		return userRepo.SaveUser(user);
 	}
 
-	public User CreateUser(UserToCreate userToCreate, HttpContext httpContext)
+	public User CreateUser(UserToCreate userToCreate)
 	{
 		tokenManager.CreateNewRefreshTokenForUser(userToCreate);
 
 		var createdUser = userRepo.CreateUser(userToCreate, bCrypt.HashPassword(userToCreate.Password));
 
-		cookieManager.SetRefreshTokenCookie(createdUser.RefreshToken, httpContext);
+		cookieManager.SetRefreshTokenCookie(createdUser.RefreshToken);
 
 		return createdUser;
 	}
 
-	public User UpdateUserRefreshToken(User user, HttpContext httpContext)
+	public User UpdateUserRefreshToken(User user)
 	{
 		tokenManager.CreateNewRefreshTokenForUser(user);
 
 		var refreshedUser = SaveUser(user);
 
-		cookieManager.SetRefreshTokenCookie(user.RefreshToken, httpContext);
+		cookieManager.SetRefreshTokenCookie(user.RefreshToken);
 
 		return refreshedUser;
 	}

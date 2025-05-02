@@ -17,7 +17,7 @@ public static partial class Endpoints
 
 
 		// getAllUsers
-		endpoints.MapGet("/getAllUsers", (IUserManager userManager) =>
+		endpoints.MapGet("/getAllUsers", ( IUserManager userManager) =>
         {
             var allUsers = userManager.GetAllUsers();
 
@@ -25,8 +25,8 @@ public static partial class Endpoints
         });
 
 		// getPagedUsers
-		endpoints.MapPost("/getPagedUsers", (	IUserManager userManager, 
-											[FromBody] Pager pager) =>
+		endpoints.MapPost("/getPagedUsers", ( IUserManager userManager, 
+											  [FromBody] Pager pager) =>
 		{
 			var pagedList = userManager.GetPagedUsers(pager);
 
@@ -34,7 +34,7 @@ public static partial class Endpoints
 		});
 
 		// getUserById
-		endpoints.MapGet("/getUserById/{userId}", (		IUserManager userManager, 
+		endpoints.MapGet("/getUserById/{userId}", ( IUserManager userManager, 
 													int userId) =>
 		{
 			var user = userManager.GetUserById(userId);
@@ -43,8 +43,8 @@ public static partial class Endpoints
 		});
 
 		// saveUser
-		endpoints.MapPost("/saveUser", (	IUserManager userManager, 
-										[FromBody] User user) =>
+		endpoints.MapPost("/saveUser", ( IUserManager userManager, 
+										 [FromBody] User user) =>
 		{
 			var savedUser = userManager.SaveUser(user);
 
@@ -55,10 +55,10 @@ public static partial class Endpoints
 
 		// createUser
 		endpoints.MapPost("/createUser", (	IUserManager _userManager,
-										[FromBody] UserToCreate userToCreate,
-										HttpContext httpContext) =>
+											[FromBody] UserToCreate userToCreate
+										 ) =>
 		{
-			var createdUser = _userManager.CreateUser(userToCreate, httpContext);
+			var createdUser = _userManager.CreateUser(userToCreate);
 
 			return Results.Ok(createdUser);
 		})

@@ -31,6 +31,8 @@ builder.Services.AddCors(options =>
 						.AllowAnyMethod());
 });
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddDbContext<CoreApiDataContext>(options => 
 	options.UseSqlite(builder.Configuration.GetConnectionString("CoreApiData"))
 ); 

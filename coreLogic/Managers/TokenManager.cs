@@ -15,7 +15,7 @@ public class TokenManager(AppSettings appSettings)
 	{
 		var baseClaims = new List<Claim>()
 			{
-				new (JwtRegisteredClaimNames.Sub,        user.UserName),
+				new (JwtRegisteredClaimNames.Sub,        user.UserId.ToString()),
 				new (JwtRegisteredClaimNames.Jti,        Guid.NewGuid().ToString()),
 				new (JwtRegisteredClaimNames.UniqueName, user.UserName),
 		};

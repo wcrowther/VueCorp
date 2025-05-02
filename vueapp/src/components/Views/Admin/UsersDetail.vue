@@ -156,10 +156,7 @@
                 </span>
             </TitleBox>
 
-            <CreatorBox v-if="!isAddingUser">
-                <span title="Modified: 2/24/2025 7:23:23">Modified: 2/24/2025 by wcrowther</span>
-                <span title="Created: 1/22/2024 13:44:33">Created: 1/22/2024 by wcrowther</span>
-            </CreatorBox>
+            <CreatorBox v-if="!isAddingUser" :IAuditable="user" />
 
             <template v-if="isAddingUser">
                 <TextInput labelName="UserName"     v-model="user.UserName"     :v$ />                

@@ -16,12 +16,13 @@ namespace coreApi.Helpers
 			services.AddDbContext<CoreApiDataContext>();
 
 			// Logic Services
-			services.AddScoped<IAccountManager, AccountManager>();
-            services.AddScoped<IUserManager,    UserManager>();
-			services.AddScoped<IAuthManager,	AuthManager>();
-			services.AddScoped<IContentManager, ContentManager>();
-			services.AddScoped<ITokenManager,	TokenManager>();
-			services.AddScoped<ICookieManager,  CookieManager>();
+			services.AddScoped<IAccountManager,		AccountManager>();
+            services.AddScoped<IUserManager,		UserManager>();
+			services.AddScoped<IAuthManager,		AuthManager>();
+			services.AddScoped<IContentManager,		ContentManager>();
+			services.AddScoped<ITokenManager,		TokenManager>();
+			services.AddScoped<ICookieManager,		CookieManager>();
+			services.AddScoped<IUserClaimsManager, UserClaimsManager>();
 
 			// Data Services
 			services.AddScoped<IAccountRepo,    AccountRepo>();

@@ -16,7 +16,7 @@ public interface IUserManager
 
 	User SaveUser(User user);
 
-	User CreateUser(UserToCreate userToCreate, HttpContext httpContext);
+	User CreateUser(UserToCreate userToCreate);
 
-	User UpdateUserRefreshToken(User user, HttpContext httpContext);
+	User UpdateUserRefreshToken(User user);
 }

@@ -7,6 +7,7 @@
 	   <SpaRoot>..\vueapp</SpaRoot>
 	   <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
 	   <SpaProxyServerUrl>https://localhost:7200</SpaProxyServerUrl>
+	   <UserSecretsId>47af801c-889a-4912-a217-6fadd9d3cf78</UserSecretsId>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
