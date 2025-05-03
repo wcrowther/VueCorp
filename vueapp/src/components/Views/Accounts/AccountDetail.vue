@@ -101,7 +101,7 @@
     <div class="flex flex-wrap gap-5" id="AccountDetailView">
         
         <ConfirmDialog v-if="isConfirmVisible"
-			message="Save Account Data?" @confirm="saveAccountDetail" @cancel="cancelAction" />
+			message="Save Account Data?" @confirmDialog="saveAccountDetail" @cancelDialog="cancelAction" />
 
         <div class="w-full flex justify-between items-center">
             <h2 class="text-2xl font-display font-bold flex-grow">{{ accountTitle }}</h2>

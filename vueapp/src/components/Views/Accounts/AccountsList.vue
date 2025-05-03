@@ -210,7 +210,7 @@
 
         </table>
 
-        <AccountAdvSearch v-model:show="showAdvSearch" v-model:listPager="listPager"
+        <AccountAdvSearch v-model:showModal="showAdvSearch" v-model:listPager="listPager"
             @getListData="getListData"></AccountAdvSearch>
 
     </div>

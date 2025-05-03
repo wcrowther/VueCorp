@@ -1,7 +1,7 @@
 <script setup>
 
     const listPager     = defineModel('listPager')
-    const show          = defineModel('show')
+    const showModal     = defineModel('showModal')
 
     const emits         = defineEmits(['getListData'])
     const getListData   = () => emits('getListData')
@@ -10,8 +10,8 @@
 
 <template>   
 
-	<ModalControl :show="show" title="Advanced Search" id="AccountAdvSearch"
-        height="400px" width="500px" @closeModal="show=false">
+	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
+        height="400px" width="500px" @closeModal="showModal=false" >
 
         <div class="p-5 pb-0">
             <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
@@ -27,7 +27,7 @@
 
         <template #footer>
             <button class="btn-primary"  @click="getListData">Refresh</button>
-            <button class="btn-delete"   @click="show=false">Close</button>
+            <button class="btn-delete"   @click="showModal=false">Close</button>
         </template>
 
 	</ModalControl>

@@ -1,7 +1,7 @@
 <script setup>
 
     // const listPager     = defineModel('listPager')
-    const show          = defineModel('show')
+    const showModal          = defineModel('showModal')
 
     // const emits         = defineEmits(["getListData"])
     // const getListData   = () => emits('getListData')
@@ -10,8 +10,8 @@
 
 <template>   
 
-	<ModalControl :show="show" title="ImageEditor" id="ImageEditor" 
-        height="90%" width="90%" class="p-6 pb-10 overflow-hidden" @closeModal="show=false">
+	<ModalControl :showModal="showModal" title="ImageEditor" id="ImageEditor" 
+        height="90%" width="90%" class="p-6 pb-10 overflow-hidden" @closeModal="showModal=false">
 
         <!-- overflow-y-auto scrollbar-thin -->
         <TabControl class="h-full" contentClass="p-5" 
@@ -33,7 +33,7 @@
         </TabControl>
 
         <template #footer>
-            <button class="btn-delete" @click="show=false">Close</button>
+            <button class="btn-delete" @click="showModal=false">Close</button>
         </template> 
 
 	</ModalControl>

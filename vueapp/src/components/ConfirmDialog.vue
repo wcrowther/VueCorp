@@ -1,7 +1,7 @@
 
 <script setup>
 
-	const emits = defineEmits(['confirm', 'cancel'])
+	const emits = defineEmits(['confirmDialog', 'cancelDialog'])
 	const props = defineProps(
 	{
 		message: 	 { type: String, default: 'Confirm your changes?' }, 
@@ -9,13 +9,23 @@
 		cancelText:  { type: String, default: 'Cancel' } 
 	});
 
-    const onConfirm     = () => emits('confirm')
-	const onCancel      = () => emits('cancel')
+    const onConfirm     = () => emits('confirmDialog')
+	const onCancel      = () => emits('cancelDialog')
 
     // Custom Directive (note casing)
     const vFocus = {  mounted: (el) => el.focus() }
 
-	// onMounted(() => { console.log('ConfirmDialog mounted') })
+    // Keyboard Listeners  ================================================
+
+    const keys = function (e)   
+    {
+        console.log(e.code); 
+		if (e.code === 'Escape'){ onCancel(); e.preventDefault(); } 
+    }
+
+	KeyboardListeners(keys)
+
+	GlobalEscapeOn(false);
 
 </script>
 

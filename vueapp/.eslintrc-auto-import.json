@@ -115,6 +115,7 @@
     "watchSyncEffect": true,
     "HtmlHeadBody": true,
     "SetHtmlHeadBody": true,
-    "IAuditable": true
+    "IAuditable": true,
+    "GlobalEscapeOn": true
   }
 }

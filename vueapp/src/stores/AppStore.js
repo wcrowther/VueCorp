@@ -4,6 +4,7 @@ export const useAppStore = defineStore('AppStore',
     state: () => 
     ({
         sideBarHidden:          false,
+        globalEscapeOn:         true,
         showPrevNext:           useLocalStorage('showPrevNext',  true),
         showBreakpoints:        useLocalStorage('showBreakpoints', false),
         persistSearch:          useLocalStorage('persistSearch', true),

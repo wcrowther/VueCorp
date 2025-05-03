@@ -1,7 +1,7 @@
 <script setup>
 
 	const props = defineProps({
-		show:             	Boolean, 
+		showModal:          Boolean, 
 		title:            	String,
 		teleportToBody:   	{ type: Boolean, default: true },
 		height:           	{ type: String, default: '300px' },
@@ -14,13 +14,26 @@
 	const emits = defineEmits(["closeModal"])
 	emits("closeModal", true);
 	
-    watch(() => props.show, (newVal) => 
+    watch(() => props.showModal, (newVal) => 
     {
 		// Prevents scrolling behind overlay. marginRight should be width 
 		// of scrollbar but that width could be different on different browers.
-		// document.body.style.marginRight = newVal ? '16px': 'initial'
 		document.body.style.overflow    = newVal ? 'hidden': 'auto'
+		// code: document.body.style.marginRight = newVal ? '16px': 'initial'
     })
+	
+	// NOT WORKING BELOW AS IS ALWAYS LOADED
+    // Keyboard Listeners  ================================================
+
+    // const keys = function (e)   
+    // {
+    //     console.log(e.code); 
+	// 	if (e.code === 'Escape'){ emits('closeModal'); e.preventDefault(); } 
+    // }
+	// 
+	// KeyboardListeners(keys)
+
+	// GlobalEscapeOn(false);
 
 </script>
 
@@ -28,7 +41,7 @@
 	<Teleport to="body" :disabled="!teleportToBody">    
 		<Transition name="modal">
 
-			<div v-if="show" id="ModalOverlay"
+			<div v-if="showModal" id="ModalOverlay"
 				@click.self="props.overlayClickCloses && $emit('closeModal')"
                 class="flex fixed z-[9999] top-0 left-0 w-full h-full bg-black 
 					bg-opacity-30 transition-opacity ease-in-out duration-75">
