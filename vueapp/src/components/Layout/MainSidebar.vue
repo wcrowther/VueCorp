@@ -5,7 +5,7 @@
     const { sideBarHidden }         = storeToRefs(appStore)
     const { width: windowWidth }    = useWindowSize()
 
-    const breakPoint = 500
+    const breakPoint = 501
 
     watch(() => windowWidth.value, (newVal, oldVal) => 
     { 
@@ -19,7 +19,6 @@
 </script>
 
 <template>
-    
     <div :class="['absolute h-full z-50 flex-none transform transition-all duration-[300ms] overflow-hidden xs:relative ',
         sideBarHidden ? 'w-0' : 'w-full xs:w-[300px]']">
 

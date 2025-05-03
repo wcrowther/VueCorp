@@ -1,25 +1,50 @@
 <script setup>
 
     const props = defineProps({  show: Boolean })
+    const { width: winWidth }    = useWindowSize()
+    
+    const showWinWidth = ref(false)
 
 </script>
 
 <template>
     <Teleport to="body" v-if="props.show" >
-        <div class="fixed left-4 bottom-4">
-            <div class="capsule hidden xxs:block xs:hidden"  title="436px +" >xxs</div>
-            <div class="capsule hidden  xs:block sm:hidden"  title="480px +" >xs</div>
-            <div class="capsule hidden  sm:block md:hidden"  title="640px +" >sm</div>
-            <div class="capsule hidden  md:block lg:hidden"  title="800px +" >md</div>
-            <div class="capsule hidden  lg:block xl:hidden"  title="1024px +">lg</div>
-            <div class="capsule hidden  xl:block 2xl:hidden" title="1280px +">xl</div>
-            <div class="capsule hidden  2xl:block"           title="1536px +">2xl</div>
+        <div class="fixed left-4 bottom-4" @click="showWinWidth=!showWinWidth">
+            <div class="capsule hidden xxs:block xs:hidden"  
+                title="436px+">
+                xxs <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden xs:block sm:hidden"  
+                title="480px+" >
+                xs <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden sm:block md:hidden"  
+                title="640px+" >
+                sm <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden md:block lg:hidden"  
+                title="800px+" >
+                md <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden lg:block xl:hidden"  
+                title="1024px+">
+                lg <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden xl:block 2xl:hidden" 
+                title="1280px+">
+                xl <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
+            <div class="capsule hidden 2xl:block"           
+                title="1536px+">
+                2xl <span v-if="showWinWidth">&nbsp;{{ winWidth }}px</span>
+            </div>
         </div>
     </Teleport>
 </template>
 
 <style lang="postcss" scoped>
     .capsule {
-        @apply px-1.5 pt-[2px] pb-[3px] bg-[#f8ac59] text-red rounded-full text-center text-xs font-bold select-none 
+        @apply px-2 pt-[3px] pb-[2px] bg-[#f8ac59] text-red rounded-full text-center text-xs font-bold select-none 
     }
+    .capsule span { @apply text-color-dark-gray }
 </style>
