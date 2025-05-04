@@ -3,13 +3,13 @@
 
     const appStore   							= useAppStore()
     const { sideBarHidden, showBreakpoints,
-			globalEscapeOn }					= storeToRefs(appStore)
+			layoutEscapeKeyOn }					= storeToRefs(appStore)
 
     // Keyboard Listeners & AutoRefreshAuth  ========================================================
-    // --- Disable global Escape for layout by setting app.globalEscapeOn to false
+    // --- Disable global Escape for layout by setting app.layoutEscapeKeyOn to false
     const keys = function (e)   
     {
-		if (e.code === 'Escape' && globalEscapeOn.value){ sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
+		if (e.code === 'Escape' && layoutEscapeKeyOn.value){ sideBarHidden.value = !sideBarHidden.value; e.preventDefault(); } 
     }
 
 	KeyboardListeners(keys)		// Sets Key listeners for all pages using this layout

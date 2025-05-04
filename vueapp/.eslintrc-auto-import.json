@@ -116,6 +116,6 @@
     "HtmlHeadBody": true,
     "SetHtmlHeadBody": true,
     "IAuditable": true,
-    "GlobalEscapeOn": true
+    "LayoutEscapeKey": true
   }
 }

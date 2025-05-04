@@ -69,7 +69,7 @@
 
         <router-link v-if="!isLoggedIn" title="Login" to='/auth/login'
             class="flex pt-px px-4 items-center relative h-[28px] text-sm font-semibold rounded-full tracking-wider
-                text-white/80 bg-[white]/20 hover:text-white hover:bg-white/0">
+                text-theme-footer-text/80 hover:theme-footer-text bg-white/30 hover:bg-white/0">
             Login 
         </router-link>
         

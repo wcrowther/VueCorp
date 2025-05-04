@@ -25,7 +25,7 @@
 
 	KeyboardListeners(keys)
 
-	GlobalEscapeOn(false);
+	LayoutEscapeKey(false);
 
 </script>
 
