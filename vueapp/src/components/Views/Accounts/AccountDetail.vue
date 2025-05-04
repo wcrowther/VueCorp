@@ -139,13 +139,13 @@
             </TitleBox>
 
             <CreatorBox v-if="!isAddingAccount" :IAuditable="account" />
-            
+
             <TextInput  labelName="Account Name" v-model="account.AccountName" :v$ />
             <TextInput  labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
             <PhoneInput labelName="Main Phone" ruleName="AccountPhone" v-model="account.AccountPhone" :v$ />
 
             <div class="mt-7 flex flex-wrap justify-between gap-5 mb-3">
-                <CheckboxInput labelName="Is Active" v-model="account.IsActive" />
+                <CheckboxInput labelName="Is Active"  v-model="account.IsActive" />
                 <CheckboxInput labelName="Is Invoice" v-model="account.IsInvoice" />
                 <CheckboxInput labelName="Is AutoPay" v-model="account.IsAutoPay" />
             </div>

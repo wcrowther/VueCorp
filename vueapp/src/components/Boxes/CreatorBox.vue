@@ -1,24 +1,19 @@
 <script setup>
 
-    const props = defineProps (
-    {
-        IAuditable:  
-        { 
-            type: Object, 
-            required: true,
-            validator(value){
-                const requiredFields = ["DateCreated", "DateModified", "CreatorId", "ModifierId"];
-                for (const prop of requiredFields) {
-                    if (!Object.hasOwn(value, prop)) {
-                        console.log(`CreatorBox does not implement: ${prop}`);
-                    }
+    const iAuditable = defineModel('IAuditable',{
+        type: Object,
+        required: true,
+        validator: (value) => 
+        {
+            const requiredFields = ["DateCreated", "DateModified", "CreatorId", "ModifierId"];
+            for (const prop of requiredFields) {
+                if (!Object.hasOwn(value, prop)) {
+                    console.log(`Error: CreatorBox does not implement: ${prop}`);
                 }
-                return true;
             }
-        } 
+            return true;        
+        }
     })
-
-    const { DateCreated, CreatorId,  DateModified, ModifierId } = props.IAuditable;
 
 </script>
 
@@ -26,11 +21,11 @@
 
     <div class="-m-5 mb-5 p-3 flex flex-wrap gap-2 justify-between
         text-slate-400 whitespace-nowrap text-xs italic overflow-hidden">
-        <span :title="`Modified: ${dateTimeFormat(DateModified)}  by Will Crowther ${ModifierId}`">
-            Modified: {{dateFormat(DateModified)}} 
+        <span :title="`Modified: ${dateTimeFormat(iAuditable.DateModified)}  by Will Crowther ${iAuditable.ModifierId}`">
+            Modified: {{dateFormat(iAuditable.DateModified)}} 
         </span>
-        <span :title="`Created: ${dateTimeFormat(DateCreated)} by Will Crowther ${CreatorId}`">
-            Created: {{dateFormat(DateCreated)}}
+        <span :title="`Created: ${dateTimeFormat(iAuditable.DateCreated)} by Will Crowther ${iAuditable.CreatorId}`">
+            Created: {{dateFormat(iAuditable.DateCreated)}}
         </span> 
     </div>
 

@@ -39,8 +39,7 @@ public class AccountManager : IAccountManager
 	public async Task<Account> SaveAccount(Account account, User user)
 	{
 		// account.ModifiedBy = user.UserId;
-		await _accountRepo.SaveAccount(account);
 
-		return account;
+		return await _accountRepo.SaveAccount(account);
 	}
 }
