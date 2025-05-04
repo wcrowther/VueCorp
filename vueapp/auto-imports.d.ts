@@ -99,7 +99,7 @@ declare global {
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useImagesStore: typeof import('./src/stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
-  const useMessageStore: typeof import('./src/stores/messageStore.js')['useMessageStore']
+  const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
@@ -216,7 +216,7 @@ declare module 'vue' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/messageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -326,7 +326,7 @@ declare module '@vue/runtime-core' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/messageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
