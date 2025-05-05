@@ -19,7 +19,6 @@
 
     const keys = function (e)   
     {
-        console.log(e.code); 
 		if (e.code === 'Escape'){ onCancel(); e.preventDefault(); } 
     }
 

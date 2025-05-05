@@ -12,7 +12,8 @@
 	defineOptions({ inheritAttrs: false })
 
 	const emits = defineEmits(["closeModal"])
-	emits("closeModal", true);
+	const closeModal = () =>  emits('closeModal')
+	// emits("closeModal", true);
 	
     watch(() => props.showModal, (newVal) => 
     {
@@ -21,19 +22,6 @@
 		document.body.style.overflow    = newVal ? 'hidden': 'auto'
 		// code: document.body.style.marginRight = newVal ? '16px': 'initial'
     })
-	
-	// NOT WORKING BELOW AS IS ALWAYS LOADED
-    // Keyboard Listeners  ================================================
-
-    // const keys = function (e)   
-    // {
-    //     console.log(e.code); 
-	// 	if (e.code === 'Escape'){ emits('closeModal'); e.preventDefault(); } 
-    // }
-	// 
-	// KeyboardListeners(keys)
-
-	// LayoutEscapeKey(false);
 
 </script>
 
@@ -42,7 +30,7 @@
 		<Transition name="modal">
 
 			<div v-if="showModal" id="ModalOverlay"
-				@click.self="props.overlayClickCloses && $emit('closeModal')"
+				@click.self="props.overlayClickCloses && closeModal"
                 class="flex fixed z-[9999] top-0 left-0 w-full h-full bg-black 
 					bg-opacity-30 transition-opacity ease-in-out duration-75">
 
@@ -55,7 +43,7 @@
 						<slot name="header">
 							<span>{{title || 'Title'}}</span>
 							<div class="h-7 w-7 bg-white hover:bg-color-light-blue rounded-full flex-center" 
-								@click="$emit('closeModal')">
+								@click="closeModal">
 								<IconSymbol width="22px" class="text-color-dark-gray" icon="heroicons-solid:x" />
 							</div>
 						</slot>
@@ -66,10 +54,9 @@
 						v-bind="$attrs"
 						><slot>Default body</slot></div>
 
-					<div class="shrink-0 p-4 pb-6 w-full h-18 flex
-						justify-end gap-2 select-none">
+					<div class="shrink-0 p-4 pb-6 w-full h-18 flex justify-end gap-2 select-none">
 						<slot name="footer">
-							<button class="btn-primary" @click="$emit('closeModal')">Ok</button>
+							<button class="btn-primary" @click="closeModal">Ok</button>
 						</slot>
 					</div>
 

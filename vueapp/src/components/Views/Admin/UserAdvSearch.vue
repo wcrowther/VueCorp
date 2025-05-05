@@ -10,7 +10,7 @@
 
 <template>   
 
-	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
+	<ModalControl :showModal="showModal" title="Advanced Search" id="UserAdvSearch"
         height="400px" width="500px" @closeModal="showModal=false">
 
         <div class="p-5 pb-0">

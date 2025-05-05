@@ -195,7 +195,7 @@
         </table>
 
         <UserAdvSearch v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
- 
+
     </div>
 
 </template>
