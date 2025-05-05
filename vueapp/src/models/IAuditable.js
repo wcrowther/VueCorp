@@ -1,10 +1,10 @@
 
-function IAuditable (dateCreated, dateModified, creatorId, modifierId )
+function IAuditable (dateCreated, dateModified, creatorName, modifierName)
 {
 	this.DateCreated 	= dateCreated
 	this.DateModified 	= dateModified
-	this.CreatorId		= creatorId
-	this.ModifierId 	= modifierId
+	this.CreatorName 	= creatorName
+	this.ModifierName 	= modifierName
 }
 
 export { IAuditable }

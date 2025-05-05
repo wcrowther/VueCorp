@@ -61,7 +61,7 @@ export const usPhoneFormat = (str) =>
 
 // USING DAYJS :  https://day.js.org/docs/en/display/format
 
-export const dateTimeFormat = (date, format) => dayjs(date).format(format || "MM-DD-YYYY h:mm:ssa")
+export const dateTimeFormat = (date, format) => dayjs(date).format(format || "MM-DD-YYYY h:mm:ss a")
 export const dateFormat     = (date) => dayjs(date).format("MM-DD-YYYY")
 export const timeFormat     = (date) => dayjs(date).format("HH:mm:ss")
 

@@ -30,6 +30,11 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 		return coreApiDataContext.Users.FirstOrDefault(x => x.UserId == userId);
 	}
 
+	public string GetUsernameById(int userId)
+	{
+		return GetUserById(userId)?.UserName ?? "Unknown";
+	}
+
 	public User CreateUser(UserToCreate model, string passwordHash)
 	{
 		var newUser = new User

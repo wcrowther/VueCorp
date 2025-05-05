@@ -11,6 +11,8 @@ public interface IUserRepo
 
 	User GetUserById(int userId);
 
+	string GetUsernameById(int userId);
+
 	User CreateUser(UserToCreate model, string passwordHash);
 
 	PagedList<User> GetPagedUsers(Pager pager);

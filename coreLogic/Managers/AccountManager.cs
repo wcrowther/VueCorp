@@ -4,6 +4,8 @@ using coreApi.Models;
 using coreApi.Models.Generic;
 using coreApi.Logic.Interfaces;
 using Microsoft.AspNetCore.Http;
+using coreLogic.Data.Interfaces;
+using SQLitePCL;
 
 namespace coreApi.Logic;
 
@@ -11,13 +13,16 @@ public class AccountManager : IAccountManager
 {
     private readonly AppSettings _appSettings;
     private readonly IAccountRepo _accountRepo;
+	private readonly IUserRepo _userRepo;
 
-    public AccountManager( IOptions<AppSettings> appSettings,
-                           IAccountRepo accountRepo)
-    {
-        _appSettings = appSettings.Value;
+	public AccountManager( IOptions<AppSettings> appSettings,
+						   IAccountRepo accountRepo,
+						   IUserRepo userRepo)
+{
+		_appSettings = appSettings.Value;
         _accountRepo = accountRepo;
-    }
+		_userRepo    = userRepo;
+	}
 
     public async Task<List<Account>> GetAllAccounts()
     {
@@ -26,8 +31,16 @@ public class AccountManager : IAccountManager
 
     public async Task<Account> GetAccountById(int accountId)
     {
-			return await _accountRepo.GetAccountById(accountId);
-    }
+		var account = await _accountRepo.GetAccountById(accountId);
+
+		if(account is null)
+			return null;
+
+		account.CreatorName		= _userRepo.GetUsernameById(account.CreatorId);
+		account.ModifierName    = _userRepo.GetUsernameById(account.ModifierId);
+
+		return account;
+	}
 
     public async Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager)
     {

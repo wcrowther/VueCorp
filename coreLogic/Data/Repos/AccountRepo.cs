@@ -39,7 +39,10 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 
 	public async Task<Account> GetAccountById(int accountId)
 	{
-		return await coreApiDataContext.Accounts.FirstOrDefaultAsync(x => x.AccountId == accountId);
+		var account =    await coreApiDataContext
+								.Accounts
+								.FirstOrDefaultAsync(x => x.AccountId == accountId);
+		return account;
 	}
 
 	public async Task<Account> SaveAccount(Account account)
