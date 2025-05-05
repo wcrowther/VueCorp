@@ -4,6 +4,7 @@
 	import LivePic 		from '@/components/LivePic.vue'       
 	import { ref } 		from 'vue'
 
+	const isActive			= ref(true)
 	const isActiveTab	 	= (num) => num === activeTab.value
 	const activeTab 		= ref(1)
 
@@ -32,10 +33,6 @@
 				:class="{ 'active-tab': isActiveTab(3) }" @click="activeTab=3">
 				<span class="">Three</span>
 			</div>			
-			<div class="border border-gray-400 text-gray-400 rounded-lg tracking-wide px-4 py-2 w-fit font-bold select-none relative "
-				:class="{ 'active-tab': isActiveTab(4)}" @click="activeTab=4">
-				<span class="">Four</span>
-			</div>
 		</div>
 
 		<div class="">
@@ -53,13 +50,7 @@
             <LivePic v-if="activeTab === 3" v-model:play="isActive" url="images/apartment-building-1.jpg"
 				class="mx-auto mb-20 border border-black" height="400px" width="598px" 
 				:initialWait="1000" :duration="15000" :wait="2000"
-				zoom1="100%" zoom2="220%" position1="center" position2="80% 50%" /> 
-
-            <LivePic v-if="activeTab === 4" v-model:play="isActive" url="images/apartment_panorama.png"
-				class="mx-auto mb-20 border border-black" height="400px" width="600px" 
-				:initialWait="2000" :duration="10000" :wait="0"
-				zoom1="200%" zoom2="200%" position1="80% 0%"  position2="5% 70%" /> 
-
+				zoom1="100%" zoom2="220%" position1="center" position2="80% 50%" />
 		</div>
 	</div>
 </div>
