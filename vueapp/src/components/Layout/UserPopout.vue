@@ -63,7 +63,8 @@
     <div class="relative" id="userPopout" @mouseleave="popoutClose()">
 
         <div v-if="isLoggedIn" @click="popoutToggle(true)" title="Show user popout" id="popout"
-            class="relative z-[100] text-white size-10 tracking-wider rounded-full bg-gray-700 flex-center ">
+            class="relative z-[100] text-white size-10 tracking-wider 
+                rounded-full bg-gray-700 flex-center hover:bg-opacity-30">
             <span class="text-sm m-auto">{{firstInitial}}</span>
         </div>
 
