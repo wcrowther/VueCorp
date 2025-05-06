@@ -77,7 +77,7 @@
                 </p>
             </div>
 
-            <HomeView2 /> <!-- Still working on -->
+             <!-- <HomeView2 />Still working on -->
             
         </div>
 
