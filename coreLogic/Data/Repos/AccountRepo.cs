@@ -98,7 +98,7 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 			""			=> acct => acct.AccountName.StartsWith(filter),
 			"startswith"=> acct => acct.AccountName.StartsWith(filter),
 			"contains"	=> acct => acct.AccountName.ToLower().Contains(filter),
-			"endswith"  => acct => acct.AccountName.EndsWith(filter),
+			"endswith"  => acct => acct.AccountName.EndsWith(filter), 
 			_ => throw new ArgumentException($"Unknown AccountName FilterType: {filterType}")
 		};
 

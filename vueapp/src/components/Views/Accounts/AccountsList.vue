@@ -201,7 +201,8 @@
 
         </table>
 
-        <AccountAdvSearch v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
+        <AccountAdvSearch v-if="showAdvSearch" 
+            v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
 
     </div>
 

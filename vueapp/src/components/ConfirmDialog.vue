@@ -16,6 +16,8 @@
     const vFocus = {  mounted: (el) => el.focus() }
 
     // Keyboard Listeners  ================================================
+	
+	LayoutEscapeKey(false);
 
     const keys = function (e)   
     {
@@ -23,8 +25,6 @@
     }
 
 	KeyboardListeners(keys)
-
-	LayoutEscapeKey(false);
 
 </script>
 

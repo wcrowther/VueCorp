@@ -11,9 +11,8 @@
 
 	defineOptions({ inheritAttrs: false })
 
-	const emits = defineEmits(["closeModal"])
-	const closeModal = () =>  emits('closeModal')
-	// emits("closeModal", true);
+	const emits 		= defineEmits(["closeModal"])
+	const closeModal 	= () =>  emits('closeModal')
 	
     watch(() => props.showModal, (newVal) => 
     {
@@ -22,6 +21,17 @@
 		document.body.style.overflow    = newVal ? 'hidden': 'auto'
 		// code: document.body.style.marginRight = newVal ? '16px': 'initial'
     })
+
+	// Keyboard Listeners  ================================================
+
+	LayoutEscapeKey(false);
+
+	const keys = function (e)   
+    {
+		if (e.code === 'Escape'){ closeModal(); e.preventDefault(); } 
+    }
+
+	KeyboardListeners(keys)
 
 </script>
 
@@ -79,3 +89,14 @@
 	.modal-leave-to .modal-container { -webkit-transform: scale(1.1); transform: scale(1.1); }
 
 </style>
+
+
+<!-- Usage: 
+
+    <AccountAdvSearch v-if="showAdvSearch" 
+        v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
+
+	NOTE: 'v-if' above is used to ensure the modal is only initialized when it is actually needed,
+	preventing it from mounting on page load. Removing v-if would cause lifecycle hooks like onMounted 
+	(e.g., keyboard listeners) to run immediately, which could override the LayoutEscapeKey behavior.
+-->
