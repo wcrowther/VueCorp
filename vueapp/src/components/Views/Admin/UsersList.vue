@@ -11,17 +11,8 @@
     const { usersList:    itemsList,        
             usersPager:   listPager,       
             detailUserId: activeDetailId }  = storeToRefs(usersStore)
-    const { sideBarHidden }                 = storeToRefs(appStore)    
+    const { persistSearch }                 = storeToRefs(appStore)    
 
-    // Page Specific  =================================================================================
-
-    const { width: windowWidth }      = useWindowSize()
-
-    watch(() => windowWidth.value, (newVal, oldVal) => 
-    { 
-        if(newVal < 480 && oldVal >= 480)
-            sideBarHidden.value = true
-    });
 
     // ===============================================================================================
     // ItemsList Begin
@@ -41,7 +32,7 @@
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
 
-    const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')
+    const searchFilterDefault           = persistSearch.value ? useLocalStorage(searchFilterDefaultName, '') : ''
     listPager.value.Search              = new SearchModel(searchFilterDefault.value)  
 
     // Methods / Computeds ===========================================================================

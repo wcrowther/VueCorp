@@ -1,8 +1,8 @@
 
 import axios from 'axios'
 
-export async function apiGet(url){ return apiCall('GET',  url, true)  }
-export async function apiPost(url, body){ return apiCall('POST', url, true, body) }
+export async function apiGet(url){ 			return apiCall('GET',  url, true)  }
+export async function apiPost(url, body){ 	return apiCall('POST', url, true, body) }
 
 // ==================================================================================
 
@@ -33,7 +33,7 @@ export async function apiCall(type, url, useAuth, body)
 
 	if (body) 
 	{
-		// logJson('apiCall', JSON.stringify(body))
+		// logJson('apiCall', JSON.stringify(body))  // DEBUGGING
 
 		request.headers['Content-Type'] = 'application/json'
 		request.headers['Access-Control-Allow-Private-Network'] = 'true'

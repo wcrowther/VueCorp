@@ -116,6 +116,8 @@
     "HtmlHeadBody": true,
     "SetHtmlHeadBody": true,
     "IAuditable": true,
-    "LayoutEscapeKey": true
+    "LayoutEscapeKey": true,
+    "searchType": true,
+    "filterType": true
   }
 }

@@ -13,4 +13,6 @@ public class AppSettings
 	public int TokenExpirationMinutes { get; set; }
 
 	public int RefreshTokenExpirationDays { get; set; }
+
+	public bool ShowJsonPostDebug { get; set; }
 }

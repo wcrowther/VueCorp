@@ -4,6 +4,7 @@ using coreApi.Models.Generic;
 using coreLogic.Helpers;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using WildHare.Extensions;
 
@@ -16,6 +17,8 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 		var predicate = BuildPredicate(pager);
 
 		var query = coreApiDataContext.Accounts.Where(predicate);
+
+		// Debug.WriteLine($"GetPagedAccounts query: {query.ToQueryString()}");
 
 		pager.TotalCount = await query.CountAsync();
 		var listItems	 = await query.OrderBy(p => p.AccountName)
@@ -57,14 +60,13 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 
 	private static ExpressionStarter<Account> BuildPredicate(Pager<SearchForAccount> pager, bool search = true)
 	{
-		var trimAndRemoveEmpty = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
-
 		// 'search' true means start with all, otherwise will start with empty.
 		// PredicateBuilder with no parameter will start with an empty list
 		// or populate with true to include all records
 
-		var predicate		= search ? PredicateBuilder.New<Account>(true) : PredicateBuilder.New<Account>();  
-		string[] filters	= pager.Search.Filter.Split(',', trimAndRemoveEmpty);
+		var predicate		= search ? PredicateBuilder.New<Account>(true) : PredicateBuilder.New<Account>();
+		string filterType	= pager.Search.FilterType.ToLower();
+		string[] filters	= pager.Search.Filter.Split(",", true, true);
 
 		foreach (string filter in filters)
 		{
@@ -74,7 +76,7 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 			if (filter.IsNumeric())
 				predicate = predicate.Or(p => p.AccountId == filter.ToInt(0));
 			else
-				predicate = predicate.Or(AccountNameFilter(filter.ToLower()));
+				predicate = predicate.Or(AccountNameFilterOld(filter.ToLower()));
 		}
 
 		if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
@@ -90,9 +92,19 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 		return predicate;
 	}
 
-	private static Expression<Func<Account, bool>> AccountNameFilter(string f)
+	private static Expression<Func<Account, bool>> AccountNameFilter(string filterType, string filter) =>
+		filterType switch
+		{
+			""			=> acct => acct.AccountName.StartsWith(filter),
+			"startswith"=> acct => acct.AccountName.StartsWith(filter),
+			"contains"	=> acct => acct.AccountName.ToLower().Contains(filter),
+			"endswith"  => acct => acct.AccountName.EndsWith(filter),
+			_ => throw new ArgumentException($"Unknown AccountName FilterType: {filterType}")
+		};
+
+	private static Expression<Func<Account, bool>> AccountNameFilterOld(string f)
 	{
-		return p => p.AccountName.StartsWith(f);
+		return p => p.AccountName.Contains(f);
 	}
 }
 

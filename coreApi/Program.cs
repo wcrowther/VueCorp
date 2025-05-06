@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.VisualBasic;
 using Serilog;
 using System;
+using System.Diagnostics;
 using System.Text;
 using WildHare.Extensions;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
@@ -33,15 +34,15 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddDbContext<CoreApiDataContext>(options => 
-	options.UseSqlite(builder.Configuration.GetConnectionString("CoreApiData"))
-); 
-
 Log.Logger = new LoggerConfiguration()
 	.ReadFrom.Configuration(builder.Configuration)
 	.CreateLogger();
 
 builder.Host.UseSerilog();
+
+builder.Services.AddDbContext<CoreApiDataContext>(options =>
+	options.UseSqlite(builder.Configuration.GetConnectionString("CoreApiData"))
+);
 
 builder.Services.AddAuthentication(cfg =>
 {

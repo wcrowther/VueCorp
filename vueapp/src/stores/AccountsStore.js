@@ -5,7 +5,7 @@ export const useAccountsStore = defineStore('AccountsStore',
 {
     state: () => 
     ({
-        accountsPager:      new PagerModel(),
+        accountsPager:      new PagerModel(new SearchForAccount()),
         accountsList:       [],
         account:            {},
         detailAccountId:    0
@@ -28,7 +28,7 @@ export const useAccountsStore = defineStore('AccountsStore',
                 
                 if(result.success) 
                 {
-                    this.accountsPager  = Object.assign(new PagerModel(), result.data.Result.Pager)
+                    this.accountsPager  = Object.assign(new PagerModel(new SearchForAccount()), result.data.Result.Pager)
                     this.accountsList   = result.data.Result.ListItems   
                 }
             }

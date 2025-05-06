@@ -1,8 +1,6 @@
 
 <script setup>
 
-    // Page Specific  =================================================================================
-
     const appStore           = useAppStore()
     const { persistSearch }  = storeToRefs(appStore)    
 

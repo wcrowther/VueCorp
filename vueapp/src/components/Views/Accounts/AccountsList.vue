@@ -11,16 +11,7 @@
     const { accountsList:    itemsList,        
             accountsPager:   listPager,       
             detailAccountId: activeDetailId }   = storeToRefs(accountsStore)
-    const { sideBarHidden, persistSearch }      = storeToRefs(appStore)  
-
-    // Page Specific  =================================================================================
-
-    const { width: windowWidth }    = useWindowSize()
-    
-    watch(() => windowWidth.value, (newVal, oldVal) => 
-    { 
-        if(newVal < 480 && oldVal >= 480) { sideBarHidden.value = true }
-    });
+    const {  persistSearch }                    = storeToRefs(appStore)  
 
     // ===============================================================================================
     // ItemsList Begin

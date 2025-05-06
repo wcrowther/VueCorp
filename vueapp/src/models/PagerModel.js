@@ -1,6 +1,6 @@
 
 
-function PagerModel (pageSize, groupSize, search)
+function PagerModel (search, pageSize, groupSize)
 {
     this.pages              = []
 
@@ -99,7 +99,7 @@ function PagerModel (pageSize, groupSize, search)
 function SearchModel(filter, filterType, sort, sortDesc)
 {
     this.Filter     = filter || ''
-    this.FilterType = filterType || ''      
+    this.FilterType = filterType || 'startswith'      
     this.Sort       = sort || ''
     this.SortDesc   = (typeof sortDesc != 'undefined') ? sortDesc : false
 }
@@ -107,7 +107,7 @@ function SearchModel(filter, filterType, sort, sortDesc)
 function SearchForAccount(filter, filterType, sort, sortDesc, stateProvinceFilter, postalCodeFilter)
 {
     this.Filter     = filter || ''
-    this.FilterType = filterType || ''      
+    this.FilterType = filterType || 'startswith'      
     this.Sort       = sort || ''
     this.SortDesc   = (typeof sortDesc != 'undefined') ? sortDesc : false
 

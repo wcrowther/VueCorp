@@ -1,3 +1,4 @@
+using coreApi.Models;
 using coreLogic.Helpers;
 using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
@@ -16,14 +17,14 @@ namespace coreApi
 			_next = next;
 		}
 
-		public async Task Invoke(HttpContext httpContext)
+		public async Task Invoke(HttpContext httpContext, AppSettings appSettings)
 		{
-			bool showPostDebug = true;
+			bool showJsonPostDebug = appSettings.ShowJsonPostDebug;
 
 			// Useful for intercepting the raw request, especially if model binding, etc. goes wrong...
 			Debug.WriteLine($"Request for {httpContext.Request.Path} received ({httpContext.Request.ContentLength ?? 0} bytes)");
 
-			if (showPostDebug && httpContext.Request.Method == HttpMethods.Post && IsJsonRequest(httpContext))
+			if (showJsonPostDebug && httpContext.Request.Method == HttpMethods.Post && IsJsonRequest(httpContext))
 			{
 				// Enable buffering so the body can be read multiple times
 				httpContext.Request.EnableBuffering();
@@ -45,7 +46,7 @@ namespace coreApi
 				// Reset the stream position for the next middleware/controller
 				httpContext.Request.Body.Position = 0;
 
-				Debug.WriteLine($"Json Request Body: {body.CleanJson("password")}");
+				Debug.WriteLine($"Request Json Body: {body.CleanJson("password")}");
 				Debug.WriteLine("-".Repeat(70));
 			}
 
