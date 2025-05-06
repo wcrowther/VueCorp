@@ -57,13 +57,14 @@ builder.Services.AddAuthentication(cfg =>
 		ValidIssuer         = builder.Configuration["App:AuthIssuer"],
 		ValidAudience       = builder.Configuration["App:AuthAudience"],
         IssuerSigningKey    = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["App:AuthSigningKey"])),
+		RoleClaimType		= "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
 	};
 	c.IncludeErrorDetails   = environment.IsDevelopment();
 });
 
 builder.Services.AddAuthorizationBuilder()
-	.AddPolicy("User",		 policy => policy.RequireRole("User"))
-	.AddPolicy("Admin",		 policy => policy.RequireRole("Admin"))
+	.AddPolicy("User",		 policy => policy.RequireRole("User", "Admin", "SuperAdmin"))
+	.AddPolicy("Admin",		 policy => policy.RequireRole("Admin", "SuperAdmin"))
 	.AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"));
 
 builder.Services.AddEndpointsApiExplorer();

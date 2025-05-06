@@ -9,35 +9,21 @@ using SQLitePCL;
 
 namespace coreApi.Logic;
 
-public class AccountManager : IAccountManager
+public class AccountManager (	IAccountRepo accountRepo,
+								IUserRepo userRepo
+							)
+: IAccountManager
 {
-    private readonly AppSettings _appSettings;
-    private readonly IAccountRepo _accountRepo;
-	private readonly IUserRepo _userRepo;
-
-	public AccountManager( IOptions<AppSettings> appSettings,
-						   IAccountRepo accountRepo,
-						   IUserRepo userRepo)
-{
-		_appSettings = appSettings.Value;
-        _accountRepo = accountRepo;
-		_userRepo    = userRepo;
-	}
-
     public async Task<List<Account>> GetAllAccounts()
     {
-        return await _accountRepo.GetAllAccounts();
+        return await accountRepo.GetAllAccounts();
     }
 
     public async Task<Account> GetAccountById(int accountId)
     {
-		var account = await _accountRepo.GetAccountById(accountId);
+		var account = await accountRepo.GetAccountById(accountId);
 
-		if(account is null)
-			return null;
-
-		account.CreatorName		= _userRepo.GetUsernameById(account.CreatorId);
-		account.ModifierName    = _userRepo.GetUsernameById(account.ModifierId);
+		PopulateAccountAuditableNames(ref account);
 
 		return account;
 	}
@@ -46,13 +32,25 @@ public class AccountManager : IAccountManager
     {
         pager ??= new Pager<SearchForAccount>();
 
-        return await _accountRepo.GetPagedAccounts(pager);
+        return await accountRepo.GetPagedAccounts(pager);
     }
 
-	public async Task<Account> SaveAccount(Account account, User user)
+	public async Task<Account> SaveAccount(Account account)
 	{
-		// account.ModifiedBy = user.UserId;
+		var acct = await accountRepo.SaveAccount(account);
 
-		return await _accountRepo.SaveAccount(account);
+		PopulateAccountAuditableNames(ref acct);
+
+		return acct;
+	}
+
+	// ==========================================================================================
+
+	private void PopulateAccountAuditableNames(ref Account account)
+	{
+		if (account is null) return;
+
+		account.CreatorName     = userRepo.GetUsernameById(account.CreatorId);
+		account.ModifierName    = userRepo.GetUsernameById(account.ModifierId);
 	}
 }

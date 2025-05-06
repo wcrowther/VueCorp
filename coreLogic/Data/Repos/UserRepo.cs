@@ -22,7 +22,7 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 
 	public User GetUserByUserName(string username)
 	{
-		return coreApiDataContext.Users.FirstOrDefault(x => x.UserName == username);
+		return coreApiDataContext.Users.FirstOrDefault(x => x.UserName.ToLower() == username.ToLower());
 	}
 
 	public User GetUserById(int userId)

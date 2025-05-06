@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Http;
 namespace coreLogic.Interfaces;
 
 public interface IUserManager
-{
-	IEnumerable<User> GetAllUsers();
-
+{	
 	User GetUserByUsername(string username);
 
 	User GetUserById(int id);
+	
+	IEnumerable<User> GetAllUsers();
 
 	PagedList<User> GetPagedUsers(Pager pager);
 

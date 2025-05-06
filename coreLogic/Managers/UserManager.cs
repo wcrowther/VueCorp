@@ -1,6 +1,7 @@
 using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Data.Interfaces;
+using coreLogic.Data.Repos;
 using coreLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
 using bCrypt = BCrypt.Net.BCrypt;
@@ -13,19 +14,27 @@ public class UserManager(	IUserRepo userRepo,
 						)
 : IUserManager
 {
-	public IEnumerable<User> GetAllUsers()
-	{
-		return userRepo.GetAllUsers();
-	}
-
 	public User GetUserByUsername(string username)
 	{
-		return userRepo.GetUserByUserName(username);
+		var user = userRepo.GetUserByUserName(username);
+
+		PopulateAuditableNames(ref user);
+
+		return user;
 	}
 
 	public User GetUserById(int id)
 	{
-		return userRepo.GetUserById(id);
+		var user = userRepo.GetUserById(id);
+
+		PopulateAuditableNames(ref user);
+
+		return user;
+	}
+
+	public IEnumerable<User> GetAllUsers()
+	{
+		return userRepo.GetAllUsers();
 	}
 
 	public PagedList<User> GetPagedUsers(Pager pager)
@@ -37,7 +46,11 @@ public class UserManager(	IUserRepo userRepo,
 
 	public User SaveUser(User user)
 	{
-		return userRepo.SaveUser(user);
+		var usr = userRepo.SaveUser(user);
+
+		PopulateAuditableNames(ref usr);
+
+		return usr;
 	}
 
 	public User CreateUser(UserToCreate userToCreate)
@@ -60,5 +73,15 @@ public class UserManager(	IUserRepo userRepo,
 		cookieManager.SetRefreshTokenCookie(user.RefreshToken);
 
 		return refreshedUser;
+	}
+
+	// ==========================================================================================
+
+	private void PopulateAuditableNames(ref User user)
+	{
+		if (user is null) return;
+
+		user.CreatorName     = userRepo.GetUsernameById(user.CreatorId);
+		user.ModifierName    = userRepo.GetUsernameById(user.ModifierId);
 	}
 }

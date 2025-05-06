@@ -1,6 +1,7 @@
 
 using coreLogic.Interfaces;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace coreApi.Models;
@@ -41,6 +42,12 @@ public class User : IAuditable
 	public int CreatorId { get; set; }
 
 	public int ModifierId { get; set; }
+
+	[NotMapped]
+	public string CreatorName { get; set; }
+
+	[NotMapped]
+	public string ModifierName { get; set; }
 
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }

@@ -4,6 +4,8 @@
 	const authStore     	= useAuthStore()
 	const { authUser  } 	= storeToRefs(authStore)
 
+	const adminRoles 		= ['Admin', 'SuperAdmin']
+
 </script>
 
 <template>
@@ -20,7 +22,7 @@
 
 		<NavTab navText="Accounts" 	to="/accounts" />
 
-		<NavTab navText="Admin" 	to="/admin"  v-if="authUser.Role == 'Admin'" />
+		<NavTab navText="Admin" 	to="/admin"  v-if="adminRoles.includes(authUser.Role)" />
 
 	</NavBar>
 

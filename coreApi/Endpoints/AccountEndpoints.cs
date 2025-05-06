@@ -45,12 +45,7 @@ public static partial class Endpoints
 												IAuthManager _authManager,
 												[FromBody] Account account) =>
 		{
-			var returnsUser = _authManager.GetCurrentUser();
-
-			if (!returnsUser.Ok)
-				return Results.BadRequest(returnsUser.Error.Message);
-
-			var acct = _accountManager.SaveAccount(account, returnsUser.Data);
+			var acct = _accountManager.SaveAccount(account);
 
 			return Results.Ok(acct);
 		})

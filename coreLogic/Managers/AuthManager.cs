@@ -47,10 +47,10 @@ public class AuthManager(	IUserManager userManager,
 			return Returns<AuthUser>.Failure(message);
 		}	
 		
-	// if (!user.IsActive) // not implemented above yet
-	// {
-	//		return Returns<AuthUser>.Failure($"User {user.UserName} is not active.");
-	// }
+		// if (!user.IsActive) // not implemented above yet
+		// {
+		//		return Returns<AuthUser>.Failure($"User {user.UserName} is not active.");
+		// }
 
 		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");
 
@@ -58,8 +58,6 @@ public class AuthManager(	IUserManager userManager,
 
 		return Returns<AuthUser>.Result(GetAuthResponse(user));
 	}
-
-
 
 	public Returns<AuthUser> Signup(UserToCreate userToCreate)
 	{

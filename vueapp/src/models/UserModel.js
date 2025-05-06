@@ -12,6 +12,8 @@ function UserModel (userId, userName, firstName, lastName, userEmail, role)
     this.ModifiedDate   = null 
     this.CreatedId      = 0
     this.ModifiedId     = 0
+	this.CreatorName    = ''
+    this.ModifierName   = ''
 }
 
 export

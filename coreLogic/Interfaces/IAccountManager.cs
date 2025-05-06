@@ -11,6 +11,6 @@ namespace coreApi.Logic.Interfaces
 
 		Task<PagedList<Account,SearchForAccount>> GetPagedAccounts(Pager<SearchForAccount> pager);
 
-		Task<Account> SaveAccount(Account account, User user);
+		Task<Account> SaveAccount(Account account);
 	}
 }

@@ -1,18 +1,27 @@
 @coreApi.Server_HostAddress = https://localhost:9999
 
+### ====================================================================
+### For Authentication use login below
+### ====================================================================
 
-### FOR AUTHENTICATION LOGIN HERE !
 # @name login
 POST {{coreApi.Server_HostAddress}}/v1/authenticate/login
 accept: */* 
 Content-Type: application/json
 
 {
-	"username": "wcrowther22",
+	"username": "testuser",
 	"password": "Test123!"
 }
 
-###
+### me - Get current user claims =========================================
+
+GET {{coreApi.Server_HostAddress}}/v1/authenticate/me
+Authorization: bearer {{login.response.body.$.token}}
+Content-Type: application/json
+Accept: application/json
+
+### saveAccount ==========================================================
 POST {{coreApi.Server_HostAddress}}/v1/accounts/saveAccount
 Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
@@ -28,23 +37,42 @@ Accept: application/json
 	"PostalCode": "12345"
 }
 
-###
+### getAllUsers  ======================================================
 
 GET {{coreApi.Server_HostAddress}}/v1/users/getAllUsers
 Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
+### getPagedAccounts  ==================================================
 
-###
+POST {{coreApi.Server_HostAddress}}/v1/accounts/getPagedAccounts
+Authorization: bearer {{login.response.body.$.token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "currentRecord": 0,
+  "pageSize": 20,
+  "groupSize": 5,
+  "search": {
+    "filter": "Cap",
+    "filterType": "",
+    "sort": "",
+    "sortDesc": true,
+    "stateProvinceFilter": "",
+    "postalCodeFilter": ""
+  }
+}
+
+### getAllAccounts   ====================================================
 
 GET {{coreApi.Server_HostAddress}}/v1/accounts/getAllAccounts
 Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
-
-### SIGN UP USER
+### SIGN UP USER   ======================================================
 
 POST {{coreApi.Server_HostAddress}}/v1/authenticate/signup
 Content-Type: application/json
@@ -58,3 +86,5 @@ Accept: application/json
 	"UserEmail": "willTest117@gmail.com",
 	"Role": "User"
 }
+
+### =====================================================================

@@ -34,7 +34,7 @@ public class Returns<T>(T data = default, Error error = null)
 
 public class Returns(string data = null, Error error = null) : Returns<string>(data, error)
 {
-	public static new Returns Success(string data)
+	public static new Returns Success(string data = "")
 		=> new(data);
 
 	public static new Returns Result(string data, string errorMessage = "No data returned.")

@@ -4,6 +4,7 @@ using coreLogic.Interfaces;
 using coreLogic.Models;
 using coreLogic.Models.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 using WildHare.Extensions;
 
 namespace coreApi;
@@ -16,8 +17,17 @@ public static partial class Endpoints
                       .WithOpenApi()
 					  .WithTags("Authenticate");
 
+
+
+		// me - get current user claims for JWT testing
+		endpoints.MapGet("/me", (ClaimsPrincipal user) =>
+		{
+			return user.Claims.Select(c => new { c.Type, c.Value });
+
+		});
+
 		// login
-        endpoints.MapPost("/login", (	AuthRequest model, 
+		endpoints.MapPost("/login", (	AuthRequest model, 
 										IAuthManager _authManager
 									) =>
 		{
