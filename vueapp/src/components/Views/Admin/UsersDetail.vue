@@ -140,6 +140,17 @@
 
         </div>
 
+        <InfoBox>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+            Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+        </InfoBox>
+
+        <HelpBox>
+            Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+            Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+        </HelpBox>
+
         <div v-if="(!user || user.UserId === 0)  && !isAddingUser" class="w-[300px] font-bold">
             No User to display
         </div>

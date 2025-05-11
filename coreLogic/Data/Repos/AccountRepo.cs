@@ -95,7 +95,7 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 	private static Expression<Func<Account, bool>> AccountNameFilter(string filterType, string filter) =>
 		filterType switch
 		{
-			""			=> acct => acct.AccountName.StartsWith(filter),
+			""			=> acct => acct.AccountName.StartsWith(filter), // Default if empty
 			"startswith"=> acct => acct.AccountName.StartsWith(filter),
 			"contains"	=> acct => acct.AccountName.ToLower().Contains(filter),
 			"endswith"  => acct => acct.AccountName.EndsWith(filter), 

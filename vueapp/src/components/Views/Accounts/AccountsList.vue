@@ -126,7 +126,7 @@
 <template>
     <div id="accountsList">
 
-        <div class="pb-3 px-5 flex flex-wrap justify-between items-center border-t border-r border-slate-300
+        <div class="px-5 pb-3 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
             <div class="flex gap-x-1 pt-5 w-full">
@@ -143,17 +143,16 @@
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
             </div>
 
-            <MobilePagerPrevNext :pager="listPager" />
-
             <InfoBox class="mb-3">
-                Enter search text for the start of an Account Name or are a number that is to the AccountId. 
-                You can add multiple conditions separated by a comma.
+                Enter search text for the start of an Account Name or Id. 
             </InfoBox>
-            
-            <HelpBox class="mb-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+
+            <HelpBox class="mb-3" :compact="true">
+                You can add multiple conditions separated by a comma.
+                Click on the + sign for the Advanced Search with additional options.
             </HelpBox>
+            
+            <MobilePagerPrevNext :pager="listPager" />
 
         </div>
 

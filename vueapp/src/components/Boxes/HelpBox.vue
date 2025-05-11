@@ -1,18 +1,28 @@
 <script setup>
+
 	const appStore       = useAppStore()
-	const { infoLevel }  = storeToRefs(appStore)
+	const { infoLevel, }  = storeToRefs(appStore)
+
+    const props = defineProps(
+	{
+		compact: 	 { type: Boolean, default: false }, 
+	});
+
 </script>
 
 <template>
     <div v-if="infoLevel > 2" 
-        class="mb-3 text-sm border border-[#f97316] bg-white rounded-xl px-5 py-6 w-full">
+        :class="['mb-3 text-sm border border-[#f97316] bg-white  w-full',
+            props.compact ? 'mb-3 px-3 py-2 rounded-md' : 'mb-2 px-6 py-5 rounded-xl']">
 
-        <span class="float-right relative -top-5 -right-4 badge-button text-white bg-orange" 
+        <span v-if="!props.compact"
+            class="float-right relative -top-4 -right-5 badge-button text-white bg-orange" 
             @click="infoLevel=2"  @click.right.prevent="infoLevel=1">
             Help
         </span> 
 
         <slot></slot>
+        
     </div>
 </template>
 

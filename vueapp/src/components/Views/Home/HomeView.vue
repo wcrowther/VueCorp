@@ -20,16 +20,16 @@
             </div>
         </div> 
 
-        <div class="flex flex-wrap mb-5 gap-y-5">
+        <div class="flex flex-wrap gap-y-5">
 
             <div class="pr-5 w-2/3 grow">
                 <p class="pb-3 text-lg">
                     <b>VueCorp</b> is an open source project to promote using <b>Vue.js</b> with a
                     <b>DotNet</b> backend to create a simple yet powerful application environment. 
-                    We started with the Microsoft's <b>Vue and Asp.Net Core</b> template which includes
-                    a solution containing a <b>VueJs .esproj project</b> built using <b>Vite</b> for client 
-                    the <b>SPA</b> project and a separate <b>C# DotNet Minimal API .csproj</b> for the backend 
-                    that is integrated so that it can be built and published with a <b>single click</b>.
+                    We combined a <b>VueJs </b> SPA project (.esproj) built using <b>Vite</b> with a 
+                    separate <b>.Net Minimal API </b> project for the backend that is 
+                    integrated so that it can be built into a single deployment 
+                    with a simple Visual Studio <b>Publish</b>.
                 </p> 
             </div>
 
@@ -56,29 +56,26 @@
 
             <div class="pr-5 w-full grow">
                 <p class="pb-3">    
-                    Then we added real-world examples that show you how to integrate client side Pinia stores 
-                    utilizing <b>JWT tokens</b> for api security to fetch data from your DotNet backend. The client 
-                    project includes a page-based routing system and has auto-import component dependencies.
+                    We've included real-world examples demonstrating how to integrate client-side <b>Pinia</b> stores using 
+                    <b>JWT tokens</b> for secure API access to your .NET backend. The client project features page-based 
+                    routing and automatic component dependency imports.
                 </p>
                 <p class="pb-3">
-                    Our idea is not to focus on utilizing 3rd party component libraries to solve problems 
-                    but rather to show you how to build simple but powerful components that allow you 
-                    to embed your <b>'code intent'</b> and modify them as you need. The project is not meant to 
-                    be 'the best' way to build an application - just a good example that you can start with.
+                    Rather than relying on third-party UI libraries, we focus on building clean, powerful components that 
+                    reflect your <b>code intent</b> and are easy to adapt. This project isn’t meant to be the definitive 
+                    way to build an app—just a solid starting point.
                 </p>
                 <p class="pb-3">
-                    We include a number of innovative ways to do things both in the <b>VueJs</b> and <b>DotNet</b> 
-                    Minimal Api projects and are interested in outside contributions and suggestions moving forward. 
-
+                    You'll find a number of innovative techniques throughout both the <b>Vue.js</b> and <b>.NET</b> 
+                    Minimal API projects. We welcome contributions and suggestions as the project evolves.
                 </p>
                 <p class="pb-3 font-bold">
-                    Both VueJs and DotNet are wonderful technologies that 
-                    are modern, streamlined, and fun to work with. 
+                    Vue.js and .NET are modern, efficient, and enjoyable technologies to work with.
                 </p>
             </div>
 
-             <!-- <HomeView2 />Still working on -->
-            
+            <HomeView2 />
+         
         </div>
 
     </div>  
