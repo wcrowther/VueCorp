@@ -1,5 +1,8 @@
+// Uses 'unplugin-vue-router'. Create your site structure in the 'pages' folder 
+// and it will automatically use vue-router to create the routes for you.
 
 import { createRouter, createWebHistory } 	from 'vue-router/auto'
+
 
 const DEFAULT_TITLE = 'Vue Corp';
 

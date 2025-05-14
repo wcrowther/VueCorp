@@ -1,6 +1,6 @@
 <script setup>
 
-	const appStore       = useAppStore()
+	const appStore        = useAppStore()
 	const { infoLevel, }  = storeToRefs(appStore)
 
     const props = defineProps(
@@ -27,13 +27,17 @@
 </template>
 
 <!-- 
-USE:  Wrap around content that you only want to appear when infoLevel is Help (3)
-      determined by the InfoLevel control.
+USE:  Wrap around content that you only want to appear when infoLevel is Help (3) determined 
+    by the InfoLevel control. Optional 'compact' parameter for streamlined version.
 
 EXAMPLES: 
 
     <HelpBox>
         Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+    </HelpBox>
+
+    <HelpBox :compact="true">
+        Note the : before compact so that true is evaluated as a boolean not a string
     </HelpBox>
 -->
 

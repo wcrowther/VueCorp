@@ -150,7 +150,7 @@
                 Enter search text for the start of an User First Name or Last Name or the UserId.
             </InfoBox>
 
-            <HelpBox compact="true">
+            <HelpBox :compact="true">
                 You can add multiple conditions separated by a comma. 
                 Click on the + sign for the Advanced Search with additional options.
             </HelpBox>

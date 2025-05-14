@@ -3,13 +3,12 @@
     const homeTitle     = ref("Welcome to VueCorp Starter Solution")
     const appStore      = useAppStore()
 
-
 </script>
 
 <template>
 
-    <div class="p-5 pt-5 sm:p-10 sm:pt-5 pb-14 grow 
-        leading-relaxed h-full min-h-[600px] bg-gradient-main">
+    <div class="p-5 pt-5 sm:p-10 sm:pt-5 grow leading-relaxed h-full 
+        bg-gradient-main border-b border-color-light-blue">
 
         <div class="flex flex-wrap gap-5 mb-7" id="HomeView">
             <div class="w-full flex justify-between items-center">
@@ -63,19 +62,13 @@
                 <p class="pb-3">
                     Rather than relying on third-party UI libraries, we focus on building clean, powerful components that 
                     reflect your <b>code intent</b> and are easy to adapt. This project isn’t meant to be the definitive 
-                    way to build an app—just a solid starting point.
+                    way to build an app — just a solid starting point.
                 </p>
                 <p class="pb-3">
                     You'll find a number of innovative techniques throughout both the <b>Vue.js</b> and <b>.NET</b> 
                     Minimal API projects. We welcome contributions and suggestions as the project evolves.
                 </p>
-                <p class="pb-3 font-bold">
-                    Vue.js and .NET are modern, efficient, and enjoyable technologies to work with.
-                </p>
             </div>
-
-            <HomeView2 />
-         
         </div>
 
     </div>  

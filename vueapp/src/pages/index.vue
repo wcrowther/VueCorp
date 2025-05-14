@@ -3,7 +3,8 @@
 		
 	<LayoutMain>
 		<SubNavBar />
-		<HomeView />
+		<HomeOneView />
+		<HomeTwoView />
 	</LayoutMain>
 		
 </template>

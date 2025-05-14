@@ -29,7 +29,7 @@
                 </span>
             </div>
             <div class="w-full min-h-[400px] relative z-20">
-
+                <HomeView2 />  
             </div>
         </div>
 

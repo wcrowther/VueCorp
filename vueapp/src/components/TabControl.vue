@@ -43,6 +43,7 @@
 </template>
 
 <style lang="postcss" scoped>
+
     .tab-active { @apply mt-1 px-4 pt-[.35rem] pb-3 rounded-t-md border-2 bg-white border-slate-300 border-b-0 
        text-sm font-bold select-none relative bottom-[-2px] }
     .tab-other { @apply mt-2 mb-[.2rem] px-4 pb-[4px] leading-7 rounded-full border-2 border-transparent text-sm font-bold hover:bg-slate-300 }
