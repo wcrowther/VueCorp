@@ -22,7 +22,15 @@
                     <span>One-Click Deploy</span>
                     You can run both projects in <b>Visual Studio 2022</b> using a normal
                     <b>Start</b> command that deploys both projects to a single web site.
+                    <!-- Possibly add help details
+                    <HelpBox class="mt-2" :compact="true">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
+                    </HelpBox> 
+                    -->
                 </li>
+                 <HelpBox class="mt-2" :compact="false">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
+                 </HelpBox> 
                 <li>
                     <span>Multiple Deploy</span>
                     Alternately, you can elect to edit the C# project in <b>Visual Studio 2022</b> and
@@ -60,61 +68,84 @@
             <ol class="ol-list">
                 <li>
                     <span>Vite</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non 
+                    Our Vue project uses Vite for our builds, allowing for instantaneous feedback when you make changes 
+                    to a Vue page or component with it's lightning fast HMR (hot model replacement).
                 </li>
                 <li>
-                    <span>Page-based Routing</span>Uses page-based routing with 'unplugin-vue-router' that auto configures
-                    Vue Router based on the hierarchy of the src/Pages folder.
+                    <span>Page-based Routing</span>
+                    Uses page-based routing with 'unplugin-vue-router' that auto configures Vue Router based on the 
+                    hierarchy of the src/Pages folder. Our SiteMap component dynamically shows the site layout.
+                </li>
+                <li>
+                    <span>SPA Site Navigation</span>
+                    The site dynamically loads nested components without page reload and provides two levels of 
+                    tabbed navigation.
                 </li>
                 <li>
                     <span>Removing Boilerplate Code</span>
                     We use 'unplugin-vue-components' and 'unplugin-auto-import' to remove
-                    boilerplate code by auto-importing vue and custom components on demand  leaving
+                    boilerplate code by auto-importing Vue and custom components on demand  leaving
                     the code to more succinctly express the logic.
                 </li>
                 <li>
                     <span>Custom Components</span>
-                    Our custom components are simple
-                </li>
-                <li>
-                    <span>TailwindCss</span>
-                     ... themes
+                    Rather than focusing on an external UI library, we have many example custom components for 
+                    you to build on such as form inputs (w/ validation), modal and confirmation controls, 
+                    layout controls, and a flexible icon control.
                 </li>
                 <li>
                     <span>List Pager w/ Debugger</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
-                </li>
-                <li>
-                    <span>Fluid mobile / web</span>
-                    w/ collapsible menu area
+                    For lists, we have an integrated list pager (with debugger) with an advanced search feature. 
+                    For mobile, the user can easily switch between list or detail views.
                 </li>
                 <li>
                     <span>Search / Advanced Search</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
+                    The integrated search allows the user to use multiple search terms in a single query and 
+                    further narrow their search with additional parameters in a modal window.
+                </li>
+                <li>
+                    <span>TailwindCss</span>
+                    The site is build using TailwindCss so that you can look at a component and see how it is 
+                    styled but also utilizes css variables so that you can switch out designs on the fly. Components
+                    can have there own isolated classes when that is required.
+                </li>
+                <li>
+                    <span>Adaptive Mobile / Web Design</span>
+                    The site is designe to be adaptive for the web at higher resolutions and for mobile when space 
+                    is limited. The design features a left collapsible menu area for displaying lists.
                 </li>
                 <li>
                     <span>Keyboard Shortcuts</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
+                    For maximum productivity on the web, contextual keyboard shortcuts are integrated into the UI. 
+                    Ctrl + S to save. Esc to hide left navigation. Arrow keys to move the prev / next record, etc.
+                </li>
+                <li>
+                    <span>Pinia Datastores</span>
+                    We use Pinia for global state management and to access services and data stores. This allows 
+                    flexibility for cross-cutting concerns and components to be loosely coupled. 
                 </li>
                 <li>
                     <span>Custom API</span>
-                    access with built in toast message /  JWT tokens
-                </li>
-                <li>
-                    <span>Pinia datastores</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
-                </li>
-                <li>
-                    <span>Local Storage</span>
-                    Client user configuration using local storage
-                </li>
-                <li>
-                    <span>Model Validation w/ Vuelidate</span>
-                    Simple integrated model validation with Vuelidate
+                    Our simple custom setup for API access manages JWT tokens / Cookies and return message with 
+                    built-in toasts for when errors occur. 
                 </li>
                 <li>
                     <span>VueUse</span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
+                    We utilize 'VueUse' to extend Vue functionality for local storage, clipboard copying,
+                    app screen size, etc. and it contains many other useful capabilities.
+                </li>
+                <li>
+                    <span>Local Storage</span>
+                    Utilizing local storage in our datastores it is very easy to persist user prefernces.
+                </li>
+                <li>
+                    <span>Model Validation w/ Vuelidate</span>
+                    We use Vuelidate to do model validation on an object before is sent to the server.
+                </li>
+                <li>
+                    <span>Help System</span>
+                    The system has a global help system that can be None, Info, or Help to provide an easy 
+                    way for the user to get as much or as little assistance as they need.
                 </li>
             </ol>
 
@@ -153,6 +184,11 @@
                     server model property attributes (this is not available in .NET 9).
                 </li>
                 <li>
+                    <span>Debug Middleware</span>
+                    We add a custom middleware component for troubleshooting incoming HttpContext Requests that is 
+                    useful for debugging model-binding and viewing incoming Http Post body JSON.
+                </li>
+                <li>
                     <span>Server Event Logging</span>
                     File-based logging of events using ILogger with Serilog.
                 </li>
@@ -166,13 +202,9 @@
                 </li>
                 <li>
                     <span>API Documentation</span>
-                    Out of the box Swagger endpoints documentation with authorization and
-                    look-and-feel customization.
+                    Out of the box Swagger endpoints documentation with authorization and look-and-feel customization.
                 </li>
-                <li>
-                    <span>CORS</span>
-                    Allows for simple configuration of user-specified CORS origins.
-                </li>
+
             </ol>
 
         </div>
