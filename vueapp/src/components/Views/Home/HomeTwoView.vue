@@ -22,15 +22,12 @@
                     <span>One-Click Deploy</span>
                     You can run both projects in <b>Visual Studio 2022</b> using a normal
                     <b>Start</b> command that deploys both projects to a single web site.
+                </li>
                     <!-- Possibly add help details
                     <HelpBox class="mt-2" :compact="true">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
                     </HelpBox> 
                     -->
-                </li>
-                 <HelpBox class="mt-2" :compact="false">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem necessitatibus non
-                 </HelpBox> 
                 <li>
                     <span>Multiple Deploy</span>
                     Alternately, you can elect to edit the C# project in <b>Visual Studio 2022</b> and
