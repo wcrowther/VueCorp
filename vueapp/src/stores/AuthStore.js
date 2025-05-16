@@ -67,6 +67,14 @@ export const useAuthStore = defineStore('AuthStore',
         async redirect (route)
         {
             this.router.push(route || '/')
+        },        
+        async delayedRedirect (route, msdelay)
+        {
+            setTimeout(() => 
+            {
+                this.redirect(route);  
+
+            }, msdelay); // microsecond delay
         },
         async refreshAuth (authRefreshRequest)
         {

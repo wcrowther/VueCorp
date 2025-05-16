@@ -1,13 +1,29 @@
 <script setup>
 
-// NOTE: This file matches the [...path].vue which is the unplugin-vue-router catchall route
+	// =========================================================================================
+	// NOTE: This file matches the [...path].vue which is the unplugin-vue-router catchall route
+	// =========================================================================================
+
+    const messageStore          = useMessageStore()
+    const authStore             = useAuthStore()
+    const { delayedRedirect }   = authStore
+    const redirectDelay         = 4000 
+    const secondsDelay          = redirectDelay / 1000
+
+    onMounted(() =>  
+    {        
+        delayedRedirect('/', redirectDelay ) 
+        messageStore.showWarning(`Redirecting to Homepage in ${secondsDelay} seconds`)
+    }); 
 
 </script>
 
-<template>
+<template>  
 
     <LayoutMain>
-      <div class="p-5 font-bold text-center text-color-red bg-white">Page Not Found</div>
+        <div class="text-xl pt-20 font-bold text-center text-color-red ">
+            Page Not Found
+        </div>
     </LayoutMain>
     
 </template>

@@ -2,7 +2,7 @@
 
 <template>
 
-    <div class="pb-5">
+    <div class="pb-5" id="HomeTwoView">
     
         <div class="flex flex-wrap gap-y-3 bg-white/50 p-10">
 
@@ -19,7 +19,7 @@
 
             <ol class="ol-list">
                 <li>
-                    <span>One-Click Deploy</span>
+                    <span>One-Click Start</span>
                     You can run both projects in <b>Visual Studio 2022</b> using a normal
                     <b>Start</b> command that deploys both projects to a single web site.
                 </li>
@@ -29,7 +29,7 @@
                     </HelpBox> 
                     -->
                 <li>
-                    <span>Multiple Deploy</span>
+                    <span>Multiple Starts</span>
                     Alternately, you can elect to edit the C# project in <b>Visual Studio 2022</b> and
                     use <b>VSCode</b> for the <b>Vuejs</b> project, launching them separately for debugging 
                     but combined into a single site for production.
