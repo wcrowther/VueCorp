@@ -22,12 +22,12 @@ namespace coreApi.Helpers
 			services.AddScoped<IContentManager,		ContentManager>();
 			services.AddScoped<ITokenManager,		TokenManager>();
 			services.AddScoped<ICookieManager,		CookieManager>();
-			services.AddScoped<IUserClaimsManager, UserClaimsManager>();
+			services.AddScoped<IUserClaimsManager,	UserClaimsManager>();
 
 			// Data Services
-			services.AddScoped<IAccountRepo,    AccountRepo>();
-			services.AddScoped<IUserRepo,		UserRepo>();
-			services.AddScoped<IContentRepo,	ContentRepo>();
+			services.AddScoped<IAccountRepo,		AccountRepo>();
+			services.AddScoped<IUserRepo,			UserRepo>();
+			services.AddScoped<IContentRepo,		ContentRepo>();
 		}
 	}
 }
