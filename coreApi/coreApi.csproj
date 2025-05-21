@@ -8,6 +8,7 @@
 	   <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
 	   <SpaProxyServerUrl>https://localhost:7200</SpaProxyServerUrl>
 	   <UserSecretsId>47af801c-889a-4912-a217-6fadd9d3cf78</UserSecretsId>
+	   <Configurations>Debug;Release;QA</Configurations>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,6 +16,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <NoWarn>1701;1702;1591;</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='QA|AnyCPU'">
       <NoWarn>1701;1702;1591;</NoWarn>
     </PropertyGroup>
 
@@ -111,23 +116,27 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
-	
-	<!-- Do I need this?
-	<PropertyGroup>
-		<BuildCommand>npm run build</BuildCommand>
-	</PropertyGroup>
-	--> 
-	
+
 	<Target Name="CopyCustomFiles" BeforeTargets="Publish">
-	   <!-- Can be relative or absolute path: C:\Git\VueCorp\LICENSE.txt-->
+	   <!-- Can be relative or absolute path: C:\Git\VueCorp\LICENSE.txt -->
 	   <ItemGroup>
 		  <MyFiles Include="..\LICENSE.txt" />
 	   </ItemGroup>
 	   <Message Text="BeforeTargets Publish: Copying file @(MyFiles) to $(PublishDir)" Importance="high" />
 	   <Copy SourceFiles="@(MyFiles)" DestinationFolder="$(PublishDir)" />
     </Target>
+	
+	
+	<!--  	
+	<Target Name="BuildFrontendForQA" BeforeTargets="Build" Condition="'$(Configuration)' == 'QA'">
+		<Exec Command="npm - -prefix ../vueapp run build-qa" />
+	</Target>
 
-    <!--
+	// I think it does this build to Prod by default.
+	<PropertyGroup>
+		<BuildCommand>npm run build</BuildCommand>
+	</PropertyGroup>
+ 
     <Target Name="RemoveLicense.txt" AfterTargets="Publish">
 	   <Message Text="Deleting LICENSE.txt" Importance="high" />
 	   <Delete Files="$(PublishDir)LICENSE.txt" />
