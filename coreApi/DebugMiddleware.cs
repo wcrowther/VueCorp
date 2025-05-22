@@ -46,7 +46,7 @@ namespace coreApi
 				// Reset the stream position for the next middleware/controller
 				httpContext.Request.Body.Position = 0;
 
-				Debug.WriteLine($"Request Json Body: {body.CleanJson("password")}");
+				Debug.WriteLine($"Request Json Body: {body.MaskJsonSecrets("password")}");
 				Debug.WriteLine("-".Repeat(70));
 			}
 

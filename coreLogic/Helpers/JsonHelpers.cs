@@ -5,7 +5,8 @@ namespace coreLogic.Helpers;
 
 public static class JsonHelpers
 {
-	public static string CleanJson(this string json, params string[] propertiesToMask)
+	/// <summary>Masks JSON values for keys like 'Password', 'Token', etc</summary>
+	public static string MaskJsonSecrets(this string json, params string[] propertiesToMask)
 	{
 		bool indent		= true;
 		var root		= JsonNode.Parse(json);

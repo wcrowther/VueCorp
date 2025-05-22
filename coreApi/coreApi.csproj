@@ -1,133 +1,86 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-       <TargetFramework>net9.0</TargetFramework>
-       <ImplicitUsings>enable</ImplicitUsings>
-	   <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	   <SpaRoot>..\vueapp</SpaRoot>
-	   <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-	   <SpaProxyServerUrl>https://localhost:7200</SpaProxyServerUrl>
-	   <UserSecretsId>47af801c-889a-4912-a217-6fadd9d3cf78</UserSecretsId>
-	   <Configurations>Debug;Release;QA</Configurations>
-    </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<SpaRoot>..\vueapp</SpaRoot>
+		<SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+		<SpaProxyServerUrl>https://localhost:7200</SpaProxyServerUrl>
+		<UserSecretsId>47af801c-889a-4912-a217-6fadd9d3cf78</UserSecretsId>
+		<Configurations>Debug;Release;QA</Configurations>
+	</PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <NoWarn>1701;1702;1591;</NoWarn>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <NoWarn>1701;1702;1591;</NoWarn>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='QA|AnyCPU'">
-      <NoWarn>1701;1702;1591;</NoWarn>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <Compile Remove="Data\**" />
-      <Compile Remove="Logic\**" />
-      <Compile Remove="Migrations\**" />
-      <Compile Remove="Models\**" />
-      <Content Remove="Data\**" />
-      <Content Remove="Logic\**" />
-      <Content Remove="Migrations\**" />
-      <Content Remove="Models\**" />
-      <EmbeddedResource Remove="Data\**" />
-      <EmbeddedResource Remove="Logic\**" />
-      <EmbeddedResource Remove="Migrations\**" />
-      <EmbeddedResource Remove="Models\**" />
-      <None Remove="Data\**" />
-      <None Remove="Logic\**" />
-      <None Remove="Migrations\**" />
-      <None Remove="Models\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Remove="Endpoints\_RegisterEndpoints.cs" />
-        <Compile Remove="Helpers\CustomAuthorizeAttribute.cs" />
-        <Compile Remove="Helpers\DataAnnotationsValidate.cs" />
-        <Compile Remove="Helpers\JwtMiddleware.cs" />
-        <Compile Remove="Helpers\TokenSecurity.cs" />
-    </ItemGroup>
-
+	<!-- Suppress specific warnings across all configurations -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' Or '$(Configuration)' == 'QA'">
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
+	
 	<ItemGroup>
-	  <Content Remove="C:\Users\willc\.nuget\packages\seedpacket\5.0.0\contentFiles\any\net5.0\favicon.ico" />
-	  <Content Remove="wwwroot\docs\favicon.ico" />
-	  <Content Remove="wwwroot\docs\White_Brand_Logo.png" />
+	  <Compile Remove="Helpers\JwtMiddleware.cs" />
+	</ItemGroup>
+
+	<!-- Project references -->
+	<ItemGroup>
+		<ProjectReference Include="..\vueapp\vueapp.esproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+		<ProjectReference Include="..\coreLogic\coreLogic.csproj" />
+	</ItemGroup>
+
+	<!-- NuGet packages -->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
+		<PackageReference Include="Microsoft.OpenApi" Version="1.6.23" />
+		<PackageReference Include="SeedPacket" Version="5.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0" />
+		<PackageReference Include="System.Text.Json" Version="9.0.1" />
+		<PackageReference Include="WildHare" Version="2.0.0" />
+	</ItemGroup>
+
+	<!-- Assets to include -->
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+		<None Include="wwwroot\docs\favicon.ico" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="wwwroot\docs\White_Brand_Logo.png" CopyToOutputDirectory="PreserveNewest" />
+		<None Update="coreApiData.db" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+	
+	<!-- Assets excluded from the project -->
+	<ItemGroup>
+		<Compile Remove="Helpers\JwtMiddleware.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="..\.editorconfig" Link=".editorconfig" />
-	  <None Include="wwwroot\docs\favicon.ico">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Include="wwwroot\docs\White_Brand_Logo.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<Content Update="web.config" CopyToOutputDirectory="Always" />
+		<Content Update="wwwroot\docs\favicon-16x16.png" CopyToOutputDirectory="PreserveNewest" />
+		<Content Update="wwwroot\docs\favicon-32x32.png" CopyToOutputDirectory="PreserveNewest" />
+		<Content Update="wwwroot\docs\favicon-48x48.png" CopyToOutputDirectory="PreserveNewest" />
 	</ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
-        <PackageReference Include="Microsoft.OpenApi" Version="1.6.23" />
-        <PackageReference Include="SeedPacket" Version="5.0.0" />
-        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-        <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
-        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.4.0" />
-        <PackageReference Include="System.Text.Json" Version="9.0.1" />
-        <PackageReference Include="WildHare" Version="2.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-	   <ProjectReference Include="..\vueapp\vueapp.esproj">
-		  <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-	   </ProjectReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\coreLogic\coreLogic.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Update="web.config">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Update="wwwroot\docs\favicon-16x16.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Update="wwwroot\docs\favicon-32x32.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Update="wwwroot\docs\favicon-48x48.png">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="coreApiData.db">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
-
+	<!-- Custom publish file copy -->
 	<Target Name="CopyCustomFiles" BeforeTargets="Publish">
-	   <!-- Can be relative or absolute path: C:\Git\VueCorp\LICENSE.txt -->
-	   <ItemGroup>
-		  <MyFiles Include="..\LICENSE.txt" />
-	   </ItemGroup>
-	   <Message Text="BeforeTargets Publish: Copying file @(MyFiles) to $(PublishDir)" Importance="high" />
-	   <Copy SourceFiles="@(MyFiles)" DestinationFolder="$(PublishDir)" />
-    </Target>
-	
-	
-	<!--  	
+		<ItemGroup>
+			<MyFiles Include="..\LICENSE.txt" />
+		</ItemGroup>
+		<Message Text="BeforeTargets Publish: Copying file @(MyFiles) to $(PublishDir)" Importance="high" />
+		<Copy SourceFiles="@(MyFiles)" DestinationFolder="$(PublishDir)" />
+	</Target>
+
+</Project>
+
+
+<!--  	
 	<Target Name="BuildFrontendForQA" BeforeTargets="Build" Condition="'$(Configuration)' == 'QA'">
 		<Exec Command="npm - -prefix ../vueapp run build-qa" />
 	</Target>
@@ -141,6 +94,4 @@
 	   <Message Text="Deleting LICENSE.txt" Importance="high" />
 	   <Delete Files="$(PublishDir)LICENSE.txt" />
     </Target>
-    -->
-
-</Project>
+-->
