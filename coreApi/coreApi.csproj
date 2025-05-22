@@ -17,6 +17,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+	  <Compile Remove="Helpers\CustomAuthorizeAttribute.cs" />
 	  <Compile Remove="Helpers\JwtMiddleware.cs" />
 	</ItemGroup>
 
