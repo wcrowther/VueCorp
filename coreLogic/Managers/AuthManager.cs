@@ -22,15 +22,15 @@ public class AuthManager(	IUserManager userManager,
 						)
 : IAuthManager
 {
-	public Returns<User> GetCurrentUser()
+	public (User, Result) GetCurrentUser()
 	{
 		string userName = userClaimsManager.GetCurrentUsername();
 		var user		= userName.IsNullOrEmpty() ? null : userManager.GetUserByUsername(userName);
 
-		return Returns<User>.Result(user, "Not able to get the current user.");	
+		return user.ToResult(Result.Error("Not able to get the current user."));	
 	}
 
-	public Returns<AuthUser> Authenticate(AuthRequest authRequest)
+	public (AuthUser, Result) Authenticate(AuthRequest authRequest)
 	{
 		var user = userManager.GetUserByUsername(authRequest.UserName);
 
@@ -44,7 +44,7 @@ public class AuthManager(	IUserManager userManager,
 
 			logger.LogInformation(message + NewLine + techMessage);
 
-			return Returns<AuthUser>.Failure(message);
+			return (null, Result.Error(message));
 		}	
 		
 		// if (!user.IsActive) // not implemented above yet
@@ -56,10 +56,10 @@ public class AuthManager(	IUserManager userManager,
 
 		user = userManager.UpdateUserRefreshToken(user);
 
-		return Returns<AuthUser>.Result(GetAuthResponse(user));
+		return GetAuthResponse(user).ToResult();
 	}
 
-	public Returns<AuthUser> Signup(UserToCreate userToCreate)
+	public (AuthUser, Result) Signup(UserToCreate userToCreate)
 	{
 		var existingUser = userManager.GetUserByUsername(userToCreate.UserName);
 
@@ -72,7 +72,7 @@ public class AuthManager(	IUserManager userManager,
 		return Returns<AuthUser>.Result(authResponse);
 	}
 
-	public Returns<AuthUser> RefreshAuth(AuthRefreshRequest request)
+	public (AuthUser, Result) RefreshAuth(AuthRefreshRequest request)
 	{
 		var user			= userManager.GetUserById(request.UserId);
 		var refreshToken	= accessor.HttpContext.Request.Cookies["RefreshToken"];

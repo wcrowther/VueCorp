@@ -7,11 +7,11 @@ namespace coreLogic.Interfaces;
 
 public interface IAuthManager
 {
-	Returns<User> GetCurrentUser();
+	(User, Result) GetCurrentUser();
 
-	Returns<AuthUser> Authenticate(AuthRequest authRequest);
+	(AuthUser,Result) Authenticate(AuthRequest authRequest);
 
-	Returns<AuthUser> Signup(UserToCreate userToCreate);
+	(AuthUser, Result) Signup(UserToCreate userToCreate);
 
-	Returns<AuthUser> RefreshAuth(AuthRefreshRequest request);
+	(AuthUser, Result) RefreshAuth(AuthRefreshRequest request);
 }
