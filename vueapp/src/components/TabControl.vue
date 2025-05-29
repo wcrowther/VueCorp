@@ -44,16 +44,14 @@
 
 <style lang="postcss" scoped>
 
-    .tab-active { @apply mt-1 px-4 pt-[.35rem] pb-3 rounded-t-md border-2 bg-white border-slate-300 border-b-0 
+    .tab-active { @apply mt-0 px-4 pt-[.4rem] pb-3 rounded-t-md border-2 bg-white border-slate-300 border-b-0 
        text-sm font-bold select-none relative bottom-[-2px] }
-    .tab-other { @apply mt-2 mb-[.2rem] px-4 pb-[4px] leading-7 rounded-full border-2 border-transparent text-sm font-bold hover:bg-slate-300 }
+    .tab-other { @apply mt-1 mb-[.2rem] px-4 pb-[4px] select-none leading-7 rounded-full border-2 
+        border-transparent text-sm font-bold hover:bg-slate-300 }
 
 </style> 
 
 <!-- USAGE:
-
-    px-3 pt-1 rounded-t-md border-2 bg-slate-300 border-slate-300 border-b-0 
-                    font-bold select-none relative bottom-[-2px]
 
     <TabControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
 
