@@ -10,6 +10,7 @@ declare global {
   const AuthRequest: typeof import('./src/models/AuthRequest.js')['AuthRequest']
   const AuthUser: typeof import('./src/models/AuthUser.js')['AuthUser']
   const AutoRefreshAuth: typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']
+  const DisableLayoutEscapeKey: typeof import('./src/composables/DisableLayoutEscapeKey.js')['DisableLayoutEscapeKey']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
   const HtmlHeadBody: typeof import('./src/composables/HtmlHeadBody.js')['HtmlHeadBody']
@@ -17,6 +18,7 @@ declare global {
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
   const KeyboardListeners: typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']
   const LayoutEscapeKey: typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKey']
+  const LayoutEscapeKeyOn: typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKeyOn']
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
   const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
@@ -130,12 +132,12 @@ declare module 'vue' {
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
+    readonly DisableLayoutEscapeKey: UnwrapRef<typeof import('./src/composables/DisableLayoutEscapeKey.js')['DisableLayoutEscapeKey']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
-    readonly LayoutEscapeKey: UnwrapRef<typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKey']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
@@ -241,12 +243,12 @@ declare module '@vue/runtime-core' {
     readonly AuthRequest: UnwrapRef<typeof import('./src/models/AuthRequest.js')['AuthRequest']>
     readonly AuthUser: UnwrapRef<typeof import('./src/models/AuthUser.js')['AuthUser']>
     readonly AutoRefreshAuth: UnwrapRef<typeof import('./src/composables/AutoRefreshAuth.js')['AutoRefreshAuth']>
+    readonly DisableLayoutEscapeKey: UnwrapRef<typeof import('./src/composables/DisableLayoutEscapeKey.js')['DisableLayoutEscapeKey']>
     readonly Draggable: UnwrapRef<typeof import('@vueuse/core')['useDraggable']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
-    readonly LayoutEscapeKey: UnwrapRef<typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKey']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>

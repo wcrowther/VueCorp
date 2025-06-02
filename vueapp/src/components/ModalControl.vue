@@ -14,24 +14,17 @@
 	const emits 		= defineEmits(["closeModal"])
 	const closeModal 	= () =>  emits('closeModal')
 	
+	onMounted(() =>   { document.body.style.overflow = 'hidden'; })
+	onUnmounted(() => { document.body.style.overflow = 'auto'; })
+
     watch(() => props.showModal, (newVal) => 
     {
-		// Prevents scrolling behind overlay. marginRight should be width 
-		// of scrollbar but that width could be different on different browers.
+		// Prevents scrolling behind overlay. 
 		document.body.style.overflow    = newVal ? 'hidden': 'auto'
+
 		// code: document.body.style.marginRight = newVal ? '16px': 'initial'
     })
 
-	// Keyboard Listeners  ================================================
-
-	LayoutEscapeKey(false);
-
-	const keys = function (e)   
-    {
-		if (e.code === 'Escape'){ closeModal(); e.preventDefault(); } 
-    }
-
-	KeyboardListeners(keys)
 
 </script>
 

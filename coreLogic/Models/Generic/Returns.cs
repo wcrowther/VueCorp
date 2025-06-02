@@ -14,14 +14,14 @@ public class Returns<T>(T data = default, Error error = null)
 	public static Returns<T> Success(T data)
 		=> new(data);
 
-	public static Returns<T> Result(T data, string errorMessage = "No data returned.")
-		=> data is not null ? new(data) : Failure(errorMessage);
+	public static Returns<T> Result(T data, string ifErrorMessage = "No data returned.")
+		=> data is not null ? new(data) : Failure(ifErrorMessage);
 
-	public static Returns<T> Result(T data, Func<T, bool> func, string errorMessage)
-		=> func(data) ? new(data) : Failure(errorMessage);
+	public static Returns<T> Result(T data, Func<T, bool> func, string ifErrorMessage)
+		=> func(data) ? new(data) : Failure(ifErrorMessage);
 
-	public static Returns<T> Failure(string errorMessage)
-		=> new(error: new Error(errorMessage));
+	public static Returns<T> Failure(string ifErrorMessage)
+		=> new(error: new Error(ifErrorMessage));
 
 	public static Returns<T> Failure(Error error) => new(error: error);
 
@@ -37,14 +37,14 @@ public class Returns(string data = null, Error error = null) : Returns<string>(d
 	public static new Returns Success(string data = "")
 		=> new(data);
 
-	public static new Returns Result(string data, string errorMessage = "No data returned.")
-		=> data is not null ? new(data) : Failure(errorMessage);
+	public static new Returns Result(string data, string ifErrorMessage = "No data returned.")
+		=> data is not null ? new(data) : Failure(ifErrorMessage);
 
-	public static new Returns Result(string data, Func<string, bool> func, string errorMessage)
-		=> func(data) ? new(data) : Failure(errorMessage);
+	public static new Returns Result(string data, Func<string, bool> func, string ifErrorMessage)
+		=> func(data) ? new(data) : Failure(ifErrorMessage);
 
-	public static new Returns Failure(string errorMessage)
-		=> new(error: new Error(errorMessage));
+	public static new Returns Failure(string ifErrorMessage)
+		=> new(error: new Error(ifErrorMessage));
 
 	public static new Returns Failure(Error error)
 		=> new(error: error);

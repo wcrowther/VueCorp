@@ -17,7 +17,7 @@
 
     // Keyboard Listeners  ================================================
 	
-	LayoutEscapeKey(false);
+	DisableLayoutEscapeKey()
 
     const keys = function (e)   
     {

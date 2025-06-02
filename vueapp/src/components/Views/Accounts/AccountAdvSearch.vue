@@ -6,6 +6,18 @@
     const emits         = defineEmits(['getListData'])
     const getListData   = () => emits('getListData')
 
+    
+	// Keyboard Listeners  ================================================
+
+	DisableLayoutEscapeKey()
+
+	const keys = function (e)   
+    {
+		if (e.code === 'Escape'){ showModal.value=false; e.preventDefault(); } 
+    }
+
+	KeyboardListeners(keys)
+
 </script> 
 
 <template>   
