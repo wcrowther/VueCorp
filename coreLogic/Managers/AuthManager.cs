@@ -45,12 +45,17 @@ public class AuthManager(	IUserManager userManager,
 			logger.LogInformation(message + NewLine + techMessage);
 
 			return Returns<AuthUser>.Failure(message);
-		}	
-		
-		// if (!user.IsActive) // not implemented above yet
-		// {
-		//		return Returns<AuthUser>.Failure($"User {user.UserName} is not active.");
-		// }
+		}
+
+		// 2FA check
+		if (user.IsTwoFactorEnabled)
+		{
+			if (string.IsNullOrWhiteSpace(authRequest.TwoFactorCode) ||
+				!TotpHelper.ValidateTotp(user.TwoFactorSecret, authRequest.TwoFactorCode))
+			{
+				return Returns<AuthUser>.Failure("Two-factor authentication code required or invalid.");
+			}
+		}
 
 		logger.LogInformation($"AuthManager.Authenticate user '{authRequest.UserName}'");
 

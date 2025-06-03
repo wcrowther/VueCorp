@@ -10,5 +10,8 @@ public class AuthRequest
     [Required]
     public string Password { get; set; }
 
-	public override string ToString() => $"{UserName} : UserName";
+    // Optional: 2FA code for login
+    public string TwoFactorCode { get; set; }
+
+    public override string ToString() => $"{UserName} : UserName";
 }

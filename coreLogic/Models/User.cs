@@ -1,4 +1,3 @@
-
 using coreLogic.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -32,6 +31,11 @@ public class User : IAuditable
 	public string RefreshToken { get; set; }
 
 	public DateTime RefreshTokenExpiration { get; set; }
+
+	public bool IsTwoFactorEnabled { get; set; } = false;
+
+	[JsonIgnore]
+	public string TwoFactorSecret { get; set; }
 
 	public bool IsActive { get; set; }
 

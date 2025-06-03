@@ -92,6 +92,8 @@ app.UseAuthorization();
 
 app.RegisterMyEndpoints();
 
+// NOT NEEDED AS THIS IS DONE AUTOMATICALLY IN RegisterMyEndpoints() // app.TwoFactorEndpoints();
+
 app.MapFallbackToFile("/index.html");
 
 if (environment.IsDevelopment())
