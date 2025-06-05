@@ -9,15 +9,9 @@ vueapp*
 ├── src*
 │   ├── assets*
 │   ├── components*
-│   │   └── Boxes*
-│   │   └── Inputs*
-│   │   └── Layout*
-│   │   └── Views*
-│   │       └── Accounts*
-│   │       └── Admin*
-│   │       └── Auth*
-│   │       └── Content*
-│   │       └── Home*
+│   │   └── boxes*
+│   │   └── inputs*
+│   │   └── layout*
 │   ├── composables*
 │   │   └──── ApiCall.js
 │   │   └──── KeyboardListeners.js
@@ -39,6 +33,12 @@ vueapp*
 │   │   └──── index.vue
 │   ├── router*
 │   ├── stores*
+│   ├── views*
+│   │   └── accounts*
+│   │   └── admin*
+│   │   └── auth*
+│   │   └── content*
+│   │   └── home*
 ├──── .env
 ├──── .env.production
 ├──── .env.qa

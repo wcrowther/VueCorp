@@ -19,6 +19,7 @@
                 </span>
             </div>
             <div class="w-full min-h-[400px] relative">
+                
                 <InfoBox>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
@@ -29,6 +30,19 @@
                     Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
                     Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
                 </HelpBox>
+
+                <GridControl  />
+
+                <FloaterControl :show="true" name="FloaterOne" 
+                    class="bg-white w-[400px] h-[300px] p-5">
+                    Some floating content here.
+                </FloaterControl>
+                
+                <FloaterControl :show="true" name="FloaterTwo"
+                    class="bg-white w-[400px] h-[300px] p-5">
+                    Some floating content here.
+                </FloaterControl>
+
             </div>
 
         </div>

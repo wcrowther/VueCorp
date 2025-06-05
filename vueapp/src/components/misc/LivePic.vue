@@ -1,7 +1,7 @@
 
 <script setup>
 
-    import { ref, reactive, onMounted, computed } from 'vue'
+    // import { ref, reactive, onMounted, computed } from 'vue'
 
     const props = defineProps(
     {
@@ -21,7 +21,7 @@
     const toggleZoom        = () => zoomIn.value = !zoomIn.value
     const totalDuration     = computed(() => props.duration + props.wait ) 
 
-    const animation      = reactive(
+    const animation         = reactive(
     { 
         backgroundImage:        `url('${props.url}')`,
         height:                 props.height,

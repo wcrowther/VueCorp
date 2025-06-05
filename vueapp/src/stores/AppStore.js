@@ -13,6 +13,7 @@ export const useAppStore = defineStore('AppStore',
         pagerDebugger:          useLocalStorage('pagerDebugger', false),
         pagerDebuggerX:         useLocalStorage('pagerDebuggerX', 400),
         pagerDebuggerY:         useLocalStorage('pagerDebuggerY', 30),
+        activeFloater:          useLocalStorage('activeFloater', ''),
         baseApiUrl:             import.meta.env.VITE_API_URL,
         apiDocsUrl:             import.meta.env.VITE_API_DOCS_URL,
         baseUrl:                import.meta.env.BASE_URL,
@@ -23,7 +24,8 @@ export const useAppStore = defineStore('AppStore',
         async resetLocalStorage ()
         {
             var local =  [ 'showPrevNext','showBreakpoints','persistSearch','altTheme',
-                           'infoLevel','pagerDebugger','pagerDebuggerX','pagerDebuggerY']
+                           'infoLevel','pagerDebugger','pagerDebuggerX','pagerDebuggerY',
+                           'activeFloater' ];
 
             local.forEach(item => { localStorage.removeItem(item) });
 

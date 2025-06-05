@@ -39,7 +39,7 @@
              </tr>
          </table>
 
-        <ListPagerDebugger :pager="pager" :show="pagerDebugger"></ListPagerDebugger>
+        <ListPagerDebugger :pager="pager" :show="pagerDebugger" />
      </div>
 </template>
 
