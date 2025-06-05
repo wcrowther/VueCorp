@@ -1,71 +1,66 @@
 # Project File & Folder Summary
 
 ```
-vueapp
-├── documentation
+vueapp*
+├── documentation*
 │   └──── toplevelfiles.md
-├── obj
-├── public
-├── src
-│   ├── assets
-│   ├── components
-│   │   └── Boxes
-│   │   └── Inputs
-│   │   └── Layout
-│   │   └── Views
-│   │       └── Accounts
-│   │       └── Admin
-│   │       └── Auth
-│   │       └── Content
-│   │       └── Home
-│   ├── composables
+├── obj*
+├── public*
+├── src*
+│   ├── assets*
+│   ├── components*
+│   │   └── Boxes*
+│   │   └── Inputs*
+│   │   └── Layout*
+│   │   └── Views*
+│   │       └── Accounts*
+│   │       └── Admin*
+│   │       └── Auth*
+│   │       └── Content*
+│   │       └── Home*
+│   ├── composables*
 │   │   └──── ApiCall.js
 │   │   └──── KeyboardListeners.js
 │   │   └──── ...
-│   ├── helpers
+│   ├── helpers*
 │   │   └──── validators.js
 │   │   └──── ...
-│   ├── layouts
-│   ├── models
-│   ├── pages
-│   │   └── accounts
-│   │   └── admin
-│   │   └── auth
-│   │   └── content
+│   ├── layouts*
+│   ├── models*
+│   ├── pages*
+│   │   └── accounts*
+│   │   └── admin*
+│   │   └── auth*
+│   │   └── content*
 │   │   └──── [...path].vue
 │   │   └──── accounts.vue
 │   │   └──── admin.vue
 │   │   └──── content.vue
 │   │   └──── index.vue
-│   ├── router
-│   ├── stores
+│   ├── router*
+│   ├── stores*
+├──── .env
+├──── .env.production
+├──── .env.qa
+├──── .eslintrc-auto-import.json
+├──── .eslintrc.cjs
+├──── .gitignore
+├──── aspnetcore-https.js
+├──── auto-imports.d.ts
+├──── components.d.ts
+├──── index.html
+├──── nuget.config
+├──── package.json
+├──── postcss.config.js
+├──── tailwind.config.js
+├──── tsconfig.json
+├──── typed-router.d.ts
+├──── README.md
+├──── vite.config.mjs
+├──── vueapp.esproj
+├──── vueapp.esproj.user
 
-
-
-
-
-
-├── .env
-├── .env.production
-├── .env.qa
-├── .eslintrc-auto-import.json
-├── .eslintrc.cjs
-├── .gitignore
-├── aspnetcore-https.js
-├── auto-imports.d.ts
-├── components.d.ts
-├── index.html
-├── nuget.config
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── tsconfig.json
-├── typed-router.d.ts
-├── README.md
-├── vite.config.mjs
-├── vueapp.esproj
-├── vueapp.esproj.user
-└── ...
+* indicates directory
 ```
 
 ## File & Folder Summaries

@@ -19,7 +19,7 @@
 
 		<div class="w-full mb-5">New users click
 			<span class="italic font-bold">New User Signup</span> above or use the 
-			<b>test login</b> below. This test login is not secure and is only for testing.
+			<b>test login</b> below. 
 		</div>
 
 		<IconSymbol width="16px" class="text-color-dark-gray hover:text-black mr-3" 

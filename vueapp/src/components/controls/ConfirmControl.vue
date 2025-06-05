@@ -47,7 +47,7 @@
 
 <!-- Usage:
  
-    <ConfirmDialog :isVisible="showConfirmSave"
+    <ConfirmControl :isVisible="showConfirmSave"
 		message="Save User Data?" @confirm="saveUserDetail" @cancel="cancelAction" />
 -->
 
