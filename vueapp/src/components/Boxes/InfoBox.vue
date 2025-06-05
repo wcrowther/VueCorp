@@ -4,8 +4,7 @@
 </script>
 
 <template>
-    <div v-if="infoLevel > 1" 
-        class="text-sm mb-3">
+    <div v-if="infoLevel > 1" class="text-sm mb-3">
         <slot></slot>
     </div>
 </template>
