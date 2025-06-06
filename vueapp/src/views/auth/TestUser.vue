@@ -1,6 +1,6 @@
 <script setup>
 
-	const userName 		= 'TestUser'
+	const userName 		= 'testten'
 	const password 		= 'GhostBirdhasflown!'
 	const modelValue 	= defineModel(new AuthRequest(userName, password))
 
