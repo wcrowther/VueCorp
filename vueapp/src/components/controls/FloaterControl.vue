@@ -40,7 +40,7 @@
     <Teleport v-if="show" to="body" >
 
         <div :id="props.name" ref="floater" v-bind="$attrs" 
-            :style="style" @click="bringToFront"
+            :style="style" @mousedown="bringToFront"
             :class="['absolute  w-[200px] drop-shadow-xl border select-none',
                 activeFloater === props.name ? 'z-[2000]' : 'z-[1000]']">
 

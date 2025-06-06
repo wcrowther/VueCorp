@@ -64,5 +64,6 @@ declare module 'vue' {
     UserPopout: typeof import('./src/components/layout/UserPopout.vue')['default']
     UsersDetail: typeof import('./src/views/admin/UsersDetail.vue')['default']
     UsersList: typeof import('./src/views/admin/UsersList.vue')['default']
+    WizardControl: typeof import('./src/components/controls/WizardControl.vue')['default']
   }
 }

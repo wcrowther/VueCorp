@@ -37,11 +37,22 @@
                     class="bg-white w-[400px] h-[300px] p-5">
                     Some floating content here.
                 </FloaterControl>
+
+                <WizardControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
+
+                    <template #First>       
+                        <div class="p-5 border border-black font-bold mb-3">First Content</div>
+                    </template>
                 
-                <FloaterControl :show="true" name="FloaterTwo"
-                    class="bg-white w-[400px] h-[300px] p-5">
-                    Some floating content here.
-                </FloaterControl>
+                    <template #Second>       
+                        <div class="p-5 border border-black font-bold mb-3">Second Content</div>
+                    </template>
+                
+                    <template #Third>       
+                        <div class="p-5 border border-black font-bold text-red mb-3">Important</div>
+                    </template>
+
+                </WizardControl>
 
             </div>
 
