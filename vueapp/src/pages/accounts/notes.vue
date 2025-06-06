@@ -31,7 +31,7 @@
                     Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
                 </HelpBox>
 
-                <GridControl  />
+                <!-- <GridControl  />
 
                 <FloaterControl :show="true" name="FloaterOne" 
                     class="bg-white w-[400px] h-[300px] p-5">
@@ -52,7 +52,7 @@
                         <div class="p-5 border border-black font-bold text-red mb-3">Important</div>
                     </template>
 
-                </WizardControl>
+                </WizardControl> -->
 
             </div>
 

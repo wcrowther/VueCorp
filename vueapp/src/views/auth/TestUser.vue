@@ -1,7 +1,7 @@
 <script setup>
 
-	const userName 		= 'testuser'
-	const password 		= 'Test123!'
+	const userName 		= 'testten'
+	const password 		= 'GhostBirdhasflown!'
 	const modelValue 	= defineModel(new AuthRequest(userName, password))
 
 	const setTestUser = () => 
@@ -26,11 +26,11 @@
 			@click="setTestUser" icon="heroicons:arrow-top-right-on-square"/>
 
 		<div class="flex-grow cursor-text" @click="setTestUser">
-			<b>UserName:</b> testuser     
+			<b>UserName:</b> {{ userName }}    
 		</div>
 
 		<div class="flex-grow text-end cursor-text" @click="setTestUser">
-			<b>Password:</b> Test123!
+			<b>Password:</b> {{ password }}
 		</div>
 
 	</div>

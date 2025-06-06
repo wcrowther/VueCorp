@@ -39,9 +39,9 @@
 
 	<div class="mb-5 italic">
 		User data will be persisted but will be wiped on an intermittent basis. 
-		<span class="text-red font-bold">
-			The test login is not secure and is only for testing.
-		</span>
+		<div class="text-red font-bold">
+			The test login is not secure and is only for demonstration purposes.
+		</div>
 	</div>
 
 	<TestUser v-model="authRequest" />

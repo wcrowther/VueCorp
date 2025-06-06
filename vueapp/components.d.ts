@@ -15,8 +15,6 @@ declare module 'vue' {
     BreakPoints: typeof import('./src/components/misc/BreakPoints.vue')['default']
     CheckboxInput: typeof import('./src/components/inputs/CheckboxInput.vue')['default']
     ConfirmControl: typeof import('./src/components/controls/ConfirmControl.vue')['default']
-    ConfirmDialog: typeof import('./src/components/controls/ConfirmDialog.vue')['default']
-    copy: typeof import('./src/components/pager/ListPagerDebugger copy.vue')['default']
     CreatorBox: typeof import('./src/components/boxes/CreatorBox.vue')['default']
     FloaterControl: typeof import('./src/components/controls/FloaterControl.vue')['default']
     FooterBox: typeof import('./src/components/layout/FooterBox.vue')['default']
