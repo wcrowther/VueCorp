@@ -76,7 +76,7 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 			if (filter.IsNumeric())
 				predicate = predicate.Or(p => p.AccountId == filter.ToInt(0));
 			else
-				predicate = predicate.Or(AccountNameFilterOld(filter.ToLower()));
+				predicate = predicate.Or(AccountNameFilter(filterType, filter.ToLower()));
 		}
 
 		if (!pager.Search.StateProvinceFilter.IsNullOrSpace())
@@ -95,10 +95,10 @@ public class AccountRepo(CoreApiDataContext coreApiDataContext) : IAccountRepo
 	private static Expression<Func<Account, bool>> AccountNameFilter(string filterType, string filter) =>
 		filterType switch
 		{
-			""			=> acct => acct.AccountName.StartsWith(filter), // Default if empty
-			"startswith"=> acct => acct.AccountName.StartsWith(filter),
-			"contains"	=> acct => acct.AccountName.ToLower().Contains(filter),
-			"endswith"  => acct => acct.AccountName.EndsWith(filter), 
+			""			 => acct => acct.AccountName.StartsWith(filter), // Default if empty
+			"startswith" => acct => acct.AccountName.StartsWith(filter),
+			"contains"	 => acct => acct.AccountName.ToLower().Contains(filter),
+			"endswith"   => acct => acct.AccountName.EndsWith(filter), 
 			_ => throw new ArgumentException($"Unknown AccountName FilterType: {filterType}")
 		};
 

@@ -21,9 +21,6 @@
 
     const getAccountDetail = async () =>
     {
-        if(detailAccountId.value === 0)
-            return
-
         isAddingAccount.value   = false
         getAccountDetailData(detailAccountId.value)
     }
