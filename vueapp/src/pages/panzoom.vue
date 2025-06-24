@@ -1,7 +1,5 @@
-
 <script setup>
 
-	import LivePic 		from '@/components/LivePic.vue'       
 	import { ref } 		from 'vue'
 
 	const isActive			= ref(true)

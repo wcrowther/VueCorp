@@ -18,6 +18,8 @@ public static class JsonHelpers
 		return root.ToJsonString(new JsonSerializerOptions { WriteIndented = indent});
 	}
 
+	// =================================================================================================================
+
 	private static void MaskNodesRecursive(JsonNode node, HashSet<string> propertiesToMask)
 	{
 		if (node is JsonObject obj)

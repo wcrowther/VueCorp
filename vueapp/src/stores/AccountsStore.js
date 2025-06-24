@@ -47,9 +47,15 @@ export const useAccountsStore = defineStore('AccountsStore',
                     
                     const result = await apiGet(`/accounts/getAccountById/${accountId}`)
                     
-                    if(result.success) 
+                    if(result.success)
+                    {
                         this.account = result.data.Result
+                        return
+                    }
                 }
+
+                this.account = new AccountModel()
+
             } 
             catch (err) {  messageStore.showError(err.message) }
         },
