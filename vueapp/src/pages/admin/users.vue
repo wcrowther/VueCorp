@@ -10,9 +10,9 @@
             <UsersList />
         </MainSidebar>     
 
-        <MainContent>
+        <MainRight>
             <UsersDetail />
-        </MainContent>  
+        </MainRight>  
 
     </div> 
 

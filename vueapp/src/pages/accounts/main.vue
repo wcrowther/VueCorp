@@ -8,9 +8,9 @@
             <AccountsList />
         </MainSidebar>     
         
-        <MainContent class="bg-gradient-main">
+        <MainRight class="bg-gradient-main">
             <AccountDetail />
-        </MainContent>  
+        </MainRight>  
 
     </div>
 </template> 

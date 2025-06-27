@@ -2,8 +2,7 @@
 <script setup>
 
     const appStore   							= useAppStore()
-    const { sideBarHidden, showBreakpoints,
-			layoutEscapeKeyOn }					= storeToRefs(appStore)
+    const { sideBarHidden, layoutEscapeKeyOn }	= storeToRefs(appStore)
 
     // Keyboard Listeners & AutoRefreshAuth  ========================================================
     // --- Disable global Escape for layout by setting app.layoutEscapeKeyOn to false
@@ -28,7 +27,7 @@
 
 		<div class="main-width mb-10 relative z-0 h-full">
 
-			<BreakPoints :show="showBreakpoints" />
+			<BreakPoints />
 			
 			<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3 shadow-theme-layout">
 				<UserPopout />
@@ -37,11 +36,13 @@
 
 			<NavBarMain class="shadow-theme-layout" />
 
-			<div class="relative min-h-[600px] bg-white shadow-theme-layout border-r border-slate-200">
+			<MainContent>
 				<slot></slot>
-			</div>
+			</MainContent>
 			
 			<FooterBox class="shadow-theme-layout" />
+
+			<!-- <NotificationControl /> -->
 			
 		</div>
 

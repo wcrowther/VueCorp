@@ -11,7 +11,7 @@
 
 <template>
 
-    <teleport to="body" v-if="appStore.showPrevNext">
+    <Teleport to="body" v-if="appStore.showPrevNext">
 
         <!-- Right PREV / NEXT Button for Mobile--> 
 
@@ -28,7 +28,7 @@
                 width="16px" color="#3e5091" icon="mdi:arrow-down-thick" />
         </div>
 
-    </teleport> 
+    </Teleport> 
 
 </template>
 

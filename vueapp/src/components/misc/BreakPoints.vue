@@ -1,14 +1,15 @@
 <script setup>
 
-    const props = defineProps({  show: Boolean })
-    const { width: winWidth }    = useWindowSize()
+    const appStore   			= useAppStore()
+    const { showBreakpoints }	= storeToRefs(appStore)
+    const { width: winWidth }   = useWindowSize()
     
     const showWinWidth = ref(false)
 
 </script>
 
 <template>
-    <Teleport to="body" v-if="props.show" >
+    <Teleport to="body" v-if="showBreakpoints" >
         <div class="fixed left-4 bottom-4" @click="showWinWidth=!showWinWidth">
             <div class="capsule hidden xxs:block xs:hidden"  
                 title="436px+">

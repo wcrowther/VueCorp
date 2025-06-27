@@ -1,7 +1,6 @@
-
 <template>
 
-    <div class="w-2/3 sm:p-10 p-5 sm:pt-5 pt-5 pb-14 grow h-full min-h-[600px] bg-gradient-main">
+	<div class="relative min-h-[600px] bg-white shadow-theme-layout border-r border-slate-200">        
         <slot></slot>
     </div>
 

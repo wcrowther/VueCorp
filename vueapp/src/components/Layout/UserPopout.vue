@@ -14,6 +14,7 @@
                   
     const { showPrevNext, 
             showBreakpoints, 
+            showNotification, 
             altTheme, 
             pagerDebugger}          = storeToRefs(appStore) 
     const { resetLocalStorage   }   = appStore
@@ -158,6 +159,13 @@
                         <CheckboxInput labelName="" v-model="pagerDebugger" />
                     </div>
                 </div>
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Show breakpoints in lower left">ShowNotification:</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="showNotification" />
+                    </div>
+                </div> 
                <!--  
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
