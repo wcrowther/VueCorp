@@ -26,10 +26,10 @@
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Accounts/Notes" linkName="AccountsEdit" 
+				<router-link to="/Accounts/Messages" linkName="AccountsEdit" 
 					class="px-1 py-2 font-bold hover:opacity-50" 
 					active-class="subnav-active">
-					Notes
+					Messages
 				</router-link>
 			</div>
 

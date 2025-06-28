@@ -1,13 +1,12 @@
 <script setup>
 
-    const pageTitle  = ref('Account Notes')
-    // const isTop      = ref(true)
+    const pageTitle  = ref('Messages')
 
 </script>
 
 <template>
 
-    <div class="relative" id="adminNotes">
+    <div class="relative" id="messages-page">
 
         <div class="z-0 bg-gradient-main h-[500px] absolute top-0 left-0 right-0"></div>
 
@@ -30,6 +29,8 @@
                     Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
                     Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
                 </HelpBox>
+
+                <ChatHub class="mt-5" />
 
                 <!-- <GridControl  />
 

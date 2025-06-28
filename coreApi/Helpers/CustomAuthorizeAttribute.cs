@@ -4,6 +4,11 @@ using minApi.Models;
 
 namespace minApi;
 
+// ===============================================================================
+// THIS IS NOT CURRENTLY USED
+// ===============================================================================
+
+
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class CustomAuthorizeAttribute : Attribute, IAuthorizationFilter
 {

@@ -36,11 +36,8 @@
 
 <!-- 
 EXAMPLES:
-    <TextInput labelName="Account Name" v-model="account.AccountName" :v$></TextInput>
-    <TextInput labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$></TextInput>
-
-    <span class="inline-block h-2 w-2 text-xs rounded-full" title="Value has been changed" 
-    :class="{ 'bg-color-light-blue': hasChanged }">&nbsp;</span>  
+    <TextInput labelName="Account Name" v-model="account.AccountName" :v$ />
+    <TextInput labelName="Main Email" ruleName="AccountEmail" v-model="account.AccountEmail" :v$ />
 
     -------------------------------------------------------------------------------------------
     'defineModel' replaced the code below from older vue version and the defineProps modelValue

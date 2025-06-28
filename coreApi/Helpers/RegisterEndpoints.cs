@@ -12,13 +12,15 @@ public static class EndpointHelper
 	{
 		var staticMethods = typeof(Endpoints).GetMethods().Where(a => a.IsStatic && a.IsPublic);
 
-		// For logging: var logger = app.Services.GetRequiredService<ILogger<Program>>();
+		// For logging:
+		var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 		foreach (var method in staticMethods)
 		{
-			// logger.LogInformation($"Adding Route Endpoint {method.Name}");
+			string msg = $"Adding Route Endpoint {method.Name}";
 
-			Debug.WriteLine($"Adding Endpoint {method.Name}");
+			logger.LogInformation(msg);
+			Debug.WriteLine(msg);
 
 			method.Invoke(null, [app]);
 		}

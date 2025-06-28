@@ -1,6 +1,7 @@
 using coreApi;
 using coreApi.Data;
 using coreApi.Helpers;
+using coreApi.Hubs;
 using coreApi.Models;
 using coreLogic.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -23,6 +24,9 @@ var environment = builder.Environment;
 
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
 builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>());
+
+builder.Services.AddSignalR();
+
 builder.Services.AddCors(options =>
 {
 	options.AddPolicy("AllowSpecificOrigin",
@@ -93,6 +97,8 @@ app.UseAuthorization();
 app.RegisterMyEndpoints();
 
 app.MapFallbackToFile("/index.html");
+
+app.MapHub<ChatHub>("/v1/chathub");
 
 if (environment.IsDevelopment())
 {
