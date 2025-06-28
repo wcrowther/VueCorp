@@ -96,9 +96,9 @@ app.UseAuthorization();
 
 app.RegisterMyEndpoints();
 
-app.MapFallbackToFile("/index.html");
+app.RegisterRealtimeHubs();
 
-app.MapHub<ChatHub>("/v1/chathub");
+app.MapFallbackToFile("/index.html");
 
 if (environment.IsDevelopment())
 {

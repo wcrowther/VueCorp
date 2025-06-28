@@ -2,7 +2,7 @@
 
 namespace coreApi.Helpers;
 
-public static class EndpointHelper
+public static class EndpointsHelper
 {
 	// Add an EndPoints static partial named for the MapGroup and it will be 
 	// registered by this helper. See existing examples in the Endpoints folder.
