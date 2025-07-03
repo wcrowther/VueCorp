@@ -120,6 +120,8 @@
     "searchType": true,
     "filterType": true,
     "LayoutEscapeKeyOn": true,
-    "DisableLayoutEscapeKey": true
+    "DisableLayoutEscapeKey": true,
+    "useSignalRChat": true,
+    "useChatHub": true
   }
 }

@@ -3,12 +3,14 @@
     import { ref } from 'vue'
 
     const props = defineProps({
-        id: { type: String, default: 'TabControl' },
+        id: { type: String, default: 'WizardControl' },        
 		tabList: { type: Array, default: () => ['One', 'Two', 'Three'] }
 	})
 
-    const activeTab = ref(props.tabList[0])
-    const isActive	= (tab) => tab === activeTab.value
+    const activeTab     = ref(props.tabList[0])
+    const isActive	    = (tab) => tab === activeTab.value
+    const currentIndex  = computed(() => props.tabList.indexOf(activeTab.value)+1 ?? 1)
+    const nextTab       = () => activeTab.value = props.tabList[currentIndex.value >= props.tabList.length ? 0 : currentIndex.value]
 
 </script>
 
@@ -17,11 +19,11 @@
     <div :id="props.id" class="h-full">
 
         <!-- Tabs -->
-        <div class="flex justify-start gap-px w-fit mb-5 rounded-full overflow-hidden">
+        <div class="flex justify-start gap-px w-fit m-auto mb-5 rounded-full overflow-hidden">
         
             <template v-for="(tab,idx) in props.tabList" :key="idx">
-                <div :class="['py-2 px-5 text-white font-bold', 
-                    isActive(tab) ? 'bg-black' :'bg-gray']" 
+                <div :class="['py-1 px-5 font-bold', 
+                    isActive(tab) ? 'bg-color-dark-blue text-white' :'bg-color-primary text-black']" 
                     @click="activeTab = tab">
                     <span>{{ tab }}</span>
                 </div>
@@ -30,26 +32,30 @@
         </div>
 
         <!-- Content -->
-        <div class="z-10 h-full min-h-60 opacity-100 pb-3 bg-white 
-             border-t-0 overflow-y-auto scrollbar-thin">
+        <div class="relative border border-black p-5 z-10 h-full min-h-60 opacity-100 pb-3
+            overflow-y-auto scrollbar-thin box-border">
 
-           <slot></slot>
            <template v-for="(tab,idx) in props.tabList" :key="idx">
-               <slot v-if="activeTab == tab" :name="tab"></slot>
-           </template>
+                <div v-show="activeTab == tab" >
+                    <slot :name="tab"></slot>
+                </div>
+           </template>  
 
+           <slot>
+                <div @click="nextTab" class="text-right font-bold absolute 
+                    flex justify-end bottom-5 left-5 right-5 hover:text-orange">
+                    Next
+                </div>
+           </slot>
         </div>
 
     </div>
 
 </template>
 
-<style lang="postcss" scoped>
+<!-- USAGE: 
 
-
-</style> 
-
-<!-- USAGE:
+    Note: In WizardControl the slots 'KeepAlive' their state. While the TabControl does not.
 
     <WizardControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
 

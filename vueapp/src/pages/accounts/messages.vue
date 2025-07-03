@@ -17,45 +17,24 @@
                     <!-- <button class="btn-primary" >Add</button>-->
                 </span>
             </div>
-            <div class="w-full min-h-[400px] relative">
-                
-                <InfoBox>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
-                    Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
-                </InfoBox>
-            
-                <HelpBox>
-                    Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
-                    Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
-                </HelpBox>
+			<div class="w-full min-h-[400px] relative">
 
-                <ChatHub class="mt-5" />
+				<InfoBox>
+					This page is a demonstration of a SignalR Realtime Hub. Open other browser windows to
+					the current web page /Accounts/Message. Enter text into the Message input below and 
+                    the message is added to the Chat Messages list in all browsers open to the site.
+				</InfoBox>
 
-                <!-- <GridControl  />
+				<HelpBox>
+					Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure?
+					Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+				</HelpBox>
 
-                <FloaterControl :show="true" name="FloaterOne" 
-                    class="bg-white w-[400px] h-[300px] p-5">
-                    Some floating content here.
-                </FloaterControl>
+				<KeepAlive>
+                    <ChatHub class="mt-5" />
+                </KeepAlive>
 
-                <WizardControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
-
-                    <template #First>       
-                        <div class="p-5 border border-black font-bold mb-3">First Content</div>
-                    </template>
-                
-                    <template #Second>       
-                        <div class="p-5 border border-black font-bold mb-3">Second Content</div>
-                    </template>
-                
-                    <template #Third>       
-                        <div class="p-5 border border-black font-bold text-red mb-3">Important</div>
-                    </template>
-
-                </WizardControl> -->
-
-            </div>
+			</div>
 
         </div>
 

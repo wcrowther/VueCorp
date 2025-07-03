@@ -52,6 +52,8 @@
 </style> 
 
 <!-- USAGE:
+    
+    Note: In TabControl the slots do not 'KeepAlive' their state. While the WizardControl they do.
 
     <TabControl class="mb-10" :tabList="['First', 'Second', 'Third']" >
 

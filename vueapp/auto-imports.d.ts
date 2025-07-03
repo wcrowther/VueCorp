@@ -97,6 +97,7 @@ declare global {
   const useAppStore: typeof import('./src/stores/AppStore.js')['useAppStore']
   const useAttrs: typeof import('vue')['useAttrs']
   const useAuthStore: typeof import('./src/stores/AuthStore.js')['useAuthStore']
+  const useChatHub: typeof import('./src/composables/ChatHub.js')['useChatHub']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -106,6 +107,7 @@ declare global {
   const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
+  const useSignalRChat: typeof import('./src/composables/useSignalRChat.js')['useSignalRChat']
   const useSlots: typeof import('vue')['useSlots']
   const useUsersStore: typeof import('./src/stores/UsersStore.js')['useUsersStore']
   const useVuelidate: typeof import('@vuelidate/core')['useVuelidate']
@@ -215,6 +217,7 @@ declare module 'vue' {
     readonly useAppStore: UnwrapRef<typeof import('./src/stores/AppStore.js')['useAppStore']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuthStore: UnwrapRef<typeof import('./src/stores/AuthStore.js')['useAuthStore']>
+    readonly useChatHub: UnwrapRef<typeof import('./src/composables/ChatHub.js')['useChatHub']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
@@ -326,6 +329,7 @@ declare module '@vue/runtime-core' {
     readonly useAppStore: UnwrapRef<typeof import('./src/stores/AppStore.js')['useAppStore']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
     readonly useAuthStore: UnwrapRef<typeof import('./src/stores/AuthStore.js')['useAuthStore']>
+    readonly useChatHub: UnwrapRef<typeof import('./src/composables/ChatHub.js')['useChatHub']>
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>

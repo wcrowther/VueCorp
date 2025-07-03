@@ -1,24 +1,48 @@
-
-
 <script setup>
-//import { useSignalRChat } from '../../composables/useSignalRChat'
+
+import * as signalR from '@microsoft/signalr'
 
 const authStore	   = useAuthStore()
 const { authUser } = storeToRefs(authStore)  
+                  
 
-const message 		= ref('')
+const connection = new signalR.HubConnectionBuilder()
+					.withUrl('https://localhost:9999/v1/chathub')
+					.withAutomaticReconnect()
+					.build();
+
 const firstName 	= authUser.value ? authUser.value.FirstName : ''
 const userId 		= authUser.value ? authUser.value.UserId : 0
+const message 		= ref('')
+const messages 		= ref([])
 const latestFirst 	= ref(false) 
 
-// MOVE MESSAGE TO MessagesStore
-const { messages, sendMessage } = useChatHub()
-
-const sendmessage = async () => 
+const sendMessage = async () => 
 {
-	await sendMessage(firstName, userId, message.value)
-	message.value = ''
+	if (firstName && message.value) 
+	{
+		await connection.invoke('SendMessage', firstName, userId, message.value);
+		message.value = ''
+	}
 }
+
+onMounted(async () => 
+{
+	connection.on('ReceiveMessage', (userName, userId, message) => 
+	{
+		messages.value.push({ userName, userId, text: message })
+	});
+
+	try 
+	{
+		await connection.start();
+		console.log('SignalR connected');
+	} 
+	catch (err) 
+	{
+		console.error('SignalR Connection Error: ', err);
+	}
+})
 
 </script>
 
@@ -26,9 +50,9 @@ const sendmessage = async () =>
 	<div class="bg-white border border-blue flex flex-wrap w-full">
 
 		<div class="p-4 w-full md:w-1/2 bg-color-light-blue/50">
-			<TextInput v-model="message" @keydown.enter.prevent.stop="sendmessage"  
+			<TextInput v-model="message" @keydown.enter.prevent.stop="sendMessage"  
 				placeholder="Message" labelName="Message"  />
-			<PrimaryButton title="Send" @click="sendmessage" />
+			<PrimaryButton title="Send" @click="sendMessage" />
 		</div>
 
 		<div class="p-4 w-full md:w-1/2">
