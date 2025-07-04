@@ -27,6 +27,8 @@ public class CoreApiDataContext(DbContextOptions<CoreApiDataContext> options,
 
 	public DbSet<User> Users { get; set; }
 
+	public DbSet<Message> Messages { get; set; }
+
 	// ============================================================================================================
 
 	private void ApplyAuditInfo()
