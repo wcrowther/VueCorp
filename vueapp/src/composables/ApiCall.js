@@ -10,7 +10,7 @@ export async function apiCall(type, url, useAuth, body)
 {
 	const appStore     	= useAppStore()
 	const authStore     = useAuthStore()
-	const toastStore  = useToastStore()
+	const toastStore  	= useToastStore()
 
 	let result 		= 
 	{

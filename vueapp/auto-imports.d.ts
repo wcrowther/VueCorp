@@ -16,6 +16,7 @@ declare global {
   const IAuditable: typeof import('./src/models/IAuditable.js')['IAuditable']
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
   const KeyboardListeners: typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']
+  const MessageModel: typeof import('./src/models/MessageModel.js')['MessageModel']
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
   const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
@@ -100,7 +101,7 @@ declare global {
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useImagesStore: typeof import('./src/stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
-  const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
+  const useMessageStore: typeof import('./src/stores/MessagesStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
@@ -136,6 +137,7 @@ declare module 'vue' {
     readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
+    readonly MessageModel: UnwrapRef<typeof import('./src/models/MessageModel.js')['MessageModel']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
@@ -220,7 +222,7 @@ declare module 'vue' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -249,6 +251,7 @@ declare module '@vue/runtime-core' {
     readonly IAuditable: UnwrapRef<typeof import('./src/models/IAuditable.js')['IAuditable']>
     readonly IsDuplicateMessage: UnwrapRef<typeof import('./src/helpers/global.js')['IsDuplicateMessage']>
     readonly KeyboardListeners: UnwrapRef<typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']>
+    readonly MessageModel: UnwrapRef<typeof import('./src/models/MessageModel.js')['MessageModel']>
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
@@ -333,7 +336,7 @@ declare module '@vue/runtime-core' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessageStore.js')['useMessageStore']>
+    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessageStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>

@@ -3,16 +3,15 @@
 
 import { createRouter, createWebHistory } 	from 'vue-router/auto'
 
-
 const DEFAULT_TITLE = 'Vue Corp';
 
 const router = createRouter(
 {
 	// linkActiveClass: 'active',
-	// extendRoutes(routes) { routes.push( { path: '/About', name: 'AboutRedirect', redirect: '/About/How' } ) },
 	history: createWebHistory()
 })
-	
+
+
 router.beforeEach(async (to) => 
 {
 	// AuthStore must be created here because we are in .js not .vue file

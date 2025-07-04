@@ -14,7 +14,7 @@ const firstName 		= authUser.value ? authUser.value.FirstName : ''
 const userId 			= authUser.value ? authUser.value.UserId : 0
 const latestFirst 		= ref(false) 
 
-const postMessage = async () => await sendMessage(firstName, userId)
+const postMessage 		= async () => await sendMessage(firstName, userId)
 
 </script>
 
@@ -39,8 +39,8 @@ const postMessage = async () => await sendMessage(firstName, userId)
 
 			<div :class="['flex', (latestFirst ? 'flex-col-reverse' : 'flex-col')]">
 				<div v-for="(msg, index) in messages" :key="index"
-					:class="['p-2 pl-0', {'ml-5 text-red' : msg.userId !== userId }]">
-					<b>{{ msg.userName }} ({{ msg.userId }}):</b> {{ msg.text }}
+					:class="['p-2 pl-0', {'ml-5 text-red' : msg.CreatorId !== userId }]">
+					<b>{{ msg.CreatorName }} ({{ msg.CreatorId }}):</b> {{ msg.MessageText }}
 				</div>
 			</div>
 

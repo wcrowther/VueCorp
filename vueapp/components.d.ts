@@ -16,6 +16,7 @@ declare module 'vue' {
     ChatHub: typeof import('./src/components/misc/ChatHub.vue')['default']
     ChatHub2: typeof import('./src/components/misc/ChatHub2.vue')['default']
     ChatHubOld: typeof import('./src/components/misc/ChatHubOld.vue')['default']
+    ChatRoom: typeof import('./src/components/misc/ChatRoom.vue')['default']
     CheckboxInput: typeof import('./src/components/inputs/CheckboxInput.vue')['default']
     ConfirmControl: typeof import('./src/components/controls/ConfirmControl.vue')['default']
     copy: typeof import('./src/components/buttons/PrimaryButton copy.vue')['default']

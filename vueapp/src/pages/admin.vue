@@ -1,8 +1,9 @@
 <script setup>
 
-	const router = useRouter();
-	router.replace('/admin/users'); // Redirects to target route
-	
+	const router 	= useRouter();
+	if(router.currentRoute.value.path.toLowerCase() === '/admin')
+		router.replace('/admin/users'); 
+
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)
 
@@ -19,17 +20,17 @@
 
 			<div class="pr-5">
 			
-				<router-link to="/Admin/Users" class="px-1 py-2 font-bold hover:opacity-50" 
+				<router-link to="/admin/users" class="px-1 py-2 font-bold hover:opacity-50" 
 					active-class="text-orange" linkName="AdminUsers">Users</router-link>
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Admin/Notes" class="px-1 py-2 font-bold hover:opacity-50" 
+				<router-link to="/admin/notes" class="px-1 py-2 font-bold hover:opacity-50" 
 					active-class="text-orange" linkName="AdminNotes">Notes</router-link>
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Admin/Site" class="px-1 py-2 font-bold hover:opacity-50" 
+				<router-link to="/admin/site" class="px-1 py-2 font-bold hover:opacity-50" 
 					active-class="text-orange" linkName="AdminSite">Site</router-link>
 			</div>  
 

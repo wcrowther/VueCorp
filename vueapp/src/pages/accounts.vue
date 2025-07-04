@@ -1,8 +1,9 @@
 <script setup>
 
 	const router = useRouter();
-	router.replace('/accounts/main'); // Redirects to target route
-	
+	if(router.currentRoute.value.path.toLowerCase() === '/accounts')
+		router.replace('/accounts/main'); 
+
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)
 
@@ -18,21 +19,21 @@
 			</template>
 
 			<div class="pr-5">
-				<router-link to="/Accounts/Main"  linkName="AccountsMain"
+				<router-link to="/accounts/main"  linkName="AccountsMain"
 					class="px-1 py-2 font-bold hover:opacity-50" active-class="subnav-active">
 					Main
 				</router-link>
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Accounts/Messages" linkName="AccountsMessages" 
+				<router-link to="/accounts/messages" linkName="AccountsMessages" 
 					class="px-1 py-2 font-bold hover:opacity-50" active-class="subnav-active">
 					Messages
 				</router-link>
 
 				<span class="px-1 text-gray-300">|</span>
 
-				<router-link to="/Accounts/Wizard" linkName="AccountsWizard" 
+				<router-link to="/accounts/wizard" linkName="AccountsWizard" 
 					class="px-1 py-2 font-bold hover:opacity-50" active-class="subnav-active">
 					Wizard
 				</router-link>

@@ -3,11 +3,13 @@ import * as signalR from '@microsoft/signalr'
 
 export function useChatHub() 
 {
-    const appStore     	= useAppStore()
-    const messageStore	= useMessageStore()
+    const appStore     	    = useAppStore()
+    const messageStore	    = useMessageStore()
 
-    const { newMessage,
-            messages }  = storeToRefs(messageStore)  
+    const { newMessage, 
+            messages }      = storeToRefs(messageStore) 
+
+    const { getAllMessages } = messageStore
 
     const isConnected   = ref(false)      
     
@@ -20,6 +22,8 @@ export function useChatHub()
     {
         try 
         {
+            await getAllMessages()
+
             connection.on('ReceiveMessage', (userName, userId, message) => 
             {
                 messages.value.push({ userName, userId, text: message })
@@ -28,6 +32,7 @@ export function useChatHub()
             await connection.start()
 
             isConnected.value = true
+
             console.log('SignalR connected')
         } 
         catch (error) 

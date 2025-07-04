@@ -123,6 +123,7 @@
     "DisableLayoutEscapeKey": true,
     "useSignalRChat": true,
     "useChatHub": true,
-    "useMessageStore": true
+    "useMessageStore": true,
+    "MessageModel": true
   }
 }

@@ -31,7 +31,7 @@
 				</HelpBox>
 
 				<KeepAlive>
-                    <ChatHub class="mt-5" />
+                    <ChatRoom class="mt-5" />
                 </KeepAlive>
 
 			</div>
