@@ -101,7 +101,7 @@
     "useDebounceFn": true,
     "useImagesStore": true,
     "useLocalStorage": true,
-    "useMessageStore": true,
+    "useToastStore": true,
     "useRoute": true,
     "useRouter": true,
     "useSlots": true,
@@ -122,6 +122,7 @@
     "LayoutEscapeKeyOn": true,
     "DisableLayoutEscapeKey": true,
     "useSignalRChat": true,
-    "useChatHub": true
+    "useChatHub": true,
+    "useMessageStore": true
   }
 }

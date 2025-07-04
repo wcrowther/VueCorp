@@ -1,7 +1,7 @@
 <script setup>
 
     const usersStore        = useUsersStore()
-    const messageStore      = useMessageStore()
+    const toastStore      = useToastStore()
     const 
     { 
         user, 
@@ -58,7 +58,7 @@
         else
         {
             let message = 'Cannot save as user is not valid.'
-            messageStore.showError(message) 
+            toastStore.showError(message) 
         }    
     }
 

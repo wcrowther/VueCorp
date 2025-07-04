@@ -1,16 +1,16 @@
 <script setup>
 
-	const messageStore  = useMessageStore()
+	const toastStore  = useToastStore()
 
     const pageTitle  = ref('Admin Notes')
 
     const showFiveToasts = () => 
     {
-        messageStore.showInfo('Showing five toasts...')   
-        messageStore.showInfo('Showing five toasts...')   
-        messageStore.showInfo('Showing five toasts...')
-        messageStore.showInfo('Showing five toasts...')   
-        messageStore.showInfo('Showing five toasts...')   
+        toastStore.showInfo('Showing five toasts...')   
+        toastStore.showInfo('Showing five toasts...')   
+        toastStore.showInfo('Showing five toasts...')
+        toastStore.showInfo('Showing five toasts...')   
+        toastStore.showInfo('Showing five toasts...')   
     }
 
 </script>

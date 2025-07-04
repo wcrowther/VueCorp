@@ -29,7 +29,7 @@ export const useUsersStore = defineStore('UsersStore',
                     this.usersList   = result.data.ListItems   
                 }
             }
-            catch (err){ useMessageStore().showError(err.message) }
+            catch (err){ useToastStore().showError(err.message) }
         },
         async getUserDetailData (userId)
         {
@@ -43,7 +43,7 @@ export const useUsersStore = defineStore('UsersStore',
                         this.user = result.data
                 }
             } 
-            catch (err) {  useMessageStore().showError(err.message) }
+            catch (err) {  useToastStore().showError(err.message) }
         },
         async saveUser ()
         {
@@ -56,12 +56,12 @@ export const useUsersStore = defineStore('UsersStore',
                     this.user = result.data
 
                     console.log('User Saved Succesfully.')
-                    useMessageStore().showSuccess('User Saved Successfully.')
+                    useToastStore().showSuccess('User Saved Successfully.')
                 }
             } 
             catch (err)
             { 
-                useMessageStore().showError(err.message) 
+                useToastStore().showError(err.message) 
             }
         }
     }

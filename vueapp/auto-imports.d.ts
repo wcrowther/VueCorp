@@ -13,12 +13,9 @@ declare global {
   const DisableLayoutEscapeKey: typeof import('./src/composables/DisableLayoutEscapeKey.js')['DisableLayoutEscapeKey']
   const Draggable: typeof import('@vueuse/core')['useDraggable']
   const EffectScope: typeof import('vue')['EffectScope']
-  const HtmlHeadBody: typeof import('./src/composables/HtmlHeadBody.js')['HtmlHeadBody']
   const IAuditable: typeof import('./src/models/IAuditable.js')['IAuditable']
   const IsDuplicateMessage: typeof import('./src/helpers/global.js')['IsDuplicateMessage']
   const KeyboardListeners: typeof import('./src/composables/KeyboardListeners.js')['KeyboardListeners']
-  const LayoutEscapeKey: typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKey']
-  const LayoutEscapeKeyOn: typeof import('./src/composables/LayoutEscapeKeyOn.js')['LayoutEscapeKeyOn']
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
   const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
@@ -79,7 +76,6 @@ declare global {
   const ref: typeof import('vue')['ref']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const roleList: typeof import('./src/helpers/roleList.js')['roleList']
-  const searchType: typeof import('./src/helpers/searchType.js')['searchType']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
@@ -107,8 +103,8 @@ declare global {
   const useMessageStore: typeof import('./src/stores/MessageStore.js')['useMessageStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
-  const useSignalRChat: typeof import('./src/composables/useSignalRChat.js')['useSignalRChat']
   const useSlots: typeof import('vue')['useSlots']
+  const useToastStore: typeof import('./src/stores/ToastStore.js')['useToastStore']
   const useUsersStore: typeof import('./src/stores/UsersStore.js')['useUsersStore']
   const useVuelidate: typeof import('@vuelidate/core')['useVuelidate']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
@@ -228,6 +224,7 @@ declare module 'vue' {
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useToastStore: UnwrapRef<typeof import('./src/stores/ToastStore.js')['useToastStore']>
     readonly useUsersStore: UnwrapRef<typeof import('./src/stores/UsersStore.js')['useUsersStore']>
     readonly useVuelidate: UnwrapRef<typeof import('@vuelidate/core')['useVuelidate']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
@@ -340,6 +337,7 @@ declare module '@vue/runtime-core' {
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useToastStore: UnwrapRef<typeof import('./src/stores/ToastStore.js')['useToastStore']>
     readonly useUsersStore: UnwrapRef<typeof import('./src/stores/UsersStore.js')['useUsersStore']>
     readonly useVuelidate: UnwrapRef<typeof import('@vuelidate/core')['useVuelidate']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>

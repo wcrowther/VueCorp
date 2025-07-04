@@ -4,20 +4,22 @@ import * as signalR from '@microsoft/signalr'
 export function useChatHub() 
 {
     const appStore     	= useAppStore()
-    
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl(`${appStore.baseApiUrl}/chathub`)
-        .withAutomaticReconnect()
-        .build()
+    const messageStore	= useMessageStore()
 
-    const messages = ref([])
-    const isConnected = ref(false)
+    const { newMessage,
+            messages }  = storeToRefs(messageStore)  
+
+    const isConnected   = ref(false)      
+    
+    const connection    =  new signalR.HubConnectionBuilder()
+                            .withUrl(`${appStore.baseApiUrl}/chathub`)
+                            .withAutomaticReconnect()
+                            .build()
 
     const startChat = async () => 
     {
         try 
         {
-            // TODO: Get messages from the MessageStore 
             connection.on('ReceiveMessage', (userName, userId, message) => 
             {
                 messages.value.push({ userName, userId, text: message })
@@ -34,14 +36,13 @@ export function useChatHub()
         }
     }
 
-    const sendMessage = async (firstName, userId, message) => 
+    const sendMessage = async (firstName, userId) => 
     {
         // Add error checking etc here
-        if (isConnected.value && firstName && userId && message) 
+        if (isConnected.value && firstName && userId && newMessage.value) 
         {
-            // Send message to the messageStore to save
-
-            await connection.invoke('SendMessage', firstName, userId, message)
+            await connection.invoke('SendMessage', firstName, userId, newMessage.value)
+            newMessage.value = ''
         }
     }
 
@@ -49,7 +50,6 @@ export function useChatHub()
     onUnmounted(() =>  { connection.stop() })
 
     return {
-        messages,
         isConnected,
         sendMessage,
         startChat,

@@ -1,5 +1,5 @@
 
-const messageStore  = useMessageStore()
+const toastStore  = useToastStore()
 
 export const useImagesStore = defineStore('ImagesStore',
 {
@@ -30,7 +30,7 @@ export const useImagesStore = defineStore('ImagesStore',
             }
             catch (err)
             { 
-                messageStore.showError(err.message) 
+                toastStore.showError(err.message) 
             }
         },
         async getImageDetailData (imageName)
@@ -49,7 +49,7 @@ export const useImagesStore = defineStore('ImagesStore',
             //             this.account = result.data.Result
             //     }
             // } 
-            // catch (err) {  messageStore.showError(err.message) }
+            // catch (err) {  toastStore.showError(err.message) }
         }
     }
 })

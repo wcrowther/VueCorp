@@ -10,7 +10,7 @@ export async function apiCall(type, url, useAuth, body)
 {
 	const appStore     	= useAppStore()
 	const authStore     = useAuthStore()
-	const messageStore  = useMessageStore()
+	const toastStore  = useToastStore()
 
 	let result 		= 
 	{
@@ -88,7 +88,7 @@ export async function apiCall(type, url, useAuth, body)
 			result.toastType	 = 'WARNING'
 		}
 
-		messageStore.showToast(result.message, result.toastType)   
+		toastStore.showToast(result.message, result.toastType)   
 	}
 
 	return result

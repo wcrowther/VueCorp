@@ -30,7 +30,7 @@ export const useAppStore = defineStore('AppStore',
 
             local.forEach(item => { localStorage.removeItem(item) });
 
-            useMessageStore().showInfo(`Removed local App preferences`)
+            useToastStore().showInfo(`Removed local App preferences`)
             setTimeout(() => { this.router.go(0); }, 2000);
         }
     }

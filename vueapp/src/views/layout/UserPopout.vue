@@ -2,7 +2,7 @@
 
     const authStore	        = useAuthStore()
     const appStore          = useAppStore()
-    const messageStore      = useMessageStore()
+    const toastStore      = useToastStore()
 
     const { copy                }   = useClipboard()
     const { logout, refreshAuth }   = authStore
@@ -33,7 +33,7 @@
     const tokenToClipboard = () => 
     { 
         copy(authUser.value.Token); 
-        messageStore.showInfo('Value copied to the clipboard.'); 
+        toastStore.showInfo('Value copied to the clipboard.'); 
     }
 
     const refreshAuthToken = () =>

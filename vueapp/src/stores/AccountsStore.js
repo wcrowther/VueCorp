@@ -1,5 +1,5 @@
 
-const messageStore  = useMessageStore()
+const toastStore  = useToastStore()
 
 export const useAccountsStore = defineStore('AccountsStore',
 {
@@ -34,7 +34,7 @@ export const useAccountsStore = defineStore('AccountsStore',
             }
             catch (err)
             { 
-                messageStore.showError(err.message) 
+                toastStore.showError(err.message) 
             }
         },
         async getAccountDetailData (accountId)
@@ -57,7 +57,7 @@ export const useAccountsStore = defineStore('AccountsStore',
                 this.account = new AccountModel()
 
             } 
-            catch (err) {  messageStore.showError(err.message) }
+            catch (err) {  toastStore.showError(err.message) }
         },
         async saveAccount ()
         {
@@ -69,10 +69,10 @@ export const useAccountsStore = defineStore('AccountsStore',
                 {
                     this.account = result.data.Result
 
-                    messageStore.showSuccess('Account Saved Successfully.')
+                    toastStore.showSuccess('Account Saved Successfully.')
                 }
             } 
-            catch (err){ messageStore.showError(err.message) }
+            catch (err){ toastStore.showError(err.message) }
         }
     }
 })

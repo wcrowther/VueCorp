@@ -1,6 +1,6 @@
 <script setup>
 
-    const messageStore      = useMessageStore()
+    const toastStore      = useToastStore()
 	const authStore			= useAuthStore()
 
 	const { login }			= authStore
@@ -15,7 +15,7 @@
 		if(isValidAuth)	
 			return loginUser()
 
-		messageStore.showInfo('Please enter a valid UserName and Password');
+		toastStore.showInfo('Please enter a valid UserName and Password');
 		console.log(v$.value.$errors.map(e => `${e.$property} : ${e.$message}`).join('\n'))
 
 		// Alternate version:

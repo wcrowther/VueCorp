@@ -1,24 +1,20 @@
 
 
 <script setup>
-//import { useSignalRChat } from '../../composables/useSignalRChat'
 
-const authStore	   = useAuthStore()
-const { authUser } = storeToRefs(authStore)  
+const authStore	   		= useAuthStore()
+const messageStore		= useMessageStore()
+const { sendMessage } 	= useChatHub()
 
-const message 		= ref('')
-const firstName 	= authUser.value ? authUser.value.FirstName : ''
-const userId 		= authUser.value ? authUser.value.UserId : 0
-const latestFirst 	= ref(false) 
+const { authUser } 		= storeToRefs(authStore)  
+const { newMessage,
+		messages } 		= storeToRefs(messageStore)  
 
-// MOVE MESSAGE TO MessagesStore
-const { messages, sendMessage } = useChatHub()
+const firstName 		= authUser.value ? authUser.value.FirstName : ''
+const userId 			= authUser.value ? authUser.value.UserId : 0
+const latestFirst 		= ref(false) 
 
-const sendmessage = async () => 
-{
-	await sendMessage(firstName, userId, message.value)
-	message.value = ''
-}
+const postMessage = async () => await sendMessage(firstName, userId)
 
 </script>
 
@@ -26,9 +22,9 @@ const sendmessage = async () =>
 	<div class="bg-white border border-blue flex flex-wrap w-full">
 
 		<div class="p-4 w-full md:w-1/2 bg-color-light-blue/50">
-			<TextInput v-model="message" @keydown.enter.prevent.stop="sendmessage"  
+			<TextInput v-model="newMessage" @keydown.enter.prevent.stop="postMessage"  
 				placeholder="Message" labelName="Message"  />
-			<PrimaryButton title="Send" @click="sendmessage" />
+			<PrimaryButton title="Send" @click="postMessage" />
 		</div>
 
 		<div class="p-4 w-full md:w-1/2">

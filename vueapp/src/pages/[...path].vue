@@ -4,7 +4,7 @@
 	// NOTE: This file matches the [...path].vue which is the unplugin-vue-router catchall route
 	// =========================================================================================
 
-    const messageStore          = useMessageStore()
+    const toastStore          = useToastStore()
     const authStore             = useAuthStore()
     const { delayedRedirect }   = authStore
     const redirectDelay         = 4000 
@@ -13,7 +13,7 @@
     onMounted(() =>  
     {        
         delayedRedirect('/', redirectDelay ) 
-        messageStore.showWarning(`Redirecting to Homepage in ${secondsDelay} seconds`)
+        toastStore.showWarning(`Redirecting to Homepage in ${secondsDelay} seconds`)
     }); 
 
 </script>

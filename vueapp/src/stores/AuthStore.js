@@ -38,7 +38,7 @@ export const useAuthStore = defineStore('AuthStore',
             }
             catch(err)
             {
-                useMessageStore().showError(err.message)   
+                useToastStore().showError(err.message)   
             }
         },
         async signup (model)
@@ -56,7 +56,7 @@ export const useAuthStore = defineStore('AuthStore',
             }
             catch(err)
             {   
-                useMessageStore().showError(err.message)   
+                useToastStore().showError(err.message)   
             }
         },
         async logout (route)
@@ -85,12 +85,12 @@ export const useAuthStore = defineStore('AuthStore',
                 if(result.success) 
                 {
                     this.authUser = result.data
-                    useMessageStore().showInfo(`Refresh Token updated at ${timeFormat(Date.now())}`)
+                    useToastStore().showInfo(`Refresh Token updated at ${timeFormat(Date.now())}`)
                 }
             }
             catch(err)
             {
-                useMessageStore().showError(err.message)   
+                useToastStore().showError(err.message)   
             }
         },
     }
