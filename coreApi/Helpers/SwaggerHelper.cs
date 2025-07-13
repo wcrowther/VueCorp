@@ -46,7 +46,7 @@ public static class SwaggerHelper
 					Scheme          = JwtBearerDefaults.AuthenticationScheme,
 					Name            = "Authorization",
 					BearerFormat    = "JWT",
-					Description     = "Add your JWT token returned from the Login endpoint (prefixed with 'Bearer '), " +
+					Description     = "Call the 'Login' endpoint to get a JWT token. Add the token (prefixed with 'Bearer '), " +
 									  "to the 'Value' field below and click the 'Authorize' button. " +
 									  "(Important: must have a space between 'Bearer' and the token). You should now have " +
 									  "permissions to call the other Endpoints depending on your login's user rights."

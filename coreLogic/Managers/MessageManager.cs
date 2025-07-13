@@ -20,7 +20,6 @@ public class MessageManager(	IMessageRepo messageRepo,
         return await messageRepo.GetAllMessages();
     }
 
-
 	public async Task<Message> SaveMessage(Message message)
 	{
 		var savedMessage = await messageRepo.SaveMessage(message);
@@ -36,7 +35,11 @@ public class MessageManager(	IMessageRepo messageRepo,
 	{
 		if (message is null) return;
 
-		message.CreatorName     = userRepo.GetUsernameById(message.CreatorId);
-		message.ModifierName    = userRepo.GetUsernameById(message.ModifierId);
+		message.CreatorName  = userRepo.GetUsernameById(message.CreatorId);
+
+		if (message.CreatorId == message.ModifierId)
+			message.ModifierName = message.CreatorName;
+		else
+			message.ModifierName = userRepo.GetUsernameById(message.ModifierId);
 	}
 }

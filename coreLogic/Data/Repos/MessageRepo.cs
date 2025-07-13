@@ -1,6 +1,7 @@
 ﻿using coreApi.Data.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
+using coreLogic.Adapters;
 using coreLogic.Helpers;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -10,18 +11,41 @@ using WildHare.Extensions;
 
 namespace coreApi.Data;
 
-public class MessageRepo(CoreApiDataContext coreApiDataContext) : IMessageRepo
+public class MessageRepo(CoreApiDataContext context) : IMessageRepo
 {
 
+	int maxMessages = 20;
+	
 	public async Task<List<Message>> GetAllMessages()
 	{
-		return await coreApiDataContext.Messages.ToListAsync();
+		var messageList = await context.Messages.ToListAsync();
+		if (messageList.Count >= maxMessages)
+		{
+			DeleteOldMessages();
+		}
+
+		return messageList;
+	}
+
+	private async void DeleteOldMessages() 
+	{
+		var recentMessageIds = await context.Messages
+								.OrderByDescending(e => e.DateCreated)
+								.Take(maxMessages)
+								.Select(e => e.MessageId)
+								.ToListAsync();
+
+		await context.Messages
+			.Where(e => !recentMessageIds.Contains(e.MessageId))
+			.ExecuteDeleteAsync();
+
+		await context.SaveChangesAsync();
 	}
 
 	public async Task<Message> SaveMessage(Message message)
 	{
-		coreApiDataContext.Update(message);
-		await coreApiDataContext.SaveChangesAsync();
+		context.Update(message);
+		await context.SaveChangesAsync();
 
 		return message;
 	}

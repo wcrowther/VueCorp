@@ -124,6 +124,9 @@
     "useSignalRChat": true,
     "useChatHub": true,
     "useMessageStore": true,
-    "MessageModel": true
+    "MessageModel": true,
+    "RedirectToPage": true,
+    "NewMessage": true,
+    "useMessagesStore": true
   }
 }

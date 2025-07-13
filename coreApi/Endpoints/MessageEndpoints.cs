@@ -26,11 +26,11 @@ public static partial class Endpoints
         });
 
 		endpoints.MapPost("/saveMessage", (	IMessageManager _messageManager,
-											[FromBody] Message message) =>
+												[FromBody] Message message) =>
 		{
 			var savedMessage = _messageManager.SaveMessage(message);
 
-			return Results.Ok(message);
+			return Results.Ok(savedMessage); 
 		})
 		.Validate<Message>(false);
 	}

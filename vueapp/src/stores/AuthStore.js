@@ -16,6 +16,7 @@ export const useAuthStore = defineStore('AuthStore',
         {
            return (state.authUser && state.authUser.Token && state.authUser.Token.length > 0) ? true : false
         },
+        userId:                 (state) => state.authUser.UserId || 0,
         userName:               (state) => state.authUser.FirstName || 'UserName',
         firstInitial:           (state) => state.authUser.FirstName?.charAt(0).toUpperCase() || 'U',
         tokenExpiration:        (state) => state.authUser.TokenExpiration || '---',

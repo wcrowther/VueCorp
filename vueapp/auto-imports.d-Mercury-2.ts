@@ -20,6 +20,7 @@ declare global {
   const PageItem: typeof import('./src/models/PagerModel.js')['PageItem']
   const PagedList: typeof import('./src/models/PagerModel.js')['PagedList']
   const PagerModel: typeof import('./src/models/PagerModel.js')['PagerModel']
+  const RedirectToPage: typeof import('./src/composables/RedirectToPage.js')['RedirectToPage']
   const SearchForAccount: typeof import('./src/models/PagerModel.js')['SearchForAccount']
   const SearchModel: typeof import('./src/models/PagerModel.js')['SearchModel']
   const SetHtmlHeadBody: typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']
@@ -101,7 +102,7 @@ declare global {
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useImagesStore: typeof import('./src/stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
-  const useMessageStore: typeof import('./src/stores/MessagesStore.js')['useMessageStore']
+  const useMessagesStore: typeof import('./src/stores/MessagesStore.js')['useMessagesStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
   const useSlots: typeof import('vue')['useSlots']
@@ -141,6 +142,7 @@ declare module 'vue' {
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
+    readonly RedirectToPage: UnwrapRef<typeof import('./src/composables/RedirectToPage.js')['RedirectToPage']>
     readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
     readonly SetHtmlHeadBody: UnwrapRef<typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
@@ -222,7 +224,7 @@ declare module 'vue' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessageStore']>
+    readonly useMessagesStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessagesStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
@@ -255,6 +257,7 @@ declare module '@vue/runtime-core' {
     readonly PageItem: UnwrapRef<typeof import('./src/models/PagerModel.js')['PageItem']>
     readonly PagedList: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagedList']>
     readonly PagerModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['PagerModel']>
+    readonly RedirectToPage: UnwrapRef<typeof import('./src/composables/RedirectToPage.js')['RedirectToPage']>
     readonly SearchForAccount: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./src/models/PagerModel.js')['SearchModel']>
     readonly SetHtmlHeadBody: UnwrapRef<typeof import('./src/composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
@@ -336,7 +339,7 @@ declare module '@vue/runtime-core' {
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
     readonly useImagesStore: UnwrapRef<typeof import('./src/stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
-    readonly useMessageStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessageStore']>
+    readonly useMessagesStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessagesStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>

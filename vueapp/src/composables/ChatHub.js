@@ -1,32 +1,37 @@
-import { ref, onUnmounted } from 'vue'
-import * as signalR from '@microsoft/signalr'
+import * as signalR         from '@microsoft/signalr'
 
 export function useChatHub() 
 {
-    const appStore     	    = useAppStore()
-    const messageStore	    = useMessageStore()
+    const appStore                  = useAppStore()
+    const messageStore              = useMessagesStore()
+    const authStore	                = useAuthStore()
 
-    const { newMessage, 
-            messages }      = storeToRefs(messageStore) 
-
-    const { getAllMessages } = messageStore
-
-    const isConnected   = ref(false)      
+    const { userId: currentUserId } = storeToRefs(authStore)  
     
-    const connection    =  new signalR.HubConnectionBuilder()
-                            .withUrl(`${appStore.baseApiUrl}/chathub`)
-                            .withAutomaticReconnect()
-                            .build()
+    const { message, 
+            messages }              = storeToRefs(messageStore) 
+
+    const { addNewMessage,
+            getAllMessages,
+            saveMessage }           = messageStore
+
+    const isConnected               = ref(false)  
+    const connection                =  new signalR.HubConnectionBuilder()
+                                        .withUrl(`${appStore.baseApiUrl}/chathub`)
+                                        .withAutomaticReconnect()
+                                        .build()
 
     const startChat = async () => 
     {
         try 
         {
-            await getAllMessages()
+            addNewMessage(currentUserId, '')
 
-            connection.on('ReceiveMessage', (userName, userId, message) => 
+            await getAllMessages()  // get messages from server
+
+            connection.on('ReceiveMessage', message => 
             {
-                messages.value.push({ userName, userId, text: message })
+                messages.value.push(message)
             })
 
             await connection.start()
@@ -41,22 +46,30 @@ export function useChatHub()
         }
     }
 
-    const sendMessage = async (firstName, userId) => 
+    const sendMessage = async () => 
     {
-        // Add error checking etc here
-        if (isConnected.value && firstName && userId && newMessage.value) 
-        {
-            await connection.invoke('SendMessage', firstName, userId, newMessage.value)
-            newMessage.value = ''
-        }
+        var messageSaved = await saveMessage(message.value)
+
+        // if(!messageSaved.value)
+        // {
+        //     console.error('Not able to save message.')
+        //     return
+        // }
+
+        console.log('ChatHub.sendMessage()', message.value.UserId, message.value.MessageText)
+
+        await connection.invoke('SendMessage', message.value)
+
+        message.value = addNewMessage(currentUserId, '')  // reset message
     }
 
-    onMounted(startChat)
     onUnmounted(() =>  { connection.stop() })
 
     return {
         isConnected,
         sendMessage,
         startChat,
+        message,
+        messages
     }
 }

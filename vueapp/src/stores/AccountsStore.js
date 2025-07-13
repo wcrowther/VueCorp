@@ -55,7 +55,6 @@ export const useAccountsStore = defineStore('AccountsStore',
                 }
 
                 this.account = new AccountModel()
-
             } 
             catch (err) {  toastStore.showError(err.message) }
         },

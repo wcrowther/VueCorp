@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using coreApi.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace coreApi.Hubs;
 
 public class ChatHub : Hub
 {
-	public async Task SendMessage(string userName, int userId, string message)
+	public async Task SendMessage(Message message)
 	{
-		await Clients.All.SendAsync("ReceiveMessage", userName, userId, message);
+		await Clients.All.SendAsync("ReceiveMessage", message);
 	}
 }

@@ -25,7 +25,10 @@ var environment = builder.Environment;
 builder.Services.Configure<JsonOptions>(options => { options.SerializerOptions.PropertyNamingPolicy = null; });
 builder.Services.AddSingleton(builder.Configuration.GetSection("App").Get<AppSettings>());
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR().AddJsonProtocol(options =>
+{
+	options.PayloadSerializerOptions.PropertyNamingPolicy = null; // use PascalCase
+}); 
 
 builder.Services.AddCors(options =>
 {

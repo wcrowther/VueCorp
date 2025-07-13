@@ -2,19 +2,19 @@
 
 <script setup>
 
-const authStore	   		= useAuthStore()
-const messageStore		= useMessageStore()
-const { sendMessage } 	= useChatHub()
+	const { startChat,
+			messages,
+			message,
+			sendMessage } 			= useChatHub()  
 
-const { authUser } 		= storeToRefs(authStore)  
-const { newMessage,
-		messages } 		= storeToRefs(messageStore)  
+	const authStore	   				= useAuthStore()
+	const { userId: currentUserId }	= storeToRefs(authStore)  
 
-const firstName 		= authUser.value ? authUser.value.FirstName : ''
-const userId 			= authUser.value ? authUser.value.UserId : 0
-const latestFirst 		= ref(false) 
+	const latestFirst 				= ref(useLocalStorage('chatRoomLatestFirst', true))      
 
-const postMessage 		= async () => await sendMessage(firstName, userId)
+	// ====================================================================
+	
+	onMounted(startChat)
 
 </script>
 
@@ -22,9 +22,10 @@ const postMessage 		= async () => await sendMessage(firstName, userId)
 	<div class="bg-white border border-blue flex flex-wrap w-full">
 
 		<div class="p-4 w-full md:w-1/2 bg-color-light-blue/50">
-			<TextInput v-model="newMessage" @keydown.enter.prevent.stop="postMessage"  
-				placeholder="Message" labelName="Message"  />
-			<PrimaryButton title="Send" @click="postMessage" />
+			<TextInput v-model.trim="message.MessageText" 
+				@keydown.enter.prevent.stop="sendMessage"  
+				placeholder="Message" labelName="Message" />
+			<PrimaryButton title="Send" @click="sendMessage" />
 		</div>
 
 		<div class="p-4 w-full md:w-1/2">
@@ -36,10 +37,9 @@ const postMessage 		= async () => await sendMessage(firstName, userId)
 					{{ latestFirst ? 'Latest First' : 'Oldest First' }}
 				</span>  
 			</div>
-
 			<div :class="['flex', (latestFirst ? 'flex-col-reverse' : 'flex-col')]">
 				<div v-for="(msg, index) in messages" :key="index"
-					:class="['p-2 pl-0', {'ml-5 text-red' : msg.CreatorId !== userId }]">
+					:class="['p-2 pl-0', {'ml-5 text-red' : msg.CreatorId !== currentUserId }]">
 					<b>{{ msg.CreatorName }} ({{ msg.CreatorId }}):</b> {{ msg.MessageText }}
 				</div>
 			</div>

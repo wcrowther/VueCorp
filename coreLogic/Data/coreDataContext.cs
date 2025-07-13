@@ -46,11 +46,11 @@ public class CoreApiDataContext(DbContextOptions<CoreApiDataContext> options,
 				entry.Entity.DateCreated	= now;
 				entry.Entity.CreatorId		= userId.Value;
 			}
-	
+
 			if (entry.State == EntityState.Added || entry.State == EntityState.Modified)
 			{
-				entry.Entity.DateModified	= now;
-				entry.Entity.ModifierId		= userId.Value;
+				entry.Entity.DateModified   = now;
+				entry.Entity.ModifierId     = userId.Value;
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <script setup>
 
     const usersStore        = useUsersStore()
-    const toastStore      = useToastStore()
+    const toastStore        = useToastStore()
     const 
     { 
         user, 

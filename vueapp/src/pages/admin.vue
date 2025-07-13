@@ -1,8 +1,6 @@
 <script setup>
 
-	const router 	= useRouter();
-	if(router.currentRoute.value.path.toLowerCase() === '/admin')
-		router.replace('/admin/users'); 
+	RedirectToPage('/admin','/admin/users')
 
     const appStore              = useAppStore()
     const { sideBarHidden }     = storeToRefs(appStore)
