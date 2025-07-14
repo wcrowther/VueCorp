@@ -14,7 +14,8 @@
                   
     const { showPrevNext, 
             showBreakpoints, 
-            showNotification, 
+            showNotification,
+            showNewMessages, 
             altTheme, 
             pagerDebugger}          = storeToRefs(appStore) 
     const { resetLocalStorage   }   = appStore
@@ -82,7 +83,7 @@
             <IconSymbol v-if="pinPopout" class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-closed-20-solid" />
             <IconSymbol v-else           class="icon-symbol" @click="pinPopout=!pinPopout" icon="heroicons:lock-open-20-solid" />
 
-            <div class="px-7 pt-10 pb-12">
+            <div class="px-7 pt-10 pb-10">
                 <div class="flex gap-x-2 my-5">
                     <button class="btn-delete" title="Log out user" @click="logoutUser">Logout</button>
                     <button class="btn-delete" title="Refresh user auth token" @click="refreshAuthToken">Refresh Token</button>
@@ -165,7 +166,15 @@
                     <div class="label-value">
                         <CheckboxInput labelName="" v-model="showNotification" />
                     </div>
-                </div> 
+                </div>
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Show New Chats button">ShowNewMessages:</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="showNewMessages" />
+                    </div>
+                </div>  
+                
                <!--  
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
@@ -194,8 +203,8 @@
 <style lang="postcss" scoped>
 
     .label-row      { @apply flex h-8 items-center }
-    .label-title    { @apply w-36 font-bold whitespace-nowrap }
-    .label-value    { @apply w-52 flex-grow whitespace-nowrap }
+    .label-title    { @apply w-1/2 font-bold whitespace-nowrap }
+    .label-value    { @apply flex-grow whitespace-nowrap }
     .icon-symbol    { @apply absolute top-3 right-3 text-color-mid-blue hover:text-gray-700}
 
 </style> 

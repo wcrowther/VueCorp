@@ -8,6 +8,7 @@ export const useAppStore = defineStore('AppStore',
         showPrevNext:           useLocalStorage('showPrevNext',  true),
         showBreakpoints:        useLocalStorage('showBreakpoints', false),
         showNotification:       useLocalStorage('showNotification', true),
+        showNewMessages:        useLocalStorage('showNewMessages', false),
         persistSearch:          useLocalStorage('persistSearch', true),
         altTheme:               useLocalStorage('altTheme', false),
         infoLevel:              useLocalStorage('infoLevel', 2),
@@ -26,7 +27,7 @@ export const useAppStore = defineStore('AppStore',
         {
             var local =  [ 'showPrevNext','showBreakpoints','persistSearch','altTheme',
                            'infoLevel','pagerDebugger','pagerDebuggerX','pagerDebuggerY',
-                           'activeFloater' ];
+                           'activeFloater','showNewMessages' ];
 
             local.forEach(item => { localStorage.removeItem(item) });
 

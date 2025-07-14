@@ -20,18 +20,17 @@
 			<div class="w-full min-h-[400px] relative">
 
 				<InfoBox>
-					This page is a demonstration of a SignalR Realtime Hub. Open other browser windows to
-					the current web page /Accounts/Message. Enter text into the Message input below and 
-                    the message is added to the Chat Messages list in all browsers open to the site.
+					This page demonstrates a SignalR Realtime Hub. Open this page in multiple browser windows. 
+                    When you enter a message below, it will appear in the chat list across all open windows.
 				</InfoBox>
 
 				<HelpBox>
-					Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure?
-					Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+					To simplify the example, the backend service only kees the last 
+                    20 Messages that have been posted.
 				</HelpBox>
 
 				<KeepAlive>
-                    <ChatRoom class="mt-5" />
+                    <ChatRoom class="mt-5 mb-7" />
                 </KeepAlive>
 
 			</div>

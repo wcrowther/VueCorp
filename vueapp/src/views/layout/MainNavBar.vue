@@ -1,16 +1,23 @@
 
 <script setup>
 
-	const authStore     	= useAuthStore()
-	const { authUser  } 	= storeToRefs(authStore)
+	const authStore     		= useAuthStore()
+	const appStore   			= useAppStore()
 
-	const adminRoles 		= ['Admin', 'SuperAdmin']
+	const { authUser  } 		= storeToRefs(authStore)
+    const { showNewMessages }	= storeToRefs(appStore)
+
+	const adminRoles 			= ['Admin', 'SuperAdmin']
 
 </script>
 
 <template>
 
     <NavBar id="nav-bar" class="bg-gradient-navbar md:ml-3">
+
+		<template v-if="showNewMessages" #leftalign>
+			<NewMessages class="self-center" to="/accounts/messages" />
+		</template>
 
 		<NavTab to="/" class="group">
 			<IconSymbol width="18px" class="text-[#bddaef] block xs:hidden

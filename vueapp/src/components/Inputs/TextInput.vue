@@ -16,10 +16,10 @@
 <template>
     <div class="mb-3">
         <div class="pb-1 flex justify-between items-baseline">
-            <span class="text-color-dark-blue font-bold whitespace-nowrap text-xs"
+            <label class="text-color-dark-blue font-bold whitespace-nowrap text-xs"
                 :for="props.labelName">
                 {{props.labelName}}
-            </span>
+            </label>
             <template v-if="v$ && v$[rule] && v$[rule].$errors">
                 <span class="italic font-bold text-right text-xs text-color-red" 
                     v-for="error in v$[rule].$errors" :key="error.$uid">

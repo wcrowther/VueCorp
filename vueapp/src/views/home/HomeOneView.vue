@@ -22,7 +22,7 @@
         <div class="flex flex-wrap gap-y-5">
 
             <div class="pr-5 w-2/3 grow">
-                <p class="pb-8 text-lg">
+                <p class="mb-8 text-lg">
                     <b>VueCorp</b> is an open source project to promote using <b>Vue.js</b> with a
                     <b>DotNet</b> backend to create a simple yet powerful application environment. 
                     We combined a <b>VueJs </b> SPA project (.esproj) built using <b>Vite</b> with a 
@@ -30,20 +30,24 @@
                     integrated so that it can be built into a single deployment 
                     with a simple Visual Studio <b>Publish</b>.
                 </p> 
-                <p class="pb-3">    
+                <p class="mb-3">    
                     We've included real-world examples demonstrating how to integrate client-side <b>Pinia</b> stores using 
                     <b>JWT tokens</b> for secure API access to your .NET backend. The client project features page-based 
                     routing and automatic component dependency imports.
                 </p>
-                <p class="pb-3">
+                <p class="mb-3">
                     Rather than relying on third-party UI libraries, we focus on building clean, powerful components that 
                     reflect your <b>code intent</b> and are easy to adapt. This project isn’t meant to be the definitive 
                     way to build an app — just a solid starting point.
                 </p>
-                <p class="pb-0">
+                <p class="mb-0">
                     You'll find a number of innovative techniques throughout both the <b>Vue.js</b> and <b>.NET</b> 
                     Minimal API projects. We welcome contributions and suggestions as the project evolves.
                 </p>
+                <HelpBox class="mt-5">
+                    Voluptates accusamus repudiandae quam officiis temporibus dicta ipsa iure? 
+                    Iusto dicta nulla error. Fugit aspernatur odit voluptate, quo libero id minus.
+                </HelpBox>
             </div>
 
             <div class="w-full grow italic p-5 flex flex-col gap-y-3 border-color-light-blue

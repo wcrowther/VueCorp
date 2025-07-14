@@ -18,7 +18,27 @@ public class MessageRepo(CoreApiDataContext context) : IMessageRepo
 	
 	public async Task<List<Message>> GetAllMessages()
 	{
-		var messageList = await context.Messages.ToListAsync();
+		// var messageList = await context.Messages.ToListAsync();
+
+		var messageList =	await (
+							from m in context.Messages
+							join u in context.Users
+							  on m.CreatorId equals u.UserId
+							join u2 in context.Users
+								on m.ModifierId equals u2.UserId
+							select	new Message
+									{
+										MessageId       = m.MessageId,
+										MessageText     = m.MessageText,
+										DateCreated     = m.DateCreated,
+										DateModified    = m.DateModified,
+										CreatorId       = m.CreatorId,
+										CreatorName     = u.UserName,
+										ModifierName    = u2.UserName,
+										ModifierId      = m.ModifierId,
+									}
+							).ToListAsync();
+
 		if (messageList.Count >= maxMessages)
 		{
 			DeleteOldMessages();
@@ -27,7 +47,17 @@ public class MessageRepo(CoreApiDataContext context) : IMessageRepo
 		return messageList;
 	}
 
-	private async void DeleteOldMessages() 
+	public async Task<Message> SaveMessage(Message message)
+	{
+		context.Update(message);
+		await context.SaveChangesAsync();
+
+		return message;
+	}
+
+	// ============================================================
+
+	private async void DeleteOldMessages()
 	{
 		var recentMessageIds = await context.Messages
 								.OrderByDescending(e => e.DateCreated)
@@ -40,13 +70,5 @@ public class MessageRepo(CoreApiDataContext context) : IMessageRepo
 			.ExecuteDeleteAsync();
 
 		await context.SaveChangesAsync();
-	}
-
-	public async Task<Message> SaveMessage(Message message)
-	{
-		context.Update(message);
-		await context.SaveChangesAsync();
-
-		return message;
 	}
 }

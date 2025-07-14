@@ -34,7 +34,7 @@
 				<BrandLogo />
 			</BrandBar>
 
-			<NavBarMain class="shadow-theme-layout" />
+			<MainNavBar class="shadow-theme-layout" />
 
 			<MainContent>
 				<slot></slot>
@@ -42,7 +42,7 @@
 			
 			<FooterBox class="shadow-theme-layout" />
 
-			<!-- <NotificationControl /> -->
+			<NotificationControl /> 
 			
 		</div>
 

@@ -34,7 +34,7 @@
 				<WizardControl class="mb-10" :tabList="['First', 'Second', 'Third', 'Fourth']">
 
 					<template #First>
-						<WizardFirst />
+						<AccountsWizardFirst /> 
 					</template>
 
 					<template #Second>
@@ -44,7 +44,6 @@
 							tempore accusamus asperiores! Minus sit enim sapiente id fugiat rem optio! Perferendis recusandae 
 							corporis odio, modi sunt nulla?
 						</div>
-
 					</template>
 
 					<template #Third>
@@ -53,7 +52,6 @@
 							Minus sit enim sapiente id fugiat rem optio! Perferendis recusandae 
 							corporis odio, modi sunt nulla?
 						</div>
-
 					</template>
 
 					

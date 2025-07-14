@@ -97,7 +97,7 @@
 			font-sans tracking-wide font-bold rounded-md px-4 pt-[4px] pb-[3px] w-fit hover:opacity-100 hover:bg-white;
 	}
 	.badge-button {
-		@apply rounded-full h-5 px-2 text-xs leading-[1.3rem] tracking-wider 
+		@apply rounded-full h-5 px-2 text-xs leading-[1.3rem] tracking-wider cursor-pointer
 			inline-block font-bold select-none text-center align-middle
 	}
 
