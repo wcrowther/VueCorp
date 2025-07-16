@@ -1,10 +1,12 @@
 ﻿using coreApi.Helpers;
+using coreApi.Hubs;
 using coreApi.Logic.Interfaces;
 using coreApi.Models;
 using coreApi.Models.Generic;
 using coreLogic.Interfaces;
 using coreLogic.Models.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Security.Claims;
 
 namespace coreApi;
@@ -26,9 +28,16 @@ public static partial class Endpoints
         });
 
 		endpoints.MapPost("/saveMessage", (	IMessageManager _messageManager,
-												[FromBody] Message message) =>
+											IHubContext<ChatHub> hubContext,
+											[FromBody] Message message) =>
 		{
 			var savedMessage = _messageManager.SaveMessage(message);
+
+			// Send out message from the server here instead of from ChatHub call from client
+			hubContext.SendMessageFromServer(savedMessage.Result);
+
+			// Update max MessageId to all clients
+			hubContext.SendMaxMessageId(savedMessage.Result.MessageId);
 
 			return Results.Ok(savedMessage); 
 		})

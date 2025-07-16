@@ -2,24 +2,20 @@ import * as signalR         from '@microsoft/signalr'
 
 export function useChatHub() 
 {
-    const appStore                  = useAppStore()
-    const messageStore              = useMessagesStore()
-    const authStore	                = useAuthStore()
+    const authStore	= useAuthStore()
+    const { userId: currentUserId } = storeToRefs(authStore) 
 
-    const { userId: currentUserId } = storeToRefs(authStore)  
-    
-    const { message, 
-            messages }              = storeToRefs(messageStore) 
+    const messageStore = useMessagesStore()
+    const { message, messages, serverMaxMessageId }      = storeToRefs(messageStore) 
+    const { addNewMessage, getAllMessages, saveMessage } = messageStore
 
-    const { addNewMessage,
-            getAllMessages,
-            saveMessage }           = messageStore
+    const appStore      = useAppStore()
 
-    const isConnected               = ref(false)  
-    const connection                =  new signalR.HubConnectionBuilder()
-                                        .withUrl(`${appStore.baseApiUrl}/chathub`)
-                                        .withAutomaticReconnect()
-                                        .build()
+    const isConnected   = ref(false)  
+    const connection    = new signalR.HubConnectionBuilder()
+                            .withUrl(`${appStore.baseApiUrl}/chathub`)
+                            .withAutomaticReconnect()
+                            .build()
 
     const startChat = async () => 
     {
@@ -32,6 +28,12 @@ export function useChatHub()
             connection.on('ReceiveMessage', message => 
             {
                 messages.value.push(message)
+                serverMaxMessageId.value = message.MessageId
+            })
+
+            connection.on('ReceiveMaxMessageId', (serverMaxId) => 
+            {
+                serverMaxMessageId.value = serverMaxId
             })
 
             await connection.start()
@@ -50,15 +52,19 @@ export function useChatHub()
     {
         var messageSaved = await saveMessage(message.value)
 
-        // if(!messageSaved.value)
+        // ====================================================================
+        // Alt version calling ChatHub.SendMessage using this code. Currently we 
+        // are calling to all the chathubs on the server in c# MessageEndpoints
+        // ====================================================================
+        // if(!messageSaved)
         // {
         //     console.error('Not able to save message.')
         //     return
         // }
+        // await connection.invoke('SendMessage', messageSaved)
+        // ====================================================================
 
-        console.log('ChatHub.sendMessage()', message.value.UserId, message.value.MessageText)
-
-        await connection.invoke('SendMessage', message.value)
+        console.log('ChatHub.sendMessage()', messageSaved.CreatorId, messageSaved.MessageText)
 
         message.value = addNewMessage(currentUserId, '')  // reset message
     }

@@ -2,10 +2,10 @@
 
 <script setup>
 
-	const { startChat,
-			messages,
-			message,
-			sendMessage } 			= useChatHub()  
+	const { startChat, messages, message, sendMessage } = useChatHub()  
+
+	const messageStore = useMessagesStore()
+    const { serverMaxMessageId } = storeToRefs(messageStore) 
 
 	const authStore	   				= useAuthStore()
 	const { userId:currentUserId }	= storeToRefs(authStore)  
@@ -15,7 +15,10 @@
 
 	// ====================================================================
 	
-	onMounted(startChat)
+	onMounted(
+		startChat,
+		console.log('onMounted')
+	)
 
 </script>
 
@@ -26,6 +29,8 @@
 			<TextInput v-model.trim="message.MessageText" 
 				@keydown.enter.prevent.stop="sendMessage"  
 				placeholder="Message" labelName="Message" />
+
+			<TextInput v-model.trim="serverMaxMessageId" labelName="MaxId" />
 			<PrimaryButton title="Send" @click="sendMessage" />
 		</div>
 
@@ -42,16 +47,16 @@
 				<template v-for="(msg, index) in messages" :key="index">
 
 					<div v-if="isCurrentUser(msg.CreatorId)"
-						class="px-4 py-2 mb-2 mr-9 border border-[#b8d7ed] rounded-lg 
-							w-fit min-w-[75%]">
-						<!-- <span class="font-bold text-color-mid-blue">me :</span> -->
+						class="px-4 py-2 mb-2 mr-9 border border-[#b8d7ed] rounded-lg w-fit min-w-[75%]"
+						:title="dateTimeFormat(msg.DateCreated)">
 						{{ msg.MessageText }}
 					</div>
 
 					<div v-else class="px-4 py-2 mb-2 ml-auto border border-color-mid-blue
-						text-color-dark-blue rounded-lg w-fit min-w-[75%]">
+						text-color-dark-blue rounded-lg w-fit min-w-[75%]"
+						:title="dateTimeFormat(msg.DateCreated)">
 						<span class="font-bold text-color-mid-blue">{{ msg.CreatorName }} : </span>
-						   {{ msg.MessageText }}
+						{{ msg.MessageText }}
 					</div>
 					
 				</template>

@@ -4,8 +4,22 @@ export const useMessagesStore = defineStore('MessagesStore',
     ({
         message: {},
         messages: [],
+        clientMaxMessageId: 0,
+        serverMaxMessageId: 0
     }),
-    getters:{},
+    getters:
+    {
+        messagesCount: (state) => state.serverMaxMessageId - state.clientMaxMessageId,
+        getMaxMessageId: (state) =>  
+        {
+            if (state.messages.length === 0) return 0;
+
+            return state.messages.reduce((max, msg) => 
+                msg.MessageId > max ? msg.MessageId : max, 
+                0
+            );
+        }
+    },
     actions:
     {
         async addNewMessage(userId, messageText)
@@ -20,9 +34,12 @@ export const useMessagesStore = defineStore('MessagesStore',
                 
                 const result = await apiGet(`/messages/getAllMessages`)
                 
-                if(result.success) 
-                    this.messages   = result.data.Result
-
+                if(result.success)
+                {
+                    this.messages           = result.data.Result
+                    this.clientMaxMessageId = this.getMaxMessageId
+                    this.serverMaxMessageId = this.clientMaxMessageId
+                } 
             }
             catch (err){ useToastStore().showError(err.message) }
         },
@@ -36,7 +53,13 @@ export const useMessagesStore = defineStore('MessagesStore',
                 
                 if(result.success) 
                 {
-                    this.message   = result.data.Result   
+                    this.message            = result.data.Result 
+                    this.clientMaxMessageId = this.message.MessageId
+                    this.serverMaxMessageId = this.message.MessageId
+                }
+                else
+                {
+                    useToastStore().showError('Not able to save your Message to the server.')
                 }
 
                 return this.message

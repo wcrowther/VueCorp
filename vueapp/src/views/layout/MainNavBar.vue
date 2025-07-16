@@ -16,7 +16,7 @@
     <NavBar id="nav-bar" class="bg-gradient-navbar md:ml-3">
 
 		<template v-if="showNewMessages" #leftalign>
-			<NewMessages class="self-center" to="/accounts/messages" />
+			<NewMessages class="self-center" />
 		</template>
 
 		<NavTab to="/" class="group">

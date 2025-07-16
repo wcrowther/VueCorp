@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('AuthStore',
     }),
     getters:
     {
-        isLoggedIn:     (state) => 
+        isLoggedIn:             (state) => 
         {
            return (state.authUser && state.authUser.Token && state.authUser.Token.length > 0) ? true : false
         },
