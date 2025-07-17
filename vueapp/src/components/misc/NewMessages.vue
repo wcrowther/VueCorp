@@ -1,19 +1,19 @@
 
 <script setup>
 
-	const messageStore = useMessagesStore()
-    const { messagesCount,
-		clientMaxMessageId,
-        serverMaxMessageId } = storeToRefs(messageStore) 
-// v-if="messagesCount > 0" 
+	const { messagesCount, monitorChat,
+		clientMaxMessageId, serverMaxMessageId } = useChatHub()  
+	onMounted ( monitorChat )
+
 </script>
 
 <template>
-	
+
+	<!--  v-if="messagesCount > 0"  -->
 	<router-link  
 		to="/accounts/messages"
 		class="badge-button text-color-blue-gray bg-white hover:opacity-50"
-		title="You have new Messages.">
+		title="You have new Messages">
 		{{ messagesCount }} Message{{ messagesCount === 1 ? '' : 's'}} 
 		{{ clientMaxMessageId }} {{ serverMaxMessageId }}
 	</router-link>  

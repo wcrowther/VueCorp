@@ -127,6 +127,7 @@
     "MessageModel": true,
     "RedirectToPage": true,
     "NewMessage": true,
-    "useMessagesStore": true
+    "useMessagesStore": true,
+    "useSignalR": true
   }
 }

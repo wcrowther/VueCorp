@@ -105,6 +105,7 @@ declare global {
   const useMessagesStore: typeof import('./src/stores/MessagesStore.js')['useMessagesStore']
   const useRoute: typeof import('vue-router/auto')['useRoute']
   const useRouter: typeof import('vue-router/auto')['useRouter']
+  const useSignalR: typeof import('./src/composables/UseSignalR.js')['useSignalR']
   const useSlots: typeof import('vue')['useSlots']
   const useToastStore: typeof import('./src/stores/ToastStore.js')['useToastStore']
   const useUsersStore: typeof import('./src/stores/UsersStore.js')['useUsersStore']
@@ -227,6 +228,7 @@ declare module 'vue' {
     readonly useMessagesStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessagesStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
+    readonly useSignalR: UnwrapRef<typeof import('./src/composables/UseSignalR.js')['useSignalR']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useToastStore: UnwrapRef<typeof import('./src/stores/ToastStore.js')['useToastStore']>
     readonly useUsersStore: UnwrapRef<typeof import('./src/stores/UsersStore.js')['useUsersStore']>
@@ -342,6 +344,7 @@ declare module '@vue/runtime-core' {
     readonly useMessagesStore: UnwrapRef<typeof import('./src/stores/MessagesStore.js')['useMessagesStore']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
     readonly useRouter: UnwrapRef<typeof import('vue-router/auto')['useRouter']>
+    readonly useSignalR: UnwrapRef<typeof import('./src/composables/UseSignalR.js')['useSignalR']>
     readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
     readonly useToastStore: UnwrapRef<typeof import('./src/stores/ToastStore.js')['useToastStore']>
     readonly useUsersStore: UnwrapRef<typeof import('./src/stores/UsersStore.js')['useUsersStore']>

@@ -1,22 +1,22 @@
-import * as signalR         from '@microsoft/signalr'
+import { useSignalR } from '@/composables/UseSignalR'
 
 export function useChatHub() 
 {
-    const authStore	= useAuthStore()
-    const { userId: currentUserId } = storeToRefs(authStore) 
+    const authStore	                                        = useAuthStore()
+    const { userId: currentUserId }                         = storeToRefs(authStore) 
 
     const messageStore = useMessagesStore()
-    const { message, messages, serverMaxMessageId }      = storeToRefs(messageStore) 
-    const { addNewMessage, getAllMessages, saveMessage } = messageStore
+    const { message, messages, messagesCount,
+            clientMaxMessageId, serverMaxMessageId }        = storeToRefs(messageStore) 
+    const { addNewMessage, getAllMessages, saveMessage }    = messageStore
 
-    const appStore      = useAppStore()
+    const { isConnectedRef, startConnection,
+            stopConnection, registerEvent }                 = useSignalR()
 
-    const isConnected   = ref(false)  
-    const connection    = new signalR.HubConnectionBuilder()
-                            .withUrl(`${appStore.baseApiUrl}/chathub`)
-                            .withAutomaticReconnect()
-                            .build()
-
+    onMounted(async ()   => await startConnection())
+    onUnmounted(async () => await stopConnection())
+    
+    // Activate ChatRoom component
     const startChat = async () => 
     {
         try 
@@ -25,26 +25,36 @@ export function useChatHub()
 
             await getAllMessages()  // get messages from server
 
-            connection.on('ReceiveMessage', message => 
+            registerEvent('ReceiveMessage', message => 
             {
                 messages.value.push(message)
+                clientMaxMessageId.value = message.MessageId
                 serverMaxMessageId.value = message.MessageId
             })
 
-            connection.on('ReceiveMaxMessageId', (serverMaxId) => 
+            console.log('SignalR startChat connected')
+        } 
+        catch (error) 
+        {
+            console.error('SignalR startChat connection failed:', error)
+        }
+    }
+
+    // Activate NewMessages component
+    const monitorChat = async () => 
+    {
+        try 
+        {
+            registerEvent('ReceiveMaxMessageId', serverMaxId => 
             {
                 serverMaxMessageId.value = serverMaxId
             })
 
-            await connection.start()
-
-            isConnected.value = true
-
-            console.log('SignalR connected')
+            console.log('SignalR monitorChat connected')
         } 
         catch (error) 
         {
-            console.error('SignalR connection failed:', error)
+            console.error('SignalR monitorChat connection failed:', error)
         }
     }
 
@@ -52,30 +62,36 @@ export function useChatHub()
     {
         var messageSaved = await saveMessage(message.value)
 
-        // ====================================================================
-        // Alt version calling ChatHub.SendMessage using this code. Currently we 
-        // are calling to all the chathubs on the server in c# MessageEndpoints
-        // ====================================================================
-        // if(!messageSaved)
-        // {
-        //     console.error('Not able to save message.')
-        //     return
-        // }
-        // await connection.invoke('SendMessage', messageSaved)
-        // ====================================================================
-
         console.log('ChatHub.sendMessage()', messageSaved.CreatorId, messageSaved.MessageText)
 
         message.value = addNewMessage(currentUserId, '')  // reset message
     }
 
-    onUnmounted(() =>  { connection.stop() })
+    // onUnmounted(() =>  { connection.stop() })
 
     return {
-        isConnected,
+        isConnectedRef,
         sendMessage,
         startChat,
+        monitorChat,
         message,
-        messages
+        messages, 
+        messagesCount,
+        clientMaxMessageId, 
+        serverMaxMessageId
     }
 }
+
+
+
+// ====================================================================
+// Alt version calling ChatHub.SendMessage using this code. Currently we 
+// are calling to all the chathubs on the server in c# MessageEndpoints
+// ====================================================================
+// if(!messageSaved)
+// {
+//     console.error('Not able to save message.')
+//     return
+// }
+// await connection.invoke('SendMessage', messageSaved)
+// ====================================================================

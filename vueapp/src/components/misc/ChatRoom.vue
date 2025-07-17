@@ -4,8 +4,8 @@
 
 	const { startChat, messages, message, sendMessage } = useChatHub()  
 
-	const messageStore = useMessagesStore()
-    const { serverMaxMessageId } = storeToRefs(messageStore) 
+	const messageStore 				= useMessagesStore()
+    const { serverMaxMessageId } 	= storeToRefs(messageStore) 
 
 	const authStore	   				= useAuthStore()
 	const { userId:currentUserId }	= storeToRefs(authStore)  
@@ -15,10 +15,7 @@
 
 	// ====================================================================
 	
-	onMounted(
-		startChat,
-		console.log('onMounted')
-	)
+	onMounted ( startChat )
 
 </script>
 
@@ -43,7 +40,8 @@
 					{{ latestFirst ? 'Latest First' : 'Oldest First' }}
 				</span>  
 			</div>
-			<div :class="['flex', (latestFirst ? 'flex-col-reverse' : 'flex-col')]">
+			<div :class="['flex pr-4 max-h-[400px] overflow-y-auto scrollbar-thin', 
+				(latestFirst ? 'flex-col-reverse' : 'flex-col')]">
 				<template v-for="(msg, index) in messages" :key="index">
 
 					<div v-if="isCurrentUser(msg.CreatorId)"
