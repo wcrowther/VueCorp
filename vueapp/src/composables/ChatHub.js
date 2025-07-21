@@ -2,19 +2,20 @@ import { useSignalR } from '@/composables/UseSignalR'
 
 export function useChatHub() 
 {
-    const authStore	                                        = useAuthStore()
-    const { userId: currentUserId }                         = storeToRefs(authStore) 
+    const authStore	                                    = useAuthStore()
+    const { userId: currentUserId }                     = storeToRefs(authStore) 
 
-    const messageStore = useMessagesStore()
+    const messageStore                                  = useMessagesStore()
     const { message, messages, messagesCount,
-            clientMaxMessageId, serverMaxMessageId }        = storeToRefs(messageStore) 
-    const { addNewMessage, getAllMessages, saveMessage }    = messageStore
+            clientMaxMessageId, serverMaxMessageId }    = storeToRefs(messageStore) 
+    const { addNewMessage, getAllMessages, 
+            saveMessage, getMaxMessageId }              = messageStore
 
     const { isConnectedRef, startConnection,
-            stopConnection, registerEvent }                 = useSignalR()
+            registerEvent }                             = useSignalR()
 
     onMounted(async ()   => await startConnection())
-    onUnmounted(async () => await stopConnection())
+    //onUnmounted(async () => await stopConnection()) stopConnection, 
     
     // Activate ChatRoom component
     const startChat = async () => 
@@ -27,9 +28,13 @@ export function useChatHub()
 
             registerEvent('ReceiveMessage', message => 
             {
-                messages.value.push(message)
-                clientMaxMessageId.value = message.MessageId
-                serverMaxMessageId.value = message.MessageId
+                let alreadyInList = messages.value.some(msg => msg.MessageId === message.MessageId)
+                if (!alreadyInList)
+                {
+                    messages.value.push(message)
+                    clientMaxMessageId.value = message.MessageId
+                    serverMaxMessageId.value = message.MessageId
+                }
             })
 
             console.log('SignalR startChat connected')
@@ -45,6 +50,9 @@ export function useChatHub()
     {
         try 
         {
+            await getMaxMessageId() // set maxMessageIds
+            clientMaxMessageId.value = serverMaxMessageId.value // initialize start id
+            
             registerEvent('ReceiveMaxMessageId', serverMaxId => 
             {
                 serverMaxMessageId.value = serverMaxId

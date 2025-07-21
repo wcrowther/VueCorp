@@ -43,7 +43,7 @@ export function useSignalR()
                 await hubConnection.start()
                 isConnectedRef.value = true
                 connectionStateRef.value = hubConnection.state
-                console.log('SignalR connected')
+                console.log('SignalR connected', usageCount)
             } 
             catch (err) 
             {
@@ -55,6 +55,8 @@ export function useSignalR()
     async function stopConnection() 
     {
         usageCount--
+        console.log('SignalR disconnected A',usageCount)
+
 
         if (usageCount <= 0) 
         {
@@ -65,7 +67,7 @@ export function useSignalR()
                 await hubConnection.stop()
                 isConnectedRef.value = false
                 connectionStateRef.value = 'Disconnected'
-                console.log('SignalR disconnected')
+                console.log('SignalR disconnected B')
             }
         }
     }

@@ -9,6 +9,8 @@
 
 	const adminRoles 			= ['Admin', 'SuperAdmin']
 
+	onMounted(() => console.log('MainNavBar onMounted'))
+
 </script>
 
 <template>

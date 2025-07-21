@@ -1,9 +1,16 @@
 
 <script setup>
 
-	const { messagesCount, monitorChat,
-		clientMaxMessageId, serverMaxMessageId } = useChatHub()  
-	onMounted ( monitorChat )
+	const { messagesCount, 
+			monitorChat,
+			clientMaxMessageId, 
+			serverMaxMessageId } = useChatHub()  
+
+	onMounted(() => 
+	{
+        monitorChat()
+		console.log('NewMessages onMounted')
+    })
 
 </script>
 

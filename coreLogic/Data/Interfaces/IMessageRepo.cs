@@ -7,5 +7,7 @@ public interface IMessageRepo
 {
 	Task<List<Message>> GetAllMessages();
 
+	Task<int> GetMaxMessageId();
+
 	Task<Message> SaveMessage(Message message);
 }

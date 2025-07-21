@@ -10,7 +10,7 @@ export const useMessagesStore = defineStore('MessagesStore',
     getters:
     {
         messagesCount: (state) => state.serverMaxMessageId - state.clientMaxMessageId,
-        getMaxMessageId: (state) =>  
+        getMaxMessageIdFromMessages: (state) =>  
         {
             if (state.messages.length === 0) return 0;
 
@@ -37,9 +37,24 @@ export const useMessagesStore = defineStore('MessagesStore',
                 if(result.success)
                 {
                     this.messages           = result.data.Result
-                    this.clientMaxMessageId = this.getMaxMessageId
+                    this.clientMaxMessageId = this.getMaxMessageIdFromMessages
                     this.serverMaxMessageId = this.clientMaxMessageId
                 } 
+            }
+            catch (err){ useToastStore().showError(err.message) }
+        },        
+        async getMaxMessageId ()
+        {
+            try 
+            {        
+                const result = await apiGet(`/messages/getMaxMessageId`)
+                
+                if(result.success)
+                {
+                    this.serverMaxMessageId = result.data.Result
+                } 
+                console.log(`--- >>> getMaxMessageId From Server: ${this.serverMaxMessageId}`)
+
             }
             catch (err){ useToastStore().showError(err.message) }
         },

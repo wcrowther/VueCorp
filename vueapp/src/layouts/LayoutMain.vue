@@ -15,6 +15,8 @@
 	AutoRefreshAuth()			// Refreshes JWT Tokens
 	SetHtmlHeadBody() 			// Sets CSS 'theme' or 'alt-theme' for this layout
 
+	onMounted(() => console.log('LayoutMain onMounted'))
+
 </script>
 
 <template>

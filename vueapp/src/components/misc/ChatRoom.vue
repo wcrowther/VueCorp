@@ -10,12 +10,49 @@
 	const authStore	   				= useAuthStore()
 	const { userId:currentUserId }	= storeToRefs(authStore)  
 
-	const latestFirst 				= ref(useLocalStorage('chatRoomLatestFirst', true))  
-	const isCurrentUser				= (userId) =>  userId === currentUserId.value  
+	const newestFirst 				= ref(useLocalStorage('chatRoomNewestFirst', true))  
+	const lockScroll  				= ref(false) 
+	const newestMsg	 				= ref(null)
+	const scrollContainer 			= ref(null)
+
+	// ================================================================
+
+	const block		  		= computed(() => newestFirst.value ? 'end' : 'start')
+
+	const isCurrentUser		= (userId) =>  userId === currentUserId.value  
+	const setSelectedMsgRef = (el) => newestMsg.value = el
+	const scrollToNewestMsg = (behavior) => 
+	{
+		console.log('scrollToNewestMsg')
+		
+		if(lockScroll.value)
+			return
+		
+		if (newestMsg.value && scrollContainer.value)
+			newestMsg.value.scrollIntoView({ behavior: behavior || 'instant', block: block.value })
+	}
+	const toggleSortOrder = async () =>  
+	{ 
+		newestFirst.value = !newestFirst.value
+		await nextTick() 
+		scrollToNewestMsg()
+	}
 
 	// ====================================================================
 	
-	onMounted ( startChat )
+	onMounted( async () =>    
+    {        
+        await startChat()
+        scrollToNewestMsg('instant')
+    })
+
+	watch( () => messages.value.length,
+		async () => 
+		{
+			await nextTick()
+			scrollToNewestMsg()
+		}, 
+	)
 
 </script>
 
@@ -36,31 +73,35 @@
 			<div class="pb-3 mb-3 font-bold border-b border-blue flex justify-between items-center">
 				<span class="">Chat Messages</span>
 				<span class="ml-auto badge-button cursor-pointer text-white bg-color-primary hover:bg-orange" 
-					@click="latestFirst = !latestFirst" title="Toggle message sort order">
-					{{ latestFirst ? 'Latest First' : 'Oldest First' }}
+					@click="toggleSortOrder" title="Toggle message sort order">
+					{{ newestFirst ? 'Latest First' : 'Oldest First' }}
 				</span>  
 			</div>
-			<div :class="['flex pr-4 max-h-[400px] overflow-y-auto scrollbar-thin', 
-				(latestFirst ? 'flex-col-reverse' : 'flex-col')]">
-				<template v-for="(msg, index) in messages" :key="index">
 
-					<div v-if="isCurrentUser(msg.CreatorId)"
-						class="px-4 py-2 mb-2 mr-9 border border-[#b8d7ed] rounded-lg w-fit min-w-[75%]"
-						:title="dateTimeFormat(msg.DateCreated)">
-						{{ msg.MessageText }}
-					</div>
+			<div ref="scrollContainer" 
+				:class="['flex pr-4 max-h-[400px] overflow-y-auto scrollbar-thin', 
+				(newestFirst ? 'flex-col-reverse' : 'flex-col')]">
+				<template v-for="(msg, index) in messages" :key="msg.MessageId">
 
-					<div v-else class="px-4 py-2 mb-2 ml-auto border border-color-mid-blue
-						text-color-dark-blue rounded-lg w-fit min-w-[75%]"
+					<div :class="['flex px-4 py-2 mb-2 border rounded-lg w-fit min-w-[75%]',
+							isCurrentUser(msg.CreatorId) ? 'mr-9 border-[#b8d7ed]'
+							: 'ml-auto border-color-mid-blue text-color-dark-blue',
+							(index === messages.length - 1) ? 'border-red': '']"
+						:ref="index === messages.length - 1 ? setSelectedMsgRef : null"
 						:title="dateTimeFormat(msg.DateCreated)">
-						<span class="font-bold text-color-mid-blue">{{ msg.CreatorName }} : </span>
+
+						<span v-if="isCurrentUser(msg.CreatorId)"
+							class="font-bold text-color-mid-blue">{{ msg.CreatorName }} :&nbsp; 
+						</span>
+
 						{{ msg.MessageText }}
+						<!-- <span class="ml-auto">Id: {{ msg.MessageId }}</span> -->
 					</div>
 					
 				</template>
 			</div>
 
-			<div v-if="messages.length === 0" class="">
+			<div v-if="messages?.length === 0" class="">
 				No messages to display.
 			</div>
 
@@ -68,3 +109,9 @@
 
 	</div>
 </template>
+
+<style lang="postcss" scoped>
+    .chat-user { @apply px-2 pt-[3px] pb-[2px] bg-[#f8ac59] text-red rounded-full text-center text-xs font-bold select-none 
+    }
+    .current-user{ @apply text-color-dark-gray }
+</style>

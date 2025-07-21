@@ -20,6 +20,11 @@ public class MessageManager(	IMessageRepo messageRepo,
         return await messageRepo.GetAllMessages();
     }
 
+	public async Task<int> GetMaxMessageId()
+	{
+		return await messageRepo.GetMaxMessageId();
+	}
+
 	public async Task<Message> SaveMessage(Message message)
 	{
 		var savedMessage = await messageRepo.SaveMessage(message);

@@ -20,12 +20,19 @@ public static partial class Endpoints
 							.WithOpenApi()
 							.WithTags("Messages");
 
-        endpoints.MapGet("/getAllMessages", ( IMessageManager _messageManager) =>
-        {
-            var messages = _messageManager.GetAllMessages();
+		endpoints.MapGet("/getAllMessages", (IMessageManager _messageManager) =>
+		{
+			var messages = _messageManager.GetAllMessages();
 
-            return Results.Ok(messages);
-        });
+			return Results.Ok(messages);
+		});
+
+		endpoints.MapGet("/getMaxMessageId", (IMessageManager _messageManager) =>
+		{
+			var maxMessageId = _messageManager.GetMaxMessageId();
+
+			return Results.Ok(maxMessageId);
+		});
 
 		endpoints.MapPost("/saveMessage", (	IMessageManager _messageManager,
 											IHubContext<ChatHub> hubContext,
