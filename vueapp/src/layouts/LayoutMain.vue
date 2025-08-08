@@ -27,22 +27,22 @@
 			class="fixed top-0 bottom-0 left-0 right-0 bg-gradient-back">
 		</div>
 
-		<div class="main-width mb-10 relative z-0 h-full">
+		<div class="mb-10 relative z-0 h-full">
 
 			<BreakPoints />
 			
-			<BrandBar class="flex justify-between items-center px-4 pr-5 md:ml-3 shadow-theme-layout">
+			<BrandBar>
 				<UserPopout />
 				<BrandLogo />
 			</BrandBar>
 
-			<MainNavBar class="shadow-theme-layout" />
+			<MainNavBar />
 
 			<MainContent>
 				<slot></slot>
 			</MainContent>
 			
-			<FooterBox class="shadow-theme-layout" />
+			<FooterBox  />
 
 			<NotificationControl /> 
 			

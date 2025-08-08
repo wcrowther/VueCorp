@@ -1,6 +1,6 @@
 <template>
 
-	<div class="relative min-h-[600px] bg-white shadow-theme-layout border-r border-slate-200">        
+	<div class="relative min-h-[600px] bg-white">        
         <slot></slot>
     </div>
 

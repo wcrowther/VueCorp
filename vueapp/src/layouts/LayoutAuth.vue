@@ -20,7 +20,7 @@
 
 		<div class="relative z-0 h-full w-[390px] sm:w-[560px] mt-10 mx-auto" >
 
-			<BrandBar class="pr-5 md:mx-3 shadow-theme-layout ">
+			<BrandBar class="pr-5 shadow-theme-layout ">
 				<BrandLogo />
 			</BrandBar>  
 
