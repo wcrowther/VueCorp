@@ -62,7 +62,7 @@
 
 <template>
 
-    <div class="relative" id="userPopout" @mouseleave="popoutClose()">
+    <div id="userPopout" class="relative" @mouseleave="popoutClose()">
 
         <div v-if="isLoggedIn" @click="popoutToggle(true)" title="Show user popout" id="popout"
             class="relative z-[100] text-white size-10 tracking-wider 

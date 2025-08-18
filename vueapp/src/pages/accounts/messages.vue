@@ -25,7 +25,7 @@
 				</InfoBox>
 
 				<HelpBox>
-					To simplify the example, the backend service only kees the last 
+					To simplify the example, the backend service only keeps the last 
                     20 Messages that have been posted.
 				</HelpBox>
 

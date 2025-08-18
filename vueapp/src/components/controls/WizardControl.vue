@@ -1,7 +1,5 @@
 <script setup>
 
-    import { ref } from 'vue'
-
     const props = defineProps({
         id: { type: String, default: 'WizardControl' },        
 		tabList: { type: Array, default: () => ['One', 'Two', 'Three'] }
@@ -22,7 +20,7 @@
         <div class="flex justify-start gap-px w-fit m-auto mb-5 rounded-full overflow-hidden">
         
             <template v-for="(tab,idx) in props.tabList" :key="idx">
-                <div :class="['py-1 px-5 font-bold', 
+                <div :class="['py-1 px-5 font-bold select-none', 
                     isActive(tab) ? 'bg-color-dark-blue text-white' :'bg-color-primary text-black']" 
                     @click="activeTab = tab">
                     <span>{{ tab }}</span>
@@ -42,7 +40,7 @@
            </template>  
 
            <slot>
-                <div @click="nextTab" class="text-right font-bold absolute 
+                <div @click="nextTab" class="text-right font-bold absolute select-none
                     flex justify-end bottom-5 left-5 right-5 hover:text-orange">
                     Next
                 </div>
