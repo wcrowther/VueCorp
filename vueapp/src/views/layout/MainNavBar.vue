@@ -9,7 +9,7 @@
 
 	const adminRoles 			= ['Admin', 'SuperAdmin']
 
-	onMounted(() => console.log('MainNavBar onMounted'))
+	// onMounted(() => console.log('MainNavBar onMounted'))
 
 </script>
 

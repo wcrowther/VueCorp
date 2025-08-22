@@ -13,11 +13,27 @@
         toastStore.showInfo('Showing five toasts...')   
     }
 
+    const appStore              = useAppStore()
+    const { sideBarHidden }     = storeToRefs(appStore)
+
 </script>
 
 <template>
 
     <div class="relative" id="adminNotes">
+
+    
+        <SidebarControl :showSideBar="sideBarHidden" class="z-20">
+
+            <template #sidebar>
+                <AccountsList />
+            </template>
+
+            <template #default>
+                <AccountDetail />   
+            </template>
+
+        </SidebarControl>
 
         <div class="z-0 bg-gradient-main h-[500px] absolute top-0 left-0 right-0"></div>
 
@@ -38,6 +54,7 @@
                 <AdminNotes />  
             </div>
         </div>
+	
 
     </div>  
 

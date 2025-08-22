@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using coreApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -52,6 +54,7 @@ public static class SwaggerHelper
 									  "permissions to call the other Endpoints depending on your login's user rights."
 				}
 			);
+
 			options.AddSecurityRequirement(new OpenApiSecurityRequirement {
 				{
 					new OpenApiSecurityScheme
@@ -65,9 +68,14 @@ public static class SwaggerHelper
 					Array.Empty<string>()
 				}
 			});
+
+			// Create custom Swagger input values for example calls
+
+			// options.SchemaFilter<SwaggerExamplesHelper>();
 		};
 	}
 
+	/// <summary>Update project Swagger options</summary>
 	private static Action<SwaggerOptions> MyUseSwaggerOptions()
 	{
 		return options =>
@@ -77,14 +85,15 @@ public static class SwaggerHelper
 		};
 	}
 
+	/// <summary>Update project Swagger UI options and routes</summary>
 	private static Action<SwaggerUIOptions> MyUseSwaggerUIOptions()
 	{
 		return options =>
 		{
-			options.EnableTryItOutByDefault();
-
-			options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
 			options.RoutePrefix = "docs";
+
+			options.EnableTryItOutByDefault();
+			options.SwaggerEndpoint("/docs/v1/docs.json", "VueCorp V1");
 			options.EnableTryItOutByDefault();
 			options.InjectStylesheet("/swagger-ui/custom.css");
 			options.InjectJavascript("/swagger-ui/custom.js");

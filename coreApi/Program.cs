@@ -1,17 +1,12 @@
 using coreApi;
 using coreApi.Data;
 using coreApi.Helpers;
-using coreApi.Hubs;
 using coreApi.Models;
 using coreLogic.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.VisualBasic;
 using Serilog;
-using System;
-using System.Diagnostics;
 using System.Text;
 using WildHare.Extensions;
 using JsonOptions = Microsoft.AspNetCore.Http.Json.JsonOptions;
@@ -75,7 +70,7 @@ builder.Services.AddAuthorizationBuilder()
 	.AddPolicy("Admin",		 policy => policy.RequireRole("Admin", "SuperAdmin"))
 	.AddPolicy("SuperAdmin", policy => policy.RequireRole("SuperAdmin"));
 
-builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();  // OpenApi
 
 builder.Services.AddMySwaggerGen();
 

@@ -1,6 +1,6 @@
 <script setup>
 
-    const toastStore      = useToastStore()
+    const toastStore      	= useToastStore()
 	const authStore			= useAuthStore()
 
 	const { login }			= authStore

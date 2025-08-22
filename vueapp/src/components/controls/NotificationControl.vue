@@ -17,8 +17,10 @@
 					</div>
 				</div>
 				<div class="mr-5">
-					This is a one-time notification message. After you dismiss it, it will not show again.
-					The state is stored in localStorage which you can toggle on/off in the UserPopout.
+					<slot>
+						This is a one-time notification message. After you dismiss it, it will not show again.
+						The state is stored in localStorage which you can toggle on/off in the UserPopout.
+					</slot>
 				</div>
 			</div>
 		</div>
@@ -26,9 +28,10 @@
 
 </template>
 
-<!-- Usage: To show a one-time notification message.	 
+<!-- Usage: To show a one-time notification message. Status persisted in localStorage.
 	Example:
  
-    <NotificationControl  />
+    <NotificationControl />
+	<NotificationControl>Custom message here.</NotificationControl>
 -->
 

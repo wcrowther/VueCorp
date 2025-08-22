@@ -14,6 +14,7 @@
 
 			<template #leftalign>
 				<RotateButton v-model="sideBarHidden" class="" title="toggle search"  /> 
+				<!-- <div>{{ sideBarHidden }}</div> -->
 			</template>
 
 			<div class="pr-5">

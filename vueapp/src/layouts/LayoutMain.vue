@@ -15,8 +15,6 @@
 	AutoRefreshAuth()			// Refreshes JWT Tokens
 	SetHtmlHeadBody() 			// Sets CSS 'theme' or 'alt-theme' for this layout
 
-	onMounted(() => console.log('LayoutMain onMounted'))
-
 </script>
 
 <template>
@@ -44,7 +42,7 @@
 			
 			<FooterBox class="shadow-theme-layout" />
 
-			<NotificationControl /> 
+			<NotificationControl></NotificationControl>
 			
 		</div>
 

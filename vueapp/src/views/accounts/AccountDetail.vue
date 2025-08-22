@@ -11,11 +11,10 @@
 
     const isAddingAccount               = ref(false)
     const isConfirmVisible              = ref(false)
-    // const detailInput                = ref(null)  
 
-	const rules = computed(() => accountValidator)
+	// const rules = computed(() => accountValidator)
   
-	const v$ = useVuelidate(rules, account)
+	const v$ = useVuelidate(accountValidator, account)
 
     const accountTitle = computed(() => isAddingAccount.value ? 'Add new Account' : (hasKeys(account.value) ? account.value.AccountName : 'Accounts') )
 
@@ -82,8 +81,6 @@
 
     watch(() => detailAccountId.value, (newVal, oldVal) => 
     {
-        // console.log('Account accountId newval: ' + newVal + ' oldVal: ' + oldVal)
-
         if(newVal === oldVal) 
             return
 
@@ -152,15 +149,21 @@
         <div v-if="account && account.AccountId > 0 || isAddingAccount"  
             class="w-[300px] flex-1 border border-color-blue-gray bg-white p-5 min-w-[200px] grow">
 
-            <!-- <TitleBox class="bg-transparent">
+            <!-- 
+            <TitleBox class="bg-transparent">
                 <span>Account Address</span>
-            </TitleBox> -->
+            </TitleBox> 
+            -->
 
             <TextInput labelName="Street Address" v-model="account.StreetAddress" :v$ />
             <TextInput labelName="City" ruleName="City" v-model="account.City" :v$ />
-            <SelectInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" 
-                :optionsList="usStatesList" defaultText="-- Pick a State --" :v$ />
-            <TextInput labelName="Postal Code" ruleName="PostalCode" v-model="account.PostalCode" :v$ />        
+
+            <div class="flex justify-between gap-3">
+                <SelectInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince"
+                    :optionsList="usStatesList" defaultText="-- Pick a State --" :v$ />
+                <TextInput labelName="Postal Code" ruleName="PostalCode" v-model="account.PostalCode" :v$ />
+            </div>
+                 
         </div>
 
     </div>
