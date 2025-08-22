@@ -16,7 +16,7 @@
             showPrevNext, 
             showBreakpoints, 
             showNotification,
-            showNewMessages, 
+            //showNewChatMessages, 
             altTheme, 
             pagerDebugger}          = storeToRefs(appStore) 
     const { resetLocalStorage   }   = appStore
@@ -168,13 +168,7 @@
                         <CheckboxInput labelName="" v-model="showNotification" />
                     </div>
                 </div>
-                <div class="label-row">
-                    <div class="label-title" 
-                        title="Show New Chats button">ShowNewMessages:</div>
-                    <div class="label-value">
-                        <CheckboxInput labelName="" v-model="showNewMessages" />
-                    </div>
-                </div>  
+
                 <div class="label-row">
                     <div class="label-title" 
                         title="Persist search on page load">Persist Search</div>
@@ -184,6 +178,13 @@
                 </div>    
                 
                <!--  
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Show New Chats button">ShowNewChatMessages:</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="showNewChatMessages" />
+                    </div>
+                </div>  
                 <div class="flex">
                     <div class="label-title">Numbers Only:</div>
                     <div class="label-value flex flex-col">

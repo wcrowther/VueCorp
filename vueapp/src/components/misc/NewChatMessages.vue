@@ -9,8 +9,10 @@
 	onMounted(() => 
 	{
         monitorChat()
-		console.log('NewMessages onMounted')
+		console.log('NewChatMessages onMounted')
     })
+
+	// THIS COMPONENT IS NOT YET COMPLETED AND IS STILL IN PROGRESS
 
 </script>
 
@@ -28,6 +30,6 @@
 </template>
 
 <!-- USAGE 
-	<NewMessages class="self-center" />
+	<NewChatMessages class="self-center" />
 -->
 

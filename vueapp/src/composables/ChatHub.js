@@ -45,7 +45,7 @@ export function useChatHub()
         }
     }
 
-    // Activate NewMessages component
+    // Activate NewChatMessages component
     const monitorChat = async () => 
     {
         try 

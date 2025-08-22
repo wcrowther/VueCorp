@@ -70,8 +70,7 @@ public static class SwaggerHelper
 			});
 
 			// Create custom Swagger input values for example calls
-
-			// options.SchemaFilter<SwaggerExamplesHelper>();
+			options.SchemaFilter<SwaggerExamplesHelper>();
 		};
 	}
 

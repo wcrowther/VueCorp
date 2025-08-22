@@ -22,7 +22,7 @@
         <div class="flex justify-start gap-px w-fit m-auto mb-5 rounded-full overflow-hidden">
         
             <template v-for="(tab,idx) in props.tabList" :key="idx">
-                <div :class="['py-1 px-5 font-bold tracking-wide', 
+                <div :class="['py-1 px-5 font-bold tracking-wide select-none cursor-pointer', 
                     isActive(tab) ? 'bg-color-mid-blue text-white' :'bg-color-light-blue text-black']" 
                     @click="activeTab = tab">
                     <span>{{ tab }}</span>
