@@ -2,7 +2,7 @@
 
     const authStore	        = useAuthStore()
     const appStore          = useAppStore()
-    const toastStore      = useToastStore()
+    const toastStore        = useToastStore()
 
     const { copy                }   = useClipboard()
     const { logout, refreshAuth }   = authStore
@@ -12,7 +12,8 @@
             tokenExpiration, 
             lastRequestDatetime }   = storeToRefs(authStore)  
                   
-    const { showPrevNext, 
+    const { persistSearch,  
+            showPrevNext, 
             showBreakpoints, 
             showNotification,
             showNewMessages, 
@@ -174,6 +175,13 @@
                         <CheckboxInput labelName="" v-model="showNewMessages" />
                     </div>
                 </div>  
+                <div class="label-row">
+                    <div class="label-title" 
+                        title="Persist search on page load">Persist Search</div>
+                    <div class="label-value">
+                        <CheckboxInput labelName="" v-model="persistSearch" />
+                    </div>
+                </div>    
                 
                <!--  
                 <div class="flex">

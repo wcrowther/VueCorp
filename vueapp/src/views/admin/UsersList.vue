@@ -32,8 +32,8 @@
     const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
     listPager.value.PageSize            = listPageSizeDefault
 
-    const searchFilterDefault           = persistSearch.value ? useLocalStorage(searchFilterDefaultName, '') : ''
-    listPager.value.Search              = new SearchModel(searchFilterDefault.value)  
+    const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')  // move to store
+    listPager.value.Search              = new SearchModel(persistSearch.value ? searchFilterDefault.value : '')  
 
     // Methods / Computeds ===========================================================================
 
@@ -124,7 +124,9 @@
             return 
 
         useDebounceFn(() => refreshList(1, true), 1000)()
-        searchFilterDefault.value = newVal
+        
+        if(persistSearch.value)
+            searchFilterDefault.value = newVal
     })
 
     // ===============================================================================================

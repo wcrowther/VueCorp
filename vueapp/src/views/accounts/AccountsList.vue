@@ -27,11 +27,11 @@
     const searchInput                   = ref(null) // used to call method searchInput.value.focusInput()   
                                                     // on a component. useTemplateRef('searchInput') in Vue 3.5+
 
-    const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)
+    const listPageSizeDefault           = useLocalStorage(pageSizeDefaultName, 15)  // move to store
     listPager.value.PageSize            = listPageSizeDefault
 
-    const searchFilterDefault           = persistSearch.value ? useLocalStorage(searchFilterDefaultName, '') : ''
-    listPager.value.Search              = new SearchForAccount(searchFilterDefault)  
+    const searchFilterDefault           = useLocalStorage(searchFilterDefaultName, '')  // move to store
+    listPager.value.Search              = new SearchForAccount(persistSearch.value ? searchFilterDefault.value : '')  
 
     // Methods / Computeds ===========================================================================
 
@@ -116,7 +116,9 @@
             return 
 
         useDebounceFn(() => refreshList(1, true), 1000)()
-        searchFilterDefault.value = newVal
+        
+        if(persistSearch.value)
+            searchFilterDefault.value = newVal
     })
 
     // ===============================================================================================

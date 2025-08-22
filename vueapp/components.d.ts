@@ -18,7 +18,6 @@ declare module 'vue' {
     ChatRoom: typeof import('./src/components/misc/ChatRoom.vue')['default']
     CheckboxInput: typeof import('./src/components/inputs/CheckboxInput.vue')['default']
     ConfirmControl: typeof import('./src/components/controls/ConfirmControl.vue')['default']
-    copy: typeof import('./src/components/controls/ConfirmControl copy.vue')['default']
     CreatorBox: typeof import('./src/components/boxes/CreatorBox.vue')['default']
     FloaterControl: typeof import('./src/components/controls/FloaterControl.vue')['default']
     FooterBox: typeof import('./src/views/layout/FooterBox.vue')['default']
