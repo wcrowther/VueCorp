@@ -47,7 +47,6 @@ declare module 'vue' {
     NavBar: typeof import('./src/views/layout/NavBar.vue')['default']
     NavTab: typeof import('./src/views/layout/NavTab.vue')['default']
     NewChatMessages: typeof import('./src/components/misc/NewChatMessages.vue')['default']
-    NewMessages: typeof import('./src/components/misc/NewMessages.vue')['default']
     NewUser: typeof import('./src/views/auth/NewUser.vue')['default']
     NotificationControl: typeof import('./src/components/controls/NotificationControl.vue')['default']
     PasswordInput: typeof import('./src/components/inputs/PasswordInput.vue')['default']
