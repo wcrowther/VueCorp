@@ -18,7 +18,7 @@
     <IconSymbol width="28px" class="text-color-dark-gray" icon="heroicons:cog-8-tooth-solid" />
     
     <IconSymbol width="18px" class="mt-[10px] mr-1 text-color-dark-gray
-					group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
+		group-hover:text-white group-hover:opacity-100" icon="heroicons-solid:home" />
 
     <IconSymbol :inline="false" :vertical-flip="true" class="border border-red"
         color="red"  width="96px" icon="mdi:arrow-down-box" />

@@ -1,16 +1,15 @@
 <script setup>
 
     const accountsStore                 = useAccountsStore()
-    const { account, detailAccountId }  = storeToRefs(accountsStore)
-    const 
-    { 
-        getAccountDetailData,
-        addNewAccount, 
-        saveAccount
-    }                                   = accountsStore
+    const { account, detailAccountId,
+            accountIsDirty  }           = storeToRefs(accountsStore)
+    const { getAccountDetailData,  
+            addNewAccount, 
+            saveAccount,  
+            resetAccount }              = accountsStore
 
     const isAddingAccount               = ref(false)
-    const isConfirmVisible              = ref(false)
+    const showConfirmControl            = ref(false)
 
 	// const rules = computed(() => accountValidator)
   
@@ -42,7 +41,7 @@
         const isValidAccount = await v$.value.$validate()
         if(isValidAccount)
         {
-            isConfirmVisible.value = true
+            showConfirmControl.value = true
         }
     }
 
@@ -50,23 +49,22 @@
     {
         saveAccount()
         isAddingAccount.value = false 
-        isConfirmVisible.value = false
+        showConfirmControl.value = false
     }
 
     const cancelAction = () => 
     {
-        isConfirmVisible.value = false
+        showConfirmControl.value = false
         v$.value.$reset()
         // getAccountDetail()
     }
-
 
     // Keyboard Listeners  =====================================================================
 
     const keys = function (e)   
     {
         let ctrl = navigator.userAgentData.platform.match("Mac") ? e.metaKey : e.ctrlKey   
-        if (e.code === 'KeyS' && ctrl) { confirmSave();                     e.preventDefault(); }
+        if (e.code === 'KeyS' && ctrl) { confirmSave(); e.preventDefault(); }
         // else if (e.code === 'End')     { detailInput.value.focusInput();    e.preventDefault();} 
     }
 
@@ -74,9 +72,9 @@
 
     // Lifecycle & Watches  ==========================================================================
 
-    onMounted(()    => 
-    {
-        getAccountDetail()
+    onMounted(() => 
+    { 
+        getAccountDetail() 
     })
 
     watch(() => detailAccountId.value, (newVal, oldVal) => 
@@ -87,6 +85,8 @@
         getAccountDetail()  
     });
 
+
+
     // ===============================================================================================
 
 </script>
@@ -94,17 +94,35 @@
 <template>
     <div class="flex flex-wrap gap-5" id="AccountDetailView">
         
-        <ConfirmControl v-if="isConfirmVisible"
+        <ConfirmControl v-if="showConfirmControl"
 			message="Save Account Data?" @confirmDialog="saveAccountDetail" @cancelDialog="cancelAction" />
 
+        <!-- <ConfirmControl v-if="showConfirmControl"
+			message="You have unsaved changes that you will lose. Click Cancel to stay on page." @confirmDialog="saveAccountDetail" @cancelDialog="cancelAction" /> -->
+
         <div class="w-full flex justify-between items-center">
+
             <h2 class="text-2xl font-display font-bold flex-grow">{{ accountTitle }}</h2>
+
             <span class="flex flex-wrap gap-1.5"> 
+
+                <button v-if="!isAddingAccount && accountIsDirty && hasKeys(account) && account.AccountId > 0" 
+                    class="btn-cancel flex items-center px-2" @click="resetAccount" 
+                    title="Revert local changes back to saved Account">
+                    <IconSymbol width="18px" class="text-warm-600"  icon="heroicons:arrow-left-20-solid" />
+                </button>
+
                 <button v-if="isAddingAccount || hasKeys(account) && account.AccountId > 0" 
-                    class="btn-primary" @click="confirmSave">Save</button>
-                <button v-if="!isAddingAccount" class="btn-primary"
-                    @click="addAccount">Add</button>    
-                <button v-else class="btn-delete" @click="cancelAdd">Cancel</button>
+                    class="btn-primary" :disabled="!accountIsDirty" @click="confirmSave">
+                    Save
+                </button>
+
+                <button v-if="!isAddingAccount" class="btn-primary" @click="addAccount">
+                    Add
+                </button>    
+                
+                <button v-else class="btn-cancel" @click="cancelAdd">Cancel</button>
+
             </span>
         </div>
 
@@ -172,7 +190,7 @@
 <style lang="postcss" scoped></style> 
 
 <!-- 
-    <TextInput   labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" :v$></TextInput>
+    <TextInput labelName="State / Province" ruleName="StateProvince" v-model="account.StateProvince" :v$></TextInput>
     <div class="mb-3">
         <span class="text-color-dark-blue font-bold whitespace-nowrap text-sm">States</span>
         <span v-for="error in v$.StateProvince.$errors" :key="error.$uid"

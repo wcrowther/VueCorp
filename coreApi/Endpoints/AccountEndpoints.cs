@@ -18,32 +18,32 @@ public static partial class Endpoints
 							.WithOpenApi()
 							.WithTags("Accounts");
 
-        endpoints.MapGet("/getAllAccounts", (	IAccountManager _accountManager) =>
+        endpoints.MapGet("/getAllAccounts", (IAccountManager _accountManager) =>
         {
             var accounts = _accountManager.GetAllAccounts();
 
             return Results.Ok(accounts);
         });
 
-        endpoints.MapPost("/getPagedAccounts", (	IAccountManager _accountManager, 
-													[FromBody] Pager<SearchForAccount> pager) =>
+        endpoints.MapPost("/getPagedAccounts", ( IAccountManager _accountManager, 
+												 [FromBody] Pager<SearchForAccount> pager) =>
         {
             var accounts = _accountManager.GetPagedAccounts(pager);
 
             return Results.Ok(accounts);
         });
 
-        endpoints.MapGet("/getAccountById/{accountId}", (	IAccountManager _accountManager, 
-															int accountId) =>
+        endpoints.MapGet("/getAccountById/{accountId}", (IAccountManager _accountManager, 
+														 int accountId) =>
         {
             var acct = _accountManager.GetAccountById(accountId);
 
             return Results.Ok(acct);
         });
 
-		endpoints.MapPost("/saveAccount", (		IAccountManager _accountManager,
-												IAuthManager _authManager,
-												[FromBody] Account account) =>
+		endpoints.MapPost("/saveAccount", (	IAccountManager _accountManager,
+											IAuthManager _authManager,
+											[FromBody] Account account) =>
 		{
 			var acct = _accountManager.SaveAccount(account);
 

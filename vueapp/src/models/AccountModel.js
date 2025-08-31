@@ -9,7 +9,7 @@ function AccountModel (accountId, accountName)
     this.City               = '' 
     this.StateProvince      = '' 
     this.PostalCode         = ''
-    this.IsInvoiceAccount   = false
+    this.IsInvoice          = false
     this.IsAutoPay          = false
     this.IsActive           = false 
     this.CreatedDate        = null

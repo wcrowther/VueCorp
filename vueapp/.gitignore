@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# --- Node / Vite basics ---
 node_modules
 .DS_Store
 dist
@@ -14,10 +15,32 @@ dist-ssr
 coverage
 *.local
 
+# AutoImport
+auto-imports.d-*.ts
+
+# keep the stable one you configured:
+!src/auto-imports.d.ts
+
+# Vue Router typed routes
+typed-router.d-*.ts
+!src/typed-router.d.ts
+
+# Auto components typing
+components.d-*.ts
+!src/components.d.ts
+
+# AutoImport ESLint helper (optional, usually regenerated)
+.eslintrc-auto-import.json
+
+# Misc environment files 
+.env.local
+.env.*.local
+
+# Cypress testing files
 /cypress/videos/
 /cypress/screenshots/
 
-# Editor directories and files
+# IDE / Editor files
 .vscode/*
 !.vscode/extensions.json
 .idea
