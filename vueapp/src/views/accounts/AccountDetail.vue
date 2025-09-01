@@ -45,18 +45,17 @@
         }
     }
 
-    const saveAccountDetail = async () =>
+    const saveAccountDetail = async (confirmResult) =>
     {
+        if(!confirmResult)  // cancelled
+        {
+            showConfirmControl.value = false
+            return
+        }
+        
         saveAccount()
         isAddingAccount.value = false 
         showConfirmControl.value = false
-    }
-
-    const cancelAction = () => 
-    {
-        showConfirmControl.value = false
-        v$.value.$reset()
-        // getAccountDetail()
     }
 
     // Keyboard Listeners  =====================================================================
@@ -95,7 +94,7 @@
     <div class="flex flex-wrap gap-5" id="AccountDetailView">
         
         <ConfirmControl v-if="showConfirmControl"
-			message="Save Account Data?" @confirmDialog="saveAccountDetail" @cancelDialog="cancelAction" />
+			message="Save Account Data?" @confirmResult="saveAccountDetail"  />
 
         <!-- <ConfirmControl v-if="showConfirmControl"
 			message="You have unsaved changes that you will lose. Click Cancel to stay on page." @confirmDialog="saveAccountDetail" @cancelDialog="cancelAction" /> -->

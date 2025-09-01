@@ -98,11 +98,11 @@ declare global {
   const useAuthStore: typeof import('./stores/AuthStore.js')['useAuthStore']
   const useChatHub: typeof import('./composables/ChatHub.js')['useChatHub']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
-  const useConfirm: typeof import('./composables/UseConfirmControl.js')['useConfirm']
   const useConfirmDialog: typeof import('./composables/UseConfirmDialog.js')['useConfirmDialog']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
+  const useGenericList: typeof import('./composables/UsePagedList.js')['useGenericList']
   const useImagesStore: typeof import('./stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useMessagesStore: typeof import('./stores/MessagesStore.js')['useMessagesStore']
@@ -229,6 +229,7 @@ declare module 'vue' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useGenericList: UnwrapRef<typeof import('./composables/UsePagedList.js')['useGenericList']>
     readonly useImagesStore: UnwrapRef<typeof import('./stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMessagesStore: UnwrapRef<typeof import('./stores/MessagesStore.js')['useMessagesStore']>
@@ -348,6 +349,7 @@ declare module '@vue/runtime-core' {
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
     readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useGenericList: UnwrapRef<typeof import('./composables/UsePagedList.js')['useGenericList']>
     readonly useImagesStore: UnwrapRef<typeof import('./stores/ImagesStore.js')['useImagesStore']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useMessagesStore: UnwrapRef<typeof import('./stores/MessagesStore.js')['useMessagesStore']>

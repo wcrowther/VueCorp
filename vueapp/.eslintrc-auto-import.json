@@ -135,6 +135,7 @@
     "useConfirm": true,
     "useConfirmDialog": true,
     "useConfirmControl": true,
-    "UseConfirmControl": true
+    "UseConfirmControl": true,
+    "useGenericList": true
   }
 }

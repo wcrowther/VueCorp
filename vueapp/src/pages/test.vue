@@ -4,25 +4,25 @@
     const { sideBarHidden }     = storeToRefs(appStore)
     const isDirty               = ref(false)
 
-    // const { showConfirm }       = useConfirmDialog();
-// 
-    // const handleDelete = async () => 
-    // {
-    //     const confirmed = await showConfirm('Are you sure you want to delete this item?')
-    // 
-    //     if (confirmed) 
-    //         console.log('Item deleted!') 
-    //     else 
-    //         console.log('Deletion cancelled.')
-    // }
+    const { showConfirm }       = useConfirmDialog();
+    
+    const handleDelete = async () => 
+    {
+        const confirmed = await showConfirm('Are you sure you want to delete this item?')
+    
+        if (confirmed) 
+            console.log('Item deleted!') 
+        else 
+            console.log('Deletion cancelled.')
+     }
 
-    import useConfirmControl from '@/composables/useConfirmControl.js'
+    //import useConfirmControl from '@/composables/useConfirmControl.js'
 
     // get confirm API
-    const { confirm, showConfirm, confirmMessage, onConfirm, onCancel } = useConfirmControl()
+    //const { confirm, showConfirm, confirmMessage, onConfirm, onCancel } = useConfirmControl()
 
     // install unsaved changes guard
-    useUnsavedChangesGuard(isDirty, confirm)
+    // useUnsavedChangesGuard(isDirty, confirm)
 
 </script>
 
@@ -34,10 +34,9 @@
 		<PrimaryButton @click="isDirty = !isDirty" title="Is Dirty?" />
         <div class="text-white">Is Dirty: {{ isDirty }} </div>
 
-        <!-- <PrimaryButton @click="handleDelete" title="Delete Something" class="bg-red" /> -->
+        <PrimaryButton @click="handleDelete" title="Delete Something" class="bg-red" /> 
 
-        <ConfirmControl v-if="showConfirm" :message="confirmMessage"
-            @confirmDialog="onConfirm" @cancelDialog="onCancel" />
+        <!-- <ConfirmControl v-if="showConfirm" :message="confirmMessage"  @confirmResult="onConfirm"  /> -->
 
         <NavTab navText="Accounts" 	to="/accounts" />
 	</div>
