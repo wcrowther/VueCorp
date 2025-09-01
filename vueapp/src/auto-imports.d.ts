@@ -24,6 +24,7 @@ declare global {
   const SearchForAccount: typeof import('./models/PagerModel.js')['SearchForAccount']
   const SearchModel: typeof import('./models/PagerModel.js')['SearchModel']
   const SetHtmlHeadBody: typeof import('./composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']
+  const UseConfirmControl: typeof import('./composables/UseConfirmControl.js')['default']
   const UserModel: typeof import('./models/UserModel.js')['UserModel']
   const accountValidator: typeof import('./helpers/validators.js')['accountValidator']
   const apiCall: typeof import('./composables/ApiCall.js')['apiCall']
@@ -97,6 +98,7 @@ declare global {
   const useAuthStore: typeof import('./stores/AuthStore.js')['useAuthStore']
   const useChatHub: typeof import('./composables/ChatHub.js')['useChatHub']
   const useClipboard: typeof import('@vueuse/core')['useClipboard']
+  const useConfirm: typeof import('./composables/UseConfirmControl.js')['useConfirm']
   const useConfirmDialog: typeof import('./composables/UseConfirmDialog.js')['useConfirmDialog']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
@@ -149,6 +151,7 @@ declare module 'vue' {
     readonly SearchForAccount: UnwrapRef<typeof import('./models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./models/PagerModel.js')['SearchModel']>
     readonly SetHtmlHeadBody: UnwrapRef<typeof import('./composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
+    readonly UseConfirmControl: UnwrapRef<typeof import('./composables/UseConfirmControl.js')['default']>
     readonly UserModel: UnwrapRef<typeof import('./models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./composables/ApiCall.js')['apiCall']>
@@ -267,6 +270,7 @@ declare module '@vue/runtime-core' {
     readonly SearchForAccount: UnwrapRef<typeof import('./models/PagerModel.js')['SearchForAccount']>
     readonly SearchModel: UnwrapRef<typeof import('./models/PagerModel.js')['SearchModel']>
     readonly SetHtmlHeadBody: UnwrapRef<typeof import('./composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
+    readonly UseConfirmControl: UnwrapRef<typeof import('./composables/UseConfirmControl.js')['default']>
     readonly UserModel: UnwrapRef<typeof import('./models/UserModel.js')['UserModel']>
     readonly accountValidator: UnwrapRef<typeof import('./helpers/validators.js')['accountValidator']>
     readonly apiCall: UnwrapRef<typeof import('./composables/ApiCall.js')['apiCall']>

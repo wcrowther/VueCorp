@@ -133,6 +133,8 @@
     "accountSchema": true,
     "useUnsavedChangesGuard": true,
     "useConfirm": true,
-    "useConfirmDialog": true
+    "useConfirmDialog": true,
+    "useConfirmControl": true,
+    "UseConfirmControl": true
   }
 }

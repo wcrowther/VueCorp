@@ -12,7 +12,7 @@ export default defineConfig({
     plugins: 
     [
         AutoImport({
-            dts: 'auto-imports.d.ts',
+            dts: 'src/auto-imports.d.ts',
             vueTemplate: true,
             dirs: ['./src/helpers', './src/models', 
                     './src/stores', './src/composables'],
@@ -44,13 +44,13 @@ export default defineConfig({
             }
         }),
         VueRouter({
-            dts: 'typed-router.d.ts'
+            dts: 'src/typed-router.d.ts'
         }),        
         vue(),
         mkcert(),
         Components({
             dirs: ['./src/components', './src/layouts', './src/views'],
-            dts: 'components.d.ts'
+            dts: 'src/components.d.ts'
         })
     ],
     resolve: {
