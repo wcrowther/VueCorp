@@ -22,12 +22,12 @@ export function useConfirmDialog()
 		}).mount(el);
 	}
 
-	const showConfirm = async (message) => 
+	const fnShowConfirm = async (message) => 
 	{
 		return await appInstance.$refs.ConfirmDialog.showDialog(message);
 	};
 
-	return { showConfirm };
+	return { fnShowConfirm };
 }
 
 /* Example::

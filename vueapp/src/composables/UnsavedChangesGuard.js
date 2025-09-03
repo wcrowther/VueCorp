@@ -1,12 +1,13 @@
-import { onBeforeRouteLeave } from 'vue-router'
-import { onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeRouteLeave } 			from 'vue-router'
+import { onMounted, onBeforeUnmount } 	from 'vue'
 
-export function useUnsavedChangesGuard(isDirtyRef, confirmFn) 
+export function useUnsavedChangesGuard(isDirtyRef, confirmFn, browserGuard = false) 
 {
 	// Internal helper
 	async function checkConfirm() 
 	{
-		if (isDirtyRef.value) {
+		if (isDirtyRef.value) 
+		{
 			// call your custom confirm dialog instead of window.confirm
 			return await confirmFn('You have unsaved changes. Continue?')
 		}
@@ -23,21 +24,25 @@ export function useUnsavedChangesGuard(isDirtyRef, confirmFn)
 			next(false)
 	})
 
-	// 2. Guard against browser close / refresh
+	// 2. Guard against browser close / refresh if browserGuard is true
 	function handleBeforeUnload(e) 
 	{
-		if (isDirtyRef.value) 
+		if (isDirtyRef.value && browserGuard)
 		{
 			e.preventDefault()
 			e.returnValue = '' // Chrome requires this
 		}
 	}
 
-	onMounted(() => {
-		window.addEventListener('beforeunload', handleBeforeUnload)
+	onMounted(() => 
+	{
+		if(browserGuard)
+			window.addEventListener('beforeunload', handleBeforeUnload)
 	})
 
-	onBeforeUnmount(() => {
-		window.removeEventListener('beforeunload', handleBeforeUnload)
+	onBeforeUnmount(() => 
+	{
+		if(browserGuard)
+			window.removeEventListener('beforeunload', handleBeforeUnload)
 	})
 }

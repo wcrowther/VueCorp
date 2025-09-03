@@ -49,7 +49,7 @@ export default defineConfig({
         vue(),
         mkcert(),
         Components({
-            dirs: ['./src/components', './src/layouts', './src/views'],
+                dirs: ['./src/components', './src/layouts', './src/views'],
             dts: 'src/components.d.ts'
         })
     ],

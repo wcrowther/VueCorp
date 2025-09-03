@@ -1,56 +1,61 @@
 <script setup>
 
-    const appStore              = useAppStore()
-    const { sideBarHidden }     = storeToRefs(appStore)
+    //const appStore              = useAppStore()
+    //const { sideBarHidden }     = storeToRefs(appStore)
     const isDirty               = ref(false)
 
-    const { showConfirm }       = useConfirmDialog();
+    const { fnShowConfirm }      = useConfirmDialog();
     
-    const handleDelete = async () => 
+    const handleSave = async () => 
     {
-        const confirmed = await showConfirm('Are you sure you want to delete this item?')
+        if (!isDirty.value) // only confirm if there are unsaved changes
+        {
+            console.log('Nothing to save!') 
+            return
+        }   
+        
+        const confirmed = await fnShowConfirm('Are you sure you want to save this item?')
     
         if (confirmed) 
-            console.log('Item deleted!') 
+            console.log('Item saved!') 
         else 
-            console.log('Deletion cancelled.')
+            console.log('Save cancelled.')
      }
 
-    //import useConfirmControl from '@/composables/useConfirmControl.js'
+    // Use ConfirmControl composable (not ConfirmDialog component)
+    // import useConfirmControl from '@/composables/useConfirmControl.js'
+    // const { confirm, showConfirm, confirmMessage, onConfirm, onCancel } = useConfirmControl()
 
-    // get confirm API
-    //const { confirm, showConfirm, confirmMessage, onConfirm, onCancel } = useConfirmControl()
-
-    // install unsaved changes guard
-    // useUnsavedChangesGuard(isDirty, confirm)
+    useUnsavedChangesGuard(isDirty, fnShowConfirm, false)
 
 </script>
 
 <template>
+	<LayoutMain>
+        <div class="bg-gray h-12 p-3 flex items-center gap-3">
 
-	<div class="bg-gray h-12 p-3 flex items-center gap-3">
+            <!-- <PrimaryButton @click="sideBarHidden = !sideBarHidden" title="Show / Hide" /> -->
 
-		<PrimaryButton @click="sideBarHidden = !sideBarHidden" title="Show / Hide" />
-		<PrimaryButton @click="isDirty = !isDirty" title="Is Dirty?" />
-        <div class="text-white">Is Dirty: {{ isDirty }} </div>
+            <PrimaryButton @click="isDirty = !isDirty"> Is Dirty? {{ isDirty }}</PrimaryButton>   
 
-        <PrimaryButton @click="handleDelete" title="Delete Something" class="bg-red" /> 
+            <PrimaryButton @click="handleSave" title="Save Something" class="bg-red" /> 
 
-        <!-- <ConfirmControl v-if="showConfirm" :message="confirmMessage"  @confirmResult="onConfirm"  /> -->
+            <!-- <ConfirmControl v-if="showConfirm" :message="confirmMessage"  @confirmResult="onConfirm"  /> -->
+        </div>
 
-        <NavTab navText="Accounts" 	to="/accounts" />
-	</div>
 
-    <SidebarControl :showSideBar="sideBarHidden">
+        <SidebarStaticControl>
 
-        <template #sidebar>
-            <div class="bg-orange w-full h-full p-5">sidebar</div>
-        </template>
+            <template #sidebar>
+                <div class="bg-orange w-full flex-1 p-5">sidebar</div>
+            </template>
 
-        <template #default>
-            <div class="bg-yellow w-full h-full p-5">default</div>
-        </template>
+            <template #default>
+                <div class="bg-yellow w-full flex-1 p-5">default</div>
+            </template>
 
-    </SidebarControl>	
+        </SidebarStaticControl>	 
+
+    </LayoutMain>
 
 </template>

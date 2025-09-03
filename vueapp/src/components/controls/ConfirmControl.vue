@@ -9,12 +9,28 @@
 		cancelText:  { type: String, default: 'Cancel' } 
 	});
 
+	const message 		= ref(props.message);
     const onConfirm     = () => emits('confirmResult', true)
 	const onCancel      = () => emits('confirmResult', false)
 
     // Custom Directive (note casing)
     const vFocus = {  mounted: (el) => el.focus() }
 
+    // Expose public function  ============================================\
+
+	// let fnResolvePromise; 
+	// 
+	// const showDialog = (msg) => 
+	// {
+	// 	message.value = msg
+	// 	return new Promise((resolve) => 
+	// 	{
+	// 		fnResolvePromise = resolve
+	// 	});
+	// }
+
+	// defineExpose({ showDialog });
+	
     // Keyboard Listeners  ================================================
 	
 	DisableLayoutEscapeKey()
