@@ -51,7 +51,7 @@ export default defineConfig({
         Components({
                 dirs: ['./src/components', './src/layouts', './src/views'],
             dts: 'src/components.d.ts'
-        })
+        }),
     ],
     resolve: {
         alias: {
@@ -67,6 +67,8 @@ export default defineConfig({
         },
         port: 7200,
         open: true  // open the browser after compiling
+    },
+    build: {
+        sourcemap: true,
     }
- 
 })

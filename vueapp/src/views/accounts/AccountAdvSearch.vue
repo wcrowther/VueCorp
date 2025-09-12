@@ -22,7 +22,8 @@
 
 <template>   
 
-	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
+	<ModalControl v-if="listPager && listPager.Search"
+        :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
         height="500px" width="500px" @closeModal="showModal=false" >
 
         <div class="p-5 pb-0">

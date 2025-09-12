@@ -49,8 +49,10 @@ export const useAccountsStore = defineStore('AccountsStore',
                 
                 if(result.success) 
                 {
-                    this.accountsPager  = Object.assign(new PagerModel(new SearchForAccount()), result.data.Result.Pager)
-                    this.accountsList   = result.data.Result.ListItems   
+                    // OLD: this.accountsPager  = Object.assign(new PagerModel(new SearchForAccount(), result.data.Result.Pager)
+
+                    this.accountsPager = PagerModel.fromJson(result.data.Result.Pager, () => new SearchForAccount()) 
+                    this.accountsList  = result.data.Result.ListItems   
                 }
             }
             catch (err)

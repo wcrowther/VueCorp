@@ -136,6 +136,8 @@
     "useConfirmDialog": true,
     "useConfirmControl": true,
     "UseConfirmControl": true,
-    "useGenericList": true
+    "useGenericList": true,
+    "usePagedList": true,
+    "Result": true
   }
 }
