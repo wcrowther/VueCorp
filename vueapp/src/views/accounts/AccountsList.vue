@@ -11,13 +11,14 @@
 
 	// Store refs
 	const { getPagedAccounts } = accountsStore
+
 	const { accountsList: itemsList,
 			accountsPager: listPager,
 			detailAccountId: activeDetailId } = storeToRefs(accountsStore)
-	const { persistSearch } = storeToRefs(appStore)
+	const { persistSearch }                   = storeToRefs(appStore)
 
-	// Use the generic paged list composable
-	const list = usePagedList(
+	// Use the generic paged pList composable
+	const pList = usePagedList(
 	{
 		getPagedItems: getPagedAccounts,
 		itemsList,
@@ -30,7 +31,11 @@
 		createSearchModel: () => new SearchForAccount(''),   // 👈 specific factory
 	})
 
-	console.log('list is: ', list)
+    const searchFilter = computed(() => pList.listPager.value?.Search || '')
+
+
+	console.log('pList is: ', pList.listPager.value.Search)
+
 
 </script>
 
@@ -39,24 +44,29 @@
 
         <div class="px-5 pb-3 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
-            
+
+            <ObjectInfo :object="pList.listPager.value.Search" >
+                pList.listPager.Search.Filter
+            </ObjectInfo>
+
             <div class="flex gap-x-1 pt-5 w-full">
-                <SearchInput ref="searchInput" 
-                    v-model="list.listPager" 
-                    v-model:showAdvSearch="list.showAdvSearch" />
+                <SearchInput
+                    ref="searchInput" 
+                    v-model="searchFilter" 
+                    v-model:showAdvSearch="pList.showAdvSearch" />
             </div>
 
-            <div v-if="list.listPager && list.listPager.Search && 
-					list.listPager.Search.StateProvinceFilter?.length > 0" 
+            <div v-if="pList.listPager && pList.listPager.Search && 
+					pList.listPager.Search.StateProvinceFilter?.length > 0" 
                 class="ml-5 text-sm mt-2 italic">
-                Filters: {{ list.listPager.Search.StateProvinceFilter }}
+                Filters: {{ pList.listPager.Search.StateProvinceFilter }}
             </div>
 
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager 
-					class="mr-2" id='listPager' v-bind:pager="list.listPager.value" />
+					class="mr-2" id='listPager' v-bind:pager="pList.listPager.value" />
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">
-                    Total: {{ list.listPager.TotalCount || 0 }}
+                    Total: {{ pList.listPager.TotalCount || 0 }}
                 </span>
             </div>
 
@@ -69,7 +79,7 @@
                 Click on the + sign for the Advanced Search with additional options.
             </HelpBox>
             
-            <MobilePagerPrevNext :pager="list.listPager" />
+            <MobilePagerPrevNext :pager="pList.listPager" />
 
         </div>
 
@@ -84,14 +94,14 @@
                 </tr>
             </thead>
 
-            <tbody v-if="list && list.listHasRecords()">
+            <tbody v-if="pList && pList.listHasRecords()">
                 <tr v-for="(a, index) in itemsList" 
                     class="border-y bg-gradient-side2 border-gray-300"
-                    :class="{ 'active-row' : list.isActiveItem(a.AccountId) }"
-                    @click="list.refreshItem(index)" :key="a.AccountId">
+                    :class="{ 'active-row' : pList.isActiveItem(a.AccountId) }"
+                    @click="pList.refreshItem(index)" :key="a.AccountId">
 
                     <td class="w-6 p-0 sm:w-8 select-none bg-white">
-                        <div v-if="list.isActiveItem(a.AccountId)" class="active-arrow">&nbsp;</div>
+                        <div v-if="pList.isActiveItem(a.AccountId)" class="active-arrow">&nbsp;</div>
                     </td>
 
                     <td class="hidden md:table-cell pr-4 py-1 text-sm">
@@ -118,10 +128,10 @@
             </tfoot>
         </table>
 
-		<!-- <AccountAdvSearch v-if="list.showAdvSearch" 
-            v-model:showModal="list.showAdvSearch" 
-            v-model:listPager="list.listPager" 
-            @getListData="list.getListData" />  -->
+		<!-- <AccountAdvSearch v-if="pList.showAdvSearch" 
+            v-model:showModal="pList.showAdvSearch" 
+            v-model:listPager="pList.listPager" 
+            @getListData="pList.getListData" />  -->
     </div>
 
 </template>

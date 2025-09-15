@@ -87,19 +87,4 @@ Accept: application/json
 	"Role": "User"
 }
 
-### getAllMessages   ====================================================
-
-GET {{coreApi.Server_HostAddress}}/v1/messages/getAllMessages
-Authorization: bearer {{login.response.body.$.token}}
-Content-Type: application/json
-Accept: application/json
-
-### saveMessage ==========================================================
-POST {{coreApi.Server_HostAddress}}/v1/messages/saveMessage
-Authorization: bearer {{login.response.body.$.token}}
-Content-Type: application/json
-Accept: application/json
-
-{
-	"MessageText": "This should be the fourth message."
-}
+### =====================================================================
