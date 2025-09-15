@@ -4,7 +4,7 @@
 	// NOTE: This file matches the [...path].vue which is the unplugin-vue-router catchall route
 	// =========================================================================================
 
-    const toastStore          = useToastStore()
+    const toastStore            = useToastStore()
     const authStore             = useAuthStore()
     const { delayedRedirect }   = authStore
     const redirectDelay         = 4000 

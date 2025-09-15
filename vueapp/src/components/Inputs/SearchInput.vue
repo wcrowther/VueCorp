@@ -1,6 +1,5 @@
 <script setup>
 
-
     const props = defineProps (
     {
         showAdvSearchButton: { type: Boolean, default: true },
@@ -9,21 +8,14 @@
             "Add multiple conditions separated by a comma. Click on + for more options." }
     })
 
-    const modelValue    = defineModel(
-    {   set(value)
-        { 
-            console.log('setting SearchInput modelValue: ' + value)
-            return value
-        }
-    }
-    ) 
+    const modelValue    = defineModel()
     const showAdvSearch = defineModel('showAdvSearch')
     const filterInput   = ref(null)
 
     // -------------------------------------------------------------------
 
     const resetFilter   = () => modelValue.value.Search.Filter = ''
-    const focusInput    = () => filterInput.value?.focus()
+    const focusInput    = () =>  filterInput.value?.focus()
 
     defineExpose({ focusInput }) // exposes to Parent
 
@@ -60,3 +52,14 @@
         :showAdvSearchButton="false" />   
 -->
 
+
+<!-- Example of Intercepting defineModel set()
+
+    const modelValue = defineModel(
+    {   set(value)
+        { 
+            console.log('setting SearchInput modelValue: ' + value)
+            return value
+        }
+    }) 
+-->

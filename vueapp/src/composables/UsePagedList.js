@@ -1,7 +1,8 @@
 
 export function usePagedList(options) 
 {
-    const {
+    const 
+    {
         getPagedItems,        		// function to fetch paged data (e.g. usersStore.getPagedUsers)
         itemsList,            		// ref: the store’s item array
         listPager,            		// ref: the store’s pager object
@@ -10,6 +11,7 @@ export function usePagedList(options)
         detailKeyName,        		// e.g. 'UserId' or 'AccountId'
         pageSizeDefaultName,  		// e.g. 'usersPageSizeDefault'
         searchFilterDefaultName, 	// e.g. 'usersSearchFilterDefault'
+        
     } = options
 
     const currentPage     = ref(0)
@@ -71,14 +73,14 @@ export function usePagedList(options)
     }
 
     // Keyboard handler (still generic) =======================================================
-    const keys = function (e) 
-	{
-        if      (e.code === 'ArrowUp')   { listPager.value.goToPrevious();     e.preventDefault() }
-        else if (e.code === 'ArrowDown') { listPager.value.goToNext();         e.preventDefault() }
-        else if (e.code === 'PageDown')  { listPager.value.goToPreviousPage(); e.preventDefault() }
-        else if (e.code === 'PageUp')    { listPager.value.goToNextPage();     e.preventDefault() }
-        else if (e.code === 'Home')      { searchInput.value.focusInput();     e.preventDefault() }
-    }
+    // const keys = function (e) 
+	// {
+    //     if      (e.code === 'ArrowUp')   { listPager.value.goToPrevious();     e.preventDefault() }
+    //     else if (e.code === 'ArrowDown') { listPager.value.goToNext();         e.preventDefault() }
+    //     else if (e.code === 'PageDown')  { listPager.value.goToPreviousPage(); e.preventDefault() }
+    //     else if (e.code === 'PageUp')    { listPager.value.goToNextPage();     e.preventDefault() }
+    //     else if (e.code === 'Home')      { searchInput.value.focusInput();     e.preventDefault() }
+    // }
 
     // Lifecycle ==============================================================================
     onMounted(() => 
@@ -129,7 +131,7 @@ export function usePagedList(options)
         setActiveItem,
         refreshList,
         getListData,
-        keys,
+        // keys,
 
         // store refs (passed in)
         itemsList,

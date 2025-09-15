@@ -1,6 +1,8 @@
 <script setup>
 
+    const toastStore                    = useToastStore()
     const accountsStore                 = useAccountsStore()
+
     const { account, detailAccountId,
             accountIsDirty  }           = storeToRefs(accountsStore)
     const { getAccountDetailData,  
@@ -11,7 +13,7 @@
     const isAddingAccount               = ref(false)
     const showConfirmControl            = ref(false)
 
-	// const rules = computed(() => accountValidator)
+	// const rules = computed(() => accountValidator) -- if you want validates to be dynamic
   
 	const v$ = useVuelidate(accountValidator, account)
 
@@ -34,6 +36,14 @@
        isAddingAccount.value = false 
        v$.value.$reset()
        getAccountDetail()
+    }
+
+    const trySave = () =>
+    {
+        if (accountIsDirty.value)
+            confirmSave()
+        else
+            toastStore.showWarning('No changes to Save.')
     }
 
     const confirmSave = async () =>
@@ -63,8 +73,8 @@
     const keys = function (e)   
     {
         let ctrl = navigator.userAgentData.platform.match("Mac") ? e.metaKey : e.ctrlKey   
-        if (e.code === 'KeyS' && ctrl) { confirmSave(); e.preventDefault(); }
-        // else if (e.code === 'End')     { detailInput.value.focusInput();    e.preventDefault();} 
+        if (e.code === 'KeyS' && ctrl ){ trySave(); e.preventDefault(); }
+        // else if (e.code === 'End')  { detailInput.value.focusInput();    e.preventDefault();} 
     }
 
 	KeyboardListeners(keys)
@@ -83,8 +93,6 @@
 
         getAccountDetail()  
     });
-
-
 
     // ===============================================================================================
 
@@ -107,7 +115,7 @@
 
                 <button v-if="!isAddingAccount && accountIsDirty && hasKeys(account) && account.AccountId > 0" 
                     class="btn-cancel flex items-center px-2" @click="resetAccount" 
-                    title="Revert local changes back to saved Account">
+                    title="Revert unsaved changes to Account">
                     <IconSymbol width="18px" class="text-warm-600"  icon="heroicons:arrow-left-20-solid" />
                 </button>
 

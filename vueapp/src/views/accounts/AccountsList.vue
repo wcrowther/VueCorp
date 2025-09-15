@@ -28,13 +28,25 @@
 		detailKeyName: 'AccountId',
 		pageSizeDefaultName: 'accountsPageSizeDefault',
 		searchFilterDefaultName: 'accountsSearchFilterDefault',
-		createSearchModel: () => new SearchForAccount(''),   // 👈 specific factory
+		createSearchModel: () => new SearchForAccount(''),   // 👈 specific Search
 	})
 
-    const searchFilter = computed(() => pList.listPager.value?.Search || '')
+	// console.log('pList is: ', pList.listPager.value.Search)
 
+    // Keyboard handler (still generic) =======================================================
 
-	console.log('pList is: ', pList.listPager.value.Search)
+    const searchInput = useTemplateRef('searchInput')
+
+    const keys = function (e) 
+	{
+        if      (e.code === 'ArrowUp')   { listPager.value.goToPrevious();      e.preventDefault() }
+        else if (e.code === 'ArrowDown') { listPager.value.goToNext();          e.preventDefault() }
+        else if (e.code === 'PageDown')  { listPager.value.goToPreviousPage();  e.preventDefault() }
+        else if (e.code === 'PageUp')    { listPager.value.goToNextPage();      e.preventDefault() }
+        else if (e.code === 'Home')      { searchInput.value.focusInput();      e.preventDefault() }
+    }
+
+    KeyboardListeners(keys);
 
 
 </script>
@@ -45,14 +57,10 @@
         <div class="px-5 pb-3 flex flex-wrap justify-between items-center border-t border-r border-slate-300
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
 
-            <ObjectInfo :object="pList.listPager.value.Search" >
-                pList.listPager.Search.Filter
-            </ObjectInfo>
-
             <div class="flex gap-x-1 pt-5 w-full">
                 <SearchInput
                     ref="searchInput" 
-                    v-model="searchFilter" 
+                    v-model="pList.listPager.value.Search.Filter" 
                     v-model:showAdvSearch="pList.showAdvSearch" />
             </div>
 
@@ -128,10 +136,10 @@
             </tfoot>
         </table>
 
-		<!-- <AccountAdvSearch v-if="pList.showAdvSearch" 
+		<AccountAdvSearch 
             v-model:showModal="pList.showAdvSearch" 
             v-model:listPager="pList.listPager" 
-            @getListData="pList.getListData" />  -->
+            @getListData="pList.getListData" />
     </div>
 
 </template>
