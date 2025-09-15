@@ -22,13 +22,12 @@
 
 <template>   
 
-	<ModalControl v-if="listPager && listPager.Search"
-        :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
+	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
         height="500px" width="500px" @closeModal="showModal=false" >
 
         <div class="p-5 pb-0">
-        {{ listPager.Search.SearchType }}
-            <SelectInput labelName="Search Type" v-model="listPager.Search.FilterType" 
+        
+            <SelectInput labelName="Search Type" v-model="listPager.value.Search.FilterType" 
                 :optionsList="filterType" :showDefault="false"  
                 title="Filter AccountName by 'Starts With', 'Contains' or 'Ends With'." />
 
@@ -36,12 +35,12 @@
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
 
-            <SelectInput labelName="State / Province Filter" v-model="listPager.Search.StateProvinceFilter" 
+            <SelectInput labelName="State / Province Filter" v-model="listPager.value.Search.StateProvinceFilter" 
                 :optionsList="usStatesList" defaultText="--- None ---" :defaultDisabled="false" 
                 title="Filter to a State or Province." />
 
             <TextInput labelName="Postal Code Filter" placeholder="30000" 
-                v-model="listPager.Search.PostalCodeFilter" 
+                v-model="listPager.value.Search.PostalCodeFilter" 
                 title="Filter to a Postal (or Zip) Code" />
         </div>
 

@@ -197,7 +197,9 @@
         </table>
 
         <UserAdvSearch v-if="showAdvSearch" 
-            v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
+            v-model:showModal="showAdvSearch" 
+            v-model:listPager="listPager"
+             @getListData="getListData" />
 
     </div>
 

@@ -17,10 +17,13 @@
 			detailAccountId: activeDetailId } = storeToRefs(accountsStore)
 	const { persistSearch }                   = storeToRefs(appStore)
 
+    const showAdvSearch = ref(false)
+
 	// Use the generic paged pList composable
 	const pList = usePagedList(
 	{
-		getPagedItems: getPagedAccounts,
+		showAdvSearch,
+        getPagedItems: getPagedAccounts,
 		itemsList,
 		listPager,
 		activeDetailId,
@@ -31,9 +34,7 @@
 		createSearchModel: () => new SearchForAccount(''),   // 👈 specific Search
 	})
 
-	// console.log('pList is: ', pList.listPager.value.Search)
-
-    // Keyboard handler (still generic) =======================================================
+    // Keyboard handler =======================================================
 
     const searchInput = useTemplateRef('searchInput')
 
@@ -61,7 +62,7 @@
                 <SearchInput
                     ref="searchInput" 
                     v-model="pList.listPager.value.Search.Filter" 
-                    v-model:showAdvSearch="pList.showAdvSearch" />
+                    v-model:showAdvSearch="showAdvSearch" />
             </div>
 
             <div v-if="pList.listPager && pList.listPager.Search && 
@@ -137,9 +138,9 @@
         </table>
 
 		<AccountAdvSearch 
-            v-model:showModal="pList.showAdvSearch" 
+            v-model:showModal="showAdvSearch" 
             v-model:listPager="pList.listPager" 
-            @getListData="pList.getListData" />
+            @getListData="pList.getListData" /> 
     </div>
 
 </template>

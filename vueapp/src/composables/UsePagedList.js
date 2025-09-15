@@ -3,6 +3,7 @@ export function usePagedList(options)
 {
     const 
     {
+        showAdvSearch,              // ref: to control showing AdvSearch
         getPagedItems,        		// function to fetch paged data (e.g. usersStore.getPagedUsers)
         itemsList,            		// ref: the store’s item array
         listPager,            		// ref: the store’s pager object
@@ -11,12 +12,11 @@ export function usePagedList(options)
         detailKeyName,        		// e.g. 'UserId' or 'AccountId'
         pageSizeDefaultName,  		// e.g. 'usersPageSizeDefault'
         searchFilterDefaultName, 	// e.g. 'usersSearchFilterDefault'
-        
+
     } = options
 
     const currentPage     = ref(0)
     const activeItem      = ref(null)
-    const showAdvSearch   = ref(false)
     const searchInput     = ref(null)
 
     // Local storage defaults ==============================================================
@@ -71,16 +71,6 @@ export function usePagedList(options)
 
         setActiveItem()
     }
-
-    // Keyboard handler (still generic) =======================================================
-    // const keys = function (e) 
-	// {
-    //     if      (e.code === 'ArrowUp')   { listPager.value.goToPrevious();     e.preventDefault() }
-    //     else if (e.code === 'ArrowDown') { listPager.value.goToNext();         e.preventDefault() }
-    //     else if (e.code === 'PageDown')  { listPager.value.goToPreviousPage(); e.preventDefault() }
-    //     else if (e.code === 'PageUp')    { listPager.value.goToNextPage();     e.preventDefault() }
-    //     else if (e.code === 'Home')      { searchInput.value.focusInput();     e.preventDefault() }
-    // }
 
     // Lifecycle ==============================================================================
     onMounted(() => 
@@ -143,7 +133,7 @@ export function usePagedList(options)
 
 /*  
 =======================================================================
-Example: Users List View using useGenericList
+Example: Users List View using usePagedList
 =======================================================================
 
 <script setup>
@@ -170,9 +160,6 @@ Example: Users List View using useGenericList
 	  pageSizeDefaultName: 'usersPageSizeDefault',
 	  searchFilterDefaultName: 'usersSearchFilterDefault'
 	})
-
-	// Example: hook up keyboard
-	KeyboardListeners(list.keys)
 
 </script>
 
