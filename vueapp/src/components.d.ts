@@ -22,7 +22,6 @@ declare module 'vue' {
     ConfirmControl: typeof import('./components/controls/ConfirmControl.vue')['default']
     ConfirmControlAlt: typeof import('./components/controls/ConfirmControlAlt.vue')['default']
     ConfirmDialog: typeof import('./components/misc/ConfirmDialog.vue')['default']
-    copy: typeof import('./views/accounts/AccountAdvSearch copy.vue')['default']
     CreatorBox: typeof import('./components/boxes/CreatorBox.vue')['default']
     FloaterControl: typeof import('./components/controls/FloaterControl.vue')['default']
     FooterBox: typeof import('./views/layout/FooterBox.vue')['default']

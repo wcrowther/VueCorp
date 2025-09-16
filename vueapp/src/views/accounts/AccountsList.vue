@@ -57,7 +57,7 @@
                     v-model="listPager.Search.Filter" />
             </div>
 
-            <AccountFilters :listPager /> 
+            <AccountFilters :listPager @showAdvancedSearch="showAdvSearch=true" /> 
 
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />

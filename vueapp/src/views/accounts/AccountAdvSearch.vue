@@ -28,10 +28,10 @@
         <div class="p-5 pb-0">
         
             <SelectInput labelName="Search Type" v-model="listPager.Search.FilterType" 
-                :optionsList="filterType" :showDefault="false"  
+                :optionsList="filterTypes" :showDefault="false"  
                 title="Filter AccountName by 'Starts With', 'Contains' or 'Ends With'." />
 
-            <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
+            <SelectInput labelName="Page Size" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
 

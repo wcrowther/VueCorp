@@ -53,7 +53,7 @@
     "definePage": true,
     "defineStore": true,
     "effectScope": true,
-    "filterType": true,
+    "filterTypes": true,
     "getCurrentInstance": true,
     "getCurrentScope": true,
     "h": true,
@@ -113,13 +113,13 @@
     "useCssModule": true,
     "useCssVars": true,
     "useDebounceFn": true,
-    "useGenericList": true,
     "useId": true,
     "useImagesStore": true,
     "useLocalStorage": true,
     "useMessageStore": true,
     "useMessagesStore": true,
     "useModel": true,
+    "usePagedList": true,
     "usePagedList2": true,
     "useRoute": true,
     "useRouter": true,
@@ -135,7 +135,6 @@
     "watch": true,
     "watchEffect": true,
     "watchPostEffect": true,
-    "watchSyncEffect": true,
-    "usePagedList": true
+    "watchSyncEffect": true
   }
 }

@@ -44,7 +44,7 @@ declare global {
   const definePage: typeof import('unplugin-vue-router/runtime')['_definePage']
   const defineStore: typeof import('pinia')['defineStore']
   const effectScope: typeof import('vue')['effectScope']
-  const filterType: typeof import('./helpers/filterType.js')['filterType']
+  const filterTypes: typeof import('./helpers/filterTypes.js')['filterTypes']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -104,7 +104,6 @@ declare global {
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
-  const useGenericList: typeof import('./composables/UsePagedList.js')['useGenericList']
   const useId: typeof import('vue')['useId']
   const useImagesStore: typeof import('./stores/ImagesStore.js')['useImagesStore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -182,7 +181,7 @@ declare module 'vue' {
     readonly definePage: UnwrapRef<typeof import('unplugin-vue-router/runtime')['_definePage']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
-    readonly filterType: UnwrapRef<typeof import('./helpers/filterType.js')['filterType']>
+    readonly filterTypes: UnwrapRef<typeof import('./helpers/filterTypes.js')['filterTypes']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>

@@ -1,5 +1,6 @@
 
 import { fileURLToPath, URL }   from 'node:url'
+// import { resolve }           from 'path';
 import { defineConfig }         from 'vite'
 import mkcert                   from 'vite-plugin-mkcert'
 import vue                      from '@vitejs/plugin-vue'
@@ -49,12 +50,13 @@ export default defineConfig({
         vue(),
         mkcert(),
         Components({
-                dirs: ['./src/components', './src/layouts', './src/views'],
+            dirs: ['./src/components', './src/layouts', './src/views'],
             dts: 'src/components.d.ts'
         }),
     ],
     resolve: {
         alias: {
+            // '@': resolve(__dirname, './src'),
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
