@@ -4,7 +4,7 @@
     const pager     = computed(() => props.pager); 
 
     const props = defineProps({
-        pager: { type: Object, required: true },
+        pager: { type: PagerModel, required: true },
     })
 
 </script>

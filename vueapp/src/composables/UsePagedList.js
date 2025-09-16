@@ -56,7 +56,8 @@ export function usePagedList(options)
 
     const getListData = async (refresh) =>
 	{	
-        if (refresh) {
+        if (refresh) 
+        {
             let newPager = new PagerModel()
             newPager.Search.Filter = listPager.value.Search.Filter
             newPager.PageSize      = listPager.value.PageSize
@@ -80,6 +81,7 @@ export function usePagedList(options)
     })
 
     // Watches   ==============================================================================
+
     watch(() => listPager.value.CurrentRecord, (newVal, oldVal) => 
 	{
         if (newVal === oldVal) return
@@ -90,7 +92,8 @@ export function usePagedList(options)
 	{
         if (newVal === oldVal) 
 			return
-        refreshList(1, true)
+        
+        useDebounceFn(() => refreshList(1, true), 1000)()
     })
 
     watch(() => listPager.value.Search.Filter, (newVal, oldVal) => 
@@ -138,11 +141,6 @@ Example: Users List View using usePagedList
 
 <script setup>
 
-	import { storeToRefs } 		from 'pinia'
-	import { useUsersStore } 	from '@/stores/users'
-	import { useAppStore } 		from '@/stores/app'
-	import { useGenericList } 	from '@/composables/useGenericList'
-
 	const usersStore = useUsersStore()
 	const appStore   = useAppStore()
 
@@ -160,6 +158,8 @@ Example: Users List View using usePagedList
 	  pageSizeDefaultName: 'usersPageSizeDefault',
 	  searchFilterDefaultName: 'usersSearchFilterDefault'
 	})
+
+    // Add keyboard handlers if needed
 
 </script>
 

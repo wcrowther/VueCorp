@@ -52,7 +52,6 @@ declare module 'vue' {
     NewChatMessages: typeof import('./components/misc/NewChatMessages.vue')['default']
     NewUser: typeof import('./views/auth/NewUser.vue')['default']
     NotificationControl: typeof import('./components/controls/NotificationControl.vue')['default']
-    ObjectInfo: typeof import('./components/misc/ObjectInfo.vue')['default']
     PasswordInput: typeof import('./components/inputs/PasswordInput.vue')['default']
     PhoneInput: typeof import('./components/inputs/PhoneInput.vue')['default']
     PrimaryButton: typeof import('./components/buttons/PrimaryButton.vue')['default']

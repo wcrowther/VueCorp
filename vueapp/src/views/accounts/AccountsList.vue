@@ -1,15 +1,8 @@
 <script setup>
 
-	// import { storeToRefs } 		from 'pinia'
-	// import { useAccountsStore } from '@/stores/accounts'
-	// import { useAppStore } 		from '@/stores/app'
-	// import { usePagedList } 	from '@/composables/usePagedList'
-
-	// Stores
 	const accountsStore = useAccountsStore()
 	const appStore      = useAppStore()
 
-	// Store refs
 	const { getPagedAccounts } = accountsStore
 
 	const { accountsList: itemsList,
@@ -19,8 +12,8 @@
 
     const showAdvSearch = ref(false)
 
-	// Use the generic paged pList composable
-	const pList = usePagedList(
+	// Use the generic pagedList composable
+	const pagedList = usePagedList(
 	{
 		showAdvSearch,
         getPagedItems: getPagedAccounts,
@@ -36,7 +29,7 @@
 
     // Keyboard handler =======================================================
 
-    const searchInput = useTemplateRef('searchInput')
+    const searchInput = useTemplateRef('searchInput')  // needed to call focusInput on SearchInput component
 
     const keys = function (e) 
 	{
@@ -49,7 +42,6 @@
 
     KeyboardListeners(keys);
 
-
 </script>
 
 <template>
@@ -59,23 +51,20 @@
             bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
 
             <div class="flex gap-x-1 pt-5 w-full">
-                <SearchInput
-                    ref="searchInput" 
-                    v-model="pList.listPager.value.Search.Filter" 
-                    v-model:showAdvSearch="showAdvSearch" />
+                <SearchInput ref="searchInput" 
+                    v-model:showAdvSearch="showAdvSearch" 
+                    v-model="listPager.Search.Filter" />
             </div>
 
-            <div v-if="pList.listPager && pList.listPager.Search && 
-					pList.listPager.Search.StateProvinceFilter?.length > 0" 
+            <div v-if="listPager.Search.StateProvinceFilter?.length > 0" 
                 class="ml-5 text-sm mt-2 italic">
-                Filters: {{ pList.listPager.Search.StateProvinceFilter }}
+                Filters: {{ listPager.Search.StateProvinceFilter }}
             </div>
 
             <div class="w-full flex justify-between items-center select-none my-3">
-                <ListPager 
-					class="mr-2" id='listPager' v-bind:pager="pList.listPager.value" />
+                <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />
                 <span class="text-sm xs:hidden md:inline whitespace-nowrap">
-                    Total: {{ pList.listPager.TotalCount || 0 }}
+                    Total: {{ listPager.TotalCount || 0 }}
                 </span>
             </div>
 
@@ -85,10 +74,10 @@
 
             <HelpBox class="mb-3" :compact="true">
                 You can add multiple conditions separated by a comma.
-                Click on the + sign for the Advanced Search with additional options.
+                Click on the + sign to get an Advanced Search with additional options.
             </HelpBox>
             
-            <MobilePagerPrevNext :pager="pList.listPager" />
+            <MobilePagerPrevNext :pager="listPager" />
 
         </div>
 
@@ -103,14 +92,14 @@
                 </tr>
             </thead>
 
-            <tbody v-if="pList && pList.listHasRecords()">
+            <tbody v-if="pagedList && pagedList.listHasRecords()">
                 <tr v-for="(a, index) in itemsList" 
                     class="border-y bg-gradient-side2 border-gray-300"
-                    :class="{ 'active-row' : pList.isActiveItem(a.AccountId) }"
-                    @click="pList.refreshItem(index)" :key="a.AccountId">
+                    :class="{ 'active-row' : pagedList.isActiveItem(a.AccountId) }"
+                    @click="pagedList.refreshItem(index)" :key="a.AccountId">
 
                     <td class="w-6 p-0 sm:w-8 select-none bg-white">
-                        <div v-if="pList.isActiveItem(a.AccountId)" class="active-arrow">&nbsp;</div>
+                        <div v-if="pagedList.isActiveItem(a.AccountId)" class="active-arrow">&nbsp;</div>
                     </td>
 
                     <td class="hidden md:table-cell pr-4 py-1 text-sm">
@@ -137,10 +126,10 @@
             </tfoot>
         </table>
 
-		<AccountAdvSearch 
+		<AccountAdvSearch v-if="showAdvSearch" 
             v-model:showModal="showAdvSearch" 
-            v-model:listPager="pList.listPager" 
-            @getListData="pList.getListData" /> 
+            v-model:listPager="listPager" 
+            @getListData="pagedList.getListData" /> 
     </div>
 
 </template>

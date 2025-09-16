@@ -2,20 +2,20 @@
 
     const props = defineProps (
     {
-        showAdvSearchButton: { type: Boolean, default: true },
+        showAdvSearchButton: { type: Boolean, default: true },  // if n
         inputTitle:  { type: String, default: 
             "Search the list for values that start with this text. " +
             "Add multiple conditions separated by a comma. Click on + for more options." }
     })
 
-    const modelValue    = defineModel()
-    const showAdvSearch = defineModel('showAdvSearch')
+    const modelValue    = defineModel({ type: String, default: '' })
+    const showAdvSearch = defineModel('showAdvSearch', { type: Boolean, default: false })
     const filterInput   = ref(null)
 
     // -------------------------------------------------------------------
 
-    const resetFilter   = () => modelValue.value.Search.Filter = ''
-    const focusInput    = () =>  filterInput.value?.focus()
+    const resetFilter   = () => modelValue.value = ''
+    const focusInput    = () => filterInput.value?.focus()
 
     defineExpose({ focusInput }) // exposes to Parent
 
@@ -30,7 +30,7 @@
         
         <div class="top-0 right-0 flex justify-end items-center gap-0 absolute h-full w-auto">
             <div class="p-1 w-auto flex-center" @click="resetFilter">
-                <IconSymbol v-if="modelValue.length > 0" 
+                <IconSymbol v-if="modelValue && modelValue.length > 0" 
                     class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
             </div>
             <span v-if="showAdvSearchButton"
@@ -52,14 +52,3 @@
         :showAdvSearchButton="false" />   
 -->
 
-
-<!-- Example of Intercepting defineModel set()
-
-    const modelValue = defineModel(
-    {   set(value)
-        { 
-            console.log('setting SearchInput modelValue: ' + value)
-            return value
-        }
-    }) 
--->
