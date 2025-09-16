@@ -28,8 +28,8 @@
             id="filterInput" type="text" v-model="modelValue" placeholder="Search" spellcheck="false"
             ref="filterInput" :title="props.inputTitle" />
         
-        <div class="top-0 right-0 flex justify-end items-center gap-0 absolute h-full w-auto">
-            <div class="p-1 w-auto flex-center" @click="resetFilter">
+        <div class="top-0 right-0 flex justify-end items-center gap-1 absolute h-full w-auto">
+            <div class="w-auto flex-center" @click="resetFilter">
                 <IconSymbol v-if="modelValue && modelValue.length > 0" 
                     class="xs:hidden sm:block text-color-dark-gray hover:text-color-mid-gray" width="22px" icon="heroicons:x-mark" />
             </div>
@@ -51,4 +51,11 @@
     <SearchInput v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch" 
         :showAdvSearchButton="false" />   
 -->
+
+<!-- Search button if we manually submit
+    <span v-if="false" class="size-[22px] bg-color-mid-gray hover:bg-color-light-gray
+        flex-center rounded-full group" @click.prevent="submitChange">
+        <div class="text-[20px]">?</div>
+    </span>
+--> 
 

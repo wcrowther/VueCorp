@@ -27,7 +27,8 @@
 		createSearchModel: () => new SearchForAccount(''),   // 👈 specific Search
 	})
 
-    // Keyboard handler =======================================================
+
+    // Keyboard handlers =======================================================
 
     const searchInput = useTemplateRef('searchInput')  // needed to call focusInput on SearchInput component
 
@@ -56,10 +57,7 @@
                     v-model="listPager.Search.Filter" />
             </div>
 
-            <div v-if="listPager.Search.StateProvinceFilter?.length > 0" 
-                class="ml-5 text-sm mt-2 italic">
-                Filters: {{ listPager.Search.StateProvinceFilter }}
-            </div>
+            <AccountFilters :listPager /> 
 
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />

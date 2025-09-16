@@ -9,7 +9,7 @@ export function usePagedList2(store, pagerKey, listKey, fetchAction)
 	const currentPage 		= ref(0)
 	const searchInput 		= ref(null)
 
-	// computed helper
+	// computed helper (...detailKeyName needs to be a const in store for this to work)
 	const activeListItemId = computed(() =>
 		activeItem.value ? activeItem.value[listPager.value.Search.detailKeyName || 'id'] : 0
 	)

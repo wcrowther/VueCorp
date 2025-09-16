@@ -12,6 +12,7 @@ export function usePagedList(options)
         detailKeyName,        		// e.g. 'UserId' or 'AccountId'
         pageSizeDefaultName,  		// e.g. 'usersPageSizeDefault'
         searchFilterDefaultName, 	// e.g. 'usersSearchFilterDefault'
+        createSearchModel,          // factory function: () => new SearchForAccount() or new SearchModel()
 
     } = options
 
@@ -46,7 +47,9 @@ export function usePagedList(options)
 
     const refreshList = (newRecord, forceRefresh) => 
     {   
-		listPager.value.CurrentRecord = newRecord
+		// 'forceRefresh' is because the page remains the same but other params change
+
+        listPager.value.CurrentRecord = newRecord
 
         if ((listPager.value.currentPage() !== currentPage.value) || forceRefresh)
             getListData()
@@ -58,7 +61,7 @@ export function usePagedList(options)
 	{	
         if (refresh) 
         {
-            let newPager = new PagerModel()
+            let newPager           = new PagerModel(createSearchModel()) 
             newPager.Search.Filter = listPager.value.Search.Filter
             newPager.PageSize      = listPager.value.PageSize
             listPager.value        = newPager
@@ -92,7 +95,7 @@ export function usePagedList(options)
 	{
         if (newVal === oldVal) 
 			return
-        
+
         useDebounceFn(() => refreshList(1, true), 1000)()
     })
 

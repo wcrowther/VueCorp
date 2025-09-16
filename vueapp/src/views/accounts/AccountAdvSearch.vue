@@ -6,7 +6,6 @@
     const emits         = defineEmits(['getListData'])
     const getListData   = () => emits('getListData')
 
-    
 	// Keyboard Listeners  ================================================
 
 	DisableLayoutEscapeKey()
@@ -22,8 +21,9 @@
 
 <template>   
 
-	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
-        height="500px" width="500px" @closeModal="showModal=false" >
+	<ModalControl id="AccountAdvSearch" :showModal="showModal" 
+        title="Advanced Search" height="500px" width="500px" 
+        @closeModal="showModal=false" >
 
         <div class="p-5 pb-0">
         
@@ -36,7 +36,7 @@
                 title="Change how many records in each page of data." />
 
             <SelectInput labelName="State / Province Filter" v-model="listPager.Search.StateProvinceFilter" 
-                :optionsList="usStatesList" defaultText="--- None ---" :defaultDisabled="false" 
+                :optionsList="usStatesList" defaultText="--- None ---" :disableDefault="false" 
                 title="Filter to a State or Province." />
 
             <TextInput labelName="Postal Code Filter" placeholder="30000" 
