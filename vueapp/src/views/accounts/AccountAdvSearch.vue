@@ -10,7 +10,7 @@
         console.log('resetAdvSearch')
 
         listPager.value.Search.FilterType           = 'startswith'
-        listPager.value.PageSize                    = 20
+        listPager.value.PageSize                    = 15
         listPager.value.Search.StateProvinceFilter  = ''
         listPager.value.Search.PostalCodeFilter     = ''
 
