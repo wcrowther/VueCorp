@@ -1,10 +1,21 @@
 <script setup>
 
-    const listPager     = defineModel('listPager')
-    const showModal     = defineModel('showModal')
+    const listPager     = defineModel('listPager', { type: PagerModel, required: true })
+    const showModal     = defineModel('showModal', { type: Boolean, required: true })
 
     const emits         = defineEmits(['getListData'])
-    const getListData   = () => emits('getListData')
+    
+    const resetAdvSearch = () => 
+    {
+        console.log('resetAdvSearch')
+
+        listPager.value.Search.FilterType           = 'startswith'
+        listPager.value.PageSize                    = 20
+        listPager.value.Search.StateProvinceFilter  = ''
+        listPager.value.Search.PostalCodeFilter     = ''
+
+        emits('getListData')
+    }
 
 	// Keyboard Listeners  ================================================
 
@@ -45,7 +56,7 @@
         </div>
 
         <template #footer>
-            <button class="btn-primary"  @click="getListData">Refresh</button>
+            <button class="btn-primary"  @click="resetAdvSearch">Reset</button>
             <button class="btn-delete"   @click="showModal=false">Close</button>
         </template>
 

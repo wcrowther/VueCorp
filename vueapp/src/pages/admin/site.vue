@@ -5,6 +5,7 @@
     const appStore      = useAppStore()
     const currentUrl    = import.meta.url
     const baseUrl       = import.meta.env.BASE_URL
+    const route         = useRoute();
 
 </script>
 
@@ -24,22 +25,32 @@
             </div>
             
             <div class="flex flex-wrap gap-y-5 mb-5 relative">
-                <div class="w-full">
+
+                <div class="w-1/2">
                     <span class="font-bold">Mode: </span>
                     {{ appStore.mode }}
                 </div>
+
+                <div class="w-1/2">
+                    <span class="font-bold">Route: </span>
+                    {{ route.path }}
+                </div>
+
                 <div class="w-1/2">
                     <span class="font-bold">BaseUrl:</span>
                     {{ baseUrl }}
                 </div>
+
                 <div class="w-1/2">
                     <span class="font-bold">Page / Component Name:</span>
                     {{ getCurrentInstance().type.__name  }}
                 </div>  
+
                 <div class="w-full">
                     <span class="font-bold">import.meta.url:</span>
                     {{ currentUrl }}
                 </div>  
+
             </div>
 
             <SiteMap class="z-50 relative p-5 border border-color-primary" />

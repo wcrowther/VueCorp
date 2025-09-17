@@ -6,7 +6,11 @@
     const props = defineProps(
     {
         listPager: { type: PagerModel, required: true },
+        defaultPageSize: { type: Number, default: 20 }
     })
+   
+    const emits = defineEmits(['showAdvancedSearch'])
+    const showAdvancedSearch = () => emits('showAdvancedSearch')
         
     const advancedFilters = computed(() => 
     {
@@ -25,22 +29,19 @@
             filterList.push(postalCode)
 
         let pageSize = props.listPager.PageSize
-        if(pageSize && pageSize !== 20) // do not show if default 
+        if(pageSize && pageSize !== props.defaultPageSize) // do not show if default 
             filterList.push(`Page Size ${pageSize}`)                
 
         return filterList.join(', ')
     })
-
-    const emits = defineEmits(['showAdvancedSearch'])
-    const showAdvancedSearch = () => emits('showAdvancedSearch')
 
 </script> 
 
 <template>   
 
     <div v-if="advancedFilters.length > 0" 
-        class="text-sm mt-2 cursor-pointer" @click=showAdvancedSearch>
-        <span class="font-bold">Filters: </span> 
+        class="text-sm text-gray-400 mt-3 cursor-pointer" @click=showAdvancedSearch>
+        <span class="font-bold pl-1">Filters: </span> 
         <span class="italic">{{ advancedFilters }}</span>
     </div>
 

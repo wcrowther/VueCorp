@@ -2,7 +2,7 @@
 
 	const userName 		= 'testten'
 	const password 		= 'GhostBirdhasflown!'
-	const modelValue 	= defineModel(new AuthRequest(userName, password))
+	const modelValue 	= defineModel({default: new AuthRequest(userName, password)})
 
 	const setTestUser = () => 
 	{

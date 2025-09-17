@@ -45,9 +45,10 @@ export function usePagedList(options)
         activeDetailId.value    = activeListItemId.value
     }
 
+    // Either gets the whole list or just active item as needed. 
     const refreshList = (newRecord, forceRefresh) => 
     {   
-		// 'forceRefresh' is because the page remains the same but other params change
+		// 'forceRefresh' is for the page to remain the same but other params change
 
         listPager.value.CurrentRecord = newRecord
 
@@ -63,7 +64,7 @@ export function usePagedList(options)
         {
             let newPager           = new PagerModel(createSearchModel()) 
             newPager.Search.Filter = listPager.value.Search.Filter
-            newPager.PageSize      = listPager.value.PageSize
+            newPager.PageSize      = listPager.value.PageSize  // WILL REMOVE TO ADV SEARCH
             listPager.value        = newPager
         }
 
