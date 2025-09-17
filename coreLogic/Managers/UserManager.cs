@@ -8,6 +8,12 @@ using bCrypt = BCrypt.Net.BCrypt;
 
 namespace coreLogic.Managers;
 
+// =====================================================================
+// WARNING: In a PRODUCTION system you will need to authorize that
+// users have rights to modify users based on particular roles. 
+// This is not implemented in this simplified version of the code.
+// =====================================================================
+
 public class UserManager(	IUserRepo userRepo,
 							ICookieManager cookieManager,
 							ITokenManager tokenManager
@@ -44,6 +50,8 @@ public class UserManager(	IUserRepo userRepo,
 		return userRepo.GetPagedUsers(pager);
 	}
 
+
+	// SEE ABOVE FOR USER CAUTIONS
 	public User SaveUser(User user)
 	{
 		var usr = userRepo.SaveUser(user);
@@ -53,6 +61,7 @@ public class UserManager(	IUserRepo userRepo,
 		return usr;
 	}
 
+	// SEE ABOVE FOR USER CAUTIONS
 	public User CreateUser(UserToCreate userToCreate)
 	{
 		tokenManager.CreateNewRefreshTokenForUser(userToCreate);

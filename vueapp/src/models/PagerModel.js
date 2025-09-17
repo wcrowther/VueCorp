@@ -74,10 +74,15 @@ class PagerModel
         const beginPage = this.firstPageInGroup(this.currentGroup())
         const endPage = (beginPage + this.GroupSize) - 1
 
-        for (let i = beginPage; i <= endPage; i++) {
+        for (let i = beginPage; i <= endPage; i++) 
+        {
             const firstInPage = ((i - 1) * this.PageSize) + 1
-            if (firstInPage > this.TotalCount) break
+
+            if (firstInPage > this.TotalCount) 
+                break
+
             const isSelected = (this.currentPage() === i)
+
             this.pages.push(new PageItem(i.toString(), firstInPage, i, isSelected))
         }
     }

@@ -1,6 +1,6 @@
 export const roleList =
 {
-    'User':'User' ,
-    'Admin':'Admin', 
+    'User'      : 'User' ,
+    'Admin'     : 'Admin', 
     'SuperAdmin': 'SuperAdmin' 
 }

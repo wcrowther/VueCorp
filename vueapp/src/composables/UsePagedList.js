@@ -64,7 +64,7 @@ export function usePagedList(options)
         {
             let newPager           = new PagerModel(createSearchModel()) 
             newPager.Search.Filter = listPager.value.Search.Filter
-            newPager.PageSize      = listPager.value.PageSize  // WILL REMOVE TO ADV SEARCH
+            // newPager.PageSize      = listPager.value.PageSize  // WILL REMOVE TO ADV SEARCH
             listPager.value        = newPager
         }
 
@@ -92,13 +92,13 @@ export function usePagedList(options)
         refreshList(newVal)
     })
 
-    watch(() => listPager.value.PageSize, (newVal, oldVal) => 
-	{
-        if (newVal === oldVal) 
-			return
-
-        useDebounceFn(() => refreshList(1, true), 1000)()
-    })
+    // watch(() => listPager.value.PageSize, (newVal, oldVal) => 
+	// {
+    //     if (newVal === oldVal) 
+	// 		return
+    // 
+    //     useDebounceFn(() => refreshList(1, true), 1000)()
+    // })
 
     watch(() => listPager.value.Search.Filter, (newVal, oldVal) => 
 	{

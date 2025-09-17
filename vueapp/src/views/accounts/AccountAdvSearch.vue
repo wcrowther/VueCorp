@@ -4,7 +4,15 @@
     const showModal     = defineModel('showModal', { type: Boolean, required: true })
 
     const emits         = defineEmits(['getListData'])
-    
+    const emitData     = (newVal, oldVal) => 
+    { 
+        if (newVal != oldVal) // use != as oldVal may be string '10'
+        {
+            console.log('newVal: ', newVal, 'oldVal: ', oldVal)
+            useDebounceFn(() => emits('getListData'), 1000)()
+        } 
+    }
+
     const resetAdvSearch = () => 
     {
         console.log('resetAdvSearch')
@@ -16,6 +24,13 @@
 
         emits('getListData')
     }
+
+    // Watches   ==============================================================================
+
+    watch(() => listPager.value.FilterType,                 (newVal, oldVal) => emitData(newVal, oldVal))
+    watch(() => listPager.value.PageSize,                   (newVal, oldVal) => emitData(newVal, oldVal))
+    watch(() => listPager.value.Search.StateProvinceFilter, (newVal, oldVal) => emitData(newVal, oldVal))
+    watch(() => listPager.value.Search.PostalCodeFilter,    (newVal, oldVal) => emitData(newVal, oldVal))
 
 	// Keyboard Listeners  ================================================
 
@@ -44,7 +59,7 @@
 
             <SelectInput labelName="Page Size" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
-                title="Change how many records in each page of data." />
+                title="Change how many records are in each page of data." />
 
             <SelectInput labelName="State / Province Filter" v-model="listPager.Search.StateProvinceFilter" 
                 :optionsList="usStatesList" defaultText="--- None ---" :disableDefault="false" 

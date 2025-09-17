@@ -25,9 +25,16 @@
         height="400px" width="500px" @closeModal="showModal=false">
 
         <div class="p-5 pb-0">
+
+            {{ listPager.PageSize }}
             <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
+
+            <!-- <SelectInput labelName="Roles" v-model="listPager.PageSize" 
+                :optionsList="roleList" :showDefault="true"  
+                title="Filter by the users role" /> 
+            -->
         </div>
 
         <template #footer>
