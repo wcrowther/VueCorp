@@ -2,13 +2,13 @@
 
     const props = defineProps (
     {
-        showDefault:        { type: Boolean, default: true },
-        defaultText:        { type: String,  default: '-----' }, 
-        defaultDisabled:    { type: Boolean, default: true },
-        optionsList:        { type: Object,  required: true }, 
-        labelName:          { type: String,  required: true }, 
-        ruleName:           { type: String }, 
-        v$:                 { type: Object }
+        showDefault:        { type: Boolean, default: true },       // show a default empty value
+        defaultText:        { type: String,  default: '-----' },    // text for default item
+        disableDefault:     { type: Boolean, default: true },       // initial value but default cannot be selected
+        optionsList:        { type: Object,  required: true },      // list of options
+        labelName:          { type: String,  required: true },      // labet for select
+        ruleName:           { type: String },                       // rule for valiadation. if not set, uses labelName removing spaces
+        v$:                 { type: Object }                        // pass in vulidate validator (validation ignored if not set)
     })
 
     const modelValue = defineModel()
@@ -30,7 +30,7 @@
             </template> 
         </div>
         <select class="w-full p-2.5 text-sm" :name="rule" :id="rule" v-bind="$attrs" v-model="modelValue">
-            <option v-if="showDefault" :disabled="defaultDisabled" value="">{{ defaultText }}</option>
+            <option v-if="showDefault" :disabled="disableDefault" value="">{{ defaultText }}</option>
             <option v-for="(value,key) in optionsList" :key="key" :value="key" class="text-sm">
                 {{ value }}
             </option>

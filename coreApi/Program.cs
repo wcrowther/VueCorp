@@ -72,7 +72,7 @@ builder.Services.AddAuthorizationBuilder()
 
 builder.Services.AddEndpointsApiExplorer();  // OpenApi
 
-builder.Services.AddMySwaggerGen();
+builder.Services.AddMyCustomSwaggerGen();
 
 builder.Services.AddMyServices();  // Dependency Injection of My Services
 
@@ -82,7 +82,7 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-app.UseMySwagger();
+app.UseMyCustomSwagger();
 
 app.UseHttpsRedirection();
 

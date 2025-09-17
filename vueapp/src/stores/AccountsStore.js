@@ -8,14 +8,35 @@ export const useAccountsStore = defineStore('AccountsStore',
         accountsPager:      new PagerModel(new SearchForAccount()),
         accountsList:       [],
         account:            {},
+        uneditedAccount:    {},
         detailAccountId:    0
     }),
-    getters:{},
+    getters:
+    {
+        accountIsDirty: (state) =>  JSON.stringify(state.account) !== JSON.stringify(state.uneditedAccount)  
+        // console.log('accountIsDirty check\n account: \n',JSON.stringify(state.account), '\n uneditedAccount \n', JSON.stringify(state.uneditedAccount))           
+    },
     actions:
     {
         addNewAccount()
         {
-            this.account = new AccountModel()
+            this.account   = new AccountModel()
+        },
+        async getAllAccounts ()
+        {
+            try 
+            {
+                const result = await apiGet(`/accounts/getAllAccounts`)
+                
+                if(result.success) 
+                {
+                    this.accountsList   = result.data.Result.ListItems   
+                }
+            }
+            catch (err)
+            { 
+                toastStore.showError(err.message) 
+            }
         },
         async getPagedAccounts (pager)
         {
@@ -28,8 +49,10 @@ export const useAccountsStore = defineStore('AccountsStore',
                 
                 if(result.success) 
                 {
-                    this.accountsPager  = Object.assign(new PagerModel(new SearchForAccount()), result.data.Result.Pager)
-                    this.accountsList   = result.data.Result.ListItems   
+                    // OLD: this.accountsPager  = Object.assign(new PagerModel(new SearchForAccount(), result.data.Result.Pager)
+
+                    this.accountsPager = PagerModel.fromJson(result.data.Result.Pager, () => new SearchForAccount()) 
+                    this.accountsList  = result.data.Result.ListItems   
                 }
             }
             catch (err)
@@ -49,7 +72,8 @@ export const useAccountsStore = defineStore('AccountsStore',
                     
                     if(result.success)
                     {
-                        this.account = result.data.Result
+                        this.account         = result.data.Result
+                        this.uneditedAccount = structuredClone(toRaw(this.account))
                         return
                     }
                 }
@@ -66,12 +90,17 @@ export const useAccountsStore = defineStore('AccountsStore',
 
                 if(result.success) 
                 {
-                    this.account = result.data.Result
+                    this.account           = result.data.Result
+                    this.uneditedAccount   = structuredClone(toRaw(this.account ))
 
                     toastStore.showSuccess('Account Saved Successfully.')
                 }
             } 
             catch (err){ toastStore.showError(err.message) }
+        },
+        async resetAccount ()
+        {
+            this.account = this.uneditedAccount // OR THIS?: Object.assign(new AccountModel(), this.uneditedAccount)
         }
     }
 })

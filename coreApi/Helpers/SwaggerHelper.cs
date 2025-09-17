@@ -10,12 +10,12 @@ namespace coreApi.Helpers;
 
 public static class SwaggerHelper 
 {
-	public static void AddMySwaggerGen(this IServiceCollection services)
+	public static void AddMyCustomSwaggerGen(this IServiceCollection services)
 	{
 		services.AddSwaggerGen(AddMySwaggerGenOptions());
 	}	
 
-	public static void UseMySwagger(this WebApplication app, bool allEnvironments = true)
+	public static void UseMyCustomSwagger(this WebApplication app, bool allEnvironments = true)
 	{
 		if (allEnvironments || app.Environment.IsDevelopment())
 		{

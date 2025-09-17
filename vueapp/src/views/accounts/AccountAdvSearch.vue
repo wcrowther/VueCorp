@@ -1,12 +1,22 @@
 <script setup>
 
-    const listPager     = defineModel('listPager')
-    const showModal     = defineModel('showModal')
+    const listPager     = defineModel('listPager', { type: PagerModel, required: true })
+    const showModal     = defineModel('showModal', { type: Boolean, required: true })
 
     const emits         = defineEmits(['getListData'])
-    const getListData   = () => emits('getListData')
-
     
+    const resetAdvSearch = () => 
+    {
+        console.log('resetAdvSearch')
+
+        listPager.value.Search.FilterType           = 'startswith'
+        listPager.value.PageSize                    = 20
+        listPager.value.Search.StateProvinceFilter  = ''
+        listPager.value.Search.PostalCodeFilter     = ''
+
+        emits('getListData')
+    }
+
 	// Keyboard Listeners  ================================================
 
 	DisableLayoutEscapeKey()
@@ -22,21 +32,22 @@
 
 <template>   
 
-	<ModalControl :showModal="showModal" title="Advanced Search" id="AccountAdvSearch"
-        height="500px" width="500px" @closeModal="showModal=false" >
+	<ModalControl id="AccountAdvSearch" :showModal="showModal" 
+        title="Advanced Search" height="500px" width="500px" 
+        @closeModal="showModal=false" >
 
         <div class="p-5 pb-0">
-        {{ listPager.Search.SearchType }}
+        
             <SelectInput labelName="Search Type" v-model="listPager.Search.FilterType" 
-                :optionsList="filterType" :showDefault="false"  
+                :optionsList="filterTypes" :showDefault="false"  
                 title="Filter AccountName by 'Starts With', 'Contains' or 'Ends With'." />
 
-            <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
+            <SelectInput labelName="Page Size" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
 
             <SelectInput labelName="State / Province Filter" v-model="listPager.Search.StateProvinceFilter" 
-                :optionsList="usStatesList" defaultText="--- None ---" :defaultDisabled="false" 
+                :optionsList="usStatesList" defaultText="--- None ---" :disableDefault="false" 
                 title="Filter to a State or Province." />
 
             <TextInput labelName="Postal Code Filter" placeholder="30000" 
@@ -45,7 +56,7 @@
         </div>
 
         <template #footer>
-            <button class="btn-primary"  @click="getListData">Refresh</button>
+            <button class="btn-primary"  @click="resetAdvSearch">Reset</button>
             <button class="btn-delete"   @click="showModal=false">Close</button>
         </template>
 

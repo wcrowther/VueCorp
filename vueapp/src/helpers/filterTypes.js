@@ -1,4 +1,4 @@
-export const filterType =
+export const filterTypes =
 {
     'startswith'   :'Starts With',
     'contains'     :'Contains', 

@@ -1,16 +1,13 @@
 
 export function RedirectToPage(path, toPath)
 {
-	onBeforeMount
-	(
-		() => 
-		{
-			const router = useRouter();
+	onBeforeMount (() => 
+	{
+		const router = useRouter();
 
-			if(router.currentRoute.value.path.toLowerCase() === path.toLowerCase())
+		if(router.currentRoute.value.path.toLowerCase() === path.toLowerCase())
 			router.replace(toPath); 
-		}
-	)
+	})
 }
 
 /*

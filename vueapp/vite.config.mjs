@@ -1,5 +1,6 @@
 
 import { fileURLToPath, URL }   from 'node:url'
+// import { resolve }           from 'path';
 import { defineConfig }         from 'vite'
 import mkcert                   from 'vite-plugin-mkcert'
 import vue                      from '@vitejs/plugin-vue'
@@ -12,7 +13,7 @@ export default defineConfig({
     plugins: 
     [
         AutoImport({
-            dts: true,
+            dts: 'src/auto-imports.d.ts',
             vueTemplate: true,
             dirs: ['./src/helpers', './src/models', 
                     './src/stores', './src/composables'],
@@ -44,17 +45,18 @@ export default defineConfig({
             }
         }),
         VueRouter({
-            dts: true
+            dts: 'src/typed-router.d.ts'
         }),        
         vue(),
         mkcert(),
         Components({
             dirs: ['./src/components', './src/layouts', './src/views'],
-            dts: true
-        })
+            dts: 'src/components.d.ts'
+        }),
     ],
     resolve: {
         alias: {
+            // '@': resolve(__dirname, './src'),
             '@': fileURLToPath(new URL('./src', import.meta.url))
         }
     },
@@ -67,6 +69,8 @@ export default defineConfig({
         },
         port: 7200,
         open: true  // open the browser after compiling
+    },
+    build: {
+        sourcemap: true,
     }
- 
 })

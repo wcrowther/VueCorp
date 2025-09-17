@@ -4,16 +4,21 @@
 	// NOTE: This file matches the [...path].vue which is the unplugin-vue-router catchall route
 	// =========================================================================================
 
-    const toastStore          = useToastStore()
+    const toastStore            = useToastStore()
     const authStore             = useAuthStore()
     const { delayedRedirect }   = authStore
-    const redirectDelay         = 4000 
+    const redirectDelay         = 5000
     const secondsDelay          = redirectDelay / 1000
+
+    const route         = useRoute();
+    const currentPath   = computed(() => route.path);
 
     onMounted(() =>  
     {        
         delayedRedirect('/', redirectDelay ) 
-        toastStore.showWarning(`Redirecting to Homepage in ${secondsDelay} seconds`)
+        toastStore.showWarning(`Redirecting to Homepage in ${secondsDelay} seconds`, redirectDelay, false)
+
+        console.log('currentPath: ', currentPath)
     }); 
 
 </script>
@@ -22,7 +27,7 @@
 
     <LayoutMain>
         <div class="text-xl pt-20 font-bold text-center text-color-red ">
-            Page Not Found
+            Page "{{ currentPath }}" not found. Redirecting to Homepage in {{ secondsDelay }} seconds...
         </div>
     </LayoutMain>
     

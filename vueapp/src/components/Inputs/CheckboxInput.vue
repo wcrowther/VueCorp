@@ -10,7 +10,7 @@
 </script>
 
 <template>
-    <div class="flex">
+    <div class="flex items-center">
         <input name="{{props.labelName}}" type="checkbox" v-model="modelValue">
         <span class="ml-2 text-color-dark-blue font-bold whitespace-nowrap text-xs">
             {{props.labelName}}

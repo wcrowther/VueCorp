@@ -22,7 +22,7 @@ namespace coreApi
 			bool showJsonPostDebug = appSettings.ShowJsonPostDebug;
 
 			// Useful for intercepting the raw request, especially if model binding, etc. goes wrong...
-			Debug.WriteLine($"Request for {httpContext.Request.Path} received ({httpContext.Request.ContentLength ?? 0} bytes)");
+			// Debug.WriteLine($"Request for {httpContext.Request.Path} received ({httpContext.Request.ContentLength ?? 0} bytes)");
 
 			if (showJsonPostDebug && httpContext.Request.Method == HttpMethods.Post && IsJsonRequest(httpContext))
 			{

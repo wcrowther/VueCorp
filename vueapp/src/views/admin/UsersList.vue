@@ -15,7 +15,7 @@
 
 
     // ===============================================================================================
-    // ItemsList Begin
+    // UserList Begins - Also see code in AccountsList where this has been refactored into composable
     // ===============================================================================================
 
     const detailKeyName                 = 'UserId'
@@ -139,13 +139,17 @@
         <div class="px-5 pb-3 flex flex-wrap justify-between items-center border-t border-r border-slate-300
            bg-gradient-side shadow-[0_10px_30px_-5px_rgb(0,0,0,0.4)] xxs:shadow-none">
             
-            <div class="flex gap-x-1 pt-5 pb-3 w-full">
-                <SearchInput ref="searchInput" v-model="listPager.Search.Filter" v-model:showAdvSearch="showAdvSearch" />
+            <div class="flex gap-x-1 pt-5 w-full">
+                <SearchInput ref="searchInput" 
+                    v-model="listPager.Search.Filter" 
+                    v-model:showAdvSearch="showAdvSearch" />
             </div>
 
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />
-                <span class="text-sm xs:hidden md:inline whitespace-nowrap">Total: {{listPager.TotalCount || 0 }}</span>
+                <span class="text-sm xs:hidden md:inline whitespace-nowrap">
+                    Total: {{listPager.TotalCount || 0 }}
+                </span>
             </div>
 
             <InfoBox class="mb-3">
@@ -197,7 +201,9 @@
         </table>
 
         <UserAdvSearch v-if="showAdvSearch" 
-            v-model:showModal="showAdvSearch" v-model:listPager="listPager" @getListData="getListData" />
+            v-model:showModal="showAdvSearch" 
+            v-model:listPager="listPager"
+             @getListData="getListData" />
 
     </div>
 

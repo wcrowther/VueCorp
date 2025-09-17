@@ -32,7 +32,7 @@
 
 		</div>
 
-		<div class="p-3 flex-1 min-w-0 transition-[padding,margin] duration-500">
+		<div class="flex-1 min-w-0 transition-[padding,margin] duration-500">
             <slot></slot><!-- main content --> 
 		</div>
 

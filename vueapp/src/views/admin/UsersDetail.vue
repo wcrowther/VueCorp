@@ -62,19 +62,18 @@
         }    
     }
 
-    const saveUserDetail = async () =>
+    const saveUserDetail = async (confirmResult) =>
     {        
+        if(!confirmResult) // cancelled
+        {
+             showConfirmSave.value = false
+             return
+        }
+  
         saveUser()
         isAddingUser.value = false 
         showConfirmSave.value = false
         v$.value.$reset()
-    }
-
-    const cancelAction = () => 
-    {
-        showConfirmSave.value = false
-        v$.value.$reset()
-        // getUserDetail()
     }
 
     // Listeners   =============================================================================
@@ -114,7 +113,7 @@
     <div class="flex flex-wrap gap-5" id="UsersDetailView">
 
         <ConfirmControl v-if="showConfirmSave" message="Save User Data?" 
-			@confirmDialog="saveUserDetail" @cancelDialog="cancelAction" />
+			@confirmResult="saveUserDetail"  />
 
         <div class="w-full flex justify-between items-center">
 
