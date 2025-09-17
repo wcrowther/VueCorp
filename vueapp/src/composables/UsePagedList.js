@@ -64,7 +64,6 @@ export function usePagedList(options)
         {
             let newPager           = new PagerModel(createSearchModel()) 
             newPager.Search.Filter = listPager.value.Search.Filter
-            // newPager.PageSize      = listPager.value.PageSize  // WILL REMOVE TO ADV SEARCH
             listPager.value        = newPager
         }
 

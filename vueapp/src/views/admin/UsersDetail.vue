@@ -1,27 +1,18 @@
 <script setup>
 
-    const usersStore        = useUsersStore()
-    const toastStore        = useToastStore()
-    const 
-    { 
-        user, 
-        detailUserId 
-    }                       = storeToRefs(usersStore)
-    const 
-    { 
-        getUserDetailData,
-        addNewUser, 
-        saveUser
-    }                       = usersStore
+    const usersStore                = useUsersStore()
+    const toastStore                = useToastStore()
+    const {  user,  detailUserId }  = storeToRefs(usersStore)
+    const {  getUserDetailData,
+        addNewUser, saveUser }      = usersStore
 
     const isAddingUser      = ref(false)
     const showConfirmSave   = ref(false)
     const userFullName      = computed(() => user.value.LastName ? `${user.value.FirstName} ${user.value.LastName}` : '---')
     const userTitle         = computed(() => isAddingUser.value ? 'Add new User' : userFullName.value )
 
-    //const rules             = computed(() => userValidator)
-
-	const v$ = useVuelidate(userValidator, user) // validator
+    // const rules = computed(() => userValidator) <-- Needed if userValidator is dynamic
+	const v$ = useVuelidate(userValidator, user) 
 
     const getUserDetail = async () =>
     {
@@ -46,7 +37,8 @@
        getUserDetail()
     }
 
-    const confirmDelete = () => alert('Delete not yet implemented.')
+    const confirmDelete = () => alert('Delete not implemented.')
+    
     const confirmSave = async () =>
     {
         const isValidUser = await v$.value.$validate()
@@ -119,18 +111,19 @@
 
             <h2 class="text-2xl font-display font-bold flex-grow">{{ userTitle }}</h2>
 
-            <span class="flex flex-wrap gap-3"> 
+            <span class="flex flex-wrap gap-3">   
 
-                <div class="">
-                    <IconSymbol v-if="!isAddingUser" width="28px" @click="addUser" title="Add User"
-                        class="text-color-mid-blue hover:text-white" icon="heroicons:plus-circle-16-solid" />
-                    <IconSymbol v-else width="28px" @click="cancelAdd" title="Cancel"
-                        class="text-color-mid-blue hover:text-white" icon="heroicons:x-circle-16-solid" />
-                </div>
-                                
                 <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="22px" @click="confirmSave" title="Save User"
                         class="text-color-mid-blue hover:text-white mt-[2px]" icon="fa-solid:save" />
+                </template>
+
+                <IconSymbol v-if="isAddingUser" width="28px" @click="cancelAdd" title="Cancel"
+                    class="text-color-mid-blue hover:text-white" icon="heroicons:x-circle-16-solid" />
+                <IconSymbol v-else width="28px" @click="addUser" title="Add User"
+                    class="text-color-mid-blue hover:text-white" icon="heroicons:plus-circle-16-solid" />
+
+                <template v-if="isAddingUser || hasKeys(user) && user.UserId > 0">
                     <IconSymbol width="28px" @click="confirmDelete" title="Delete User"
                         class="text-color-mid-blue hover:text-white -ml-[4px]" icon="heroicons:trash-16-solid" />
                 </template>

@@ -60,7 +60,7 @@ Accept: application/json
     "filterType": "",
     "sort": "",
     "sortDesc": true,
-    "roleFilter": "User"
+    "roleFilter": "Admin"
   }
 }
 

@@ -74,6 +74,7 @@ declare module 'vue' {
     TextInput: typeof import('./components/inputs/TextInput.vue')['default']
     TitleBox: typeof import('./components/boxes/TitleBox.vue')['default']
     UserAdvSearch: typeof import('./views/admin/UserAdvSearch.vue')['default']
+    UserFilters: typeof import('./views/admin/UserFilters.vue')['default']
     UserPopout: typeof import('./views/layout/UserPopout.vue')['default']
     UsersDetail: typeof import('./views/admin/UsersDetail.vue')['default']
     UsersList: typeof import('./views/admin/UsersList.vue')['default']

@@ -19,9 +19,6 @@
 
             <div class="flex justify-between items-center mb-7 relative z-20">
                 <h2 class="text-2xl font-display font-bold flex-grow">{{ pageTitle }}</h2>
-                <span class="flex flex-wrap gap-1.5">
-                    <button class="btn-primary" >Button</button>
-                </span>
             </div>
             
             <div class="flex flex-wrap gap-y-5 mb-5 relative">

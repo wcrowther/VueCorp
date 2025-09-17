@@ -4,7 +4,29 @@
     const showModal     = defineModel('showModal')
 
     const emits         = defineEmits(["getListData"])
-    const getListData   = () => emits('getListData')
+    const emitData     = (newVal, oldVal) => 
+    { 
+        if (newVal != oldVal) // use != as oldVal may be string '10'
+        {
+            console.log('newVal: ', newVal, 'oldVal: ', oldVal)
+            useDebounceFn(() => emits('getListData'), 1000)()
+        } 
+    }
+
+    const resetAdvSearch = () => 
+    {
+        console.log('resetAdvSearch')
+
+        listPager.value.PageSize    = 15
+        listPager.value.Search.RoleFilter  = ''
+
+        emits('getListData')
+    }
+
+    // Watches   ==============================================================================
+
+    watch(() => listPager.value.PageSize,           (newVal, oldVal) => emitData(newVal, oldVal))
+    watch(() => listPager.value.Search.RoleFilter,   (newVal, oldVal) => emitData(newVal, oldVal))
 
     // Keyboard Listeners  ================================================
 	
@@ -26,19 +48,17 @@
 
         <div class="p-5 pb-0">
 
-            {{ listPager.PageSize }}
             <SelectInput labelName="PageSize" v-model="listPager.PageSize" 
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
 
             <SelectInput labelName="Roles" v-model="listPager.Search.RoleFilter" 
                 :optionsList="roleList" :showDefault="true"  
-                title="Filter by the users role" /> 
-            
+                title="Filter by the users role" />
         </div>
 
         <template #footer>
-            <button class="btn-primary"  @click="getListData">Refresh</button>
+            <button class="btn-primary"  @click="resetAdvSearch">Reset</button>
             <button class="btn-delete"   @click="showModal=false">Close</button>
         </template>
 

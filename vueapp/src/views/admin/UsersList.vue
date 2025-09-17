@@ -66,7 +66,7 @@
         {
             let newPager                = new PagerModel()
             newPager.Search.Filter      = listPager.value.Search.Filter
-            newPager.PageSize           = listPager.value.PageSize
+            // newPager.PageSize           = listPager.value.PageSize  // WILL REMOVE
             listPager.value             = newPager
         }
 
@@ -112,11 +112,12 @@
         refreshList(newVal)
     })
 
-    watch(() => listPager.value.PageSize, (newVal, oldVal) => 
-    { 
-        if(newVal === oldVal) return
-        refreshList(1, true)
-    })
+    // WILL REMOVE
+    // watch(() => listPager.value.PageSize, (newVal, oldVal) => 
+    // { 
+    //     if(newVal === oldVal) return
+    //     refreshList(1, true)
+    // })
     
     watch(() => listPager.value.Search.Filter, (newVal, oldVal) => 
     {
@@ -144,6 +145,8 @@
                     v-model="listPager.Search.Filter" 
                     v-model:showAdvSearch="showAdvSearch" />
             </div>
+
+            <UserFilters :listPager @showAdvancedSearch="showAdvSearch=true" /> 
 
             <div class="w-full flex justify-between items-center select-none my-3">
                 <ListPager class="mr-2" id='listPager' v-bind:pager="listPager" />

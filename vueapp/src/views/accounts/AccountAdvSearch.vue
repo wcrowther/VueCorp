@@ -7,10 +7,7 @@
     const emitData     = (newVal, oldVal) => 
     { 
         if (newVal != oldVal) // use != as oldVal may be string '10'
-        {
-            console.log('newVal: ', newVal, 'oldVal: ', oldVal)
             useDebounceFn(() => emits('getListData'), 1000)()
-        } 
     }
 
     const resetAdvSearch = () => 
