@@ -6,7 +6,7 @@
     const props = defineProps(
     {
         listPager: { type: PagerModel, required: true },
-        defaultPageSize: { type: Number, default: 20 }
+        defaultPageSize: { type: Number, default: 15 }
     })
    
     const emits = defineEmits(['showAdvancedSearch'])
