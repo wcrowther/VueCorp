@@ -12,7 +12,7 @@ public interface IUserManager
 	
 	IEnumerable<User> GetAllUsers();
 
-	PagedList<User> GetPagedUsers(Pager pager);
+	PagedList<User, SearchForUser> GetPagedUsers(Pager<SearchForUser> pager);
 
 	User SaveUser(User user);
 

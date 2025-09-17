@@ -43,9 +43,9 @@ public class UserManager(	IUserRepo userRepo,
 		return userRepo.GetAllUsers();
 	}
 
-	public PagedList<User> GetPagedUsers(Pager pager)
+	public PagedList<User, SearchForUser> GetPagedUsers(Pager<SearchForUser> pager)
 	{
-		pager ??= new Pager();
+		pager ??= new Pager<SearchForUser>();
 
 		return userRepo.GetPagedUsers(pager);
 	}

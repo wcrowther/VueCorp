@@ -44,6 +44,26 @@ Authorization: bearer {{login.response.body.$.token}}
 Content-Type: application/json
 Accept: application/json
 
+### getPagedUserss  ==================================================
+
+POST {{coreApi.Server_HostAddress}}/v1/users/getPagedUsers
+Authorization: bearer {{login.response.body.$.token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "currentRecord": 0,
+  "pageSize": 20,
+  "groupSize": 5,
+  "search": {
+    "filter": "Will",
+    "filterType": "",
+    "sort": "",
+    "sortDesc": true,
+    "roleFilter": "User"
+  }
+}
+
 ### getPagedAccounts  ==================================================
 
 POST {{coreApi.Server_HostAddress}}/v1/accounts/getPagedAccounts

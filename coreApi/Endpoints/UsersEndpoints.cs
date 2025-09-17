@@ -26,7 +26,7 @@ public static partial class Endpoints
 
 		// getPagedUsers
 		endpoints.MapPost("/getPagedUsers", ( IUserManager userManager, 
-											  [FromBody] Pager pager) =>
+											  [FromBody] Pager<SearchForUser> pager) =>
 		{
 			var pagedList = userManager.GetPagedUsers(pager);
 

@@ -31,10 +31,10 @@
                 :optionsList="pagerPageSize" :showDefault="false"  
                 title="Change how many records in each page of data." />
 
-            <!-- <SelectInput labelName="Roles" v-model="listPager.PageSize" 
+            <SelectInput labelName="Roles" v-model="listPager.Search.RoleFilter" 
                 :optionsList="roleList" :showDefault="true"  
                 title="Filter by the users role" /> 
-            -->
+            
         </div>
 
         <template #footer>

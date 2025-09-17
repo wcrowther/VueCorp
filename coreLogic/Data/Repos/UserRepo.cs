@@ -55,7 +55,7 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 		return newUser;
 	}
 
-	public PagedList<User> GetPagedUsers(Pager pager)
+	public PagedList<User, SearchForUser> GetPagedUsers(Pager<SearchForUser> pager)
 	{
 		var predicate = BuildPredicate(pager);
 
@@ -67,7 +67,7 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 								.Take(pager.PageSize)
 								.ToList();
 
-		var pagedList = new PagedList<User>
+		var pagedList = new PagedList<User, SearchForUser>
 		{
 			ListItems   = listItems,
 			Pager       = pager
@@ -94,7 +94,7 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 
 	// =======================================================================================
 
-	private static ExpressionStarter<User> BuildPredicate(Pager pager, bool search = true)
+	private static ExpressionStarter<User> BuildPredicate(Pager<SearchForUser> pager, bool search = true)
 	{
 		var options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries;
 
@@ -121,6 +121,11 @@ public class UserRepo(CoreApiDataContext coreApiDataContext)
 				predicate = predicate.Or(p => p.LastName.StartsWith(filter));
 				predicate = predicate.Or(p => p.UserEmail.StartsWith(filter));
 			}
+		}
+
+		if (!pager.Search.RoleFilter.IsNullOrSpace())
+		{
+			predicate = predicate.And(account => account.Role.Equals(pager.Search.RoleFilter));
 		}
 
 		return predicate;

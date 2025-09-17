@@ -135,6 +135,20 @@ class SearchForAccount extends SearchModel
     }
 }
 
+class SearchForUser extends SearchModel 
+{
+    constructor(filter = '', filterType = 'startswith', sort = '', sortDesc = false, roleFilter = '' ) 
+    {
+        super(filter, filterType, sort, sortDesc)
+        this.RoleFilter    = roleFilter
+    }
+
+    static fromJson(json = {}) 
+    {
+        return Object.assign(new SearchForUser(), json)
+    }
+}
+
 class Result 
 {
     constructor(success = false, message = "Result not successful.") 
@@ -178,5 +192,6 @@ export {
     PagedList,
     SearchModel,
     SearchForAccount,
+    SearchForUser,
     Result
 }

@@ -15,7 +15,7 @@ public interface IUserRepo
 
 	User CreateUser(UserToCreate model, string passwordHash);
 
-	PagedList<User> GetPagedUsers(Pager pager);
+	PagedList<User, SearchForUser> GetPagedUsers(Pager<SearchForUser> pager);
 
 	User SaveUser(User user);
 }

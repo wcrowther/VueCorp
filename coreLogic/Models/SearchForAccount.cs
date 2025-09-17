@@ -2,11 +2,9 @@
 
 namespace coreApi.Models;
 
-public class SearchForAccount : Search
+public class SearchForUser : Search
 {
-	public string StateProvinceFilter { get; set; } = "";
+	public string RoleFilter { get; set; } = "";
 
-	public string PostalCodeFilter { get; set; } = "";
-
-	public readonly static new SearchForAccount Default = new();
+	public readonly static new SearchForUser Default = new();
 }

@@ -23,6 +23,7 @@ declare global {
   const RedirectToPage: typeof import('./composables/RedirectToPage.js')['RedirectToPage']
   const Result: typeof import('./models/PagerModel.js')['Result']
   const SearchForAccount: typeof import('./models/PagerModel.js')['SearchForAccount']
+  const SearchForUser: typeof import('./models/PagerModel.js')['SearchForUser']
   const SearchModel: typeof import('./models/PagerModel.js')['SearchModel']
   const SetHtmlHeadBody: typeof import('./composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']
   const UseConfirmControl: typeof import('./composables/UseConfirmControl.js')['default']
@@ -160,6 +161,7 @@ declare module 'vue' {
     readonly RedirectToPage: UnwrapRef<typeof import('./composables/RedirectToPage.js')['RedirectToPage']>
     readonly Result: UnwrapRef<typeof import('./models/PagerModel.js')['Result']>
     readonly SearchForAccount: UnwrapRef<typeof import('./models/PagerModel.js')['SearchForAccount']>
+    readonly SearchForUser: UnwrapRef<typeof import('./models/PagerModel.js')['SearchForUser']>
     readonly SearchModel: UnwrapRef<typeof import('./models/PagerModel.js')['SearchModel']>
     readonly SetHtmlHeadBody: UnwrapRef<typeof import('./composables/SetHtmlHeadBody.js')['SetHtmlHeadBody']>
     readonly UseConfirmControl: UnwrapRef<typeof import('./composables/UseConfirmControl.js')['default']>
