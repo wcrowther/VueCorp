@@ -28,8 +28,6 @@ export default
 		{
 			removeTooltip()
 
-
-
 			tooltip = document.createElement('div')
 			tooltip.className = 'fixed z-[99999] px-2 py-1 text-sm text-black bg-[#81caff] rounded shadow tracking-wider ' +
 								'pointer-events-none w-max max-w-xs whitespace-normal break-words opacity-0 transition-opacity duration-150 drop-shadow-md'

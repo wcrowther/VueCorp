@@ -196,6 +196,8 @@ declare global {
   const useVuelidate: typeof import('@vuelidate/core')['useVuelidate']
   const useWindowSize: typeof import('@vueuse/core')['useWindowSize']
   const userValidator: typeof import('../helpers/validators.js')['userValidator']
+  const vContainerWidth: typeof import('../helpers/containerWidth.js')['vContainerWidth']
+  const vWidth: typeof import('../helpers/containerWidth.js')['vWidth']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']
   const watchPostEffect: typeof import('vue')['watchPostEffect']
@@ -422,6 +424,7 @@ declare module 'vue' {
     readonly useVuelidate: UnwrapRef<typeof import('@vuelidate/core')['useVuelidate']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
     readonly userValidator: UnwrapRef<typeof import('../helpers/validators.js')['userValidator']>
+    readonly vContainerWidth: UnwrapRef<typeof import('../helpers/containerWidth.js')['vContainerWidth']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
     readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>

@@ -95,10 +95,10 @@ const enteredText = await createPromptControl({ message: 'Enter some text' })
         <div class="mb-7">
             <PrimaryButton class="mt-5 mr-3" @click="showAlert">Alert</PrimaryButton>
             <PrimaryButton class="mr-3" @click="tryConfirm">Confirm</PrimaryButton>
+            <PrimaryButton class="mt-5 mr-3" @click="tryPrompt">Prompt for Text</PrimaryButton>
             <PrimaryButton class="mr-3" @click="createConfirm('Confirm this record?', () => console.log('Inline callback!'))">
                 Confirm with Callback
             </PrimaryButton>
-            <PrimaryButton class="mt-5 mr-3" @click="tryPrompt">Prompt for Text</PrimaryButton>
         </div>
 
         <div v-if="showConfirmedText" 

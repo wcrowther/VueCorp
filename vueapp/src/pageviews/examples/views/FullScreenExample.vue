@@ -1,7 +1,7 @@
 <script setup>
 
     const fullScreen = ref(false)
-    const inset      = ref(0)
+    const idx        = ref(0)
     const insetList  = 
     [ 
         { name: 'Inset None', inset: 0 },
@@ -15,7 +15,7 @@
 
     <PageTitleBox pageTitle="FullScreen Control">
 
-        <ListButton v-model:index="inset" :rangeList="insetList" 
+        <ListButton v-model:index="idx" :rangeList="insetList" 
             class="!rounded-md !text-sm !text-[#121639] !py-0 !pt-[4px] !pb-[3px] 
             !h-auto !leading-normal !tracking-wide hover:!bg-white hover:!border-color-primary 
             !border !border-transparent" />
@@ -32,9 +32,11 @@
 	</InfoBox>
 
     <FullScreenControl v-model:fullScreen="fullScreen" :backGradation="true"
-        :inset="insetList[inset].inset" class="flex justify-center">
+        :inset="insetList[idx].inset" class="flex justify-center">
+
         <img src="/images/super_string_theory.jpg" class="aspect-auto"
             :style="fullScreen ? {} : { maxWidth: '400px' }" />
+
     </FullScreenControl>
 
 </template>
