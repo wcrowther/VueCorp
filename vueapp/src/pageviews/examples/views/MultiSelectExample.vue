@@ -19,8 +19,6 @@
 	<div class="mb-10">
 
 		<PageTitleBox pageTitle="MultiSelectInput">
-
-			<!-- <SwitchButton class="bg-color-primary text-white" buttonName="Mode" v-model="isCommaMode" /> -->
 			
 			<div class="flex w-[350px]">
 				<ListButton v-model:index="hideSelectedIndex" :rangeList="hideSelectedList"

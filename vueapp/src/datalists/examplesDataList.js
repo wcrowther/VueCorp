@@ -15,7 +15,7 @@ export const examplesDataList =
         { name: 'Inputs', example: 'InputsExample', show: true, featured: true, type: '', order: 2},
         { name: 'Intro', example: 'IntroToExamples', show: true, featured: true, type: '', order: 1},
         { name: 'JsonTree', example: 'JsonTreeExample', show: true, featured: false, type: '', order: 5},
-        { name: 'ListButton', example: 'ListButtonExample', show: true, featured: false, type: '', order: 5},
+        { name: 'Buttons', example: 'ButtonsExample', show: true, featured: false, type: '', order: 5},
         { name: 'Misc', example: 'MiscExample', show: false, featured: false, type: '', order: 5},
         { name: 'ModalControl', example: 'ModalControlExample', show: true, featured: false, type: '', order: 5},
         { name: 'MultiSelect', example: 'MultiSelectExample', show: true, featured: false, type: '', order: 5},

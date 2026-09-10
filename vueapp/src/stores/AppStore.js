@@ -24,6 +24,7 @@ export const useAppStore = defineStore('AppStore', () =>
     const pagerDebuggerX        = useLocalStorage('pagerDebuggerX', 400)
     const pagerDebuggerY        = useLocalStorage('pagerDebuggerY', 30)
     const showPlatformInfo      = useLocalStorage('showPlatformInfo', false)
+    const hideToolTips          = useLocalStorage('hideToolTips', true)
 	
     // Getters ------------------------------------------------------------------
 
@@ -94,6 +95,7 @@ export const useAppStore = defineStore('AppStore', () =>
         showPlatformInfo,
         activeFloater,
         disableGlobalKeys,
+        hideToolTips,
 
         infoLevelText,
 

@@ -245,7 +245,7 @@ vueapp*
 					- InputsExample.vue
 					- IntroExample.vue
 					- JsonTreeExample.vue
-					- ListButtonExample.vue
+					- ButtonsExample.vue
 					- MiscExample.vue
 					- MultiSelectExample.vue
 					- TabsFlowBarExample.vue

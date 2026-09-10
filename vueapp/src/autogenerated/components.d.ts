@@ -25,6 +25,7 @@ declare module 'vue' {
     BrandBar: typeof import('./../pageviews/layout/BrandBar.vue')['default']
     BrandLogo: typeof import('./../pageviews/layout/BrandLogo.vue')['default']
     BreakPoints: typeof import('./../components/misc/BreakPoints.vue')['default']
+    ButtonsExample: typeof import('./../pageviews/examples/views/ButtonsExample.vue')['default']
     CalendarDayEvent: typeof import('./../components/calendar/CalendarDayEvent.vue')['default']
     CalendarDayModal: typeof import('./../components/calendar/CalendarDayModal.vue')['default']
     CalendarEvent: typeof import('./../components/calendar/CalendarEvent.vue')['default']
