@@ -31,7 +31,7 @@
             </div>
             <div>
                 <b>Container-aware capsule:</b> the bordered row below uses the <b>v-container-width</b> 
-                debug directive (see <code>@/helpers/ContainerWidth</code>) to show which Tailwind 
+                debug directive (see <code>@/helpers/containerWidth</code>) to show which Tailwind 
                 <code>@container</code> tier each side currently occupies.
             </div>
         </HelpBox>

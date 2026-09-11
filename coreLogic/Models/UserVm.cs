@@ -20,7 +20,7 @@ public class UserVm
 	public string UserEmail { get; set; } = "";
 
 	[AllowedValues("User", "Admin", "SuperAdmin")]
-	public string? Role { get; set; }
+	public string Role { get; set; }
 
 	public bool IsActive { get; set; }
 
@@ -32,9 +32,9 @@ public class UserVm
 
 	public int ModifierId { get; set; }
 
-	public string? CreatorName { get; set; }
+	public string CreatorName { get; set; }
 
-	public string? ModifierName { get; set; }
+	public string ModifierName { get; set; }
 
 	public override string ToString() => $"{FirstName} {LastName} Id: {UserId}";
 }
